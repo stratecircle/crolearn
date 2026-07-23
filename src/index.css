@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+html {
+  @apply bg-stone-50 text-stone-900;
+}
+
+/* Croatian special-character buttons and answer inputs need comfy tap targets */
+button {
+  cursor: pointer;
+}

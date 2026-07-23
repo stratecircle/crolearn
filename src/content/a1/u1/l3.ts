@@ -1,0 +1,412 @@
+import type { Lesson } from "@/types/content";
+
+/**
+ * A1 U1 L3 — Ja sam… (biti + personal pronouns + pro-drop)
+ * Spec: curriculum/A1/unit-1.md · Grammar: grammar-reference.md §5, §6.
+ */
+export const a1u1l3: Lesson = {
+  id: "a1u1l3",
+  unitId: "a1u1",
+  title: "Ja sam…",
+  titleEn: "I am… (biti + pronouns)",
+  grammarTags: ["biti-present", "pronouns", "pro-drop"],
+  estMinutes: 18,
+  vocab: [
+    { id: "a1u1.ja", hr: "ja", en: "I", pos: "pron", icon: "👤", exampleHr: "Ja sam Tom.", exampleEn: "I am Tom." },
+    { id: "a1u1.ti", hr: "ti", en: "you (one person, informal)", pos: "pron", icon: "🫵", exampleHr: "Ti si student.", exampleEn: "You are a student." },
+    { id: "a1u1.on", hr: "on", en: "he", pos: "pron", icon: "👨", exampleHr: "On je đak.", exampleEn: "He is a pupil." },
+    { id: "a1u1.ona", hr: "ona", en: "she", pos: "pron", icon: "👩", exampleHr: "Ona je Ana.", exampleEn: "She is Ana." },
+    { id: "a1u1.ono", hr: "ono", en: "it / that one (neuter)", pos: "pron", icon: "⚪", exampleHr: "Ono je dobro.", exampleEn: "That one is good." },
+    { id: "a1u1.mi", hr: "mi", en: "we", pos: "pron", icon: "👥", exampleHr: "Mi smo prijatelji.", exampleEn: "We are friends." },
+    { id: "a1u1.vi", hr: "vi", en: "you (several people, or formal Vi)", pos: "pron", icon: "🧑‍🤝‍🧑", exampleHr: "Vi ste Ana i Tom.", exampleEn: "You are Ana and Tom." },
+    { id: "a1u1.oni", hr: "oni", en: "they", pos: "pron", icon: "👨‍👩‍👧", exampleHr: "Oni su studenti.", exampleEn: "They are students." },
+    { id: "a1u1.sretan", hr: "sretan", en: "happy", pos: "adj", icon: "😊", exampleHr: "Sretan sam!", exampleEn: "I am happy!" },
+    { id: "a1u1.umoran", hr: "umoran", en: "tired", pos: "adj", icon: "🥱", exampleHr: "Umoran sam.", exampleEn: "I am tired." },
+    { id: "a1u1.student", hr: "student", en: "student (male)", pos: "noun", gender: "m", icon: "🎓", image: "/img/student.png", exampleHr: "Ti si student.", exampleEn: "You are a student." },
+    { id: "a1u1.studentica", hr: "studentica", en: "student (female)", pos: "noun", gender: "f", icon: "👩‍🎓", image: "/img/studentica.png", exampleHr: "Ona je studentica.", exampleEn: "She is a student." },
+  ],
+  slides: [
+    {
+      id: "s01",
+      type: "section",
+      title: "Ja sam…",
+      subtitle: "The verb “to be” in six tiny beats — your first real sentences.",
+      emoji: "💬",
+      items: [
+        { emoji: "🥁", label: "biti: sam si je smo ste su", hint: "one form per person" },
+        { emoji: "🫥", label: "Drop the pronoun", hint: "Umoran sam — and why sam is never first" },
+        { emoji: "🎤", label: "Say it, review, recap", hint: "Ja sam Tom — with your name" },
+        { emoji: "🎯", label: "Recap + 12 new flashcards" },
+      ],
+    },
+    {
+      id: "s02",
+      type: "section",
+      title: "Part 1 · biti — the six forms",
+      subtitle: "Meet the cast, then chant the drum fill: sam-si-je-smo-ste-su.",
+      emoji: "🥁",
+      items: [
+        { emoji: "👥", label: "Meet Tom, Ana & Marko" },
+        { emoji: "📊", label: "The biti table", hint: "ja sam · ti si · ona je…" },
+        { emoji: "📣", label: "First real sentences", hint: "Ja sam Tom. Mi smo prijatelji." },
+        { emoji: "🧩", label: "Quick checks by ear and eye" },
+      ],
+    },
+    {
+      id: "s03",
+      type: "vocab-cards",
+      title: "Meet today's words",
+      vocabIds: [
+        "a1u1.ja", "a1u1.ti", "a1u1.on", "a1u1.ona", "a1u1.ono", "a1u1.mi",
+        "a1u1.vi", "a1u1.oni", "a1u1.sretan", "a1u1.umoran", "a1u1.student", "a1u1.studentica",
+      ],
+    },
+    {
+      id: "s04",
+      type: "teach",
+      title: "biti — sam, si, je, smo, ste, su",
+      body:
+        "Time to actually *say something*. Today you meet **biti** (to be) — the most used verb in Croatian — six tiny forms, one per person. They're **clitics** — short, unstressed words that lean on a neighbour. Chant them: *sam-si-je-smo-ste-su*.\n\nMeet the story cast while you're at it: **Tom** (a Canadian learning Croatian), **Ana** (a student from Zagreb) and **Marko**.",
+      diagram: {
+        kind: "callout",
+        tone: "info",
+        title: "Today's win",
+        text: "Ja sam Tom. — I am Tom. Three words, infinite mileage.",
+      },
+      table: {
+        caption: "biti (to be) — present",
+        headers: ["pronoun", "biti", "example"],
+        colCase: ["NOM", null, null],
+        rows: [
+          ["👤 ja (I)", "sam", "Ja sam Tom."],
+          ["🫵 ti (you)", "si", "Ti si student."],
+          ["👨👩⚪ on / ona / ono (he/she/it)", "je", "Ona je Ana."],
+          ["👥 mi (we)", "smo", "Mi smo prijatelji."],
+          ["🧑‍🤝‍🧑 vi (you pl./formal)", "ste", "Vi ste Ana i Tom."],
+          ["👨‍👩‍👧 oni / one (they)", "su", "Oni su studenti."],
+        ],
+      },
+      examples: [
+        { hr: "Ja sam Tom.", en: "I am Tom." },
+        { hr: "Ti si student.", en: "You are a student." },
+        { hr: "Ona je Ana. Ona je studentica.", en: "She is Ana. She is a student.", note: "-ica = female version" },
+        { hr: "Mi smo prijatelji.", en: "We are friends.", note: "prijatelji = friends (officially yours next lesson)" },
+      ],
+      ttsChips: ["ja sam", "ti si", "on je", "mi smo", "vi ste", "oni su"],
+    },
+    {
+      id: "s05",
+      type: "quiz-set",
+      title: "Quick check: pick the form",
+      items: [
+        {
+          prompt: "Ona ___ studentica.",
+          options: ["je", "sam", "si"],
+          correctIndex: 0,
+          explanation: "on/ona/ono take je: Ona je studentica.",
+        },
+        {
+          prompt: "Mi ___ prijatelji.",
+          options: ["smo", "ste", "su"],
+          correctIndex: 0,
+          explanation: "mi → smo. Chant it: sam-si-je-SMO-ste-su.",
+        },
+        {
+          prompt: "Listen. What does the sentence mean?",
+          tts: "Ja sam umoran.",
+          options: ["I am tired.", "I am happy.", "I am a student."],
+          correctIndex: 0,
+          explanation: "umoran = tired. (sretan = happy, student = student.)",
+        },
+      ],
+    },
+    {
+      id: "s06",
+      type: "mc",
+      prompt: "Which pronoun is NEUTER — for “it / that one”?",
+      options: ["ono", "on", "ona"],
+      correctIndex: 0,
+      explanation: "ono = it / that one (neuter). on = he, ona = she — and all three take je.",
+    },
+    {
+      id: "s07",
+      type: "section",
+      title: "Part 2 · Drop the pronoun — then drill it",
+      subtitle: "Natural Croatian skips “ja” — but the little words can never come first.",
+      emoji: "🫥",
+      items: [
+        { emoji: "⚖️", label: "The never-first rule", hint: "Umoran sam ✅ · Sam umoran ❌" },
+        { emoji: "🧩", label: "Fill every form", hint: "sam, si, ste…" },
+        { emoji: "⌨️", label: "Translate into Croatian", hint: "I am Tom · We are friends" },
+        { emoji: "🎧", label: "Dictation on full sentences" },
+      ],
+    },
+    {
+      id: "s08",
+      type: "teach",
+      title: "Drop the pronoun — but sam is never first!",
+      body:
+        "Croatian usually **drops the pronoun** — the verb form already tells you who. *Umoran sam* is more natural than *Ja sam umoran* (keep **ja** only for emphasis).\n\nOne iron rule: **sam/si/je/smo/ste/su can never stand first** in the sentence. Something must come before the little word.",
+      diagram: {
+        kind: "contrast",
+        left: {
+          title: "GOOD ✅",
+          emoji: "✅",
+          lines: [
+            { hr: "Umoran sam.", en: "I'm tired. (natural)" },
+            { hr: "Ja sam umoran.", en: "I'm tired. (emphasis on I)" },
+          ],
+        },
+        right: {
+          title: "NEVER ❌",
+          emoji: "⛔",
+          lines: [
+            { hr: "Sam umoran.", en: "broken — sam can't be first" },
+          ],
+        },
+      },
+      examples: [
+        { hr: "Umoran sam.", en: "I'm tired.", note: "no ja needed — sam says it all" },
+        { hr: "Sretan sam!", en: "I'm happy!" },
+        { hr: "Studentica sam.", en: "I'm a student (f).", note: "noun first, clitic second — never first" },
+      ],
+    },
+    {
+      id: "s09",
+      type: "fill",
+      text: "Ja ___ Tom.",
+      blanks: [["sam"]],
+      translation: "I am Tom.",
+      wordBank: ["sam", "si", "je"],
+      explanation: "ja → sam.",
+    },
+    {
+      id: "s10",
+      type: "fill",
+      text: "Ti ___ student.",
+      blanks: [["si"]],
+      translation: "You are a student.",
+      wordBank: ["si", "smo", "su"],
+      explanation: "ti → si.",
+    },
+    {
+      id: "s11",
+      type: "fill",
+      text: "Vi ___ Ana i Tom.",
+      blanks: [["ste"]],
+      translation: "You are Ana and Tom.",
+      wordBank: ["ste", "smo", "je"],
+      explanation: "vi → ste.",
+    },
+    {
+      id: "s12",
+      type: "fill",
+      text: "Oni ___ studenti.",
+      blanks: [["su"]],
+      translation: "They are students.",
+      wordBank: ["su", "smo", "je"],
+      explanation: "oni → su (studenti = students, a set plural you'll unlock in Unit 3).",
+    },
+    {
+      id: "s13",
+      type: "type",
+      prompt: "Translate: “I am Tom.”",
+      answers: ["Ja sam Tom.", "Ja sam Tom", "ja sam Tom", "Tom sam.", "Tom sam"],
+      hint: "3 words — pronoun, biti, name.",
+      explanation: "Ja sam Tom. (Or with pro-drop and a name first: Tom sam.)",
+    },
+    {
+      id: "s14",
+      type: "type",
+      prompt: "Translate: “We are friends.”",
+      answers: ["Mi smo prijatelji.", "Mi smo prijatelji", "mi smo prijatelji", "Prijatelji smo.", "Prijatelji smo"],
+      hint: "mi → ?",
+      explanation: "Mi smo prijatelji. — or the pro-drop version Prijatelji smo. (smo still not first!)",
+    },
+    {
+      id: "s15",
+      type: "match",
+      prompt: "Match the pronoun to its form of biti",
+      pairs: [
+        { a: "ja", b: "sam" },
+        { a: "ti", b: "si" },
+        { a: "ona", b: "je" },
+        { a: "mi", b: "smo" },
+        { a: "vi", b: "ste" },
+        { a: "oni", b: "su" },
+      ],
+    },
+    {
+      id: "s16",
+      type: "listen-type",
+      tts: "Ona je studentica.",
+      answers: ["Ona je studentica", "ona je studentica"],
+      explanation: "Ona je studentica. — She is a student.",
+    },
+    {
+      id: "s17",
+      type: "listen-type",
+      tts: "Mi smo prijatelji.",
+      answers: ["Mi smo prijatelji", "mi smo prijatelji"],
+      explanation: "Mi smo prijatelji. — We are friends.",
+    },
+    {
+      id: "s18",
+      type: "quiz-set",
+      title: "Quick check: never first",
+      items: [
+        {
+          prompt: "Which sentence is NOT correct?",
+          options: ["Sam umoran.", "Umoran sam.", "Ja sam umoran."],
+          correctIndex: 0,
+          explanation: "sam can never stand first. Umoran sam ✅ and Ja sam umoran ✅ are both fine.",
+        },
+        {
+          prompt: "Listen. What does the sentence mean?",
+          tts: "On je đak.",
+          options: ["He is a pupil.", "He is a friend.", "She is a student."],
+          correctIndex: 0,
+          explanation: "on = he, đak = pupil (your L2 word, now inside a real sentence).",
+        },
+      ],
+    },
+    {
+      id: "s19",
+      type: "section",
+      title: "Part 3 · Say it, review, recap",
+      subtitle: "Your voice, a Lesson 2 flashback, and one last build.",
+      emoji: "🎤",
+      items: [
+        { emoji: "🗣️", label: "Speak: Ja sam Tom", hint: "then swap in your own name" },
+        { emoji: "🔁", label: "Lesson 2 review", hint: "čaj, čovjek" },
+        { emoji: "🔀", label: "Build: Ja sam sretan" },
+        { emoji: "🎯", label: "Recap + 12 new flashcards" },
+      ],
+    },
+    {
+      id: "s20",
+      type: "speak",
+      targetHr: "Ja sam Tom.",
+      targetEn: "I am Tom.",
+      phonetic: "ya sahm TOM — then try it with your own name",
+    },
+    {
+      id: "s21",
+      type: "type",
+      review: true,
+      prompt: "Write it in Croatian: “tea” (from Lesson 2)",
+      answers: ["čaj"],
+      explanation: "čaj — hard č, and you can spell it now.",
+    },
+    {
+      id: "s22",
+      type: "listen-type",
+      review: true,
+      tts: "čovjek",
+      explanation: "čovjek — person/man, straight from Lesson 2.",
+    },
+    {
+      id: "s23",
+      type: "reorder",
+      words: ["Ja", "sam", "sretan"],
+      answers: ["Ja sam sretan", "Ja sam sretan."],
+      en: "I am happy.",
+      explanation: "Ja sam sretan. — pro-drop version Sretan sam also works (sam second, never first).",
+    },
+    {
+      id: "s24",
+      type: "recap",
+      summary:
+        "**biti in six beats:** sam · si · je · smo · ste · su. Pronouns (ja, ti, on/ona/ono, mi, vi, oni) are usually **dropped** — the verb form carries the who. Iron rule: the little forms **never stand first** (*Umoran sam* ✅, *Sam umoran* ❌).\n\nNext lesson: questions — *Kako se zoveš?* — and you'll have your first full conversation.",
+      vocabIds: [
+        "a1u1.ja", "a1u1.ti", "a1u1.on", "a1u1.ona", "a1u1.ono", "a1u1.mi",
+        "a1u1.vi", "a1u1.oni", "a1u1.sretan", "a1u1.umoran", "a1u1.student", "a1u1.studentica",
+      ],
+    },
+  ],
+  // SRS cloze cards flagged by the unit spec (seeded on lesson completion).
+  srsCloze: [
+    { front: "Ja ___ Tom. (biti)", answers: ["sam"], back: "Ja sam Tom.", tts: "Ja sam Tom." },
+    { front: "Ti ___ Ana. (biti)", answers: ["si"], back: "Ti si Ana.", tts: "Ti si Ana." },
+    { front: "On ___ student. (biti)", answers: ["je"], back: "On je student.", tts: "On je student." },
+    { front: "Mi ___ Tom i Ana. (biti)", answers: ["smo"], back: "Mi smo Tom i Ana.", tts: "Mi smo Tom i Ana." },
+    { front: "Vi ___ Ana i Marko. (biti)", answers: ["ste"], back: "Vi ste Ana i Marko.", tts: "Vi ste Ana i Marko." },
+    { front: "Oni ___ Marko i Ana. (biti)", answers: ["su"], back: "Oni su Marko i Ana.", tts: "Oni su Marko i Ana." },
+  ],
+  notes: {
+    inOneSentence: {
+      en: "biti (to be) has six short forms — sam, si, je, smo, ste, su — which usually replace the pronoun entirely and can never stand first in the sentence.",
+      exampleHr: "Ja sam Tom. / Umoran sam.",
+    },
+    deepDive: [
+      {
+        title: "biti — the complete table (with a preview)",
+        body:
+          "The everyday forms are the **clitics** (sam, si…). Croatian also has **stressed** forms (jesam…) for emphasis and short answers (*Jesi li umoran? — Jesam!*), and **negative** forms (nisam…) — those two columns are a preview; Unit 2 puts them to work.",
+        table: {
+          caption: "biti — present tense, all three columns",
+          headers: ["pronoun", "clitic", "stressed", "negative"],
+          rows: [
+            ["ja", "sam", "jesam", "nisam"],
+            ["ti", "si", "jesi", "nisi"],
+            ["on / ona / ono", "je", "jest(e)", "nije"],
+            ["mi", "smo", "jesmo", "nismo"],
+            ["vi", "ste", "jeste", "niste"],
+            ["oni / one", "su", "jesu", "nisu"],
+          ],
+        },
+      },
+      {
+        title: "The clitic rule — never first",
+        body:
+          "sam/si/je/smo/ste/su are unstressed little words that must **lean on** something before them: a pronoun (*Ja sam…*), a name (*Tom sam*), an adjective (*Umoran sam*). This “second position” habit is the single most Croatian thing about Croatian word order — you'll meet it again with more clitics later.",
+        diagram: {
+          kind: "callout",
+          tone: "warn",
+          title: "Never first!",
+          text: "Sam umoran ❌ — a clitic can't open the sentence. Put anything before it: Umoran sam ✅ / Ja sam umoran ✅.",
+        },
+      },
+      {
+        title: "Pro-drop — when to keep the pronoun",
+        body:
+          "Default: drop it. *Studentica sam.* / *Umoran sam.* Keep the pronoun only for **contrast or emphasis**: *JA sam umoran (a ti nisi!)* — “**I**'m the tired one (not you)”.\n\nUsing *ja, ti, on* in every sentence is the #1 way to sound like a textbook. Trust the verb ending.\n\nAlso note the gender pairs you met: **student/studentica**, and that a woman says *umorna sam / sretna sam* — adjective agreement is Unit 2's job; for now just recognize it.",
+        table: {
+          caption: "Pronoun grid",
+          headers: ["pronoun", "en", "biti"],
+          rows: [
+            ["ja 👤", "I", "sam"],
+            ["ti 🫵", "you (sg.)", "si"],
+            ["on 👨 / ona 👩 / ono ⚪", "he / she / it", "je"],
+            ["mi 👥", "we", "smo"],
+            ["vi 🧑‍🤝‍🧑", "you (pl. / formal Vi)", "ste"],
+            ["oni 👨‍👩‍👧 / one 👩‍👩‍👧", "they (m or mixed / f)", "su"],
+          ],
+        },
+      },
+    ],
+    commonMistakes: [
+      { wrong: "Sam Ana.", right: "Ana sam. / Ja sam Ana.", why: "sam is a clitic — it can never be the first word." },
+      { wrong: "Ja sam umoran, ti si sretan, on je… (pronoun every time)", right: "Umoran sam. Sretan si.", why: "Croatian drops pronouns by default; keeping them all sounds robotic. Keep one only for emphasis." },
+      { wrong: "Ana je student.", right: "Ana je studentica.", why: "People-nouns pair up: student (m) / studentica (f). Use the -ica form for women." },
+      { wrong: "Mi je prijatelji.", right: "Mi smo prijatelji.", why: "je belongs only to on/ona/ono — mi takes smo. One person, one form." },
+    ],
+    memoryHooks: [
+      "Chant the rhythm: sam-si-je-smo-ste-su — six beats, like a drum fill.",
+      "“Never first” — imagine sam/si/je as shy words that must hide behind someone.",
+      "-ica turns a man into a woman: student → studentica, prijatelj → prijateljica (next lesson).",
+      "sam = “I am” already — that's why Ja is optional: the who lives inside the verb.",
+    ],
+    connects: [
+      { label: "Slova i glasovi II (you can read every word here)", lessonId: "a1u1l2" },
+      { label: "Kako se zoveš? (questions to go with your answers)", lessonId: "a1u1l4" },
+    ],
+    selfCheck: [
+      { q: "Recite all six present forms of biti, in order.", a: "sam, si, je, smo, ste, su." },
+      { q: "Why is “Sam umoran” wrong, and what are two correct versions?", a: "Clitics can't stand first. Umoran sam. / Ja sam umoran." },
+      { q: "When do you keep the pronoun ja?", a: "Only for contrast or emphasis — by default Croatian drops it." },
+      { q: "How does Ana say “I am a student”?", a: "Studentica sam. (or Ja sam studentica) — female form with -ica." },
+      { q: "Translate: “They are students.”", a: "Oni su studenti." },
+    ],
+  },
+};
