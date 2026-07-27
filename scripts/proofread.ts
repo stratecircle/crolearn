@@ -101,6 +101,8 @@ function fromCheckpoint(cp: CheckpointExam): Item[] {
   cp.speaking?.prompts.forEach((p) => {
     if (p.modelHr) out.push({ where: `${cp.id}/speaking/${p.id}`, hr: p.modelHr, en: p.task });
   });
+  if (cp.writing?.modelHr)
+    out.push({ where: `${cp.id}/writing/model`, hr: cp.writing.modelHr, en: cp.writing.task });
   return out;
 }
 

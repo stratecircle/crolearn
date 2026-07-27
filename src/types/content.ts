@@ -409,11 +409,26 @@ export interface SpeakingPrompt {
   rubricFocus?: string;
 }
 
+/** The guided writing task in an A2+ checkpoint (§8 — AI-graded, never gates). */
+export interface WritingTask {
+  title: string;
+  /** English task instruction (may embed the Croatian prompt). */
+  task: string;
+  /** Soft word-count guidance shown with a counter. */
+  minWords?: number;
+  maxWords?: number;
+  /** Optional model text, revealable for self-assessment. */
+  modelHr?: string;
+  /** What the AI grader should weight most. */
+  rubricFocus?: string;
+}
+
 /**
  * Level checkpoint exam (teaching-method §8) — taken after the level's last
  * unit test; soft gate that unlocks the next level. Quiz sections (listening,
  * reading, cloze) are graded locally and set the pass/fail; the optional
- * speaking section is AI-graded when a key is present and never blocks.
+ * speaking and writing sections are AI-graded when a key is present and
+ * never block.
  */
 export interface CheckpointExam {
   /** e.g. "a1checkpoint" */
@@ -425,6 +440,8 @@ export interface CheckpointExam {
   sections: { title: string; slides: QuizSlide[] }[];
   /** Optional AI-graded speaking section (Govor). */
   speaking?: { title: string; prompts: SpeakingPrompt[] };
+  /** Optional AI-graded guided writing task (Pisanje — A2+, §8). */
+  writing?: WritingTask;
   /** Pass threshold as a % of the quiz sections (e.g. 70). */
   passPct: number;
   /** Unit id after which this unlocks (gates the dashboard entry), e.g. "a1u8". */

@@ -14,6 +14,8 @@ The A2 finale and the door to B1: **verb aspect**, introduced gently — pairs l
 
 ## New vocabulary (~40 items)
 
+*(Correction 2026-07-27, before authoring: collision grep — plan & planirati taught U9 L1, preseliti se U10 L4, ostati U11 L2, počinjati U6 L5 (so the L1 pair is presented as known-impf + NEW pf početi), životopis & iskustvo U12 L5 → all recycled, not new. san was taught in U11 L5 as SLEEP — L3 re-presents the same word with its second meaning DREAM (recept-style two-meanings beat, counts as new sense). uspjeh was a U12 story gloss → formally taught in L4. san-as-dream keeps L3 at the 6-word floor. Story: »u malom selu« and »u velikoj obitelji« use untaught adjective-LOC → rephrased with noun-only LOC (»u selu u Slavoniji… Selo je bilo malo«); ples (dance) added to the story glossary (»na plesu« needs it) → glossary = unuk, mladić, tvornica, zauvijek, ples (5). Model-sentence swap: »Navečer gledam televiziju« → »Navečer gledam filmove« (televizija untaught, film U6).)*
+
 **L1 (the first pairs — perfective partners of old friends):** napisati (pf of pisati) · pročitati (pf of čitati) · pogledati (pf of gledati) · napraviti (pf of raditi, "to make/get done") · popiti (pf of piti) · pojesti (pf of jesti) · naučiti (pf of učiti) · počinjati/početi (to begin, impf/pf)
 
 **L2 (life events):** roditi se (pf, to be born) · odrasti (pf, to grow up) · djetinjstvo (n, childhood) · mladost (f, youth) · upoznati (pf, to meet [for the first time]) · preseliti se (pf, to move [house/city]) · ostati (pf, to stay) · promijeniti (pf, to change)

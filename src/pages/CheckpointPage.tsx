@@ -7,9 +7,9 @@ import { aiErrorMessage, gradeFreeForm, hasApiKey, type AiGradeResult } from "@/
 import { hasStt, listenOnce, stopListening } from "@/lib/stt";
 import { speak } from "@/lib/tts";
 import { scoreCheckpoint, type CheckpointScore, type ItemResult } from "@/features/checkpoint/scoring";
-import type { QuizSlide, SpeakingPrompt } from "@/types/content";
+import type { QuizSlide, SpeakingPrompt, WritingTask } from "@/types/content";
 
-type Phase = "intro" | "quiz" | "speaking" | "results";
+type Phase = "intro" | "quiz" | "speaking" | "writing" | "results";
 
 /**
  * Level checkpoint exam (§8): quiz sections graded locally (the pass/fail gate),
@@ -72,7 +72,8 @@ export default function CheckpointPage() {
         <div className="mt-5 rounded-2xl bg-white p-5 text-left shadow-sm">
           <p className="text-sm text-stone-600">
             {totalQuiz} graded questions across {exam.sections.length} sections
-            {exam.speaking ? `, plus ${exam.speaking.prompts.length} speaking prompts` : ""}. No hints,
+            {exam.speaking ? `, plus ${exam.speaking.prompts.length} speaking prompts` : ""}
+            {exam.writing ? " and a guided writing task" : ""}. No hints,
             first-attempt scoring. Pass ≥ {exam.passPct}% on the written sections — a soft gate, so you
             can always continue.
           </p>
@@ -81,6 +82,7 @@ export default function CheckpointPage() {
               <li key={s.title}>📝 {s.title} — {s.slides.length}</li>
             ))}
             {exam.speaking && <li>🎤 {exam.speaking.title} — {exam.speaking.prompts.length} (AI-graded)</li>}
+            {exam.writing && <li>✍️ {exam.writing.title} — 1 task (AI-graded)</li>}
           </ul>
         </div>
         <button
@@ -117,6 +119,8 @@ export default function CheckpointPage() {
               setQi(qi + 1);
             } else if (exam.speaking) {
               setPhase("speaking");
+            } else if (exam.writing) {
+              setPhase("writing");
             } else {
               void finishExam(next);
             }
@@ -132,9 +136,14 @@ export default function CheckpointPage() {
       <SpeakingSection
         title={exam.speaking.title}
         prompts={exam.speaking.prompts}
-        onDone={() => void finishExam(results)}
+        onDone={() => (exam.writing ? setPhase("writing") : void finishExam(results))}
       />
     );
+  }
+
+  /* ------------------------------ writing ------------------------------ */
+  if (phase === "writing" && exam.writing) {
+    return <WritingSection task={exam.writing} onDone={() => void finishExam(results)} />;
   }
 
   /* ------------------------------ results ------------------------------ */
@@ -327,6 +336,122 @@ function SpeakingSection({
   );
 }
 
+/* ======================== writing sub-component ======================= */
+
+function WritingSection({ task, onDone }: { task: WritingTask; onDone: () => void }) {
+  const keyPresent = hasApiKey();
+  const [text, setText] = useState("");
+  const [grading, setGrading] = useState(false);
+  const [grade, setGrade] = useState<AiGradeResult | null>(null);
+  const [gradeError, setGradeError] = useState<string | null>(null);
+  const [revealed, setRevealed] = useState(false);
+
+  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+  const inRange =
+    (!task.minWords || words >= task.minWords) && (!task.maxWords || words <= task.maxWords);
+
+  const gradeIt = async () => {
+    if (!text.trim()) return;
+    setGrading(true);
+    setGradeError(null);
+    try {
+      const g = await gradeFreeForm({
+        task: task.task + (task.rubricFocus ? `\n(Focus: ${task.rubricFocus})` : ""),
+        learnerAnswer: text.trim(),
+        levelContext: learnerLevelContext(),
+      });
+      setGrade(g);
+    } catch (e) {
+      setGradeError(aiErrorMessage(e));
+    } finally {
+      setGrading(false);
+    }
+  };
+
+  return (
+    <div className="m-auto w-full max-w-2xl py-6">
+      <div className="mb-4 flex items-center justify-between text-sm font-bold text-stone-500">
+        <span>✍️ {task.title}</span>
+        <span>1/1</span>
+      </div>
+
+      <div className="rounded-2xl bg-white p-5 shadow-sm">
+        <p className="text-lg font-bold">{task.task}</p>
+        {task.rubricFocus && (
+          <p className="mt-1 text-xs text-stone-500">Graded on: {task.rubricFocus}</p>
+        )}
+
+        {!keyPresent && (
+          <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800">
+            No API key — write your text and self-assess against the model.{" "}
+            <Link to="/settings" className="font-bold underline">Add a key</Link> for AI feedback.
+          </p>
+        )}
+
+        <textarea
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          rows={7}
+          placeholder="Draga Ana, …"
+          className="mt-4 w-full rounded-xl border-2 border-stone-200 p-3 focus:border-stone-900 focus:outline-none"
+        />
+        <p className={`mt-1 text-xs ${inRange ? "text-stone-500" : "text-amber-700"}`}>
+          {words} {words === 1 ? "word" : "words"}
+          {task.minWords && task.maxWords ? ` (aim for ${task.minWords}–${task.maxWords})` : ""}
+        </p>
+
+        <div className="mt-3 flex flex-wrap gap-2">
+          {keyPresent && !grade && (
+            <button
+              type="button"
+              disabled={grading || !text.trim()}
+              onClick={() => void gradeIt()}
+              className="rounded-xl bg-stone-900 px-4 py-2.5 font-bold text-white hover:bg-stone-700 disabled:opacity-40"
+            >
+              {grading ? "Grading…" : "Grade my e-mail"}
+            </button>
+          )}
+          {!revealed && task.modelHr && (
+            <button
+              type="button"
+              onClick={() => setRevealed(true)}
+              className="rounded-xl border-2 border-stone-900 px-4 py-2.5 font-bold hover:bg-stone-100"
+            >
+              💡 Show a model text
+            </button>
+          )}
+        </div>
+        {gradeError && <p className="mt-2 text-sm text-red-700">{gradeError}</p>}
+
+        {grade && (
+          <div className={`mt-3 rounded-xl p-4 ${grade.correct ? "bg-green-50" : "bg-amber-50"}`}>
+            <p className="font-black">{grade.correct ? "✅" : "📝"} {Math.round(grade.score)}/100</p>
+            <p className="mt-1 text-sm">{grade.feedback}</p>
+            {grade.corrected_text.trim() && grade.corrected_text.trim() !== text.trim() && (
+              <p className="mt-2 text-sm"><span className="font-bold">Better:</span> {grade.corrected_text}</p>
+            )}
+          </div>
+        )}
+
+        {revealed && task.modelHr && (
+          <div className="mt-3 rounded-xl bg-sky-50 p-3">
+            <p className="text-xs font-black uppercase tracking-wide text-sky-700">Model text</p>
+            <p className="mt-1 whitespace-pre-line">{task.modelHr}</p>
+          </div>
+        )}
+      </div>
+
+      <button
+        type="button"
+        onClick={onDone}
+        className="mt-4 w-full rounded-xl bg-stone-900 py-3 font-bold text-white hover:bg-stone-700"
+      >
+        Finish & see results →
+      </button>
+    </div>
+  );
+}
+
 /* ======================== results sub-component ======================= */
 
 function ResultsScreen({
@@ -334,7 +459,7 @@ function ResultsScreen({
   score,
   onRetake,
 }: {
-  exam: { title: string; passPct: number };
+  exam: { title: string; passPct: number; levelId: string };
   score: CheckpointScore;
   onRetake: () => void;
 }) {
@@ -347,7 +472,7 @@ function ResultsScreen({
         </h2>
         <p className="mt-1 text-stone-600">
           {score.passed
-            ? "Govorite hrvatski na razini A1. (You speak Croatian at the A1 level.)"
+            ? `Govorite hrvatski na razini ${exam.levelId}. (You speak Croatian at the ${exam.levelId} level.)`
             : "A soft gate — review your weakest areas and retake when ready. You can still move on."}
         </p>
         <p className="mt-3 text-lg">

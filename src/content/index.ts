@@ -1,5 +1,6 @@
 import type { CheckpointExam, Lesson, Level, Story, Unit, UnitTest } from "@/types/content";
 import { a1checkpoint } from "./a1/checkpoint";
+import { a2checkpoint } from "./a2/checkpoint";
 import { a1u1 } from "./a1/u1";
 import { a1u2 } from "./a1/u2";
 import { a1u3 } from "./a1/u3";
@@ -15,6 +16,7 @@ import { a2u12 } from "./a2/u12";
 import { a2u13 } from "./a2/u13";
 import { a2u14 } from "./a2/u14";
 import { a2u15 } from "./a2/u15";
+import { a2u16 } from "./a2/u16";
 
 /**
  * The content registry. Add units here as they are authored (strictly in course
@@ -23,7 +25,7 @@ import { a2u15 } from "./a2/u15";
  */
 export const levels: Level[] = [
   { id: "A1", title: "A1 — Foundations", units: [a1u1, a1u2, a1u3, a1u4, a1u5, a1u6, a1u7, a1u8] },
-  { id: "A2", title: "A2 — Independence", units: [a2u9, a2u10, a2u11, a2u12, a2u13, a2u14, a2u15] },
+  { id: "A2", title: "A2 — Independence", units: [a2u9, a2u10, a2u11, a2u12, a2u13, a2u14, a2u15, a2u16] },
   { id: "B1", title: "B1 — Fluency", units: [] },
   { id: "B2", title: "B2 — Proficiency", units: [] },
 ];
@@ -52,7 +54,7 @@ export function findTest(id: string): UnitTest | undefined {
 }
 
 /** Level checkpoint exams, keyed by the unit they follow. */
-export const checkpoints: CheckpointExam[] = [a1checkpoint];
+export const checkpoints: CheckpointExam[] = [a1checkpoint, a2checkpoint];
 
 export function findCheckpoint(id: string): CheckpointExam | undefined {
   return checkpoints.find((c) => c.id === id);
