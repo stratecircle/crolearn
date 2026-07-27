@@ -30,12 +30,12 @@ export const a2u14story: Story = {
       en: "Marko is making the cake — grandma's own recipe! Ana reads: \"Add three eggs, sugar and flour. Stir for ten minutes. Put the cake in the oven — and don't open the door!\" The cake is big and beautiful.",
     },
     {
-      hr: "Tom piše pozivnice: »Draga Ana, dođi u subotu…« Ali koji je datum? Tom piše: »peti svibanj«. »Ne, Tome!« govori Ana. »Datum je petog svibnja! Piši: Proslava je petog svibnja u sedam sati.«",
-      en: "Tom is writing the invitations: \"Dear Ana, come on Saturday…\" But what's the date? Tom writes: \"fifth May\". \"No, Tom!\" says Ana. \"The date is petog svibnja — in the genitive! Write: The party is on May 5th at seven o'clock.\"",
+      hr: "Tom piše pozivnice: »Draga Ana, dođi u subotu…« Ali koji je datum? Tom piše: »peti svibanj«. »Ne, Tom!« govori Ana. »Datum je petog svibnja! Piši: Proslava je petog svibnja u sedam sati.«",
+      en: "Tom is writing the invitations: \"Dear Ana, come on Saturday…\" But what's the date? Tom writes: \"fifth May\". \"No, Tom!\" says Ana. \"The date is petog svibnja! Write: The party is on May 5th at seven o'clock.\"",
     },
     {
-      hr: "U subotu su svi kod bake: Tom, Ana, Marko, susjedi i bakino društvo. Baloni i ukrasi su na vratima. Gosti čekaju… Baka dolazi i otvara vrata. »IZNENAĐENJE!« viču svi.",
-      en: "On Saturday everyone is at grandma's: Tom, Ana, Marko, the neighbours and grandma's friends. Balloons and decorations are on the door. The guests wait… Grandma arrives and opens the door. \"SURPRISE!\" everyone shouts.",
+      hr: "U subotu su svi kod bake: Tom, Ana, Marko, susjedi i bakino društvo. Baloni i ukrasi su na vratima. Gosti čekaju… Baka dolazi na vrata. »IZNENAĐENJE!« viču svi.",
+      en: "On Saturday everyone is at grandma's: Tom, Ana, Marko, the neighbours and grandma's friends. Balloons and decorations are on the door. The guests wait… Grandma comes to the door. \"SURPRISE!\" everyone shouts.",
     },
     {
       hr: "»Bako, sretan rođendan! Želimo ti puno sreće i zdravlja!« viču svi. Baka je vesela: »Hvala, društvo! Torta je predivna — to je moj recept!« Svi pjevaju i plešu. »Živjeli!«",
@@ -78,7 +78,7 @@ export const a2u14story: Story = {
     {
       id: "s05",
       type: "mc",
-      prompt: "Što viču svi kada baka otvara vrata? (What does everyone shout when grandma opens the door?)",
+      prompt: "Što viču svi kada baka dolazi? (What does everyone shout when grandma arrives?)",
       options: ["Iznenađenje!", "Živjeli!", "Dođi!"],
       correctIndex: 0,
       explanation: "»IZNENAĐENJE!« viču svi.",

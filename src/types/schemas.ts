@@ -91,8 +91,9 @@ export const slideSchema = z.discriminatedUnion("type", [
     answers: z.array(z.string().min(1)).min(1), en: z.string().min(1), explanation: z.string().optional() }),
   z.object({ ...slideBase, type: z.literal("vocab-cards"), title: z.string().optional(),
     vocabIds: z.array(z.string()).min(1) }),
+  // recap vocabIds may be empty — grammar-only lessons (§2) seed no new vocab.
   z.object({ ...slideBase, type: z.literal("recap"), summary: z.string().min(1),
-    vocabIds: z.array(z.string()).min(1) }),
+    vocabIds: z.array(z.string()) }),
 ]);
 
 export const vocabItemSchema = z.object({

@@ -191,6 +191,14 @@ export const a2u14l5: Lesson = {
       explanation: "Čestitam ti rođendan! — DAT ti.",
     },
     {
+      id: "s21",
+      type: "type",
+      prompt: "Wish it: “Happy New Year!” (watch the agreement)",
+      answers: ["Sretna Nova godina!", "Sretna Nova godina", "sretna Nova godina", "Sretna nova godina"],
+      hint: "godina is feminine",
+      explanation: "Sretna Nova godina! — feminine agreement.",
+    },
+    {
       id: "s12",
       type: "reorder",
       words: ["Želim", "ti", "puno", "sreće"],

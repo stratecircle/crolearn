@@ -14,15 +14,17 @@ The ninth A2 grammar block: **object clitic pronouns** — the little words (ga,
 
 ## New vocabulary (~40 items)
 
-**L1 (phone):** mobitel (m, mobile phone) · poziv (m, call) · poruka (f, message/text) · broj (m, number) · nazvati (to call up) · čuti (to hear) · poslati (to send) · primiti (to receive)
+*(Correction 2026-07-23, before authoring: collision grep — mobitel taught U12 L2, broj U2 L4, adresa U5 L4, pismo & poslati U10 L1, javiti se U12 L5 (as a chunk — L2 now systematizes it), razgovor/razgovarati U12 → all recycled, not new. The spec's own L3 lesson section says "none new — pure grammar drill", so the orphaned "L3 (internet)" vocab set is REALLOCATED: e-mail → L4 (the e-mail-anatomy lesson needs its own word); internet, mreža, lozinka, stranica, aplikacija, objaviti → L5 (now exactly 12 with the original L5 set; adresa recycled). ostaviti moved L4 → L2 (both floors). vidjeti and zvati (koga) ADDED to L1 — vidjeti is the core of the replace-the-object drill but was never formally taught (it appeared once in a U11 example); zvati-koga is the spec's own interleave contrast with U1's zvati se. slati/šaljem (imperfective) is untaught → every spec model sentence with »šaljem« is rendered with taught poslati (poslat ću / pošalji / poslala); »javljam Vam se zbog [X]« is taught in L4 as a FIXED formal frame with javljam & zbog glossed inline. »Linija je zauzeta« → »Broj je zauzet« (linija untaught). Story glossary: gasiti added (»nemoj ga gasiti« needs it) = punjač, ekran, uključiti/uključujem, zvoni, gasiti (5).)*
 
-**L2 (responding):** javiti se (to get in touch, + DAT) · odgovoriti (to answer, + DAT) · odgovor (m, answer) · pitanje (n, question) · vijest (f, news item) · slika (f, picture) · razgovor (m, conversation) · razgovarati (to converse)
+**L1 (phone):** poziv (m, call) · poruka (f, message/text) · nazvati (to call up; nazovem) · zvati (to call sb; zovem — vs zvati se!) · čuti (to hear; čujem) · primiti (to receive) · vidjeti (to see; vidim) — recycled: mobitel (U12), broj (U2), poslati (U10)
 
-**L3 (internet):** internet (m) · mreža (f, network) · e-mail (m) · adresa (f, address) · lozinka (f, password) · stranica (f, page/website) · aplikacija (f, app) · objaviti (to post/publish)
+**L2 (responding):** odgovoriti (to answer, + DAT) · odgovor (m, answer) · pitanje (n, question) · vijest (f, news item) · slika (f, picture) · ostaviti (to leave [a message]) — recycled: javiti se (U12 chunk → system), poslati (U10), razgovor/razgovarati (U12)
 
-**L4 (messages & phone phrases):** halo (hello? — phone only) · poštovani/poštovana (respected — formal Dear) · pozdrav (m, greeting/regards) · potpis (m, signature) · pismo (n, letter) · hitno (urgent(ly)) · zauzet (busy/engaged) · ostaviti (to leave [a message])
+**L3:** none new — pure grammar drill (clitic order); L1–L2 vocab recycled in every item
 
-**L5 (staying in touch):** veza (f, connection) · objava (f, post) · pratiti (to follow) · dopisivati se (to text back and forth, correspond) · video-poziv (m, video call) · dijeliti (dijelim, to share)
+**L4 (messages & phone phrases):** halo (hello? — phone only) · poštovani/poštovana (respected — formal Dear) · pozdrav (m, greeting/regards) · potpis (m, signature) · hitno (urgent(ly)) · zauzet (busy/engaged) · e-mail (m) — recycled: pismo (U10), adresa (U5)
+
+**L5 (staying in touch):** veza (f, connection) · objava (f, post) · pratiti (to follow) · dopisivati se (to text back and forth) · video-poziv (m, video call) · dijeliti (dijelim, to share) · internet (m) · mreža (f, network) · lozinka (f, password) · stranica (f, page/website) · aplikacija (f, app) · objaviti (to post/publish)
 
 ## Lessons
 

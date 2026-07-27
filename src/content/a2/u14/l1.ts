@@ -318,7 +318,7 @@ export const a2u14l1: Lesson = {
   srsCloze: [
     { front: "Ivan → »___, kava je tu!«", answers: ["Ivane"], back: "Ivane! — masc consonant takes VOC -e.", tts: "Ivane, kava je tu!" },
     { front: "baka → »___, kako si?«", answers: ["Bako", "bako"], back: "Bako! — fem -a takes VOC -o.", tts: "Bako, kako si?" },
-    { front: "gospođa → »Dobar dan, ___!«", answers: ["gospođo", "gospodo"], back: "gospođo! — fem -a → -o.", tts: "Dobar dan, gospođo!" },
+    { front: "gospođa → »Dobar dan, ___!«", answers: ["gospođo"], back: "gospođo! — fem -a → -o.", tts: "Dobar dan, gospođo!" },
     { front: "momak → »___!« (the k mutates)", answers: ["Momče", "momče", "Momce"], back: "Momče! — k → č + -e.", tts: "Momče!" },
     { front: "prijatelj → »___!« (palatal stem)", answers: ["Prijatelju", "prijatelju"], back: "prijatelju! — palatals take -u.", tts: "Prijatelju!" },
     { front: "celebration / party = ___ (f)", answers: ["proslava"], back: "proslava (Proslava je u subotu.)", tts: "Proslava je u subotu." },
