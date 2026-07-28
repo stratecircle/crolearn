@@ -24,9 +24,9 @@ export const a1u7l2: Lesson = {
     { id: "a1u7.trznica", image: "/img/trznica.png", hr: "tržnica", en: "(open-air) market", pos: "noun", gender: "f", icon: "🧺", exampleHr: "Tržnica je blizu trga.", exampleEn: "The market is near the square." },
     { id: "a1u7.pekarnica", image: "/img/pekarnica.png", hr: "pekarnica", en: "bakery", pos: "noun", gender: "f", icon: "🥖", exampleHr: "Pekarnica je blizu.", exampleEn: "The bakery is near." },
     { id: "a1u7.nema", image: "/img/nema.png", hr: "nema", en: "there isn't / there's no (+ genitive)", pos: "verb", icon: "🚫", exampleHr: "Nema kruha.", exampleEn: "There's no bread." },
-    { id: "a1u7.iz", hr: "iz", en: "from / out of (+ genitive)", pos: "prep", icon: "📤", exampleHr: "Tom je iz Kanade.", exampleEn: "Tom is from Canada." },
-    { id: "a1u7.od", hr: "od", en: "from (a point/person) (+ genitive)", pos: "prep", icon: "↩️", exampleHr: "Daleko od trga.", exampleEn: "Far from the square." },
-    { id: "a1u7.do", hr: "do", en: "to / until (+ genitive)", pos: "prep", icon: "➡️", exampleHr: "Idem do trgovine.", exampleEn: "I'm going to the shop." },
+    { id: "a1u7.iz", image: "/img/iz.png", hr: "iz", en: "from / out of (+ genitive)", pos: "prep", icon: "📤", exampleHr: "Tom je iz Kanade.", exampleEn: "Tom is from Canada." },
+    { id: "a1u7.od", image: "/img/od.png", hr: "od", en: "from (a point/person) (+ genitive)", pos: "prep", icon: "↩️", exampleHr: "Daleko od trga.", exampleEn: "Far from the square." },
+    { id: "a1u7.do", image: "/img/do.png", hr: "do", en: "to / until (+ genitive)", pos: "prep", icon: "➡️", exampleHr: "Idem do trgovine.", exampleEn: "I'm going to the shop." },
     { id: "a1u7.blizu", image: "/img/blizu.png", hr: "blizu", en: "near (+ genitive)", pos: "prep", icon: "📍", exampleHr: "Blizu trga.", exampleEn: "Near the square." },
   ],
   slides: [

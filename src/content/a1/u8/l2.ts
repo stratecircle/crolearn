@@ -20,9 +20,9 @@ export const a1u8l2: Lesson = {
   grammarTags: ["perfekt", "l-participle", "questions"],
   estMinutes: 19,
   vocab: [
-    { id: "a1u8.putovati", hr: "putovati", en: "to travel (putovao)", pos: "verb", icon: "🧳", exampleHr: "Putovali smo u Split.", exampleEn: "We traveled to Split." },
-    { id: "a1u8.posjetiti", hr: "posjetiti", en: "to visit (posjetio)", pos: "verb", icon: "🚪", exampleHr: "Posjetili smo baku.", exampleEn: "We visited grandma." },
-    { id: "a1u8.setati", hr: "šetati", en: "to walk / stroll (šetao)", pos: "verb", icon: "🚶", exampleHr: "Šetali smo u parku.", exampleEn: "We strolled in the park." },
+    { id: "a1u8.putovati", image: "/img/putovati.png", hr: "putovati", en: "to travel (putovao)", pos: "verb", icon: "🧳", exampleHr: "Putovali smo u Split.", exampleEn: "We traveled to Split." },
+    { id: "a1u8.posjetiti", image: "/img/posjetiti.png", hr: "posjetiti", en: "to visit (posjetio)", pos: "verb", icon: "🚪", exampleHr: "Posjetili smo baku.", exampleEn: "We visited grandma." },
+    { id: "a1u8.setati", image: "/img/setati.png", hr: "šetati", en: "to walk / stroll (šetao)", pos: "verb", icon: "🚶", exampleHr: "Šetali smo u parku.", exampleEn: "We strolled in the park." },
     { id: "a1u8.plesati", hr: "plesati", en: "to dance (plesao)", pos: "verb", icon: "💃", exampleHr: "Ana je plesala.", exampleEn: "Ana danced." },
     { id: "a1u8.pjevati", hr: "pjevati", en: "to sing (pjevao)", pos: "verb", icon: "🎤", exampleHr: "Pjevali smo cijelu večer.", exampleEn: "We sang all evening." },
     { id: "a1u8.citati", hr: "čitati", en: "to read (čitao)", pos: "verb", icon: "📖", exampleHr: "Čitao sam knjigu.", exampleEn: "I read a book." },

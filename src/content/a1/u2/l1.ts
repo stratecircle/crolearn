@@ -23,7 +23,7 @@ export const a1u2l1: Lesson = {
     { id: "a1u2.engleska", hr: "Engleska", en: "England", pos: "noun", gender: "f", icon: "🇬🇧", image: "/img/engleska.png", exampleHr: "Engleska je zemlja.", exampleEn: "England is a country." },
     { id: "a1u2.amerika", hr: "Amerika", en: "America", pos: "noun", gender: "f", icon: "🇺🇸", image: "/img/amerika.png", exampleHr: "Amerika je zemlja.", exampleEn: "America is a country." },
     { id: "a1u2.francuska", hr: "Francuska", en: "France", pos: "noun", gender: "f", icon: "🇫🇷", image: "/img/francuska.png", exampleHr: "Francuska je zemlja.", exampleEn: "France is a country." },
-    { id: "a1u2.iz", hr: "iz", en: "from (for now ONLY in memorized chunks: iz Kanade)", pos: "prep", icon: "📍", exampleHr: "Ja sam iz Kanade.", exampleEn: "I am from Canada.", tags: ["chunk"] },
+    { id: "a1u2.iz", image: "/img/iz.png", hr: "iz", en: "from (for now ONLY in memorized chunks: iz Kanade)", pos: "prep", icon: "📍", exampleHr: "Ja sam iz Kanade.", exampleEn: "I am from Canada.", tags: ["chunk"] },
     { id: "a1u2.ili", hr: "ili", en: "or", pos: "conj", icon: "⚖️", exampleHr: "Kava ili čaj?", exampleEn: "Coffee or tea?" },
   ],
   slides: [

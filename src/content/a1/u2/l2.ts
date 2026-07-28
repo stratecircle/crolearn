@@ -23,7 +23,7 @@ export const a1u2l2: Lesson = {
     { id: "a1u2.amerikanac", hr: "Amerikanac", en: "American (man)", pos: "noun", gender: "m", icon: "🇺🇸", exampleHr: "On je Amerikanac.", exampleEn: "He is an American." },
     { id: "a1u2.amerikanka", hr: "Amerikanka", en: "American (woman)", pos: "noun", gender: "f", icon: "🇺🇸", exampleHr: "Ona je Amerikanka.", exampleEn: "She is an American." },
     { id: "a1u2.odakle", hr: "odakle", en: "from where", pos: "adv", icon: "❓", exampleHr: "Odakle si? — Iz Kanade.", exampleEn: "Where are you from? — From Canada.", tags: ["question-word"] },
-    { id: "a1u2.ali", hr: "ali", en: "but", pos: "conj", icon: "↔️", exampleHr: "Nisam Hrvat, ali sam iz Zagreba.", exampleEn: "I'm not a Croat, but I am from Zagreb." },
+    { id: "a1u2.ali", image: "/img/ali.png", hr: "ali", en: "but", pos: "conj", icon: "↔️", exampleHr: "Nisam Hrvat, ali sam iz Zagreba.", exampleEn: "I'm not a Croat, but I am from Zagreb." },
   ],
   slides: [
     {

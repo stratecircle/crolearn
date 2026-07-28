@@ -20,14 +20,14 @@ export const a1u8l1: Lesson = {
   grammarTags: ["perfekt", "biti-past", "l-participle"],
   estMinutes: 18,
   vocab: [
-    { id: "a1u8.jucer", hr: "jučer", en: "yesterday", pos: "adv", icon: "⬅️", exampleHr: "Jučer sam bio u gradu.", exampleEn: "Yesterday I was in the city." },
-    { id: "a1u8.danas", hr: "danas", en: "today", pos: "adv", icon: "📅", exampleHr: "Danas sam kod kuće.", exampleEn: "Today I am at home." },
-    { id: "a1u8.sutra", hr: "sutra", en: "tomorrow (you'll use the future in A2)", pos: "adv", icon: "➡️", exampleHr: "Danas, jučer, sutra.", exampleEn: "Today, yesterday, tomorrow." },
-    { id: "a1u8.vikend", hr: "vikend", en: "weekend", pos: "noun", gender: "m", icon: "🎉", exampleHr: "Vikend je bio krasan.", exampleEn: "The weekend was wonderful." },
-    { id: "a1u8.sinoc", hr: "sinoć", en: "last night", pos: "adv", icon: "🌙", exampleHr: "Sinoć sam bila umorna.", exampleEn: "Last night I was tired." },
-    { id: "a1u8.vec", hr: "već", en: "already", pos: "adv", icon: "✅", exampleHr: "Već sam bio u muzeju.", exampleEn: "I have already been to the museum." },
-    { id: "a1u8.prosli-tjedan", hr: "prošli tjedan", en: "last week (chunk)", pos: "phrase", icon: "📆", exampleHr: "Prošli tjedan sam bio u Splitu.", exampleEn: "Last week I was in Split.", tags: ["chunk"] },
-    { id: "a1u8.prosle-godine", hr: "prošle godine", en: "last year (chunk)", pos: "phrase", icon: "🗓️", exampleHr: "Prošle godine sam bila u Kanadi.", exampleEn: "Last year I was in Canada.", tags: ["chunk"] },
+    { id: "a1u8.jucer", image: "/img/jucer.png", hr: "jučer", en: "yesterday", pos: "adv", icon: "⬅️", exampleHr: "Jučer sam bio u gradu.", exampleEn: "Yesterday I was in the city." },
+    { id: "a1u8.danas", image: "/img/danas.png", hr: "danas", en: "today", pos: "adv", icon: "📅", exampleHr: "Danas sam kod kuće.", exampleEn: "Today I am at home." },
+    { id: "a1u8.sutra", image: "/img/sutra.png", hr: "sutra", en: "tomorrow (you'll use the future in A2)", pos: "adv", icon: "➡️", exampleHr: "Danas, jučer, sutra.", exampleEn: "Today, yesterday, tomorrow." },
+    { id: "a1u8.vikend", image: "/img/vikend.png", hr: "vikend", en: "weekend", pos: "noun", gender: "m", icon: "🎉", exampleHr: "Vikend je bio krasan.", exampleEn: "The weekend was wonderful." },
+    { id: "a1u8.sinoc", image: "/img/sinoc.png", hr: "sinoć", en: "last night", pos: "adv", icon: "🌙", exampleHr: "Sinoć sam bila umorna.", exampleEn: "Last night I was tired." },
+    { id: "a1u8.vec", image: "/img/vec.png", hr: "već", en: "already", pos: "adv", icon: "✅", exampleHr: "Već sam bio u muzeju.", exampleEn: "I have already been to the museum." },
+    { id: "a1u8.prosli-tjedan", image: "/img/proslitjedan.png", hr: "prošli tjedan", en: "last week (chunk)", pos: "phrase", icon: "📆", exampleHr: "Prošli tjedan sam bio u Splitu.", exampleEn: "Last week I was in Split.", tags: ["chunk"] },
+    { id: "a1u8.prosle-godine", image: "/img/proslegodine.png", hr: "prošle godine", en: "last year (chunk)", pos: "phrase", icon: "🗓️", exampleHr: "Prošle godine sam bila u Kanadi.", exampleEn: "Last year I was in Canada.", tags: ["chunk"] },
   ],
   slides: [
     {

@@ -7,11 +7,14 @@ import type { Story } from "@/types/content";
  * ⚠️ DRAFT — authored autonomously; structurally validated but NOT yet run
  * through the native proofread pass.
  *
- * The whole point of the story is the aspect spine: the storm and the radio
- * hum along imperfectively while three perfective events land on top of them.
- * »dok« appears 4×. Per the spec, the clitic subtlety of »ju« before »je« is
- * avoided — the broadcast sentence is «…a televizija je vijest prenijela
- * navečer.» Glossary is capped at 5 words.
+ * The whole point of the story is the aspect spine: the radio and the evening
+ * hum along imperfectively while the perfective events land on top of them.
+ * »dok« frames both storm and reveal. Per the spec, the clitic subtlety of
+ * »ju« before »je« is avoided — the broadcast sentence is «…a televizija je
+ * vijest prenijela navečer.» Glossary capped at 5; level-compliance pass
+ * 2026-07-28 replaced untaught vocab (konoba→restoran, sjediti/kroz/vani/
+ * nitko/ozlijediti/ekran/pitati/čuti/izaći removed; dignuo→digao per L2;
+ * cast fix: Marko is not Ana's brother).
  */
 export const b1u17story: Story = {
   id: "b1u17s",
@@ -27,24 +30,24 @@ export const b1u17story: Story = {
   ],
   paragraphs: [
     {
-      hr: "Bio je običan utorak u Splitu. Baka Marija sjedila je u kuhinji i slušala radio, kao i svaki dan poslije ručka. Voditelj je govorio o vremenu, a ona je pila kavu i gledala kroz prozor. Vani je bilo sivo. Dok je baka slušala radio, vani je počela oluja.",
-      en: "It was an ordinary Tuesday in Split. Grandma Marija was sitting in the kitchen listening to the radio, the way she did every day after lunch. The presenter was talking about the weather, and she was drinking coffee and looking out the window. Outside it was grey. While grandma was listening to the radio, a storm started outside.",
+      hr: "Bio je utorak. Baka Marija je bila u kuhinji i slušala radio, kao i svaki dan poslije ručka. Voditelj je čitao vijesti, a baka je pila kavu. »U Splitu je vrijeme jako loše«, rekao je voditelj. Dok je baka slušala radio, u Splitu je počela oluja.",
+      en: "It was Tuesday. Grandma Marija was in the kitchen listening to the radio, the way she is every day after lunch. The presenter was reading the news, and grandma was drinking her coffee. \"In Split the weather is very bad,\" said the presenter. While grandma was listening to the radio, a storm began in Split.",
     },
     {
-      hr: "U isto vrijeme Marko je radio u konobi na trgu. Gosti su jeli, konobari su nosili tanjure, a vjetar je puhao sve jače. Odjednom je vjetar dignuo stolice ispred konobe. Marko je izašao van, a onda je palo veliko drvo. Palo je točno na trg, dva metra od vrata.",
-      en: "At the same time Marko was working in the tavern on the square. Guests were eating, waiters were carrying plates, and the wind was blowing harder and harder. Suddenly the wind lifted the chairs in front of the tavern. Marko went outside, and then a big tree fell. It fell right onto the square, two metres from the door.",
+      hr: "Marko je radio u restoranu na trgu. Gosti su jeli i pili. Odjednom se digao vjetar. Digao je stolice i stolove! Marko je otišao na trg — a onda je palo veliko, staro drvo. Palo je na trg, blizu vrata restorana.",
+      en: "Marko was working in the restaurant on the square. Guests were eating and drinking. Suddenly the wind rose and lifted the chairs and tables. Marko went out to the square — and then a big old tree fell. It fell onto the square, near the restaurant's door.",
     },
     {
-      hr: "Nitko se nije ozlijedio. Marko je odmah nazvao baku. »Jesi li dobro?« pitao je. »Dobro sam«, rekla je baka. »Radio je upravo javio da je pao vjetar od sto kilometara na sat.« Marko je uzeo mobitel i napravio nekoliko fotografija. Zatim ih je poslao Tomu.",
-      en: "Nobody was hurt. Marko immediately called grandma. \"Are you all right?\" he asked. \"I'm fine,\" said grandma. \"The radio just reported that a hundred-kilometre-an-hour wind hit.\" Marko took his phone and took a few photographs. Then he sent them to Tom.",
+      hr: "Ljudi su bili dobro — samo stolice nisu! Marko je odmah nazvao baku. »Bako, jesi li dobro?« — »Dobro sam«, rekla je baka. »Radio je već javio vijest. Radio je uvijek prvi!« Marko je uzeo mobitel i napravio nekoliko fotografija. Zatim ih je poslao Tomu.",
+      en: "The people were fine — only the chairs weren't! Marko immediately called grandma. \"Grandma, are you all right?\" — \"I'm fine,\" said grandma. \"The radio already reported the story. The radio is always first!\" Marko took his phone and took a few photographs. Then he sent them to Tom.",
     },
     {
-      hr: "Tom je te fotografije stavio na društvene mreže. Za pola sata jedan splitski portal objavio je prvu vijest, a onda su i drugi portali objavljivali nove fotografije cijelo popodne. Novinarka je nazvala Marka i napravila kratak intervju. »Što se točno dogodilo?« pitala je. »Radio sam, čuo sam vjetar, izašao sam — i drvo je palo«, odgovorio je Marko.",
-      en: "Tom put those photographs on social media. Within half an hour one Split news site published the first story, and then other sites were publishing new photographs all afternoon. A journalist called Marko and did a short interview. \"What exactly happened?\" she asked. \"I was working, I heard the wind, I went out — and the tree fell,\" Marko answered.",
+      hr: "Tom je fotografije stavio na društvene mreže. Za pola sata jedan portal je objavio prvu vijest, a onda su i drugi portali objavljivali nove fotografije cijelo popodne. Novinarka je nazvala Marka i napravila kratak intervju. »Što se dogodilo?« — »Radio sam u restoranu. Odjednom se digao vjetar — i drvo je palo«, rekao je Marko.",
+      en: "Tom put the photographs on social media. Within half an hour one news site published the first story, and then other sites were publishing new photographs all afternoon. A journalist called Marko and did a short interview. \"What happened?\" — \"I was working in the restaurant. Suddenly the wind rose — and the tree fell,\" said Marko.",
     },
     {
-      hr: "Navečer je Ana gledala vijesti u dnevnoj sobi. Dok je gledala, čula je poznato ime. Na ekranu je bila konoba, drvo na trgu i njezin brat. Portal je vijest objavio u tri, a televizija je vijest prenijela navečer. »Napokon je i Marko na televiziji«, nasmijala se Ana. Baka Marija još je slušala radio i nije ništa rekla. Ona je tu vijest znala već pet sati.",
-      en: "In the evening Ana was watching the news in the living room. While she was watching, she heard a familiar name. On the screen were the tavern, the tree on the square, and her brother. The news site had published the story at three, and the TV broadcast the story in the evening. \"Finally Marko's on television too,\" Ana laughed. Grandma Marija was still listening to the radio and said nothing. She had known that piece of news for five hours already.",
+      hr: "Navečer je Ana u Zagrebu gledala vijesti na televiziji. Dok je gledala emisiju, odjednom je na televiziji bio Markov restoran — i Marko! Portal je vijest objavio u tri, a televizija je vijest prenijela navečer. »Napokon je i Marko na televiziji«, rekla je Ana. A baka Marija? Ona je još slušala radio. Ona je vijest znala već pet sati — radio je bio prvi. Kao i uvijek.",
+      en: "In the evening, Ana in Zagreb was watching the news on television. While she was watching the show, suddenly Marko's restaurant was on TV — and Marko! The news site had published the story at three, and the TV carried the story in the evening. \"Finally Marko's on television too,\" said Ana. And grandma Marija? She was still listening to the radio. She had known the news for five hours already — the radio was first. As always.",
     },
   ],
   questions: [
@@ -55,24 +58,24 @@ export const b1u17story: Story = {
       options: [
         "Slušala je radio u kuhinji.",
         "Gledala je vijesti na televiziji.",
-        "Radila je u konobi.",
+        "Radila je u restoranu.",
         "Spavala je.",
       ],
       correctIndex: 0,
-      explanation: "»Dok je baka slušala radio, vani je počela oluja.« — the imperfective slušala is the background; počela is the event.",
+      explanation: "»Dok je baka slušala radio, u Splitu je počela oluja.« — the imperfective slušala is the background; počela is the event.",
     },
     {
       id: "s02",
       type: "mc",
-      prompt: "Što je vjetar napravio ispred konobe? (What did the wind do in front of the tavern?)",
+      prompt: "Što je vjetar napravio na trgu? (What did the wind do on the square?)",
       options: [
-        "Dignuo je stolice.",
-        "Otvorio je vrata.",
-        "Slomio je prozor.",
-        "Ugasio je svjetlo.",
+        "Digao je stolice i stolove.",
+        "Otvorio je vrata restorana.",
+        "Uzeo je novine.",
+        "Prenio je vijest.",
       ],
       correctIndex: 0,
-      explanation: "»Odjednom je vjetar dignuo stolice ispred konobe.« — odjednom pulls the perfective dignuti.",
+      explanation: "»Odjednom je vjetar digao stolice i stolove.« — odjednom pulls the perfective, and the standard participle is digao.",
     },
     {
       id: "s03",
@@ -80,7 +83,7 @@ export const b1u17story: Story = {
       prompt: "Tko je fotografije stavio na društvene mreže? (Who put the photos on social media?)",
       options: ["Tom", "Marko", "Ana", "Baka Marija"],
       correctIndex: 0,
-      explanation: "Marko took them and sent them to Tom: »Tom je te fotografije stavio na društvene mreže.«",
+      explanation: "Marko took them and sent them to Tom: »Tom je fotografije stavio na društvene mreže.«",
     },
     {
       id: "s04",
@@ -93,15 +96,15 @@ export const b1u17story: Story = {
     {
       id: "s05",
       type: "mc",
-      prompt: "Zašto baka nije ništa rekla? (Why did grandma say nothing?)",
+      prompt: "Zašto je baka vijest znala prva? (Why did grandma know the news first?)",
       options: [
-        "Jer je vijest već znala pet sati.",
-        "Jer nije gledala televiziju.",
-        "Jer je spavala.",
-        "Jer se ljutila na Marka.",
+        "Jer je slušala radio — radio je javio vijest prvi.",
+        "Jer je gledala televiziju.",
+        "Jer je čitala portal.",
+        "Jer je bila u Splitu na trgu.",
       ],
       correctIndex: 0,
-      explanation: "»Ona je tu vijest znala već pet sati.« — the radio had told her long before the TV did.",
+      explanation: "»Radio je već javio vijest. Radio je uvijek prvi!« — she had known for five hours.",
     },
   ],
 };
