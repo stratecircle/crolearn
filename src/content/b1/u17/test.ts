@@ -2,7 +2,7 @@ import type { UnitTest } from "@/types/content";
 
 /**
  * B1 U17 unit test (spec: curriculum/B1/unit-17.md blueprint).
- * 20 items · 4 sections (vocab → grammar → listening → reading) + guided
+ * 21 items · 4 sections (vocab → grammar → listening → reading) + guided
  * writing task · pass ≥ 70% (the writing is AI-graded and never gates).
  *
  * ⚠️ DRAFT — authored autonomously; structurally validated, NOT yet proofread.
