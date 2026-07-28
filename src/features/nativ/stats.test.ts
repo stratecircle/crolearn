@@ -17,9 +17,11 @@ describe("loadNativProgress", () => {
     expect(p.stats.timePracticed).toBeUndefined();
     expect(p.next?.id).toBe(path[0].id);
     expect(p.levels.map((l) => l.code)).toEqual(["A1", "A2", "B1", "B2"]);
-    // Only built levels carry lessons; unbuilt levels read as locked.
+    // Only built levels carry lessons; unbuilt levels read as locked. B1 is
+    // partially built (unit 17 only), so it counts its five authored lessons.
     expect(p.levels.find((l) => l.code === "A1")!.total).toBe(40);
-    expect(p.levels.find((l) => l.code === "B1")!.state).toBe("locked");
+    expect(p.levels.find((l) => l.code === "B1")!.total).toBe(5);
+    expect(p.levels.find((l) => l.code === "B2")!.state).toBe("locked");
   });
 
   it("reflects completed lessons, seeded cards and recent words", async () => {
