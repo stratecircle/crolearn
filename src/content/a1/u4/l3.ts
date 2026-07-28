@@ -22,10 +22,10 @@ export const a1u4l3: Lesson = {
     { id: "a1u4.jesti", hr: "jesti", en: "to eat (jedem — irregular)", pos: "verb", icon: "🍴", exampleHr: "Jedem ribu.", exampleEn: "I eat fish." },
     { id: "a1u4.voljeti", hr: "voljeti", en: "to love / like (volim)", pos: "verb", icon: "❤️", exampleHr: "Volim voće.", exampleEn: "I love fruit." },
     { id: "a1u4.zeljeti", hr: "željeti", en: "to want / wish (želim)", pos: "verb", icon: "🙏", exampleHr: "Želim juhu.", exampleEn: "I want soup." },
-    { id: "a1u4.pivo", hr: "pivo", en: "beer", pos: "noun", gender: "n", icon: "🍺", exampleHr: "Pijem pivo.", exampleEn: "I drink beer." },
-    { id: "a1u4.vino", hr: "vino", en: "wine", pos: "noun", gender: "n", icon: "🍷", exampleHr: "Volim vino.", exampleEn: "I love wine." },
+    { id: "a1u4.pivo", image: "/img/pivo.png", hr: "pivo", en: "beer", pos: "noun", gender: "n", icon: "🍺", exampleHr: "Pijem pivo.", exampleEn: "I drink beer." },
+    { id: "a1u4.vino", image: "/img/vino.png", hr: "vino", en: "wine", pos: "noun", gender: "n", icon: "🍷", exampleHr: "Volim vino.", exampleEn: "I love wine." },
     { id: "a1u4.voce", image: "/img/voce.png", hr: "voće", en: "fruit", pos: "noun", gender: "n", icon: "🍇", exampleHr: "Jedem voće.", exampleEn: "I eat fruit." },
-    { id: "a1u4.povrce", hr: "povrće", en: "vegetables", pos: "noun", gender: "n", icon: "🥦", exampleHr: "Ne volim povrće.", exampleEn: "I don't like vegetables." },
+    { id: "a1u4.povrce", image: "/img/povrce.png", hr: "povrće", en: "vegetables", pos: "noun", gender: "n", icon: "🥦", exampleHr: "Ne volim povrće.", exampleEn: "I don't like vegetables." },
   ],
   slides: [
     {

@@ -19,7 +19,7 @@ export const a1u4l2: Lesson = {
   grammarTags: ["present-am", "negation"],
   estMinutes: 18,
   vocab: [
-    { id: "a1u4.gledati", hr: "gledati", en: "to watch / look at (gledam)", pos: "verb", icon: "👀", exampleHr: "Ana gleda more.", exampleEn: "Ana is looking at the sea." },
+    { id: "a1u4.gledati", image: "/img/gledati.png", hr: "gledati", en: "to watch / look at (gledam)", pos: "verb", icon: "👀", exampleHr: "Ana gleda more.", exampleEn: "Ana is looking at the sea." },
     { id: "a1u4.kuhati", hr: "kuhati", en: "to cook (kuham)", pos: "verb", icon: "🍳", exampleHr: "Kuham juhu.", exampleEn: "I am cooking soup." },
     { id: "a1u4.cekati", hr: "čekati", en: "to wait for (čekam)", pos: "verb", icon: "⏳", exampleHr: "Čekam Anu.", exampleEn: "I am waiting for Ana." },
     { id: "a1u4.rucati", hr: "ručati", en: "to have lunch (ručam)", pos: "verb", icon: "🍽️", exampleHr: "Ana ruča.", exampleEn: "Ana is having lunch." },
