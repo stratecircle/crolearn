@@ -2,10 +2,11 @@
 
 ## Done
 - **Unit 3: COMPLETE.** All 33 images generated, bg-removed, wired, validated.
-- **Unit 4: 24 of 35 done, wired, validated:**
+- **Unit 4: 26 of 35 done, wired, validated:**
   kruh, sir, jabuka, juha, salata, riba, meso, mlijeko, sok, dorucak, rucak,
   vecera, voce, kolac + (2026-07-27 batch, PHOTOREAL style — see note) povrce,
-  sladoled, cokolada, jelovnik, racun, kafic, restoran, pivo, vino, gledati.
+  sladoled, cokolada, jelovnik, racun, kafic, restoran, pivo, vino, gledati,
+  cekati, kuhati.
 
 ## ⚠️ Style/content flags on the 2026-07-27 batch (Noah to review)
 - The 10 new images are PHOTOREALISTIC, not the locked cartoon style of the
@@ -23,9 +24,8 @@ account hit its image-generation rate cap (~290 images in 2 days). It resets
 after a cooldown. Retry later in the SAME chat "Image Generation Instructions"
 (style is locked there; it replied "ready").
 
-## Remaining Unit 4 words (11)
-- Verbs (person doing the action, same cartoon person style): kuhati (person
-  cooking at a stove), cekati (person waiting, checking watch), rucati (person
+## Remaining Unit 4 words (9)
+- Verbs (person doing the action, same cartoon person style): rucati (person
   eating lunch at a table), vecerati (family at dinner table), piti (person
   drinking from a glass), jesti (person eating with a fork), voljeti (person
   hugging a heart)

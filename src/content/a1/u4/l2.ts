@@ -20,8 +20,8 @@ export const a1u4l2: Lesson = {
   estMinutes: 18,
   vocab: [
     { id: "a1u4.gledati", image: "/img/gledati.png", hr: "gledati", en: "to watch / look at (gledam)", pos: "verb", icon: "👀", exampleHr: "Ana gleda more.", exampleEn: "Ana is looking at the sea." },
-    { id: "a1u4.kuhati", hr: "kuhati", en: "to cook (kuham)", pos: "verb", icon: "🍳", exampleHr: "Kuham juhu.", exampleEn: "I am cooking soup." },
-    { id: "a1u4.cekati", hr: "čekati", en: "to wait for (čekam)", pos: "verb", icon: "⏳", exampleHr: "Čekam Anu.", exampleEn: "I am waiting for Ana." },
+    { id: "a1u4.kuhati", image: "/img/kuhati.png", hr: "kuhati", en: "to cook (kuham)", pos: "verb", icon: "🍳", exampleHr: "Kuham juhu.", exampleEn: "I am cooking soup." },
+    { id: "a1u4.cekati", image: "/img/cekati.png", hr: "čekati", en: "to wait for (čekam)", pos: "verb", icon: "⏳", exampleHr: "Čekam Anu.", exampleEn: "I am waiting for Ana." },
     { id: "a1u4.rucati", hr: "ručati", en: "to have lunch (ručam)", pos: "verb", icon: "🍽️", exampleHr: "Ana ruča.", exampleEn: "Ana is having lunch." },
     { id: "a1u4.vecerati", hr: "večerati", en: "to have dinner (večeram)", pos: "verb", icon: "🌆", exampleHr: "Tom večera ribu.", exampleEn: "Tom is having fish for dinner." },
     { id: "a1u4.dorucak", image: "/img/dorucak.png", hr: "doručak", en: "breakfast", pos: "noun", gender: "m", icon: "☀️", exampleHr: "Kuham doručak.", exampleEn: "I am making breakfast." },
