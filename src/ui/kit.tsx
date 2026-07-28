@@ -30,10 +30,57 @@ export const LEVEL_COLORS: Record<string, string> = {
 
 /** Playfair Display — the display face for titles and Croatian content. */
 export const DISPLAY = "'Playfair Display',serif";
-// Shadows use --shadow-rgb, which stays dark in both themes — following --ink-rgb
-// would turn every drop shadow into a white glow once the palette inverts.
-export const SHADOW_CARD = "0 1px 3px rgba(var(--shadow-rgb),.04)";
-export const SHADOW_FLOAT = "0 1px 3px rgba(var(--shadow-rgb),.04),0 16px 44px rgba(var(--shadow-rgb),.06)";
+/** Lora — the reading face for stories and long-form notes. */
+export const READING = "'Lora',Georgia,serif";
+// Udžbenik is a printed page: panels sit flat and are separated by hairline
+// rules. These stay exported for the players, but resolve to (near) nothing.
+export const SHADOW_CARD = "none";
+export const SHADOW_FLOAT = "0 2px 10px rgba(var(--shadow-rgb),.05)";
+
+/**
+ * The šahovnica — CroLearn's mark. A field of the Croatian checkerboard;
+ * `filled` (0–1) optionally renders it as a progress object, filling
+ * cell-by-cell in reading order.
+ */
+export function Sahovnica({ size = 22, cols = 4, rows = 3, filled = 1, color = RED, className = "" }: { size?: number; cols?: number; rows?: number; filled?: number; color?: string; className?: string }) {
+  const cell = size / cols;
+  const total = cols * rows;
+  const lit = Math.round(Math.max(0, Math.min(1, filled)) * total);
+  const cells = [];
+  for (let i = 0; i < total; i++) {
+    const r = Math.floor(i / cols);
+    const c = i % cols;
+    const isRed = (r + c) % 2 === 0;
+    if (!isRed) continue;
+    cells.push(
+      <rect
+        key={i}
+        x={c * cell}
+        y={r * cell}
+        width={cell}
+        height={cell}
+        fill={i < lit ? color : "rgba(var(--ink-rgb),.14)"}
+      />,
+    );
+  }
+  return (
+    <svg width={size} height={(size / cols) * rows} viewBox={`0 0 ${size} ${cell * rows}`} className={className} aria-hidden="true" style={{ display: "block" }}>
+      <rect x={0} y={0} width={size} height={cell * rows} fill="none" stroke="rgba(var(--ink-rgb),.25)" strokeWidth="1" />
+      {cells}
+    </svg>
+  );
+}
+
+/** Editorial section header: Playfair title + hairline rule running to the margin. */
+export function SectionTitle({ children, right, className = "" }: { children: ReactNode; right?: ReactNode; className?: string }) {
+  return (
+    <div className={`flex items-center gap-4 ${className}`}>
+      <div className="flex-none" style={{ fontFamily: DISPLAY, fontWeight: 600, fontSize: 21, color: INK, letterSpacing: "-.01em" }}>{children}</div>
+      <div className="h-px min-w-6 flex-1" style={{ background: "rgba(var(--ink-rgb),.18)" }} />
+      {right && <div className="flex-none text-sm" style={{ color: BODY2 }}>{right}</div>}
+    </div>
+  );
+}
 
 /**
  * Translucent wash of an accent colour. The palette is CSS custom properties now
@@ -53,8 +100,8 @@ export function tint(color: string, a: number): string {
 export function Card({ children, className = "", style }: { children: ReactNode; className?: string; style?: CSSProperties }) {
   return (
     <div
-      className={`rounded-[20px] border bg-[color:var(--card)] shadow-[0_1px_3px_rgba(var(--shadow-rgb),.04)] ${className}`}
-      style={{ borderColor: BORDER, ...style }}
+      className={`rounded-[10px] border bg-[color:var(--card)] ${className}`}
+      style={{ borderColor: "rgba(var(--ink-rgb),.16)", ...style }}
     >
       {children}
     </div>
@@ -92,7 +139,8 @@ export function CardH({ children, className = "" }: { children: ReactNode; class
 
 export function Eyebrow({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <div className={`text-xs font-semibold ${className}`} style={{ letterSpacing: ".13em", color: RED }}>
+    <div className={`flex items-center gap-2 text-xs font-semibold ${className}`} style={{ letterSpacing: ".14em", color: RED }}>
+      <span className="inline-block h-px w-[18px] flex-none" style={{ background: RED }} />
       {children}
     </div>
   );
@@ -103,8 +151,8 @@ export function BtnPrimary({ children, onClick, icon: Icon, className = "", disa
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`inline-flex h-12 items-center gap-2.5 whitespace-nowrap rounded-xl px-6 text-[15px] font-semibold text-white transition-colors duration-[180ms] ${className}`}
-      style={{ background: disabled ? "rgba(var(--ink-rgb),.15)" : RED }}
+      className={`inline-flex h-[46px] items-center gap-2.5 whitespace-nowrap rounded-lg px-6 text-[15px] font-semibold text-white transition-colors duration-[180ms] ${className}`}
+      style={{ background: disabled ? "rgba(var(--ink-rgb),.15)" : RED, letterSpacing: ".01em" }}
       onMouseEnter={(e) => !disabled && (e.currentTarget.style.background = "var(--primary-hover)")}
       onMouseLeave={(e) => !disabled && (e.currentTarget.style.background = RED)}
     >
@@ -118,8 +166,8 @@ export function BtnGhost({ children, onClick, icon: Icon, className = "" }: { ch
   return (
     <button
       onClick={onClick}
-      className={`inline-flex h-12 items-center gap-2.5 whitespace-nowrap rounded-xl border bg-[color:var(--card)] px-5 text-[15px] font-medium transition-colors duration-[180ms] hover:bg-[color:var(--tint)] ${className}`}
-      style={{ borderColor: "rgba(var(--ink-rgb),.1)", color: BODY }}
+      className={`inline-flex h-[46px] items-center gap-2.5 whitespace-nowrap rounded-lg border bg-transparent px-5 text-[15px] font-medium transition-colors duration-[180ms] hover:bg-[rgba(var(--ink-rgb),.05)] ${className}`}
+      style={{ borderColor: "rgba(var(--ink-rgb),.3)", color: BODY }}
     >
       {Icon && <Icon size={17} color={MUTED} />}
       {children}
@@ -127,10 +175,10 @@ export function BtnGhost({ children, onClick, icon: Icon, className = "" }: { ch
   );
 }
 
-export function ProgressBar({ pct, color = RED, height = 7, className = "" }: { pct: number; color?: string; height?: number; className?: string }) {
+export function ProgressBar({ pct, color = RED, height = 5, className = "" }: { pct: number; color?: string; height?: number; className?: string }) {
   return (
-    <div className={`overflow-hidden rounded-full ${className}`} style={{ height, background: "rgba(var(--ink-rgb),.09)" }}>
-      <div className="h-full rounded-full" style={{ width: `${Math.max(0, Math.min(100, pct))}%`, background: color }} />
+    <div className={`overflow-hidden rounded-[2px] ${className}`} style={{ height, background: "rgba(var(--ink-rgb),.12)" }}>
+      <div className="h-full" style={{ width: `${Math.max(0, Math.min(100, pct))}%`, background: color }} />
     </div>
   );
 }
@@ -150,13 +198,13 @@ export function Ring({ pct, color, size = 112, hole = 88, children }: { pct: num
 }
 
 /** Tinted icon square. */
-export function Tile({ icon: Icon, color, size = 48, radius = 13, iconSize }: { icon: LucideIcon; color: string; size?: number; radius?: number; iconSize?: number }) {
+export function Tile({ icon: Icon, color, size = 48, radius = 8, iconSize }: { icon: LucideIcon; color: string; size?: number; radius?: number; iconSize?: number }) {
   return (
     <div
-      className="flex flex-none items-center justify-center"
-      style={{ width: size, height: size, borderRadius: radius, background: tint(color, 0.1) }}
+      className="flex flex-none items-center justify-center border"
+      style={{ width: size, height: size, borderRadius: Math.min(radius, 8), background: tint(color, 0.08), borderColor: tint(color, 0.28) }}
     >
-      <Icon size={iconSize ?? Math.round(size * 0.44)} color={color} />
+      <Icon size={iconSize ?? Math.round(size * 0.44)} color={color} strokeWidth={1.7} />
     </div>
   );
 }
@@ -164,8 +212,8 @@ export function Tile({ icon: Icon, color, size = 48, radius = 13, iconSize }: { 
 export function Chip({ children, color }: { children: ReactNode; color: string }) {
   return (
     <span
-      className="inline-block self-start whitespace-nowrap rounded-lg px-3 py-1.5 text-[13px]"
-      style={{ background: tint(color, 0.11), color }}
+      className="inline-block self-start whitespace-nowrap rounded-[5px] border px-2.5 py-1 text-xs font-semibold"
+      style={{ borderColor: tint(color, 0.45), color, letterSpacing: ".02em", background: tint(color, 0.06) }}
     >
       {children}
     </span>
@@ -204,10 +252,10 @@ export function StatChip({ icon: Icon, color, value, label, big = false }: { ico
   }
   return (
     <div className="flex flex-none items-center gap-2.5">
-      <Icon size={20} color={color} strokeWidth={1.7} />
+      <Icon size={19} color={color} strokeWidth={1.6} />
       <div>
-        <div className="text-[15px] font-semibold leading-tight" style={{ color: INK }}>{value}</div>
-        <div className="whitespace-nowrap text-xs" style={{ color: MUTED }}>{label}</div>
+        <div className="leading-tight" style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 17, color: INK }}>{value}</div>
+        <div className="whitespace-nowrap text-xs" style={{ color: MUTED, letterSpacing: ".04em" }}>{label.toUpperCase()}</div>
       </div>
     </div>
   );
@@ -279,9 +327,10 @@ export function Banner({ children, color }: { children: ReactNode; color: string
 /** Full-width completion card (lesson / deck / practice endings). */
 export function DoneCard({ icon: Icon = undefined, title, children }: { icon?: LucideIcon; title: string; children: ReactNode }) {
   return (
-    <div className="rounded-[20px] border bg-[color:var(--card)] px-12 py-14 text-center max-[700px]:px-6 max-[700px]:py-10" style={{ borderColor: "rgba(var(--ink-rgb),.07)", boxShadow: SHADOW_FLOAT }}>
+    <div className="rounded-[10px] border bg-[color:var(--card)] px-12 py-14 text-center max-[700px]:px-6 max-[700px]:py-10" style={{ borderColor: "rgba(var(--ink-rgb),.16)" }}>
+      <div className="mb-5 flex justify-center"><Sahovnica size={30} /></div>
       {Icon && (
-        <div className="mx-auto mb-[22px] flex h-16 w-16 items-center justify-center rounded-full" style={{ background: tint(GREEN, 0.1) }}>
+        <div className="mx-auto mb-[22px] flex h-16 w-16 items-center justify-center rounded-full border" style={{ background: tint(GREEN, 0.08), borderColor: tint(GREEN, 0.3) }}>
           <Icon size={30} color={GREEN} />
         </div>
       )}

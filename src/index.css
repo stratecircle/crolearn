@@ -1,11 +1,16 @@
-@import "@fontsource/inter/400.css";
-@import "@fontsource/inter/500.css";
-@import "@fontsource/inter/600.css";
-@import "@fontsource/inter/700.css";
+@import "@fontsource/instrument-sans/400.css";
+@import "@fontsource/instrument-sans/500.css";
+@import "@fontsource/instrument-sans/600.css";
+@import "@fontsource/instrument-sans/700.css";
 @import "@fontsource/playfair-display/500.css";
 @import "@fontsource/playfair-display/600.css";
 @import "@fontsource/playfair-display/700.css";
 @import "@fontsource/playfair-display/500-italic.css";
+@import "@fontsource/playfair-display/600-italic.css";
+@import "@fontsource/lora/400.css";
+@import "@fontsource/lora/500.css";
+@import "@fontsource/lora/600.css";
+@import "@fontsource/lora/400-italic.css";
 @import "tailwindcss";
 
 /*
@@ -19,79 +24,90 @@
  * The `*-rgb` triples exist because the design leans on translucent tints
  * (`rgba(var(--ink-rgb), .07)` for hairline borders and so on).
  */
+/* ————————————————————————————————————————————————————————————————
+   UDŽBENIK — the typeset Croatian coursebook.
+   Warm paper, book ink, one Croatian red. Structure comes from hairline
+   rules and typography, not floating shadow-cards. The šahovnica
+   checkerboard (see kit.tsx) is the brand mark and progress motif.
+   ———————————————————————————————————————————————————————————————— */
 :root {
   color-scheme: light;
 
-  --page: #efeeea;
-  --card: #fdfcfa;
-  --tint: #f7f4f0;
-  --tint2: #f4f6f2;
-  --tint3: #f1ede7;
-  --tint4: #f3efe9;
-  --tint5: #f6f3ef;
+  /* paper */
+  --page: #f1ecdf;
+  --card: #faf6ec;
+  --tint: #f2edde;
+  --tint2: #eef0e3;
+  --tint3: #ece6d5;
+  --tint4: #f0ebdc;
+  --tint5: #f3eee0;
 
-  --ink: #16243d;
-  --ink-strong: #20344f;
-  --body: #3f4a5c;
-  --body2: #5b6472;
-  --muted: #8b93a1;
-  --muted2: #9aa1ad;
-  --muted3: #a9b0ba;
-  --muted4: #b6bcc6;
+  /* ink */
+  --ink: #241f1a;
+  --ink-strong: #100d0a;
+  --body: #453e35;
+  --body2: #61584c;
+  --muted: #8b8172;
+  --muted2: #9a9081;
+  --muted3: #ab9f8d;
+  --muted4: #b9ad9a;
 
-  --primary: #c93434;
-  --primary-hover: #b32c2c;
-  --green: #2f7d53;
-  --green-strong: #276a46;
-  --orange: #e08a2b;
-  --blue: #3b6fd4;
-  --violet: #8b6fc9;
-  --teal: #3e9fb0;
+  /* crveni + supporting */
+  --primary: #b5292d;
+  --primary-hover: #9c2226;
+  --green: #37703f;
+  --green-strong: #2c5c34;
+  --orange: #b96d17;
+  --blue: #2f5a9e;
+  --violet: #715a9e;
+  --teal: #2f7f8b;
   --brown: #7a4a12;
   --brown2: #9a5b14;
 
-  --ink-rgb: 15, 23, 42;
-  --primary-rgb: 201, 52, 52;
-  --green-rgb: 47, 125, 83;
-  --orange-rgb: 224, 138, 43;
-  --shadow-rgb: 15, 23, 42;
+  --ink-rgb: 36, 31, 26;
+  --primary-rgb: 181, 41, 45;
+  --green-rgb: 55, 112, 63;
+  --orange-rgb: 185, 109, 23;
+  /* warm graphite — the whisper of shadow paper actually casts */
+  --shadow-rgb: 66, 53, 32;
 }
 
 html.dark {
   color-scheme: dark;
 
-  --page: #10141c;
-  --card: #1a2029;
-  --tint: #232a35;
-  --tint2: #232a35;
-  --tint3: #262d38;
-  --tint4: #262d38;
-  --tint5: #232a35;
+  /* lamplit paper at night — warm, not blue */
+  --page: #17130d;
+  --card: #201b13;
+  --tint: #292317;
+  --tint2: #272417;
+  --tint3: #2c2619;
+  --tint4: #292317;
+  --tint5: #2b2518;
 
-  --ink: #e8ecf3;
-  --ink-strong: #f5f8fd;
-  --body: #b8c2d2;
-  --body2: #a2acbb;
-  --muted: #8a94a3;
-  --muted2: #7d8797;
-  --muted3: #737e8e;
-  --muted4: #69737f;
+  --ink: #ede4d3;
+  --ink-strong: #faf3e6;
+  --body: #cfc4af;
+  --body2: #b3a790;
+  --muted: #8f8672;
+  --muted2: #837a67;
+  --muted3: #776e5c;
+  --muted4: #6a6252;
 
-  --primary: #d94a48;
-  --primary-hover: #e66462;
-  --green: #4caf80;
-  --green-strong: #3f9b6d;
-  --orange: #eda049;
-  --blue: #6a97f0;
-  --violet: #a992e0;
-  --teal: #56bccd;
+  --primary: #d95a50;
+  --primary-hover: #e57067;
+  --green: #6cab74;
+  --green-strong: #5b9a63;
+  --orange: #d99b47;
+  --blue: #7d9fd6;
+  --violet: #a68fd0;
+  --teal: #64aab5;
   --brown: #d6a86a;
   --brown2: #e0b57c;
 
-  --ink-rgb: 226, 232, 243;
-  --primary-rgb: 224, 90, 88;
-  --green-rgb: 76, 175, 128;
-  --orange-rgb: 237, 160, 73;
+  --ink-rgb: 237, 228, 211;
+  --primary-rgb: 217, 90, 80;
+  --green-rgb: 108, 171, 116;
+  --orange-rgb: 217, 155, 71;
   --shadow-rgb: 0, 0, 0;
 }
 
@@ -114,19 +130,50 @@ html.dark {
 }
 
 @theme {
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: "Instrument Sans", "Inter", system-ui, sans-serif;
   --font-display: "Playfair Display", Georgia, serif;
+  --font-reading: "Lora", Georgia, serif;
 
-  --radius-card: 20px;
-  --radius-ctl: 12px;
-  --radius-tile: 16px;
+  --radius-card: 10px;
+  --radius-ctl: 8px;
+  --radius-tile: 8px;
 }
 
 html {
   background: var(--page);
   color: var(--ink);
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Instrument Sans", "Inter", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Paper grain — a whisper of tooth over the whole page. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.33 0 0 0 0 0.2 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* The headband — a thin Croatian-red ribbon along the top edge, like the
+   bound top of a book. */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  pointer-events: none;
+  background: var(--primary);
+}
+
+/* Reading face for stories and long-form notes. */
+.reading {
+  font-family: "Lora", Georgia, serif;
 }
 
 /* Only the theme flip animates — kept off first paint and off reduced-motion. */

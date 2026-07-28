@@ -19,12 +19,12 @@ export const a1u8l5: Lesson = {
   grammarTags: ["perfekt", "narration", "review"],
   estMinutes: 20,
   vocab: [
-    { id: "a1u8.krasno", hr: "krasno", en: "wonderful / lovely", pos: "adv", icon: "😍", exampleHr: "Bilo je krasno!", exampleEn: "It was wonderful!" },
-    { id: "a1u8.grozno", hr: "grozno", en: "terrible / awful", pos: "adv", icon: "😖", exampleHr: "Bilo je grozno.", exampleEn: "It was terrible." },
-    { id: "a1u8.dosadno", hr: "dosadno", en: "boring", pos: "adv", icon: "😴", exampleHr: "Bilo je dosadno.", exampleEn: "It was boring." },
-    { id: "a1u8.zanimljivo", hr: "zanimljivo", en: "interesting", pos: "adv", icon: "🤔", exampleHr: "Bilo je zanimljivo.", exampleEn: "It was interesting." },
-    { id: "a1u8.zabavno", hr: "zabavno", en: "fun", pos: "adv", icon: "🥳", exampleHr: "Bilo je zabavno.", exampleEn: "It was fun." },
-    { id: "a1u8.cijeli-dan", hr: "cijeli dan", en: "all day (chunk)", pos: "phrase", icon: "🕛", exampleHr: "Padala je kiša cijeli dan.", exampleEn: "It rained all day.", tags: ["chunk"] },
+    { id: "a1u8.krasno", image: "/img/krasno.png", hr: "krasno", en: "wonderful / lovely", pos: "adv", icon: "😍", exampleHr: "Bilo je krasno!", exampleEn: "It was wonderful!" },
+    { id: "a1u8.grozno", image: "/img/grozno.png", hr: "grozno", en: "terrible / awful", pos: "adv", icon: "😖", exampleHr: "Bilo je grozno.", exampleEn: "It was terrible." },
+    { id: "a1u8.dosadno", image: "/img/dosadno.png", hr: "dosadno", en: "boring", pos: "adv", icon: "😴", exampleHr: "Bilo je dosadno.", exampleEn: "It was boring." },
+    { id: "a1u8.zanimljivo", image: "/img/zanimljivo.png", hr: "zanimljivo", en: "interesting", pos: "adv", icon: "🤔", exampleHr: "Bilo je zanimljivo.", exampleEn: "It was interesting." },
+    { id: "a1u8.zabavno", image: "/img/zabavno.png", hr: "zabavno", en: "fun", pos: "adv", icon: "🥳", exampleHr: "Bilo je zabavno.", exampleEn: "It was fun." },
+    { id: "a1u8.cijeli-dan", image: "/img/cijelidan.png", hr: "cijeli dan", en: "all day (chunk)", pos: "phrase", icon: "🕛", exampleHr: "Padala je kiša cijeli dan.", exampleEn: "It rained all day.", tags: ["chunk"] },
   ],
   slides: [
     {

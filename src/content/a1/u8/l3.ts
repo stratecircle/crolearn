@@ -20,13 +20,13 @@ export const a1u8l3: Lesson = {
   grammarTags: ["clitics", "second-position", "je-drop", "perfekt"],
   estMinutes: 19,
   vocab: [
-    { id: "a1u8.igrati", hr: "igrati", en: "to play (igrao)", pos: "verb", icon: "🎮", exampleHr: "Igrali smo nogomet.", exampleEn: "We played football." },
-    { id: "a1u8.nogomet", hr: "nogomet", en: "football / soccer", pos: "noun", gender: "m", icon: "⚽", exampleHr: "Volim nogomet.", exampleEn: "I love football." },
-    { id: "a1u8.utakmica", hr: "utakmica", en: "match / game", pos: "noun", gender: "f", icon: "🏟️", exampleHr: "Gledali smo utakmicu.", exampleEn: "We watched the match." },
-    { id: "a1u8.izlet", hr: "izlet", en: "trip / outing", pos: "noun", gender: "m", icon: "🚌", exampleHr: "Bili smo na izletu.", exampleEn: "We were on a trip." },
-    { id: "a1u8.rodendan", hr: "rođendan", en: "birthday", pos: "noun", gender: "m", icon: "🎂", exampleHr: "Ana je imala rođendan.", exampleEn: "Ana had a birthday." },
-    { id: "a1u8.zabava", hr: "zabava", en: "party", pos: "noun", gender: "f", icon: "🎈", exampleHr: "Bili smo na zabavi.", exampleEn: "We were at a party." },
-    { id: "a1u8.gost", hr: "gost", en: "guest", pos: "noun", gender: "m", icon: "🧑", exampleHr: "Imali smo gosta.", exampleEn: "We had a guest." },
+    { id: "a1u8.igrati", image: "/img/igrati.png", hr: "igrati", en: "to play (igrao)", pos: "verb", icon: "🎮", exampleHr: "Igrali smo nogomet.", exampleEn: "We played football." },
+    { id: "a1u8.nogomet", image: "/img/nogomet.png", hr: "nogomet", en: "football / soccer", pos: "noun", gender: "m", icon: "⚽", exampleHr: "Volim nogomet.", exampleEn: "I love football." },
+    { id: "a1u8.utakmica", image: "/img/utakmica.png", hr: "utakmica", en: "match / game", pos: "noun", gender: "f", icon: "🏟️", exampleHr: "Gledali smo utakmicu.", exampleEn: "We watched the match." },
+    { id: "a1u8.izlet", image: "/img/izlet.png", hr: "izlet", en: "trip / outing", pos: "noun", gender: "m", icon: "🚌", exampleHr: "Bili smo na izletu.", exampleEn: "We were on a trip." },
+    { id: "a1u8.rodendan", image: "/img/rodendan.png", hr: "rođendan", en: "birthday", pos: "noun", gender: "m", icon: "🎂", exampleHr: "Ana je imala rođendan.", exampleEn: "Ana had a birthday." },
+    { id: "a1u8.zabava", image: "/img/zabava.png", hr: "zabava", en: "party", pos: "noun", gender: "f", icon: "🎈", exampleHr: "Bili smo na zabavi.", exampleEn: "We were at a party." },
+    { id: "a1u8.gost", image: "/img/gost.png", hr: "gost", en: "guest", pos: "noun", gender: "m", icon: "🧑", exampleHr: "Imali smo gosta.", exampleEn: "We had a guest." },
   ],
   slides: [
     {

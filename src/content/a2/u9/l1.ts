@@ -21,12 +21,12 @@ export const a2u9l1: Lesson = {
   grammarTags: ["future-1", "htjeti-clitic", "future-spelling"],
   estMinutes: 18,
   vocab: [
-    { id: "a2u9.putovanje", hr: "putovanje", en: "trip / travel", pos: "noun", gender: "n", icon: "🧳", exampleHr: "Planiram putovanje na more.", exampleEn: "I'm planning a trip to the seaside." },
-    { id: "a2u9.put", hr: "put", en: "journey / way", pos: "noun", gender: "m", icon: "🛣️", exampleHr: "Put je dug.", exampleEn: "The journey is long." },
-    { id: "a2u9.plan", hr: "plan", en: "plan", pos: "noun", gender: "m", icon: "🗒️", exampleHr: "Imam plan za vikend.", exampleEn: "I have a plan for the weekend." },
-    { id: "a2u9.planirati", hr: "planirati", en: "to plan (planiram)", pos: "verb", icon: "🗓️", exampleHr: "Planiram put u Split.", exampleEn: "I'm planning a trip to Split." },
-    { id: "a2u9.otok", hr: "otok", en: "island", pos: "noun", gender: "m", icon: "🏝️", exampleHr: "Posjetit ćemo otok.", exampleEn: "We will visit the island." },
-    { id: "a2u9.plaza", hr: "plaža", en: "beach", pos: "noun", gender: "f", icon: "🏖️", exampleHr: "Plaža je krasna.", exampleEn: "The beach is wonderful." },
+    { id: "a2u9.putovanje", image: "/img/putovanje.png", hr: "putovanje", en: "trip / travel", pos: "noun", gender: "n", icon: "🧳", exampleHr: "Planiram putovanje na more.", exampleEn: "I'm planning a trip to the seaside." },
+    { id: "a2u9.put", image: "/img/put.png", hr: "put", en: "journey / way", pos: "noun", gender: "m", icon: "🛣️", exampleHr: "Put je dug.", exampleEn: "The journey is long." },
+    { id: "a2u9.plan", image: "/img/plan.png", hr: "plan", en: "plan", pos: "noun", gender: "m", icon: "🗒️", exampleHr: "Imam plan za vikend.", exampleEn: "I have a plan for the weekend." },
+    { id: "a2u9.planirati", image: "/img/planirati.png", hr: "planirati", en: "to plan (planiram)", pos: "verb", icon: "🗓️", exampleHr: "Planiram put u Split.", exampleEn: "I'm planning a trip to Split." },
+    { id: "a2u9.otok", image: "/img/otok.png", hr: "otok", en: "island", pos: "noun", gender: "m", icon: "🏝️", exampleHr: "Posjetit ćemo otok.", exampleEn: "We will visit the island." },
+    { id: "a2u9.plaza", image: "/img/plaza.png", hr: "plaža", en: "beach", pos: "noun", gender: "f", icon: "🏖️", exampleHr: "Plaža je krasna.", exampleEn: "The beach is wonderful." },
   ],
   slides: [
     {

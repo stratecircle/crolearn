@@ -21,13 +21,13 @@ export const a2u9l4: Lesson = {
   grammarTags: ["present-tense-ujem", "travel-chunks", "verb-letjeti"],
   estMinutes: 18,
   vocab: [
-    { id: "a2u9.vlak", hr: "vlak", en: "train", pos: "noun", gender: "m", icon: "🚆", exampleHr: "Vlak polazi u devet sati.", exampleEn: "The train departs at nine." },
-    { id: "a2u9.avion", hr: "avion", en: "plane", pos: "noun", gender: "m", icon: "✈️", exampleHr: "Avion je velik.", exampleEn: "The plane is big." },
-    { id: "a2u9.let", hr: "let", en: "flight", pos: "noun", gender: "m", icon: "🛫", exampleHr: "Naš let je u deset sati.", exampleEn: "Our flight is at ten." },
-    { id: "a2u9.letjeti", hr: "letjeti", en: "to fly (letim)", pos: "verb", icon: "🕊️", exampleHr: "Letimo u Dubrovnik u petak.", exampleEn: "We fly to Dubrovnik on Friday." },
-    { id: "a2u9.recepcija", hr: "recepcija", en: "reception (desk)", pos: "noun", gender: "f", icon: "🛎️", exampleHr: "Gdje je recepcija?", exampleEn: "Where is the reception?" },
-    { id: "a2u9.soba", hr: "soba", en: "room", pos: "noun", gender: "f", icon: "🛏️", exampleHr: "Imate li sobu?", exampleEn: "Do you have a room?" },
-    { id: "a2u9.kljuc", hr: "ključ", en: "key", pos: "noun", gender: "m", icon: "🔑", exampleHr: "Izvolite ključ od sobe.", exampleEn: "Here is the key to the room." },
+    { id: "a2u9.vlak", image: "/img/vlak.png", hr: "vlak", en: "train", pos: "noun", gender: "m", icon: "🚆", exampleHr: "Vlak polazi u devet sati.", exampleEn: "The train departs at nine." },
+    { id: "a2u9.avion", image: "/img/avion.png", hr: "avion", en: "plane", pos: "noun", gender: "m", icon: "✈️", exampleHr: "Avion je velik.", exampleEn: "The plane is big." },
+    { id: "a2u9.let", image: "/img/let.png", hr: "let", en: "flight", pos: "noun", gender: "m", icon: "🛫", exampleHr: "Naš let je u deset sati.", exampleEn: "Our flight is at ten." },
+    { id: "a2u9.letjeti", image: "/img/letjeti.png", hr: "letjeti", en: "to fly (letim)", pos: "verb", icon: "🕊️", exampleHr: "Letimo u Dubrovnik u petak.", exampleEn: "We fly to Dubrovnik on Friday." },
+    { id: "a2u9.recepcija", image: "/img/recepcija.png", hr: "recepcija", en: "reception (desk)", pos: "noun", gender: "f", icon: "🛎️", exampleHr: "Gdje je recepcija?", exampleEn: "Where is the reception?" },
+    { id: "a2u9.soba", image: "/img/soba.png", hr: "soba", en: "room", pos: "noun", gender: "f", icon: "🛏️", exampleHr: "Imate li sobu?", exampleEn: "Do you have a room?" },
+    { id: "a2u9.kljuc", image: "/img/kljuc.png", hr: "ključ", en: "key", pos: "noun", gender: "m", icon: "🔑", exampleHr: "Izvolite ključ od sobe.", exampleEn: "Here is the key to the room." },
   ],
   slides: [
     {

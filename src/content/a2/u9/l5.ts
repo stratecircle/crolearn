@@ -21,12 +21,12 @@ export const a2u9l5: Lesson = {
   grammarTags: ["future-1", "genitive-prepositions", "trip-planning"],
   estMinutes: 20,
   vocab: [
-    { id: "a2u9.odmor", hr: "odmor", en: "holiday / rest", pos: "noun", gender: "m", icon: "🏖️", exampleHr: "Ovo je plan za odmor.", exampleEn: "This is the plan for the holiday." },
-    { id: "a2u9.spakirati", hr: "spakirati", en: "to pack (spakiram)", pos: "verb", icon: "🧳", exampleHr: "Spakirat ću kovčeg večeras.", exampleEn: "I'll pack the suitcase tonight." },
-    { id: "a2u9.krenuti", hr: "krenuti", en: "to set off (krenem)", pos: "verb", icon: "🚦", exampleHr: "Krenut ćemo rano ujutro.", exampleEn: "We'll set off early in the morning." },
-    { id: "a2u9.stici", hr: "stići", en: "to arrive (stignem)", pos: "verb", icon: "🏁", exampleHr: "Stići ćemo u Split u podne.", exampleEn: "We'll arrive in Split at noon." },
-    { id: "a2u9.vodic", hr: "vodič", en: "guide / guidebook", pos: "noun", gender: "m", icon: "📖", exampleHr: "Imam vodič i plan.", exampleEn: "I have a guidebook and a plan." },
-    { id: "a2u9.veceras", hr: "večeras", en: "tonight / this evening", pos: "adv", icon: "🌆", exampleHr: "Večeras ću spakirati ruksak.", exampleEn: "Tonight I'll pack the backpack." },
+    { id: "a2u9.odmor", image: "/img/odmor.png", hr: "odmor", en: "holiday / rest", pos: "noun", gender: "m", icon: "🏖️", exampleHr: "Ovo je plan za odmor.", exampleEn: "This is the plan for the holiday." },
+    { id: "a2u9.spakirati", image: "/img/spakirati.png", hr: "spakirati", en: "to pack (spakiram)", pos: "verb", icon: "🧳", exampleHr: "Spakirat ću kovčeg večeras.", exampleEn: "I'll pack the suitcase tonight." },
+    { id: "a2u9.krenuti", image: "/img/krenuti.png", hr: "krenuti", en: "to set off (krenem)", pos: "verb", icon: "🚦", exampleHr: "Krenut ćemo rano ujutro.", exampleEn: "We'll set off early in the morning." },
+    { id: "a2u9.stici", image: "/img/stici.png", hr: "stići", en: "to arrive (stignem)", pos: "verb", icon: "🏁", exampleHr: "Stići ćemo u Split u podne.", exampleEn: "We'll arrive in Split at noon." },
+    { id: "a2u9.vodic", image: "/img/vodic.png", hr: "vodič", en: "guide / guidebook", pos: "noun", gender: "m", icon: "📖", exampleHr: "Imam vodič i plan.", exampleEn: "I have a guidebook and a plan." },
+    { id: "a2u9.veceras", image: "/img/veceras.png", hr: "večeras", en: "tonight / this evening", pos: "adv", icon: "🌆", exampleHr: "Večeras ću spakirati ruksak.", exampleEn: "Tonight I'll pack the backpack." },
   ],
   slides: [
     {

@@ -21,14 +21,14 @@ export const a2u9l2: Lesson = {
   grammarTags: ["future-1", "future-questions", "future-negation"],
   estMinutes: 18,
   vocab: [
-    { id: "a2u9.karta", hr: "karta", en: "ticket", pos: "noun", gender: "f", icon: "🎫", exampleHr: "Kupit ću kartu.", exampleEn: "I'll buy a ticket." },
-    { id: "a2u9.povratna-karta", hr: "povratna karta", en: "return ticket", pos: "phrase", icon: "🔁", exampleHr: "Hoćete li kupiti povratnu kartu?", exampleEn: "Will you buy a return ticket?" },
-    { id: "a2u9.rezervirati", hr: "rezervirati", en: "to book / reserve (rezerviram)", pos: "verb", icon: "📝", exampleHr: "Rezervirat ću sjedalo.", exampleEn: "I'll book a seat." },
-    { id: "a2u9.rezervacija", hr: "rezervacija", en: "reservation", pos: "noun", gender: "f", icon: "📌", exampleHr: "Imam rezervaciju.", exampleEn: "I have a reservation." },
-    { id: "a2u9.polazak", hr: "polazak", en: "departure", pos: "noun", gender: "m", icon: "🛫", exampleHr: "Polazak je u devet sati.", exampleEn: "The departure is at nine." },
-    { id: "a2u9.dolazak", hr: "dolazak", en: "arrival", pos: "noun", gender: "m", icon: "🛬", exampleHr: "Dolazak je u deset sati.", exampleEn: "The arrival is at ten." },
-    { id: "a2u9.sjedalo", hr: "sjedalo", en: "seat", pos: "noun", gender: "n", icon: "💺", exampleHr: "Ovo je moje sjedalo.", exampleEn: "This is my seat." },
-    { id: "a2u9.red-voznje", hr: "red vožnje", en: "timetable", pos: "phrase", icon: "🕘", exampleHr: "Gdje je red vožnje?", exampleEn: "Where is the timetable?" },
+    { id: "a2u9.karta", image: "/img/karta.png", hr: "karta", en: "ticket", pos: "noun", gender: "f", icon: "🎫", exampleHr: "Kupit ću kartu.", exampleEn: "I'll buy a ticket." },
+    { id: "a2u9.povratna-karta", image: "/img/povratnakarta.png", hr: "povratna karta", en: "return ticket", pos: "phrase", icon: "🔁", exampleHr: "Hoćete li kupiti povratnu kartu?", exampleEn: "Will you buy a return ticket?" },
+    { id: "a2u9.rezervirati", image: "/img/rezervirati.png", hr: "rezervirati", en: "to book / reserve (rezerviram)", pos: "verb", icon: "📝", exampleHr: "Rezervirat ću sjedalo.", exampleEn: "I'll book a seat." },
+    { id: "a2u9.rezervacija", image: "/img/rezervacija.png", hr: "rezervacija", en: "reservation", pos: "noun", gender: "f", icon: "📌", exampleHr: "Imam rezervaciju.", exampleEn: "I have a reservation." },
+    { id: "a2u9.polazak", image: "/img/polazak.png", hr: "polazak", en: "departure", pos: "noun", gender: "m", icon: "🛫", exampleHr: "Polazak je u devet sati.", exampleEn: "The departure is at nine." },
+    { id: "a2u9.dolazak", image: "/img/dolazak.png", hr: "dolazak", en: "arrival", pos: "noun", gender: "m", icon: "🛬", exampleHr: "Dolazak je u deset sati.", exampleEn: "The arrival is at ten." },
+    { id: "a2u9.sjedalo", image: "/img/sjedalo.png", hr: "sjedalo", en: "seat", pos: "noun", gender: "n", icon: "💺", exampleHr: "Ovo je moje sjedalo.", exampleEn: "This is my seat." },
+    { id: "a2u9.red-voznje", image: "/img/redvoznje.png", hr: "red vožnje", en: "timetable", pos: "phrase", icon: "🕘", exampleHr: "Gdje je red vožnje?", exampleEn: "Where is the timetable?" },
   ],
   slides: [
     {
