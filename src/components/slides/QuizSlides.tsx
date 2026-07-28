@@ -37,13 +37,13 @@ export function QuizSetSlideView({ slide, onDone }: QuizProps<QuizSetSlide>) {
 
   return (
     <div>
-      <h2 className="font-display text-xl font-bold text-[#16243D]">🧩 {slide.title ?? "Quick check"}</h2>
+      <h2 className="font-display text-xl font-bold text-[#16243D]">{slide.title ?? "Quick check"}</h2>
       <ol className="mt-4 space-y-4">
         {slide.items.map((item, qi) => {
           const verdictKnown = checked;
           const isRight = picked[qi] === item.correctIndex;
           return (
-            <li key={qi} className="rounded-xl bg-white p-4 shadow-sm">
+            <li key={qi} className="rounded-xl border border-[rgba(15,23,42,.07)] bg-white p-4 shadow-[0_1px_3px_rgba(15,23,42,.04)]">
               <p className="font-bold">
                 {qi + 1}. {item.prompt}{" "}
                 {item.tts && <TtsButton text={item.tts} className="ml-1 align-middle" />}
@@ -62,13 +62,13 @@ export function QuizSetSlideView({ slide, onDone }: QuizProps<QuizSetSlide>) {
                     className={`rounded-lg border-2 px-3 py-1.5 font-semibold transition ${
                       !verdictKnown
                         ? picked[qi] === oi
-                          ? "border-stone-900 bg-[#16243D] text-white"
-                          : "border-stone-300 bg-white hover:border-stone-900"
+                          ? "border-[#16243D] bg-[#16243D] text-white"
+                          : "border-[rgba(15,23,42,.14)] bg-white hover:border-[#16243D]"
                         : oi === item.correctIndex
-                          ? "border-green-600 bg-green-50"
+                          ? "border-[#2F7D53] bg-[rgba(47,125,83,.07)]"
                           : oi === picked[qi]
-                            ? "border-red-600 bg-red-50"
-                            : "border-stone-200 opacity-60"
+                            ? "border-[#C93434] bg-[rgba(201,52,52,.06)]"
+                            : "border-[rgba(15,23,42,.08)] opacity-60"
                     }`}
                   >
                     {item.options[oi]}
@@ -76,8 +76,8 @@ export function QuizSetSlideView({ slide, onDone }: QuizProps<QuizSetSlide>) {
                 ))}
               </div>
               {verdictKnown && (
-                <p className={`mt-2 text-sm ${isRight ? "text-green-700" : "text-red-700"}`}>
-                  {isRight ? "✅" : "❌"} {item.explanation}
+                <p className={`mt-2 text-sm ${isRight ? "text-[#2F7D53]" : "text-[#C93434]"}`}>
+                  {isRight ? "Correct — " : "Not quite — "}{item.explanation}
                 </p>
               )}
             </li>
@@ -128,12 +128,12 @@ export function McSlideView({ slide, onDone }: QuizProps<McSlide>) {
             onClick={() => setPicked(i)}
             className={`rounded-xl border-2 px-4 py-3 text-left text-lg font-semibold transition ${
               !answered
-                ? "border-stone-300 bg-white hover:border-stone-900"
+                ? "border-[rgba(15,23,42,.14)] bg-white hover:border-[#16243D]"
                 : i === slide.correctIndex
-                  ? "border-green-600 bg-green-50"
+                  ? "border-[#2F7D53] bg-[rgba(47,125,83,.07)]"
                   : i === picked
-                    ? "border-red-600 bg-red-50"
-                    : "border-stone-200 bg-white opacity-60"
+                    ? "border-[#C93434] bg-[rgba(201,52,52,.06)]"
+                    : "border-[rgba(15,23,42,.08)] bg-white opacity-60"
             }`}
           >
             {slide.options[i]}
@@ -158,7 +158,7 @@ export function TypeSlideView({ slide, onDone }: QuizProps<TypeSlide>) {
   return (
     <div>
       <h2 className="font-display text-xl font-bold text-[#16243D]">{slide.prompt}</h2>
-      {slide.hint && <p className="mt-1 text-sm text-stone-500">💡 {slide.hint}</p>}
+      {slide.hint && <p className="mt-1 text-sm text-[#8B93A1]">Hint: {slide.hint}</p>}
       <div className="mt-4">
         <AnswerInput
           value={value}
@@ -195,7 +195,7 @@ export function ListenTypeSlideView({ slide, onDone }: QuizProps<ListenTypeSlide
   const [result, setResult] = useState<GradeResult | null>(null);
   return (
     <div>
-      <h2 className="font-display text-xl font-bold text-[#16243D]">👂 Listen and type</h2>
+      <h2 className="font-display text-xl font-bold text-[#16243D]">Listen and type</h2>
       <div className="mt-4 flex gap-2">
         <TtsButton text={slide.tts} label="Listen" className="!px-4 !py-2 !text-base" />
         {(slide.allowSlow ?? true) && (
@@ -257,18 +257,18 @@ export function SpeakSlideView({ slide, onDone }: QuizProps<SpeakSlide>) {
   };
 
   const verdictText =
-    score === null ? null : score >= 0.75 ? "✅ Excellent!" : score >= 0.5 ? "🟡 Close — try again!" : "❌ Give it another go.";
+    score === null ? null : score >= 0.75 ? "Excellent!" : score >= 0.5 ? "Close — try again!" : "Give it another go.";
 
   return (
     <div>
-      <h2 className="font-display text-xl font-bold text-[#16243D]">🎤 Say it out loud</h2>
-      <div className="mt-4 rounded-xl bg-white p-4 shadow-sm">
+      <h2 className="font-display text-xl font-bold text-[#16243D]">Say it out loud</h2>
+      <div className="mt-4 rounded-xl border border-[rgba(15,23,42,.07)] bg-white p-4 shadow-[0_1px_3px_rgba(15,23,42,.04)]">
         <p className="text-2xl font-bold">
           {slide.targetHr} <TtsButton text={slide.targetHr} className="ml-1" />
           <TtsButton text={slide.targetHr} slow className="ml-1" />
         </p>
-        <p className="text-stone-500">{slide.targetEn}</p>
-        {slide.phonetic && <p className="mt-1 text-sm text-stone-400">[{slide.phonetic}]</p>}
+        <p className="text-[#8B93A1]">{slide.targetEn}</p>
+        {slide.phonetic && <p className="mt-1 text-sm text-[#8B93A1]">[{slide.phonetic}]</p>}
       </div>
 
       {supported ? (
@@ -276,9 +276,9 @@ export function SpeakSlideView({ slide, onDone }: QuizProps<SpeakSlide>) {
           type="button"
           onClick={record}
           disabled={state === "listening"}
-          className="mt-4 w-full rounded-xl border-2 border-stone-900 py-3 text-lg font-bold hover:bg-stone-100 disabled:opacity-50"
+          className="mt-4 w-full rounded-xl border border-[#16243D] py-3 text-lg font-semibold hover:bg-[#F7F4F0] disabled:opacity-50"
         >
-          {state === "listening" ? "🎙️ Listening…" : "🎙️ Record yourself"}
+          {state === "listening" ? "Listening…" : "Record yourself"}
         </button>
       ) : (
         <p className="mt-4 rounded-xl bg-amber-50 p-3 text-sm text-amber-800">
@@ -288,27 +288,27 @@ export function SpeakSlideView({ slide, onDone }: QuizProps<SpeakSlide>) {
       )}
 
       {transcript !== null && (
-        <p className="mt-3 text-sm text-stone-600">
+        <p className="mt-3 text-sm text-[#5B6472]">
           I heard: <em>„{transcript}"</em> {verdictText && <strong className="ml-1">{verdictText}</strong>}
         </p>
       )}
       {error === "denied" && (
-        <p className="mt-3 text-sm text-red-700">Microphone is blocked — allow access, or rate yourself below.</p>
+        <p className="mt-3 text-sm text-[#C93434]">Microphone is blocked — allow access, or rate yourself below.</p>
       )}
-      {error === "no-speech" && <p className="mt-3 text-sm text-stone-600">I didn't hear anything — try again.</p>}
+      {error === "no-speech" && <p className="mt-3 text-sm text-[#5B6472]">I didn't hear anything — try again.</p>}
 
       <div className="mt-5 flex gap-2">
         <button
           type="button"
           onClick={() => onDone(true)}
-          className="flex-1 rounded-xl bg-green-600 py-2.5 font-bold text-white hover:bg-green-700"
+          className="flex-1 rounded-xl bg-[#2F7D53] py-2.5 font-semibold text-white hover:bg-[#276A46]"
         >
-          {score !== null && score >= 0.75 ? "Continue →" : "I said it correctly ✓"}
+          {score !== null && score >= 0.75 ? "Continue →" : "I said it correctly"}
         </button>
         <button
           type="button"
           onClick={() => onDone(false)}
-          className="flex-1 rounded-xl bg-stone-300 py-2.5 font-bold text-stone-700 hover:bg-stone-400"
+          className="flex-1 rounded-xl border border-[rgba(15,23,42,.12)] bg-white py-2.5 font-semibold text-[#3F4A5C] hover:bg-[#F7F4F0]"
         >
           I need more practice
         </button>
@@ -359,10 +359,10 @@ export function MatchSlideView({ slide, onDone }: QuizProps<MatchSlide>) {
               onClick={() => setSelectedA(p.a)}
               className={`rounded-xl border-2 px-3 py-2.5 font-semibold transition ${
                 matched.has(p.a)
-                  ? "border-green-600 bg-green-50 opacity-60"
+                  ? "border-[#2F7D53] bg-[rgba(47,125,83,.07)] opacity-60"
                   : selectedA === p.a
-                    ? "border-stone-900 bg-[#16243D] text-white"
-                    : "border-stone-300 bg-white hover:border-stone-900"
+                    ? "border-[#16243D] bg-[#16243D] text-white"
+                    : "border-[rgba(15,23,42,.14)] bg-white hover:border-[#16243D]"
               }`}
             >
               <MatchLabel value={p.a} />
@@ -380,10 +380,10 @@ export function MatchSlideView({ slide, onDone }: QuizProps<MatchSlide>) {
                 onClick={() => tryMatch(b)}
                 className={`rounded-xl border-2 px-3 py-2.5 font-semibold transition ${
                   isMatched
-                    ? "border-green-600 bg-green-50 opacity-60"
+                    ? "border-[#2F7D53] bg-[rgba(47,125,83,.07)] opacity-60"
                     : flash === b
-                      ? "border-red-600 bg-red-50"
-                      : "border-stone-300 bg-white enabled:hover:border-stone-900 disabled:opacity-60"
+                      ? "border-[#C93434] bg-[rgba(201,52,52,.06)]"
+                      : "border-[rgba(15,23,42,.14)] bg-white enabled:hover:border-[#16243D] disabled:opacity-60"
                 }`}
               >
                 <MatchLabel value={b} />
@@ -440,19 +440,19 @@ export function FillSlideView({ slide, onDone }: QuizProps<FillSlide>) {
                 onKeyDown={(e) => e.key === "Enter" && allFilled && submit()}
                 className={`w-28 rounded-lg border-b-4 px-2 py-1 text-center text-lg font-semibold outline-none ${
                   results === null
-                    ? "border-stone-400 bg-white focus:border-stone-900"
+                    ? "border-[rgba(15,23,42,.25)] bg-white focus:border-[#16243D]"
                     : results[i].verdict === "wrong"
-                      ? "border-red-600 bg-red-50"
+                      ? "border-[#C93434] bg-[rgba(201,52,52,.06)]"
                       : results[i].verdict === "diacritics"
-                        ? "border-amber-500 bg-amber-50"
-                        : "border-green-600 bg-green-50"
+                        ? "border-[#E08A2B] bg-[rgba(224,138,43,.08)]"
+                        : "border-[#2F7D53] bg-[rgba(47,125,83,.07)]"
                 }`}
               />
             )}
           </span>
         ))}
       </p>
-      {slide.translation && <p className="mt-2 text-stone-500">{slide.translation}</p>}
+      {slide.translation && <p className="mt-2 text-[#8B93A1]">{slide.translation}</p>}
       {slide.wordBank && results === null && (
         <div className="mt-3 flex flex-wrap gap-2">
           {slide.wordBank.map((w) => (
@@ -467,7 +467,7 @@ export function FillSlideView({ slide, onDone }: QuizProps<FillSlide>) {
                   setValues(next);
                 }
               }}
-              className="rounded-lg bg-stone-200 px-3 py-1.5 font-semibold hover:bg-stone-300"
+              className="rounded-lg border border-[rgba(15,23,42,.12)] bg-white px-3 py-1.5 font-semibold hover:bg-[#F7F4F0]"
             >
               {w}
             </button>
@@ -503,8 +503,8 @@ export function ReorderSlideView({ slide, onDone }: QuizProps<ReorderSlide>) {
   return (
     <div>
       <h2 className="font-display text-xl font-bold text-[#16243D]">Build the sentence</h2>
-      <p className="mt-1 text-stone-500">{slide.en}</p>
-      <div className="mt-4 min-h-14 rounded-xl border-2 border-dashed border-stone-300 bg-white p-3">
+      <p className="mt-1 text-[#8B93A1]">{slide.en}</p>
+      <div className="mt-4 min-h-14 rounded-xl border-2 border-dashed border-[rgba(15,23,42,.16)] bg-white p-3">
         <div className="flex flex-wrap gap-2">
           {chosen.map((w, i) => (
             <button
@@ -532,7 +532,7 @@ export function ReorderSlideView({ slide, onDone }: QuizProps<ReorderSlide>) {
               setPool(pool.filter((_, j) => j !== i));
               setChosen([...chosen, w]);
             }}
-            className="rounded-lg border-2 border-stone-300 bg-white px-3 py-1.5 font-semibold hover:border-stone-900"
+            className="rounded-lg border-2 border-[rgba(15,23,42,.14)] bg-white px-3 py-1.5 font-semibold hover:border-[#16243D]"
           >
             {w}
           </button>

@@ -210,7 +210,7 @@ export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
               <TutorChat
                 seedFocus={`Lesson: "${lesson.title}". The slide the learner is asking about (raw JSON):\n${JSON.stringify(slide)}`}
                 seedPrompt="Can you explain this slide?"
-                emptyHint="Ask me anything about this slide 👇"
+                emptyHint="Ask me anything about this slide"
                 starters={["Can you explain this slide?", "Give me another example", "Break down the grammar here"]}
               />
             </div>

@@ -24,7 +24,7 @@ export default function TutorChat({
   seedFocus,
   seedPrompt,
   starters = DEFAULT_STARTERS,
-  emptyHint = "Bok! 👋 Ask me anything about Croatian.",
+  emptyHint = "Bok! Ask me anything about Croatian.",
 }: {
   seedFocus?: string;
   seedPrompt?: string;
@@ -90,14 +90,14 @@ export default function TutorChat({
       <div ref={scroller} className="flex-1 space-y-3 overflow-y-auto pb-4">
         {messages.length === 0 && (
           <div className="rounded-[20px] border border-[rgba(15,23,42,.07)] bg-white p-5 shadow-[0_1px_3px_rgba(15,23,42,.04)]">
-            <p className="font-semibold text-stone-800">{emptyHint}</p>
+            <p className="font-semibold text-[#16243D]">{emptyHint}</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {starters.map((s) => (
                 <button
                   key={s}
                   type="button"
                   onClick={() => void send(s)}
-                  className="rounded-full border-2 border-stone-300 px-3 py-1.5 text-left text-sm hover:border-stone-900"
+                  className="rounded-full border border-[rgba(15,23,42,.1)] bg-white px-3.5 py-1.5 text-left text-sm text-[#3F4A5C] transition-colors duration-[180ms] hover:bg-[#F7F4F0]"
                 >
                   {s}
                 </button>
@@ -112,11 +112,11 @@ export default function TutorChat({
               className={
                 m.role === "user"
                   ? "max-w-[85%] rounded-2xl bg-[#16243D] px-4 py-2.5 text-white"
-                  : "max-w-[90%] rounded-2xl bg-white px-4 py-2.5 text-stone-900 shadow-sm"
+                  : "max-w-[90%] rounded-2xl border border-[rgba(15,23,42,.07)] bg-white px-4 py-2.5 text-[#16243D] shadow-[0_1px_2px_rgba(15,23,42,.03)]"
               }
             >
               {m.role === "assistant" ? (
-                m.text ? <Markdown text={m.text} /> : <span className="text-stone-400">…</span>
+                m.text ? <Markdown text={m.text} /> : <span className="text-[#8B93A1]">…</span>
               ) : (
                 m.text
               )}
@@ -125,7 +125,7 @@ export default function TutorChat({
         ))}
       </div>
 
-      {error && <p className="mb-2 rounded-xl bg-amber-50 px-3 py-2 text-sm text-amber-800">{error}</p>}
+      {error && <p className="mb-2 rounded-xl bg-[rgba(224,138,43,.1)] px-3.5 py-2 text-sm text-[#7A4A12]">{error}</p>}
 
       <form
         onSubmit={(e) => {
@@ -139,12 +139,12 @@ export default function TutorChat({
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask the tutor…"
           disabled={busy}
-          className="flex-1 rounded-xl border-2 border-stone-300 px-4 py-2.5 outline-none focus:border-stone-900 disabled:opacity-60"
+          className="flex-1 rounded-xl border border-[rgba(15,23,42,.14)] bg-white px-4 py-2.5 text-[#16243D] outline-none transition-colors duration-150 focus:border-[#16243D] disabled:opacity-60"
         />
         <button
           type="submit"
           disabled={busy || !input.trim()}
-          className="rounded-xl bg-[#16243D] px-5 py-2.5 font-bold text-white disabled:opacity-40"
+          className="rounded-xl bg-[#C93434] px-5 py-2.5 font-semibold text-white transition-colors duration-[180ms] hover:bg-[#B32C2C] disabled:opacity-40"
         >
           {busy ? "…" : "Send"}
         </button>

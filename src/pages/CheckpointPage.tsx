@@ -66,11 +66,10 @@ export default function CheckpointPage() {
   if (phase === "intro") {
     return (
       <div className="m-auto w-full max-w-xl py-10 text-center">
-        <div className="text-5xl">🎓</div>
-        <h1 className="mt-3 font-display text-3xl font-bold text-[#16243D]">{exam.title}</h1>
-        <p className="text-stone-500">{exam.titleEn}</p>
-        <div className="mt-5 rounded-2xl bg-white p-5 text-left shadow-sm">
-          <p className="text-sm text-stone-600">
+        <h1 className="font-display text-3xl font-bold text-[#16243D]" style={{ fontSize: "clamp(26px,3.6vw,34px)" }}>{exam.title}</h1>
+        <p className="text-[#8B93A1]">{exam.titleEn}</p>
+        <div className="mt-5 rounded-[20px] border border-[rgba(15,23,42,.07)] bg-white p-6 text-left shadow-[0_1px_3px_rgba(15,23,42,.04)]">
+          <p className="text-sm text-[#5B6472]">
             {totalQuiz} graded questions across {exam.sections.length} sections
             {exam.speaking ? `, plus ${exam.speaking.prompts.length} speaking prompts` : ""}
             {exam.writing ? " and a guided writing task" : ""}. No hints,
@@ -79,16 +78,16 @@ export default function CheckpointPage() {
           </p>
           <ul className="mt-3 grid gap-1 text-sm font-semibold">
             {exam.sections.map((s) => (
-              <li key={s.title}>📝 {s.title} — {s.slides.length}</li>
+              <li key={s.title}>{s.title} — {s.slides.length} items</li>
             ))}
-            {exam.speaking && <li>🎤 {exam.speaking.title} — {exam.speaking.prompts.length} (AI-graded)</li>}
-            {exam.writing && <li>✍️ {exam.writing.title} — 1 task (AI-graded)</li>}
+            {exam.speaking && <li>{exam.speaking.title} — {exam.speaking.prompts.length} prompts (AI-graded)</li>}
+            {exam.writing && <li>{exam.writing.title} — 1 task (AI-graded)</li>}
           </ul>
         </div>
         <button
           type="button"
           onClick={() => setPhase("quiz")}
-          className="mt-6 rounded-xl bg-[#16243D] px-8 py-3 text-lg font-bold text-white hover:bg-[#20344F]"
+          className="mt-6 rounded-xl bg-[#C93434] px-8 py-3 text-lg font-semibold text-white transition-colors duration-[180ms] hover:bg-[#B32C2C]"
         >
           Start the exam
         </button>
@@ -101,12 +100,12 @@ export default function CheckpointPage() {
     const current = quizItems[qi];
     return (
       <div className="m-auto w-full max-w-2xl py-6">
-        <div className="mb-4 flex items-center justify-between text-sm font-bold text-stone-500">
-          <span>🎓 {current.section}</span>
-          <span>{qi + 1}/{totalQuiz}</span>
+        <div className="mb-2 flex items-center justify-between">
+          <span className="text-xs font-semibold tracking-[.13em] text-[#C93434]">{current.section.toUpperCase()}</span>
+          <span className="text-sm text-[#5B6472]">{qi + 1} / {totalQuiz}</span>
         </div>
-        <div className="mb-3 h-2 overflow-hidden rounded-full bg-stone-200">
-          <div className="h-full rounded-full bg-stone-800" style={{ width: `${(qi / totalQuiz) * 100}%` }} />
+        <div className="mb-6 h-2 overflow-hidden rounded-full bg-[rgba(15,23,42,.09)]">
+          <div className="h-full rounded-full bg-[#C93434]" style={{ width: `${(qi / totalQuiz) * 100}%` }} />
         </div>
         <SlideRenderer
           key={`${qi}-${current.slide.id}`}
@@ -242,7 +241,7 @@ function SpeakingSection({
 
   return (
     <div className="m-auto w-full max-w-2xl py-6">
-      <div className="mb-4 flex items-center justify-between text-sm font-bold text-stone-500">
+      <div className="mb-4 flex items-center justify-between text-sm font-bold text-[#8B93A1]">
         <span>🎤 {title}</span>
         <span>{i + 1}/{prompts.length}</span>
       </div>
@@ -250,7 +249,7 @@ function SpeakingSection({
       <div className="rounded-[20px] border border-[rgba(15,23,42,.07)] bg-white p-5 shadow-[0_1px_3px_rgba(15,23,42,.04)]">
         <p className="text-lg font-bold">{prompt.task}</p>
         {prompt.rubricFocus && (
-          <p className="mt-1 text-xs text-stone-500">Graded on: {prompt.rubricFocus}</p>
+          <p className="mt-1 text-xs text-[#8B93A1]">Graded on: {prompt.rubricFocus}</p>
         )}
 
         {!keyPresent && (
@@ -276,22 +275,22 @@ function SpeakingSection({
                 setRevealed(true);
                 if (prompt.modelHr) void speak(prompt.modelHr);
               }}
-              className="rounded-xl border-2 border-stone-900 px-4 py-2.5 font-bold hover:bg-stone-100"
+              className="rounded-xl border-2 border-[#16243D] px-4 py-2.5 font-bold hover:bg-[rgba(15,23,42,.05)]"
             >
               💡 Show model answer
             </button>
           )}
         </div>
         {!sttOk && (
-          <p className="mt-2 text-xs text-stone-500">
+          <p className="mt-2 text-xs text-[#8B93A1]">
             (Voice capture needs Chrome/Edge — use the model answer to self-assess.)
           </p>
         )}
         {sttError && <p className="mt-2 text-sm text-amber-700">{sttError}</p>}
 
         {transcript && (
-          <div className="mt-4 rounded-xl bg-stone-50 p-3">
-            <p className="text-xs font-black uppercase tracking-wide text-stone-400">What we heard</p>
+          <div className="mt-4 rounded-xl bg-[rgba(15,23,42,.03)] p-3">
+            <p className="text-xs font-semibold uppercase tracking-[.13em] text-[#8B93A1]">WHAT WE HEARD</p>
             <p className="mt-1">{transcript}</p>
             {keyPresent && !grade && (
               <button
@@ -309,7 +308,7 @@ function SpeakingSection({
 
         {grade && (
           <div className={`mt-3 rounded-xl p-4 ${grade.correct ? "bg-green-50" : "bg-amber-50"}`}>
-            <p className="font-black">{grade.correct ? "✅" : "📝"} {Math.round(grade.score)}/100</p>
+            <p className="font-semibold text-[#16243D]">Score: {Math.round(grade.score)}/100</p>
             <p className="mt-1 text-sm">{grade.feedback}</p>
             {grade.corrected_text.trim() && grade.corrected_text.trim() !== transcript.trim() && (
               <p className="mt-2 text-sm"><span className="font-bold">Better:</span> {grade.corrected_text}</p>
@@ -319,7 +318,7 @@ function SpeakingSection({
 
         {revealed && prompt.modelHr && (
           <div className="mt-3 rounded-xl bg-sky-50 p-3">
-            <p className="text-xs font-black uppercase tracking-wide text-sky-700">Model answer</p>
+            <p className="text-xs font-semibold uppercase tracking-[.13em] text-[#3B6FD4]">Model answer</p>
             <p className="mt-1">{prompt.modelHr}</p>
           </div>
         )}
@@ -370,7 +369,7 @@ function WritingSection({ task, onDone }: { task: WritingTask; onDone: () => voi
 
   return (
     <div className="m-auto w-full max-w-2xl py-6">
-      <div className="mb-4 flex items-center justify-between text-sm font-bold text-stone-500">
+      <div className="mb-4 flex items-center justify-between text-sm font-bold text-[#8B93A1]">
         <span>✍️ {task.title}</span>
         <span>1/1</span>
       </div>
@@ -378,7 +377,7 @@ function WritingSection({ task, onDone }: { task: WritingTask; onDone: () => voi
       <div className="rounded-[20px] border border-[rgba(15,23,42,.07)] bg-white p-5 shadow-[0_1px_3px_rgba(15,23,42,.04)]">
         <p className="text-lg font-bold">{task.task}</p>
         {task.rubricFocus && (
-          <p className="mt-1 text-xs text-stone-500">Graded on: {task.rubricFocus}</p>
+          <p className="mt-1 text-xs text-[#8B93A1]">Graded on: {task.rubricFocus}</p>
         )}
 
         {!keyPresent && (
@@ -393,9 +392,9 @@ function WritingSection({ task, onDone }: { task: WritingTask; onDone: () => voi
           onChange={(e) => setText(e.target.value)}
           rows={7}
           placeholder="Draga Ana, …"
-          className="mt-4 w-full rounded-xl border-2 border-stone-200 p-3 focus:border-stone-900 focus:outline-none"
+          className="mt-4 w-full rounded-xl border-2 border-[rgba(15,23,42,.09)] p-3 focus:border-[#16243D] focus:outline-none"
         />
-        <p className={`mt-1 text-xs ${inRange ? "text-stone-500" : "text-amber-700"}`}>
+        <p className={`mt-1 text-xs ${inRange ? "text-[#8B93A1]" : "text-amber-700"}`}>
           {words} {words === 1 ? "word" : "words"}
           {task.minWords && task.maxWords ? ` (aim for ${task.minWords}–${task.maxWords})` : ""}
         </p>
@@ -415,7 +414,7 @@ function WritingSection({ task, onDone }: { task: WritingTask; onDone: () => voi
             <button
               type="button"
               onClick={() => setRevealed(true)}
-              className="rounded-xl border-2 border-stone-900 px-4 py-2.5 font-bold hover:bg-stone-100"
+              className="rounded-xl border-2 border-[#16243D] px-4 py-2.5 font-bold hover:bg-[rgba(15,23,42,.05)]"
             >
               💡 Show a model text
             </button>
@@ -425,7 +424,7 @@ function WritingSection({ task, onDone }: { task: WritingTask; onDone: () => voi
 
         {grade && (
           <div className={`mt-3 rounded-xl p-4 ${grade.correct ? "bg-green-50" : "bg-amber-50"}`}>
-            <p className="font-black">{grade.correct ? "✅" : "📝"} {Math.round(grade.score)}/100</p>
+            <p className="font-semibold text-[#16243D]">Score: {Math.round(grade.score)}/100</p>
             <p className="mt-1 text-sm">{grade.feedback}</p>
             {grade.corrected_text.trim() && grade.corrected_text.trim() !== text.trim() && (
               <p className="mt-2 text-sm"><span className="font-bold">Better:</span> {grade.corrected_text}</p>
@@ -435,7 +434,7 @@ function WritingSection({ task, onDone }: { task: WritingTask; onDone: () => voi
 
         {revealed && task.modelHr && (
           <div className="mt-3 rounded-xl bg-sky-50 p-3">
-            <p className="text-xs font-black uppercase tracking-wide text-sky-700">Model text</p>
+            <p className="text-xs font-semibold uppercase tracking-[.13em] text-[#3B6FD4]">Model text</p>
             <p className="mt-1 whitespace-pre-line">{task.modelHr}</p>
           </div>
         )}
@@ -466,11 +465,10 @@ function ResultsScreen({
   return (
     <div className="m-auto w-full max-w-xl py-10">
       <div className="text-center">
-        <div className="text-6xl">{score.passed ? "🏆" : "💪"}</div>
-        <h2 className="mt-3 font-display text-3xl font-bold text-[#16243D]">
+        <h2 className="font-display font-bold text-[#16243D]" style={{ fontSize: "clamp(28px,4vw,38px)" }}>
           {score.passed ? "Čestitamo!" : "Almost there!"}
         </h2>
-        <p className="mt-1 text-stone-600">
+        <p className="mt-1 text-[#5B6472]">
           {score.passed
             ? `Govorite hrvatski na razini ${exam.levelId}. (You speak Croatian at the ${exam.levelId} level.)`
             : "A soft gate — review your weakest areas and retake when ready. You can still move on."}
@@ -481,7 +479,7 @@ function ResultsScreen({
       </div>
 
       <div className="mt-6 rounded-[20px] border border-[rgba(15,23,42,.07)] bg-white p-5 shadow-[0_1px_3px_rgba(15,23,42,.04)]">
-        <p className="text-xs font-black uppercase tracking-wide text-stone-400">By section</p>
+        <p className="text-xs font-semibold uppercase tracking-[.13em] text-[#8B93A1]">BY SECTION</p>
         <ul className="mt-2 grid gap-2">
           {score.sections.map((s) => (
             <li key={s.title}>
@@ -489,9 +487,9 @@ function ResultsScreen({
                 <span>{s.title}</span>
                 <span>{s.correct}/{s.total} · {s.pct}%</span>
               </div>
-              <div className="mt-1 h-2 overflow-hidden rounded-full bg-stone-200">
+              <div className="mt-1 h-2 overflow-hidden rounded-full bg-[rgba(15,23,42,.09)]">
                 <div
-                  className={`h-full rounded-full ${s.pct >= exam.passPct ? "bg-green-600" : "bg-amber-500"}`}
+                  className={`h-full rounded-full ${s.pct >= exam.passPct ? "bg-[#2F7D53]" : "bg-[#E08A2B]"}`}
                   style={{ width: `${s.pct}%` }}
                 />
               </div>
@@ -501,12 +499,12 @@ function ResultsScreen({
       </div>
 
       {score.weakestSections.length > 0 && (
-        <div className="mt-4 rounded-2xl bg-amber-50 p-4 text-amber-900">
-          <p className="font-black">📌 Worth revisiting</p>
+        <div className="mt-4 rounded-2xl border border-[rgba(224,138,43,.25)] bg-[rgba(224,138,43,.08)] p-4 text-[#7A4A12]">
+          <p className="font-semibold">Worth revisiting</p>
           <p className="mt-1 text-sm">
             Your weakest {score.weakestSections.length === 1 ? "area" : "areas"}:{" "}
             <strong>{score.weakestSections.join(", ")}</strong>. Replay the related units' lessons and
-            use 🎯 Practice to drill them, then retake.
+            use Practice to drill them, then retake.
           </p>
           <Link to="/practice" className="mt-2 inline-block text-sm font-bold underline">
             Go to Practice →
@@ -518,12 +516,12 @@ function ResultsScreen({
         <button
           type="button"
           onClick={onRetake}
-          className="rounded-xl border-2 border-stone-900 py-3 font-bold hover:bg-stone-100"
+          className="rounded-xl border border-[rgba(15,23,42,.12)] bg-white py-3 font-semibold text-[#3F4A5C] transition-colors duration-[180ms] hover:bg-[#F7F4F0]"
         >
-          🔁 Retake the exam
+          Retake the exam
         </button>
-        <Link to="/" className="rounded-xl bg-[#16243D] py-3 text-center font-bold text-white hover:bg-[#20344F]">
-          Back to the path →
+        <Link to="/" className="rounded-xl bg-[#C93434] py-3 text-center font-semibold text-white transition-colors duration-[180ms] hover:bg-[#B32C2C]">
+          Back to path
         </Link>
       </div>
     </div>
