@@ -4,23 +4,22 @@
  */
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
-import { BookOpen, Layers, Map, MessageCircle, Puzzle, Settings, SquarePen, type LucideIcon } from "lucide-react";
+import { BookOpen, Map, MessageCircle, Puzzle, Settings, SquarePen, type LucideIcon } from "lucide-react";
 import { countDue } from "@/lib/srs";
 import { INK, RED } from "./kit";
 
 const NAV: { label: string; to: string; icon: LucideIcon }[] = [
   { label: "Path", to: "/", icon: Map },
-  { label: "Review", to: "/review", icon: Layers },
   { label: "Notes", to: "/notes", icon: SquarePen },
   { label: "Stories", to: "/stories", icon: BookOpen },
   { label: "Practice", to: "/practice", icon: Puzzle },
   { label: "Tutor", to: "/tutor", icon: MessageCircle },
 ];
 
-/** Which rail item lights up for the current path (lesson→Path, story→Stories). */
+/** Which rail item lights up for the current path (review→Practice, lesson→Path). */
 function activeFor(pathname: string): string {
   if (pathname === "/") return "/";
-  if (pathname.startsWith("/review")) return "/review";
+  if (pathname.startsWith("/review")) return "/practice";
   if (pathname.startsWith("/notes")) return "/notes";
   if (pathname.startsWith("/stories") || pathname.startsWith("/story/")) return "/stories";
   if (pathname.startsWith("/practice")) return "/practice";
@@ -46,7 +45,7 @@ function RailItem({
     <button
       onClick={onClick}
       aria-current={active ? "page" : undefined}
-      className="relative flex w-16 flex-col items-center gap-[3px] rounded-xl pb-[7px] pt-[9px] transition-colors duration-150 max-[900px]:w-12"
+      className="relative flex w-16 flex-col items-center gap-[3px] rounded-xl pb-[7px] pt-[9px] transition-colors duration-150 max-[900px]:w-14"
       style={{ background: active ? "rgba(var(--primary-rgb),.08)" : "transparent", color: active ? RED : "var(--body2)" }}
     >
       <Icon size={21} strokeWidth={1.7} />
@@ -107,7 +106,7 @@ export function Rail() {
             label={n.label}
             icon={n.icon}
             active={active === n.to}
-            badge={n.to === "/review" ? due : 0}
+            badge={n.to === "/practice" ? due : 0}
             onClick={() => nav(n.to)}
           />
         ))}
