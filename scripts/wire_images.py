@@ -18,7 +18,8 @@ def fold(s):
     s = re.sub(r'[^a-z0-9]+', '', s)
     return s
 
-pat = re.compile(r'(id:\s*"' + unit + r'\.([^"]+)",)(?!\s*image:)')
+# never double-inject: skip if this object literal already has an image: prop
+pat = re.compile(r'(id:\s*"' + unit + r'\.([^"]+)",)(?![^{}]*\bimage:)')
 total = 0
 skipped = set()
 for f in glob.glob(os.path.join(folder, '*.ts')):

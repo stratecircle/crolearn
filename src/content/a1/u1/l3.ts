@@ -22,8 +22,8 @@ export const a1u1l3: Lesson = {
     { id: "a1u1.oni", hr: "oni", en: "they", pos: "pron", icon: "👨‍👩‍👧", exampleHr: "Oni su studenti.", exampleEn: "They are students." },
     { id: "a1u1.sretan", image: "/img/sretan.png", hr: "sretan", en: "happy", pos: "adj", icon: "😊", exampleHr: "Sretan sam!", exampleEn: "I am happy!" },
     { id: "a1u1.umoran", image: "/img/umoran.png", hr: "umoran", en: "tired", pos: "adj", icon: "🥱", exampleHr: "Umoran sam.", exampleEn: "I am tired." },
-    { id: "a1u1.student", image: "/img/student.png", hr: "student", en: "student (male)", pos: "noun", gender: "m", icon: "🎓", image: "/img/student.png", exampleHr: "Ti si student.", exampleEn: "You are a student." },
-    { id: "a1u1.studentica", image: "/img/studentica.png", hr: "studentica", en: "student (female)", pos: "noun", gender: "f", icon: "👩‍🎓", image: "/img/studentica.png", exampleHr: "Ona je studentica.", exampleEn: "She is a student." },
+    { id: "a1u1.student", image: "/img/student.png", hr: "student", en: "student (male)", pos: "noun", gender: "m", icon: "🎓", exampleHr: "Ti si student.", exampleEn: "You are a student." },
+    { id: "a1u1.studentica", image: "/img/studentica.png", hr: "studentica", en: "student (female)", pos: "noun", gender: "f", icon: "👩‍🎓", exampleHr: "Ona je studentica.", exampleEn: "She is a student." },
   ],
   slides: [
     {
