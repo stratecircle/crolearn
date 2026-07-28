@@ -68,7 +68,7 @@ function PracticeRunner({ slides, onExit }: { slides: QuizSlide[]; onExit: () =>
   if (deck.finished) {
     const pct = Math.round(firstTryAccuracy(deck, slides.length) * 100);
     return (
-      <div className="mx-auto max-w-[780px] rounded-[20px] border bg-white px-12 py-14 text-center" style={{ borderColor: "rgba(15,23,42,.07)", boxShadow: "0 1px 3px rgba(15,23,42,.04),0 16px 44px rgba(15,23,42,.06)" }}>
+      <div className="mx-auto max-w-[780px] rounded-[20px] border bg-[color:var(--card)] px-12 py-14 text-center" style={{ borderColor: "rgba(var(--ink-rgb),.07)", boxShadow: "0 1px 3px rgba(var(--shadow-rgb),.04),0 16px 44px rgba(var(--shadow-rgb),.06)" }}>
         <div style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 38, color: INK }}>Practice set complete</div>
         <p className="mt-3 text-[17px]" style={{ color: BODY2 }}>
           First-try accuracy: <strong style={{ color: INK }}>{pct}%</strong>
@@ -87,8 +87,8 @@ function PracticeRunner({ slides, onExit }: { slides: QuizSlide[]; onExit: () =>
         <button
           onClick={onExit}
           aria-label="Exit practice set"
-          className="flex h-11 w-11 flex-none items-center justify-center rounded-xl border bg-white transition-colors duration-[180ms] hover:bg-[#F7F4F0]"
-          style={{ borderColor: "rgba(15,23,42,.1)" }}
+          className="flex h-11 w-11 flex-none items-center justify-center rounded-xl border bg-[color:var(--card)] transition-colors duration-[180ms] hover:bg-[color:var(--tint)]"
+          style={{ borderColor: "rgba(var(--ink-rgb),.1)" }}
         >
           <X size={18} color={BODY2} />
         </button>
@@ -96,7 +96,7 @@ function PracticeRunner({ slides, onExit }: { slides: QuizSlide[]; onExit: () =>
         <span className="text-sm" style={{ color: BODY2 }}>{pos + 1}/{playlist.length}</span>
       </div>
       {isRetry && (
-        <p className="mb-3 rounded-lg px-3.5 py-2 text-sm font-semibold" style={{ background: tint("#E08A2B", 0.12), color: "#9A5B14" }}>
+        <p className="mb-3 rounded-lg px-3.5 py-2 text-sm font-semibold" style={{ background: tint("var(--orange)", 0.12), color: "var(--brown2)" }}>
           Retry — let's get it right!
         </p>
       )}
@@ -199,7 +199,7 @@ export default function PracticePage() {
       desc: "Review your due vocabulary with spaced repetition.",
       chip: stats ? `${stats.due} cards due` : "…",
       icon: Languages,
-      color: "#3B6FD4",
+      color: "var(--blue)",
       go: () => nav("/review"),
       disabled: false,
     },
@@ -208,7 +208,7 @@ export default function PracticePage() {
       desc: loadingSpots ? "Checking your review deck and test history…" : weakSpots.length ? "AI exercises aimed at your recorded weak spots." : "AI mixed review of your latest unit.",
       chip: loadingSpots ? "…" : weakSpots.length ? `${weakSpots.length} weak spots` : "8 exercises",
       icon: Sparkles,
-      color: "#E08A2B",
+      color: "var(--orange)",
       go: () => void generate(),
       disabled: !keyPresent || generating || loadingSpots,
     },
@@ -217,7 +217,7 @@ export default function PracticePage() {
       desc: "Free writing with AI feedback and corrections.",
       chip: `${tasks.length} tasks`,
       icon: PenLine,
-      color: "#8B6FC9",
+      color: "var(--violet)",
       go: () => setShowWriting((v) => !v),
       disabled: !keyPresent,
     },
@@ -226,7 +226,7 @@ export default function PracticePage() {
       desc: "Re-read graded stories at your level.",
       chip: "Story library",
       icon: BookOpen,
-      color: "#2F7D53",
+      color: "var(--green)",
       go: () => nav("/stories"),
       disabled: false,
     },
@@ -240,16 +240,16 @@ export default function PracticePage() {
           <StatRow className="gap-[34px]">
             <StatChip big icon={Target} color={INK} value={String(stats.dayStreak)} label="Day streak" />
             <StatChip big icon={Flame} color={RED} value={String(stats.longestStreak)} label="Longest streak" />
-            <StatChip big icon={Star} color="#3B6FD4" value={String(stats.wordsLearned)} label="Words learned" />
+            <StatChip big icon={Star} color="var(--blue)" value={String(stats.wordsLearned)} label="Words learned" />
             {stats.timePracticed && <StatChip big icon={Clock} color={GREEN} value={stats.timePracticed} label="Time practiced" />}
           </StatRow>
         )}
       </div>
 
       {!keyPresent && (
-        <div className="mb-6 rounded-xl px-4 py-3.5 text-sm" style={{ background: tint("#E08A2B", 0.1), color: "#7A4A12" }}>
+        <div className="mb-6 rounded-xl px-4 py-3.5 text-sm" style={{ background: tint("var(--orange)", 0.1), color: "var(--brown)" }}>
           AI drills and writing feedback need your Anthropic API key.{" "}
-          <Link to="/settings" className="font-semibold underline" style={{ color: "#7A4A12" }}>Add it in Settings →</Link>{" "}
+          <Link to="/settings" className="font-semibold underline" style={{ color: "var(--brown)" }}>Add it in Settings →</Link>{" "}
           Flashcards and reading work without it.
         </div>
       )}
@@ -262,8 +262,8 @@ export default function PracticePage() {
               key={p.title}
               onClick={p.go}
               disabled={p.disabled}
-              className="flex flex-col rounded-2xl border bg-white p-6 text-left shadow-[0_1px_2px_rgba(15,23,42,.03)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_16px_36px_rgba(15,23,42,.08)] disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
-              style={{ borderColor: "rgba(15,23,42,.07)" }}
+              className="flex flex-col rounded-2xl border bg-[color:var(--card)] p-6 text-left shadow-[0_1px_2px_rgba(var(--shadow-rgb),.03)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_16px_36px_rgba(var(--shadow-rgb),.08)] disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+              style={{ borderColor: "rgba(var(--ink-rgb),.07)" }}
             >
               <Tile icon={p.icon} color={p.color} size={54} radius={14} iconSize={24} />
               <div className="mb-2 mt-[18px]" style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 18, color: INK }}>{p.title}</div>
@@ -287,7 +287,7 @@ export default function PracticePage() {
           <Card className="mb-7 p-6">
             <div className="grid max-h-56 gap-1.5 overflow-y-auto">
               {weakSpots.map((s, i) => (
-                <div key={i} className="truncate rounded-lg px-3.5 py-2 text-sm" style={{ background: "rgba(15,23,42,.03)", color: BODY2 }}>
+                <div key={i} className="truncate rounded-lg px-3.5 py-2 text-sm" style={{ background: "rgba(var(--ink-rgb),.03)", color: BODY2 }}>
                   {s.label}
                 </div>
               ))}
@@ -311,20 +311,20 @@ export default function PracticePage() {
                 setGrade(null);
                 setGradeError(null);
               }}
-              className="rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors duration-[180ms] hover:bg-[rgba(15,23,42,.04)]"
+              className="rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors duration-[180ms] hover:bg-[rgba(var(--ink-rgb),.04)]"
               style={{ color: BODY2 }}
             >
               Another task
             </button>
           </div>
-          <p className="mb-3.5 rounded-xl px-4 py-3 text-sm" style={{ background: "rgba(15,23,42,.03)", color: INK }}>{tasks[taskIdx]?.task}</p>
+          <p className="mb-3.5 rounded-xl px-4 py-3 text-sm" style={{ background: "rgba(var(--ink-rgb),.03)", color: INK }}>{tasks[taskIdx]?.task}</p>
           <textarea
             value={writing}
             onChange={(e) => setWriting(e.target.value)}
             rows={4}
             placeholder="Write your answer in Croatian…"
-            className="w-full rounded-xl border bg-white p-4 text-[15px] outline-none transition-colors duration-150"
-            style={{ borderColor: "rgba(15,23,42,.14)", color: INK }}
+            className="w-full rounded-xl border bg-[color:var(--card)] p-4 text-[15px] outline-none transition-colors duration-150"
+            style={{ borderColor: "rgba(var(--ink-rgb),.14)", color: INK }}
           />
           <div className="mt-3">
             <BtnPrimary onClick={() => void gradeWriting()} disabled={!keyPresent || grading || !writing.trim()}>
@@ -333,7 +333,7 @@ export default function PracticePage() {
           </div>
           {gradeError && <p className="mt-3 text-sm font-semibold" style={{ color: RED }}>{gradeError}</p>}
           {grade && (
-            <div className="mt-5 rounded-xl p-5" style={{ background: grade.correct ? tint(GREEN, 0.07) : tint("#E08A2B", 0.08) }}>
+            <div className="mt-5 rounded-xl p-5" style={{ background: grade.correct ? tint(GREEN, 0.07) : tint("var(--orange)", 0.08) }}>
               <p className="font-semibold" style={{ color: INK }}>Score: {Math.round(grade.score)}/100</p>
               <p className="mt-1.5 text-sm leading-relaxed" style={{ color: BODY2 }}>{grade.feedback}</p>
               {grade.corrected_text.trim() && grade.corrected_text.trim() !== writing.trim() && (
@@ -345,7 +345,7 @@ export default function PracticePage() {
                 <ul className="mt-2.5 space-y-1.5 text-sm" style={{ color: BODY2 }}>
                   {grade.errors.map((err, i) => (
                     <li key={i}>
-                      <span className="rounded bg-white px-1.5 py-0.5 text-xs font-semibold" style={{ color: INK }}>{err.type}</span>{" "}
+                      <span className="rounded bg-[color:var(--card)] px-1.5 py-0.5 text-xs font-semibold" style={{ color: INK }}>{err.type}</span>{" "}
                       {err.explanation}
                     </li>
                   ))}

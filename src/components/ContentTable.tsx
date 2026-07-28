@@ -7,7 +7,7 @@ export default function ContentTable({ table }: { table: TableSpec }) {
     <div className="overflow-x-auto">
       <table className="w-full border-collapse text-left">
         {table.caption && (
-          <caption className="pb-2 text-left text-sm font-semibold text-[#8B93A1]">
+          <caption className="pb-2 text-left text-sm font-semibold text-[color:var(--muted)]">
             {table.caption}
           </caption>
         )}
@@ -18,8 +18,8 @@ export default function ContentTable({ table }: { table: TableSpec }) {
               return (
                 <th
                   key={i}
-                  className={`border-b-2 border-[rgba(15,23,42,.14)] px-3 py-2 text-sm font-bold ${
-                    cc ? CASE_COLORS[cc].text : "text-[#5B6472]"
+                  className={`border-b-2 border-[rgba(var(--ink-rgb),.14)] px-3 py-2 text-sm font-bold ${
+                    cc ? CASE_COLORS[cc].text : "text-[color:var(--body2)]"
                   }`}
                 >
                   {h}
@@ -30,13 +30,13 @@ export default function ContentTable({ table }: { table: TableSpec }) {
         </thead>
         <tbody>
           {table.rows.map((row, r) => (
-            <tr key={r} className="odd:bg-[rgba(15,23,42,.03)]">
+            <tr key={r} className="odd:bg-[rgba(var(--ink-rgb),.03)]">
               {row.map((cell, c) => {
                 const cc = table.colCase?.[c];
                 return (
                   <td
                     key={c}
-                    className={`border-b border-[rgba(15,23,42,.09)] px-3 py-2 ${
+                    className={`border-b border-[rgba(var(--ink-rgb),.09)] px-3 py-2 ${
                       cc ? `font-semibold ${CASE_COLORS[cc].text}` : ""
                     }`}
                   >

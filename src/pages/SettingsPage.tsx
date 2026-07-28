@@ -6,8 +6,9 @@
  */
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { BarChart3, Bot, Download, Flag, Play, ShieldCheck, Volume2, X, type LucideIcon } from "lucide-react";
+import { BarChart3, Bot, Download, Flag, Monitor, Moon, Palette, Play, ShieldCheck, Sun, Volume2, X, type LucideIcon } from "lucide-react";
 import { db, exportBackup, importBackup, type ErrorReportRow } from "@/lib/db";
+import { getThemeMode, onThemeChange, setThemeMode, type ThemeMode } from "@/lib/theme";
 import { getDiagnostics, speak, type TtsDiagnostics } from "@/lib/tts";
 import { getUsage, resetUsage, USAGE_EVENT } from "@/lib/usage";
 import { BODY, BODY2, BtnGhost, BtnPrimary, Card, H, INK, MUTED, RED, tint } from "@/ui/kit";
@@ -18,16 +19,23 @@ const MODELS = [
   { id: "claude-haiku-4-5-20251001", label: "Claude Haiku 4.5 (cheapest)" },
 ];
 
-type Tab = "AI Tutor" | "Voice & Audio" | "AI Usage" | "Data & Privacy";
+type Tab = "AI Tutor" | "Appearance" | "Voice & Audio" | "AI Usage" | "Data & Privacy";
 const TABS: { key: Tab; icon: LucideIcon }[] = [
   { key: "AI Tutor", icon: Bot },
+  { key: "Appearance", icon: Palette },
   { key: "Voice & Audio", icon: Volume2 },
   { key: "AI Usage", icon: BarChart3 },
   { key: "Data & Privacy", icon: ShieldCheck },
 ];
 
-const inputCls = "w-full rounded-xl border bg-white px-4 py-3 text-[15px] outline-none transition-colors duration-150";
-const inputStyle = { borderColor: "rgba(15,23,42,.14)", color: INK };
+const THEME_CHOICES: { key: ThemeMode; label: string; sub: string; icon: LucideIcon }[] = [
+  { key: "light", label: "Light", sub: "Warm paper", icon: Sun },
+  { key: "dark", label: "Dark", sub: "Easy at night", icon: Moon },
+  { key: "system", label: "System", sub: "Follow device", icon: Monitor },
+];
+
+const inputCls = "w-full rounded-xl border bg-[color:var(--card)] px-4 py-3 text-[15px] outline-none transition-colors duration-150";
+const inputStyle = { borderColor: "rgba(var(--ink-rgb),.14)", color: INK };
 
 function RowLabel({ label, sub }: { label: string; sub?: string }) {
   return (
@@ -43,6 +51,10 @@ export default function SettingsPage() {
   const [apiKey, setApiKey] = useState(() => localStorage.getItem("crolearn.apiKey") ?? "");
   const [model, setModel] = useState(() => localStorage.getItem("crolearn.model") ?? MODELS[0].id);
   const [voice, setVoice] = useState(() => localStorage.getItem("crolearn.ttsVoice") ?? "");
+  const [themeMode, setMode] = useState<ThemeMode>(() => getThemeMode());
+  const [resolved, setResolved] = useState<"light" | "dark">(() =>
+    document.documentElement.classList.contains("dark") ? "dark" : "light"
+  );
   const [diag, setDiag] = useState<TtsDiagnostics | null>(null);
   const [keyStatus, setKeyStatus] = useState<string | null>(null);
   const [backupStatus, setBackupStatus] = useState<string | null>(null);
@@ -54,6 +66,11 @@ export default function SettingsPage() {
     void getDiagnostics().then(setDiag);
     void db.errorReports.orderBy("createdAt").reverse().toArray().then(setReports);
   }, []);
+  // Keeps the radio in sync when "System" is active and the OS flips at dusk.
+  useEffect(() => onThemeChange((r, m) => {
+    setResolved(r);
+    setMode(m);
+  }), []);
   useEffect(() => {
     const refresh = () => setUsage(getUsage());
     window.addEventListener(USAGE_EVENT, refresh);
@@ -104,7 +121,7 @@ export default function SettingsPage() {
     }
   };
 
-  const divider = { borderBottom: "1px solid rgba(15,23,42,.06)" };
+  const divider = { borderBottom: "1px solid rgba(var(--ink-rgb),.06)" };
 
   return (
     <div className="grid grid-cols-[290px_minmax(0,1fr)] items-start gap-8 max-[1200px]:grid-cols-[240px_minmax(0,1fr)] max-[700px]:grid-cols-1">
@@ -113,7 +130,7 @@ export default function SettingsPage() {
         <div className="mb-5 flex items-center gap-4">
           <div
             className="flex h-[62px] w-[62px] flex-none items-center justify-center rounded-full border"
-            style={{ background: "#F3EFE9", borderColor: "rgba(15,23,42,.06)", fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 24, color: BODY }}
+            style={{ background: "var(--tint4)", borderColor: "rgba(var(--ink-rgb),.06)", fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 24, color: BODY }}
           >
             N
           </div>
@@ -130,7 +147,7 @@ export default function SettingsPage() {
                 key={t.key}
                 onClick={() => setTab(t.key)}
                 className="flex items-center gap-3.5 rounded-xl px-4 py-3 text-left text-[15px] transition-colors duration-[180ms]"
-                style={{ background: on ? "rgba(201,52,52,.07)" : "transparent", color: on ? RED : BODY, fontWeight: on ? 500 : 400 }}
+                style={{ background: on ? "rgba(var(--primary-rgb),.07)" : "transparent", color: on ? RED : BODY, fontWeight: on ? 500 : 400 }}
               >
                 <t.icon size={19} color={on ? RED : BODY2} />
                 {t.key}
@@ -174,6 +191,46 @@ export default function SettingsPage() {
           </Card>
         )}
 
+        {tab === "Appearance" && (
+          <Card className="px-7 py-3">
+            <div className="py-5">
+              <RowLabel
+                label="Theme"
+                sub={`Saved on this device. Currently showing the ${resolved} palette.`}
+              />
+              <div
+                role="radiogroup"
+                aria-label="Theme"
+                className="mt-4 grid grid-cols-3 gap-3 max-[560px]:grid-cols-1"
+              >
+                {THEME_CHOICES.map((c) => {
+                  const on = themeMode === c.key;
+                  return (
+                    <button
+                      key={c.key}
+                      role="radio"
+                      aria-checked={on}
+                      onClick={() => {
+                        setMode(c.key);
+                        setResolved(setThemeMode(c.key));
+                      }}
+                      className="flex flex-col items-start gap-1 rounded-2xl border px-4 py-3.5 text-left transition-colors duration-150"
+                      style={{
+                        borderColor: on ? RED : "rgba(var(--ink-rgb),.12)",
+                        background: on ? tint("var(--primary)", 0.06) : "transparent",
+                      }}
+                    >
+                      <c.icon size={19} color={on ? RED : BODY2} strokeWidth={1.8} />
+                      <div className="mt-1 text-[15px] font-semibold" style={{ color: on ? RED : INK }}>{c.label}</div>
+                      <div className="text-[13px]" style={{ color: MUTED }}>{c.sub}</div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </Card>
+        )}
+
         {tab === "Voice & Audio" && (
           <Card className="px-7 py-3">
             <div className="py-5">
@@ -183,7 +240,7 @@ export default function SettingsPage() {
               ) : (
                 <>
                   {diag.recommendation && (
-                    <p className="mt-3 rounded-xl px-4 py-3 text-sm" style={{ background: tint("#E08A2B", 0.1), color: "#7A4A12" }}>{diag.recommendation}</p>
+                    <p className="mt-3 rounded-xl px-4 py-3 text-sm" style={{ background: tint("var(--orange)", 0.1), color: "var(--brown)" }}>{diag.recommendation}</p>
                   )}
                   {diag.croatianVoices.length > 0 && (
                     <>
@@ -285,7 +342,7 @@ export default function SettingsPage() {
               ) : (
                 <ul className="space-y-2">
                   {reports.map((r) => (
-                    <li key={r.id} className="flex items-start justify-between gap-3 rounded-xl px-4 py-3 text-sm" style={{ background: "rgba(15,23,42,.03)" }}>
+                    <li key={r.id} className="flex items-start justify-between gap-3 rounded-xl px-4 py-3 text-sm" style={{ background: "rgba(var(--ink-rgb),.03)" }}>
                       <div>
                         <p className="font-semibold" style={{ color: INK }}>
                           <Link to={`/lesson/${r.lessonId}`} className="underline">{r.lessonId}</Link>
@@ -296,7 +353,7 @@ export default function SettingsPage() {
                       <button
                         onClick={() => r.id !== undefined && void deleteReport(r.id)}
                         aria-label="Delete report"
-                        className="flex-none rounded-lg p-1.5 transition-colors duration-150 hover:bg-[rgba(15,23,42,.06)]"
+                        className="flex-none rounded-lg p-1.5 transition-colors duration-150 hover:bg-[rgba(var(--ink-rgb),.06)]"
                       >
                         <X size={16} color={MUTED} />
                       </button>

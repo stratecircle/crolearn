@@ -395,6 +395,12 @@ export interface UnitTest {
   title: string;
   sections: { title: string; slides: QuizSlide[] }[];
   passPct: number; // e.g. 70
+  /**
+   * B1+ unit shape (§8): a guided writing task presented after the quiz
+   * sections — AI rubric-graded when a key is present, self-check against the
+   * model text otherwise. Never gates the pass.
+   */
+  writing?: WritingTask;
 }
 
 /** One AI-graded speaking prompt in a checkpoint's Govor section (§8). */
@@ -409,7 +415,7 @@ export interface SpeakingPrompt {
   rubricFocus?: string;
 }
 
-/** The guided writing task in an A2+ checkpoint (§8 — AI-graded, never gates). */
+/** A guided writing task (§8): A2+ checkpoints and B1+ unit tests. AI-graded, never gates. */
 export interface WritingTask {
   title: string;
   /** English task instruction (may embed the Croatian prompt). */

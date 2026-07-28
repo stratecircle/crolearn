@@ -6,18 +6,18 @@
 import type { CSSProperties, ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 
-export const INK = "#16243D";
-export const BODY = "#3F4A5C";
-export const BODY2 = "#5B6472";
-export const MUTED = "#8B93A1";
-export const RED = "#C93434";
-export const GREEN = "#2F7D53";
-export const ORANGE = "#E08A2B";
-export const VIOLET = "#8B6FC9";
-export const BLUE = "#3B6FD4";
-export const TEAL = "#3E9FB0";
-export const BORDER = "rgba(15,23,42,.09)";
-export const DIVIDER = "rgba(15,23,42,.06)";
+export const INK = "var(--ink)";
+export const BODY = "var(--body)";
+export const BODY2 = "var(--body2)";
+export const MUTED = "var(--muted)";
+export const RED = "var(--primary)";
+export const GREEN = "var(--green)";
+export const ORANGE = "var(--orange)";
+export const VIOLET = "var(--violet)";
+export const BLUE = "var(--blue)";
+export const TEAL = "var(--teal)";
+export const BORDER = "rgba(var(--ink-rgb),.09)";
+export const DIVIDER = "rgba(var(--ink-rgb),.06)";
 
 export const LEVEL_COLORS: Record<string, string> = {
   A1: RED,
@@ -30,20 +30,30 @@ export const LEVEL_COLORS: Record<string, string> = {
 
 /** Playfair Display — the display face for titles and Croatian content. */
 export const DISPLAY = "'Playfair Display',serif";
-export const SHADOW_CARD = "0 1px 3px rgba(15,23,42,.04)";
-export const SHADOW_FLOAT = "0 1px 3px rgba(15,23,42,.04),0 16px 44px rgba(15,23,42,.06)";
+// Shadows use --shadow-rgb, which stays dark in both themes — following --ink-rgb
+// would turn every drop shadow into a white glow once the palette inverts.
+export const SHADOW_CARD = "0 1px 3px rgba(var(--shadow-rgb),.04)";
+export const SHADOW_FLOAT = "0 1px 3px rgba(var(--shadow-rgb),.04),0 16px 44px rgba(var(--shadow-rgb),.06)";
 
-export function tint(hex: string, a: number): string {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return `rgba(${r},${g},${b},${a})`;
+/**
+ * Translucent wash of an accent colour. The palette is CSS custom properties now
+ * (`var(--green)`), whose channels aren't knowable in JS, so anything that isn't
+ * a literal hex goes through `color-mix` instead of manual channel maths.
+ */
+export function tint(color: string, a: number): string {
+  if (/^#[0-9a-f]{6}$/i.test(color)) {
+    const r = parseInt(color.slice(1, 3), 16);
+    const g = parseInt(color.slice(3, 5), 16);
+    const b = parseInt(color.slice(5, 7), 16);
+    return `rgba(${r},${g},${b},${a})`;
+  }
+  return `color-mix(in srgb, ${color} ${Math.round(a * 1000) / 10}%, transparent)`;
 }
 
 export function Card({ children, className = "", style }: { children: ReactNode; className?: string; style?: CSSProperties }) {
   return (
     <div
-      className={`rounded-[20px] border bg-[#FDFCFA] shadow-[0_1px_3px_rgba(15,23,42,.04)] ${className}`}
+      className={`rounded-[20px] border bg-[color:var(--card)] shadow-[0_1px_3px_rgba(var(--shadow-rgb),.04)] ${className}`}
       style={{ borderColor: BORDER, ...style }}
     >
       {children}
@@ -94,8 +104,8 @@ export function BtnPrimary({ children, onClick, icon: Icon, className = "", disa
       onClick={onClick}
       disabled={disabled}
       className={`inline-flex h-12 items-center gap-2.5 whitespace-nowrap rounded-xl px-6 text-[15px] font-semibold text-white transition-colors duration-[180ms] ${className}`}
-      style={{ background: disabled ? "rgba(15,23,42,.15)" : RED }}
-      onMouseEnter={(e) => !disabled && (e.currentTarget.style.background = "#B32C2C")}
+      style={{ background: disabled ? "rgba(var(--ink-rgb),.15)" : RED }}
+      onMouseEnter={(e) => !disabled && (e.currentTarget.style.background = "var(--primary-hover)")}
       onMouseLeave={(e) => !disabled && (e.currentTarget.style.background = RED)}
     >
       {children}
@@ -108,8 +118,8 @@ export function BtnGhost({ children, onClick, icon: Icon, className = "" }: { ch
   return (
     <button
       onClick={onClick}
-      className={`inline-flex h-12 items-center gap-2.5 whitespace-nowrap rounded-xl border bg-white px-5 text-[15px] font-medium transition-colors duration-[180ms] hover:bg-[#F7F4F0] ${className}`}
-      style={{ borderColor: "rgba(15,23,42,.1)", color: BODY }}
+      className={`inline-flex h-12 items-center gap-2.5 whitespace-nowrap rounded-xl border bg-[color:var(--card)] px-5 text-[15px] font-medium transition-colors duration-[180ms] hover:bg-[color:var(--tint)] ${className}`}
+      style={{ borderColor: "rgba(var(--ink-rgb),.1)", color: BODY }}
     >
       {Icon && <Icon size={17} color={MUTED} />}
       {children}
@@ -119,7 +129,7 @@ export function BtnGhost({ children, onClick, icon: Icon, className = "" }: { ch
 
 export function ProgressBar({ pct, color = RED, height = 7, className = "" }: { pct: number; color?: string; height?: number; className?: string }) {
   return (
-    <div className={`overflow-hidden rounded-full ${className}`} style={{ height, background: "rgba(15,23,42,.09)" }}>
+    <div className={`overflow-hidden rounded-full ${className}`} style={{ height, background: "rgba(var(--ink-rgb),.09)" }}>
       <div className="h-full rounded-full" style={{ width: `${Math.max(0, Math.min(100, pct))}%`, background: color }} />
     </div>
   );
@@ -130,9 +140,9 @@ export function Ring({ pct, color, size = 112, hole = 88, children }: { pct: num
   return (
     <div
       className="relative flex items-center justify-center rounded-full"
-      style={{ width: size, height: size, background: `conic-gradient(${color} 0 ${Math.round(pct)}%, rgba(15,23,42,.09) 0 100%)` }}
+      style={{ width: size, height: size, background: `conic-gradient(${color} 0 ${Math.round(pct)}%, rgba(var(--ink-rgb),.09) 0 100%)` }}
     >
-      <div className="flex flex-col items-center justify-center rounded-full bg-[#FDFCFA]" style={{ width: hole, height: hole }}>
+      <div className="flex flex-col items-center justify-center rounded-full bg-[color:var(--card)]" style={{ width: hole, height: hole }}>
         {children}
       </div>
     </div>
@@ -169,11 +179,11 @@ export function Toggle({ on, onChange }: { on: boolean; onChange: () => void }) 
       role="switch"
       aria-checked={on}
       className="flex flex-none rounded-full p-[3px] transition-colors duration-200"
-      style={{ width: 52, height: 30, background: on ? INK : "rgba(15,23,42,.16)" }}
+      style={{ width: 52, height: 30, background: on ? INK : "rgba(var(--ink-rgb),.16)" }}
     >
       <div
-        className="rounded-full bg-white transition-transform duration-200"
-        style={{ width: 24, height: 24, boxShadow: "0 1px 3px rgba(15,23,42,.25)", transform: on ? "translateX(22px)" : "translateX(0)" }}
+        className="rounded-full bg-[color:var(--card)] transition-transform duration-200"
+        style={{ width: 24, height: 24, boxShadow: "0 1px 3px rgba(var(--shadow-rgb),.25)", transform: on ? "translateX(22px)" : "translateX(0)" }}
       />
     </button>
   );
@@ -220,8 +230,8 @@ export function IconBtn({ icon: Icon, onClick, label, disabled, size = 44 }: { i
       disabled={disabled}
       aria-label={label}
       title={label}
-      className="flex flex-none items-center justify-center rounded-xl border bg-white transition-colors duration-[180ms] hover:bg-[#F7F4F0] disabled:opacity-30 disabled:hover:bg-white"
-      style={{ width: size, height: size, borderColor: "rgba(15,23,42,.1)" }}
+      className="flex flex-none items-center justify-center rounded-xl border bg-[color:var(--card)] transition-colors duration-[180ms] hover:bg-[color:var(--tint)] disabled:opacity-30 disabled:hover:bg-[color:var(--card)]"
+      style={{ width: size, height: size, borderColor: "rgba(var(--ink-rgb),.1)" }}
     >
       <Icon size={Math.round(size * 0.41)} color={BODY2} />
     </button>
@@ -231,7 +241,7 @@ export function IconBtn({ icon: Icon, onClick, label, disabled, size = 44 }: { i
 /** Search field in the card toolbar style. */
 export function SearchBox({ value, onChange, placeholder }: { value: string; onChange: (v: string) => void; placeholder: string }) {
   return (
-    <div className="flex h-12 min-w-0 flex-1 items-center gap-3 rounded-xl border bg-white px-[18px]" style={{ borderColor: BORDER }}>
+    <div className="flex h-12 min-w-0 flex-1 items-center gap-3 rounded-xl border bg-[color:var(--card)] px-[18px]" style={{ borderColor: BORDER }}>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={MUTED} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="11" cy="11" r="8" />
         <path d="m21 21-4.3-4.3" />
@@ -250,7 +260,7 @@ export function SearchBox({ value, onChange, placeholder }: { value: string; onC
 /** Dashed empty-state block. */
 export function EmptyState({ title, sub }: { title: string; sub: string }) {
   return (
-    <div className="rounded-2xl border border-dashed px-6 py-14 text-center" style={{ borderColor: "rgba(15,23,42,.12)" }}>
+    <div className="rounded-2xl border border-dashed px-6 py-14 text-center" style={{ borderColor: "rgba(var(--ink-rgb),.12)" }}>
       <div className="mb-1.5 text-base font-semibold" style={{ color: INK }}>{title}</div>
       <div className="text-sm" style={{ color: MUTED }}>{sub}</div>
     </div>
@@ -269,7 +279,7 @@ export function Banner({ children, color }: { children: ReactNode; color: string
 /** Full-width completion card (lesson / deck / practice endings). */
 export function DoneCard({ icon: Icon = undefined, title, children }: { icon?: LucideIcon; title: string; children: ReactNode }) {
   return (
-    <div className="rounded-[20px] border bg-white px-12 py-14 text-center max-[700px]:px-6 max-[700px]:py-10" style={{ borderColor: "rgba(15,23,42,.07)", boxShadow: SHADOW_FLOAT }}>
+    <div className="rounded-[20px] border bg-[color:var(--card)] px-12 py-14 text-center max-[700px]:px-6 max-[700px]:py-10" style={{ borderColor: "rgba(var(--ink-rgb),.07)", boxShadow: SHADOW_FLOAT }}>
       {Icon && (
         <div className="mx-auto mb-[22px] flex h-16 w-16 items-center justify-center rounded-full" style={{ background: tint(GREEN, 0.1) }}>
           <Icon size={30} color={GREEN} />
@@ -284,7 +294,7 @@ export function DoneCard({ icon: Icon = undefined, title, children }: { icon?: L
 /** Segmented control (theme / font size pickers). */
 export function Seg<T extends string>({ options, value, onChange, icons }: { options: T[]; value: T; onChange: (v: T) => void; icons?: Partial<Record<T, LucideIcon>> }) {
   return (
-    <div className="flex overflow-hidden rounded-xl border bg-white" style={{ borderColor: "rgba(15,23,42,.1)" }}>
+    <div className="flex overflow-hidden rounded-xl border bg-[color:var(--card)]" style={{ borderColor: "rgba(var(--ink-rgb),.1)" }}>
       {options.map((o, i) => {
         const Icon: LucideIcon | undefined = icons?.[o];
         const active = o === value;
@@ -294,8 +304,8 @@ export function Seg<T extends string>({ options, value, onChange, icons }: { opt
             onClick={() => onChange(o)}
             className="flex h-12 flex-1 items-center justify-center gap-2 text-[15px] transition-colors duration-[180ms]"
             style={{
-              borderLeft: i === 0 ? "none" : "1px solid rgba(15,23,42,.1)",
-              background: active ? "#F6F3EF" : "#fff",
+              borderLeft: i === 0 ? "none" : "1px solid rgba(var(--ink-rgb),.1)",
+              background: active ? "var(--tint5)" : "#fff",
               color: active ? INK : BODY2,
               fontWeight: active ? 600 : 400,
             }}

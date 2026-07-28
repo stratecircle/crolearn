@@ -78,7 +78,7 @@ export default function NotebookPage() {
                   key={c.label}
                   onClick={() => setCat(c.label)}
                   className="flex items-center gap-3 rounded-xl px-3.5 py-[11px] text-left text-sm transition-colors duration-[180ms]"
-                  style={{ background: on ? "rgba(201,52,52,.07)" : "transparent", color: on ? RED : BODY, fontWeight: on ? 500 : 400 }}
+                  style={{ background: on ? "rgba(var(--primary-rgb),.07)" : "transparent", color: on ? RED : BODY, fontWeight: on ? 500 : 400 }}
                 >
                   <c.icon size={17} color={on ? RED : MUTED} />
                   <div className="min-w-0 flex-1">{c.label}</div>
@@ -87,7 +87,7 @@ export default function NotebookPage() {
               );
             })}
           </div>
-          <div className="mb-[18px] h-px" style={{ background: "rgba(15,23,42,.06)" }} />
+          <div className="mb-[18px] h-px" style={{ background: "rgba(var(--ink-rgb),.06)" }} />
           <div className="mb-2.5 px-3.5 text-sm font-semibold" style={{ color: INK }}>Notebooks</div>
           <div className="mb-[22px] grid gap-0.5">
             {levels
@@ -99,7 +99,7 @@ export default function NotebookPage() {
                   <button
                     key={l.id}
                     onClick={() => setBook(on ? null : l.id)}
-                    className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-left text-sm transition-colors duration-[180ms] hover:bg-[rgba(15,23,42,.03)]"
+                    className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-left text-sm transition-colors duration-[180ms] hover:bg-[rgba(var(--ink-rgb),.03)]"
                     style={{ color: on ? RED : BODY, fontWeight: on ? 500 : 400 }}
                   >
                     <Folder size={17} color={on ? RED : MUTED} />
@@ -109,16 +109,16 @@ export default function NotebookPage() {
                 );
               })}
           </div>
-          <div className="rounded-2xl border p-5" style={{ background: "#F4F6F2", borderColor: "rgba(47,125,83,.12)" }}>
-            <div className="mb-3.5 flex h-11 w-11 items-center justify-center rounded-xl" style={{ background: "rgba(47,125,83,.11)" }}>
-              <Repeat size={20} color="#2F7D53" />
+          <div className="rounded-2xl border p-5" style={{ background: "var(--tint2)", borderColor: "rgba(var(--green-rgb),.12)" }}>
+            <div className="mb-3.5 flex h-11 w-11 items-center justify-center rounded-xl" style={{ background: "rgba(var(--green-rgb),.11)" }}>
+              <Repeat size={20} color="var(--green)" />
             </div>
             <div className="mb-1.5 text-base font-semibold" style={{ color: INK, letterSpacing: "-.01em" }}>Review smarter</div>
             <div className="mb-4 text-sm leading-relaxed" style={{ color: BODY2 }}>Revisit your notes with spaced repetition.</div>
             <button
               onClick={() => nav("/review")}
-              className="inline-flex h-[42px] items-center gap-2 rounded-xl border bg-white px-[18px] text-sm font-medium transition-colors duration-[180ms] hover:bg-[#F7F4F0]"
-              style={{ borderColor: "rgba(15,23,42,.1)", color: INK }}
+              className="inline-flex h-[42px] items-center gap-2 rounded-xl border bg-[color:var(--card)] px-[18px] text-sm font-medium transition-colors duration-[180ms] hover:bg-[color:var(--tint)]"
+              style={{ borderColor: "rgba(var(--ink-rgb),.1)", color: INK }}
             >
               Start review<ArrowRight size={16} color={MUTED} />
             </button>
@@ -128,7 +128,7 @@ export default function NotebookPage() {
         {/* Main */}
         <Card className="p-[26px]">
           <div className="mb-[22px] flex items-center gap-3.5 max-[700px]:flex-wrap">
-            <div className="flex h-12 min-w-0 flex-1 items-center gap-3 rounded-xl border bg-white px-[18px]" style={{ borderColor: "rgba(15,23,42,.09)" }}>
+            <div className="flex h-12 min-w-0 flex-1 items-center gap-3 rounded-xl border bg-[color:var(--card)] px-[18px]" style={{ borderColor: "rgba(var(--ink-rgb),.09)" }}>
               <Search size={18} color={MUTED} />
               <input
                 value={q}
@@ -138,14 +138,14 @@ export default function NotebookPage() {
                 style={{ color: INK }}
               />
             </div>
-            <div className="flex flex-none rounded-xl p-1" style={{ background: "#F1EDE7" }}>
+            <div className="flex flex-none rounded-xl p-1" style={{ background: "var(--tint3)" }}>
               {(["list", "grid"] as const).map((v) => (
                 <button
                   key={v}
                   onClick={() => setView(v)}
                   aria-label={`${v} view`}
                   className="flex h-9 w-[38px] items-center justify-center rounded-[9px]"
-                  style={view === v ? { background: "#fff", color: INK, boxShadow: "0 1px 3px rgba(15,23,42,.1)" } : { color: MUTED }}
+                  style={view === v ? { background: "#fff", color: INK, boxShadow: "0 1px 3px rgba(var(--shadow-rgb),.1)" } : { color: MUTED }}
                 >
                   {v === "list" ? <List size={17} /> : <LayoutGrid size={17} />}
                 </button>
@@ -154,7 +154,7 @@ export default function NotebookPage() {
           </div>
 
           {notes.length === 0 ? (
-            <div className="rounded-2xl border border-dashed px-6 py-14 text-center" style={{ borderColor: "rgba(15,23,42,.12)" }}>
+            <div className="rounded-2xl border border-dashed px-6 py-14 text-center" style={{ borderColor: "rgba(var(--ink-rgb),.12)" }}>
               <div className="mb-1.5 text-base font-semibold" style={{ color: INK }}>No notes found</div>
               <div className="text-sm" style={{ color: MUTED }}>Nothing matches your search or this category — try different keywords.</div>
             </div>
@@ -166,8 +166,8 @@ export default function NotebookPage() {
                   <button
                     key={n.lessonId}
                     onClick={() => nav(`/notes/${n.lessonId}`)}
-                    className={`flex gap-[18px] rounded-2xl border bg-white p-5 text-left shadow-[0_1px_2px_rgba(15,23,42,.03)] transition-all duration-[180ms] hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(15,23,42,.07)] ${view === "grid" ? "flex-col" : "items-center max-[1100px]:flex-col max-[1100px]:items-start"}`}
-                    style={{ borderColor: "rgba(15,23,42,.06)" }}
+                    className={`flex gap-[18px] rounded-2xl border bg-[color:var(--card)] p-5 text-left shadow-[0_1px_2px_rgba(var(--shadow-rgb),.03)] transition-all duration-[180ms] hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(var(--shadow-rgb),.07)] ${view === "grid" ? "flex-col" : "items-center max-[1100px]:flex-col max-[1100px]:items-start"}`}
+                    style={{ borderColor: "rgba(var(--ink-rgb),.06)" }}
                   >
                     <Tile icon={FileText} color={color} size={52} radius={14} iconSize={23} />
                     <div className="min-w-0 flex-1">
@@ -183,7 +183,7 @@ export default function NotebookPage() {
                       <div className="flex items-center gap-2 text-sm" style={{ color: MUTED }}>
                         <Folder size={16} />{n.unitLabel}
                       </div>
-                      <div className="w-[92px] text-right text-sm" style={{ color: n.completedAt ? "#2F7D53" : MUTED }}>
+                      <div className="w-[92px] text-right text-sm" style={{ color: n.completedAt ? "var(--green)" : MUTED }}>
                         {n.completedAt ? "Studied" : "Not yet"}
                       </div>
                     </div>

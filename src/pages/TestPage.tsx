@@ -4,12 +4,15 @@ import { Flag, Trophy } from "lucide-react";
 import { findTest } from "@/content";
 import { db } from "@/lib/db";
 import SlideRenderer from "@/components/SlideRenderer";
+import WritingSection from "@/features/checkpoint/WritingSection";
 import type { QuizSlide } from "@/types/content";
 import { BODY2, BtnGhost, BtnPrimary, DoneCard, Eyebrow, INK, MUTED, ProgressBar, RED } from "@/ui/kit";
 
 /**
  * Unit test (§8): no hints, no retry queue, first-attempt scoring.
  * Soft gate — a fail warns but never blocks (the dashboard still allows moving on).
+ * B1+ tests carry a guided writing task after the quiz sections (AI-graded,
+ * never counted toward the pass).
  */
 export default function TestPage() {
   const nav = useNavigate();
@@ -30,6 +33,8 @@ export default function TestPage() {
   const [started, setStarted] = useState(false);
   const [i, setI] = useState(0);
   const [wrong, setWrong] = useState<string[]>([]);
+  // Quiz done, writing task pending: holds the final wrong list until writing finishes.
+  const [pendingWrong, setPendingWrong] = useState<string[] | null>(null);
   const [result, setResult] = useState<{ pct: number; passed: boolean } | null>(null);
 
   if (!test)
@@ -45,6 +50,7 @@ export default function TestPage() {
         <DoneCard icon={Flag} title={test.title}>
           <div className="mb-1.5 text-[17px]" style={{ color: BODY2 }}>
             {flat.length} items · no hints · pass ≥ {test.passPct}%
+            {test.writing ? " · + a writing task (feedback only, doesn't count)" : ""}
           </div>
           <div className="mb-8 text-sm" style={{ color: MUTED }}>
             Wrong answers are saved with your result, so you know what to revisit.
@@ -76,6 +82,7 @@ export default function TestPage() {
                 onClick={() => {
                   setI(0);
                   setWrong([]);
+                  setPendingWrong(null);
                   setResult(null);
                   setStarted(false);
                 }}
@@ -90,7 +97,6 @@ export default function TestPage() {
     );
   }
 
-  const current = flat[i];
   const finish = async (finalWrong: string[]) => {
     const pct = Math.round(((flat.length - finalWrong.length) / flat.length) * 100);
     const passed = pct >= test.passPct;
@@ -104,6 +110,12 @@ export default function TestPage() {
     setResult({ pct, passed });
   };
 
+  // B1+ writing task: shown after the last quiz item, before results.
+  if (pendingWrong && test.writing) {
+    return <WritingSection task={test.writing} onDone={() => void finish(pendingWrong)} />;
+  }
+
+  const current = flat[i];
   return (
     <div className="m-auto w-full max-w-2xl py-6">
       <div className="mb-2 flex items-center justify-between">
@@ -121,6 +133,7 @@ export default function TestPage() {
           const nextWrong = correct ? wrong : [...wrong, current.slide.id];
           setWrong(nextWrong);
           if (i + 1 < flat.length) setI(i + 1);
+          else if (test.writing) setPendingWrong(nextWrong);
           else void finish(nextWrong);
         }}
       />

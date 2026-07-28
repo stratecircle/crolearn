@@ -54,8 +54,8 @@ const AnswerInput = forwardRef<
         onKeyDown={(e) => {
           if (e.key === "Enter" && value.trim()) onSubmit();
         }}
-        className="w-full rounded-xl border bg-white px-5 py-3.5 text-lg text-[#16243D] outline-none transition-colors duration-150 focus:border-[#16243D] disabled:bg-[#F7F4F0]"
-        style={{ borderColor: "rgba(15,23,42,.14)" }}
+        className="w-full rounded-xl border bg-[color:var(--card)] px-5 py-3.5 text-lg text-[color:var(--ink)] outline-none transition-colors duration-150 focus:border-[color:var(--ink)] disabled:bg-[color:var(--tint)]"
+        style={{ borderColor: "rgba(var(--ink-rgb),.14)" }}
       />
       <div className="mt-2.5 flex gap-2">
         {HR_CHARS.map((ch) => (
@@ -65,8 +65,8 @@ const AnswerInput = forwardRef<
             tabIndex={-1}
             disabled={disabled}
             onClick={() => insert(ch)}
-            className="rounded-xl border bg-white px-3.5 py-1.5 text-lg font-semibold text-[#16243D] transition-colors duration-150 hover:bg-[#F7F4F0] disabled:opacity-40"
-            style={{ borderColor: "rgba(15,23,42,.1)" }}
+            className="rounded-xl border bg-[color:var(--card)] px-3.5 py-1.5 text-lg font-semibold text-[color:var(--ink)] transition-colors duration-150 hover:bg-[color:var(--tint)] disabled:opacity-40"
+            style={{ borderColor: "rgba(var(--ink-rgb),.1)" }}
           >
             {ch}
           </button>

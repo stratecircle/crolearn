@@ -165,6 +165,7 @@ The lesson's companion study notes — deeper than slides, browsable in the Note
 ## 8. Test design
 
 - **Unit test** (after story): 15–20 items, quiz slides only, no hints, first-attempt scoring, sections: vocab → grammar → listening → reading micro-passage. Pass ≥ 70%; soft gate (warn, allow proceed; wrong items become priority SRS cards)
+- **B1+ per-unit writing task**: from Unit 17 on, every unit test carries a guided WritingTask (80–150 words, prompt set by the unit spec) presented after the quiz sections — AI rubric-graded (task/grammar/vocab/coherence) when a key is present, plain self-check against the model text otherwise; it NEVER gates the test pass (same key-optional rule as checkpoint speaking/writing)
 - **Checkpoint exam** (per level): 4 skills — listening (TTS passages), reading, grammar/vocab cloze, speaking prompts (AI-graded vs rubric); A2+ adds writing. 40–60 items, ~45 min, pass ≥ 70%
 - Wrong test items auto-generate targeted practice via the AI exercise generator
 
@@ -205,5 +206,6 @@ Every unit spec MUST contain, in order:
    - SRS: which cloze/grammar cards to seed
 ## Story — title, synopsis (3–4 sentences), cast members used, the ≤5 new glossed words, 2 sample sentences
 ## Unit test blueprint — section-by-section item counts + example items
+## Writing task (B1+ only) — title, English task instruction, word range (80–150), model text HR, rubric focus
 ## NotesDoc focus — what each lesson's notes must emphasize (esp. common-mistakes list)
 ```

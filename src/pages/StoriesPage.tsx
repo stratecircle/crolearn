@@ -55,7 +55,7 @@ export default function StoriesPage() {
       <H size={26} className="mb-4">Stories</H>
 
       {next && (
-        <Card className="mb-6 max-w-[660px] px-[26px] py-6" style={{ boxShadow: "0 2px 10px rgba(15,23,42,.06)" }}>
+        <Card className="mb-6 max-w-[660px] px-[26px] py-6" style={{ boxShadow: "0 2px 10px rgba(var(--shadow-rgb),.06)" }}>
           <Eyebrow className="mb-4">{readCount > 0 ? "NEXT STORY" : "START READING"}</Eyebrow>
           <div className="flex items-start gap-5 max-[700px]:flex-wrap">
             <div
@@ -95,7 +95,7 @@ export default function StoriesPage() {
                 key={f}
                 onClick={() => setFilter(f)}
                 className="rounded-full px-[18px] py-2.5 text-sm transition-colors duration-[180ms]"
-                style={on ? { background: "#fff", border: "1px solid rgba(201,52,52,.35)", color: RED } : { border: "1px solid transparent", color: BODY2 }}
+                style={on ? { background: "#fff", border: "1px solid rgba(var(--primary-rgb),.35)", color: RED } : { border: "1px solid transparent", color: BODY2 }}
               >
                 {f}
               </button>
@@ -109,8 +109,8 @@ export default function StoriesPage() {
               <button
                 key={s.id}
                 onClick={() => nav(`/story/${s.id}`)}
-                className="overflow-hidden rounded-2xl border bg-white text-left shadow-[0_1px_2px_rgba(15,23,42,.03)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_16px_36px_rgba(15,23,42,.08)]"
-                style={{ borderColor: "rgba(15,23,42,.07)" }}
+                className="overflow-hidden rounded-2xl border bg-[color:var(--card)] text-left shadow-[0_1px_2px_rgba(var(--shadow-rgb),.03)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_16px_36px_rgba(var(--shadow-rgb),.08)]"
+                style={{ borderColor: "rgba(var(--ink-rgb),.07)" }}
               >
                 <div className="relative">
                   <div
@@ -119,7 +119,7 @@ export default function StoriesPage() {
                   >
                     <span style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 40, color: s.color }}>{s.title.replace(/[«»]/g, "").charAt(0)}</span>
                   </div>
-                  <div className="absolute left-3 top-3 rounded-full bg-white px-3 py-1.5 text-[10px] font-bold" style={{ color: s.color, letterSpacing: ".05em" }}>
+                  <div className="absolute left-3 top-3 rounded-full bg-[color:var(--card)] px-3 py-1.5 text-[10px] font-bold" style={{ color: s.color, letterSpacing: ".05em" }}>
                     {s.levelId} · U{s.unitNumber}
                   </div>
                 </div>
@@ -131,8 +131,8 @@ export default function StoriesPage() {
                     <div className="flex items-center gap-1.5"><FileText size={14} />{s.words} words</div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <ProgressBar pct={pct} color={pct === 100 ? "#2F7D53" : s.color} height={6} className="flex-1" />
-                    <div className="text-xs" style={{ color: pct === 0 ? MUTED : "#2F7D53" }}>{s.row ? `${s.row.scorePct}%` : "new"}</div>
+                    <ProgressBar pct={pct} color={pct === 100 ? "var(--green)" : s.color} height={6} className="flex-1" />
+                    <div className="text-xs" style={{ color: pct === 0 ? MUTED : "var(--green)" }}>{s.row ? `${s.row.scorePct}%` : "new"}</div>
                   </div>
                 </div>
               </button>
@@ -145,9 +145,9 @@ export default function StoriesPage() {
       <div className="grid grid-cols-4 gap-5 max-[1200px]:grid-cols-2 max-[700px]:grid-cols-1">
         {[
           { value: `${readCount} / ${stories.length}`, label: "Stories read", icon: BookOpen, color: RED, pct: (readCount / Math.max(1, stories.length)) * 100 },
-          ...(avgScore !== null ? [{ value: `${avgScore}%`, label: "Average comprehension", icon: Brain, color: "#E08A2B", pct: avgScore }] : []),
-          { value: String(allLessons.reduce((s, l) => s + l.vocab.length, 0)), label: "Words in the course", icon: FileText, color: "#2F7D53", pct: 100 },
-          { value: readCount === stories.length && stories.length > 0 ? "Bookworm" : readCount >= 8 ? "Reader" : "Explorer", label: "Reading rank", icon: Trophy, color: "#3B6FD4", pct: Math.min(100, (readCount / Math.max(1, stories.length)) * 100) },
+          ...(avgScore !== null ? [{ value: `${avgScore}%`, label: "Average comprehension", icon: Brain, color: "var(--orange)", pct: avgScore }] : []),
+          { value: String(allLessons.reduce((s, l) => s + l.vocab.length, 0)), label: "Words in the course", icon: FileText, color: "var(--green)", pct: 100 },
+          { value: readCount === stories.length && stories.length > 0 ? "Bookworm" : readCount >= 8 ? "Reader" : "Explorer", label: "Reading rank", icon: Trophy, color: "var(--blue)", pct: Math.min(100, (readCount / Math.max(1, stories.length)) * 100) },
         ].map((p) => (
           <Card key={p.label} className="flex items-center gap-[18px] p-[22px]">
             <Tile icon={p.icon} color={p.color} size={52} radius={14} iconSize={23} />

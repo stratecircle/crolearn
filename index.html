@@ -4,7 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CroLearn — Croatian, from zero</title>
+    <meta name="theme-color" content="#efeeea" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇭🇷</text></svg>" />
+    <!-- Paint the saved theme before first paint. The module bundle is deferred,
+         so without this blocking snippet dark-mode users get a white flash. -->
+    <script>
+      (function () {
+        try {
+          var m = localStorage.getItem("crolearn.theme") || "system";
+          var dark = m === "dark" || (m === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (dark) {
+            document.documentElement.classList.add("dark");
+            document.documentElement.style.colorScheme = "dark";
+            var t = document.querySelector('meta[name="theme-color"]');
+            if (t) t.content = "#10141c";
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

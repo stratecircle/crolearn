@@ -20,14 +20,14 @@ export const a1u7l3: Lesson = {
   grammarTags: ["number-government", "genitive"],
   estMinutes: 18,
   vocab: [
-    { id: "a1u7.novac", hr: "novac", en: "money", pos: "noun", gender: "m", icon: "💰", exampleHr: "Nema novca.", exampleEn: "There's no money." },
-    { id: "a1u7.cijena", hr: "cijena", en: "price", pos: "noun", gender: "f", icon: "🏷️", exampleHr: "Cijena je dobra.", exampleEn: "The price is good." },
-    { id: "a1u7.euro", hr: "euro", en: "euro", pos: "noun", gender: "m", icon: "💶", exampleHr: "Pet eura.", exampleEn: "Five euros." },
-    { id: "a1u7.cent", hr: "cent", en: "cent", pos: "noun", gender: "m", icon: "🪙", exampleHr: "Pedeset centi.", exampleEn: "Fifty cents." },
-    { id: "a1u7.kostati", hr: "koštati", en: "to cost (košta)", pos: "verb", icon: "💲", exampleHr: "Pivo košta dva eura.", exampleEn: "The beer costs two euros." },
-    { id: "a1u7.platiti", hr: "platiti", en: "to pay", pos: "verb", icon: "💳", exampleHr: "Želim platiti.", exampleEn: "I want to pay." },
-    { id: "a1u7.jeftin", hr: "jeftin", en: "cheap (jeftina f, jeftino n)", pos: "adj", icon: "🤑", exampleHr: "Kava je jeftina.", exampleEn: "The coffee is cheap." },
-    { id: "a1u7.skup", hr: "skup", en: "expensive (skupa f, skupo n)", pos: "adj", icon: "💎", exampleHr: "Vino je skupo.", exampleEn: "The wine is expensive." },
+    { id: "a1u7.novac", image: "/img/novac.png", hr: "novac", en: "money", pos: "noun", gender: "m", icon: "💰", exampleHr: "Nema novca.", exampleEn: "There's no money." },
+    { id: "a1u7.cijena", image: "/img/cijena.png", hr: "cijena", en: "price", pos: "noun", gender: "f", icon: "🏷️", exampleHr: "Cijena je dobra.", exampleEn: "The price is good." },
+    { id: "a1u7.euro", image: "/img/euro.png", hr: "euro", en: "euro", pos: "noun", gender: "m", icon: "💶", exampleHr: "Pet eura.", exampleEn: "Five euros." },
+    { id: "a1u7.cent", image: "/img/cent.png", hr: "cent", en: "cent", pos: "noun", gender: "m", icon: "🪙", exampleHr: "Pedeset centi.", exampleEn: "Fifty cents." },
+    { id: "a1u7.kostati", image: "/img/kostati.png", hr: "koštati", en: "to cost (košta)", pos: "verb", icon: "💲", exampleHr: "Pivo košta dva eura.", exampleEn: "The beer costs two euros." },
+    { id: "a1u7.platiti", image: "/img/platiti.png", hr: "platiti", en: "to pay", pos: "verb", icon: "💳", exampleHr: "Želim platiti.", exampleEn: "I want to pay." },
+    { id: "a1u7.jeftin", image: "/img/jeftin.png", hr: "jeftin", en: "cheap (jeftina f, jeftino n)", pos: "adj", icon: "🤑", exampleHr: "Kava je jeftina.", exampleEn: "The coffee is cheap." },
+    { id: "a1u7.skup", image: "/img/skup.png", hr: "skup", en: "expensive (skupa f, skupo n)", pos: "adj", icon: "💎", exampleHr: "Vino je skupo.", exampleEn: "The wine is expensive." },
   ],
   slides: [
     {

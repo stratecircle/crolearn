@@ -174,6 +174,15 @@ Almost every verb comes in a pair: **imperfective** (process/habit) ↔ **perfec
 
 Usage anchors: present tense of a perfective ≠ "now" (used in future/subordinate contexts) · past: Pisao sam pismo (was writing) vs Napisao sam pismo (finished it) · future: Pisat ću (will be writing/will write regularly) vs Napisat ću (will get it written).
 
+### Pair-formation patterns (B1 U17)
+
+1. **Prefixation** — pf = prefix + impf, core meaning unchanged; the prefix choice is lexical (learn per verb): na- (pisati→napisati, učiti→naučiti, praviti→napraviti), pro- (čitati→pročitati), po- (gledati→pogledati, slušati→poslušati, piti→popiti), po-+stem (jesti→pojesti).
+2. **-nu- perfectives** — pf in -nuti: dizati→dignuti (dignem; participle **digao, digla** — standard drops -nu; dignuo also heard), kretati→krenuti (krenem; krenuo, krenula — keeps -nu).
+3. **Suffix / stem change** — the impf half typically carries -ava-/-iva-/-a- or a longer stem: kupovati→kupiti · davati→dati (dam; dao) · počinjati→početi (počnem; počeo) · završavati→završiti · objavljivati (objavljujem!)→objaviti · uzimati→uzeti (uzmem; uzeo) · prenositi→prenijeti (prenesem; **prenio, prenijela**). Reading trick: meet a perfective, add -avati/-ivati and you usually have its imperfective.
+4. **Suppletive** — unrelated stems: govoriti→**reći** (rekao, rekla; fut. reći ću; the everyday present "I say" is **kažem**, from kazati) · dolaziti→**doći** (dođem; došao, došla) · odlaziti→**otići** (odem; otišao, otišla).
+
+Other anchors: dogoditi se (pf; Što se dogodilo? — se, no je needed beyond the dropped se+je rule: Što se dogodilo, Dogodilo se…) · **habits are imperfective** even when each act completes (Svaki dan kupujem novine) · **narration spine**: dok + imperfective sets the background, perfective chain carries the events (Dok je Ana gledala vijesti, Marko je došao.) — the dok-clause verb and the main-clause perfective are the B1 U17 L4 target.
+
 ## 12. Clitic order (the second-position cluster)
 
 Clitics live in **second position** in the clause, in FIXED internal order:

@@ -34,7 +34,7 @@ export const a1u2l4: Lesson = {
     { id: "a1u2.sedamnaest", hr: "sedamnaest", en: "seventeen", pos: "num", icon: "🔢", exampleHr: "Sedamnaest, osamnaest, devetnaest.", exampleEn: "Seventeen, eighteen, nineteen." },
     { id: "a1u2.osamnaest", hr: "osamnaest", en: "eighteen", pos: "num", icon: "🔢", exampleHr: "Koliko je devet i devet? — Osamnaest.", exampleEn: "How much is nine and nine? — Eighteen." },
     { id: "a1u2.devetnaest", hr: "devetnaest", en: "nineteen", pos: "num", icon: "🔢", exampleHr: "Devetnaest, dvadeset!", exampleEn: "Nineteen, twenty!" },
-    { id: "a1u2.dvadeset", hr: "dvadeset", en: "twenty", pos: "num", icon: "🔢", exampleHr: "Koliko je deset i deset? — Dvadeset.", exampleEn: "How much is ten and ten? — Twenty." },
+    { id: "a1u2.dvadeset", image: "/img/dvadeset.png", hr: "dvadeset", en: "twenty", pos: "num", icon: "🔢", exampleHr: "Koliko je deset i deset? — Dvadeset.", exampleEn: "How much is ten and ten? — Twenty." },
     { id: "a1u2.koliko", hr: "koliko", en: "how much / how many", pos: "adv", icon: "❓", exampleHr: "Koliko je to?", exampleEn: "How much is that?", tags: ["question-word"] },
     { id: "a1u2.broj", hr: "broj", en: "number", pos: "noun", gender: "m", icon: "🔢", exampleHr: "To je broj deset.", exampleEn: "That is number ten." },
   ],

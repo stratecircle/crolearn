@@ -255,6 +255,15 @@ export const storySchema = z.object({
     .min(4),
 });
 
+const writingTaskSchema = z.object({
+  title: z.string().min(1),
+  task: z.string().min(1),
+  minWords: z.number().int().positive().optional(),
+  maxWords: z.number().int().positive().optional(),
+  modelHr: z.string().optional(),
+  rubricFocus: z.string().optional(),
+});
+
 export const unitTestSchema = z.object({
   id: z.string(),
   unitId: z.string(),
@@ -270,6 +279,7 @@ export const unitTestSchema = z.object({
     )
     .min(3),
   passPct: z.number().min(50).max(100),
+  writing: writingTaskSchema.optional(),
 });
 
 const speakingPromptSchema = z.object({
@@ -297,16 +307,7 @@ export const checkpointExamSchema = z.object({
   speaking: z
     .object({ title: z.string().min(1), prompts: z.array(speakingPromptSchema).min(1) })
     .optional(),
-  writing: z
-    .object({
-      title: z.string().min(1),
-      task: z.string().min(1),
-      minWords: z.number().int().positive().optional(),
-      maxWords: z.number().int().positive().optional(),
-      modelHr: z.string().optional(),
-      rubricFocus: z.string().optional(),
-    })
-    .optional(),
+  writing: writingTaskSchema.optional(),
   passPct: z.number().min(50).max(100),
   afterUnitId: z.string(),
 });

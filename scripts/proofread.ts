@@ -78,6 +78,8 @@ function gatherUnit(unit: Unit): Item[] {
   story.questions.forEach((q) => q.tts && out.push({ where: `${story.id}/${q.id}`, hr: q.tts }));
   const test: UnitTest = unit.test;
   test.sections.forEach((sec) => sec.slides.forEach((sl) => fromSlide(test.id, sl, out)));
+  if (test.writing?.modelHr)
+    out.push({ where: `${test.id}/writing/model`, hr: test.writing.modelHr, en: test.writing.task });
   return out;
 }
 

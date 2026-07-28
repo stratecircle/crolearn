@@ -166,7 +166,7 @@ export async function loadNativProgress(): Promise<NativProgress> {
     return {
       code: lv.id,
       name: LEVEL_COPY[lv.id]?.name ?? lv.title,
-      color: { A1: "#C93434", A2: "#2F7D53", B1: "#E08A2B", B2: "#8B6FC9" }[lv.id] ?? "#3B6FD4",
+      color: { A1: "var(--primary)", A2: "var(--green)", B1: "var(--orange)", B2: "var(--violet)" }[lv.id] ?? "var(--blue)",
       total,
       done: doneCount,
       state: total === 0 ? "locked" : total === doneCount ? "done" : "current",

@@ -8,7 +8,7 @@ import { CASE_COLORS, GENDER_COLORS } from "@/ui/caseColors";
 import { speak } from "@/lib/tts";
 import { BODY2, DISPLAY, INK, MUTED, ORANGE, SHADOW_CARD } from "@/ui/kit";
 
-const CARD = "rounded-2xl border border-[rgba(15,23,42,.07)] bg-white shadow-[0_1px_3px_rgba(15,23,42,.04)]";
+const CARD = "rounded-2xl border border-[rgba(var(--ink-rgb),.07)] bg-[color:var(--card)] shadow-[0_1px_3px_rgba(var(--shadow-rgb),.04)]";
 
 function ContinueButton({ onClick, label = "Continue →" }: { onClick: () => void; label?: string }) {
   return (
@@ -184,14 +184,14 @@ export function VocabCardsSlideView({
             key={v.id}
             type="button"
             onClick={() => void speak(v.hr)}
-            className={`${CARD} p-4 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(15,23,42,.08)]`}
+            className={`${CARD} p-4 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(var(--shadow-rgb),.08)]`}
           >
             {v.image ? (
               <img src={v.image} alt={v.en} className="h-28 w-full rounded-xl object-contain" />
             ) : (
               // Image not generated yet (see docs/chatgpt-paste-list.md) — neutral letter tile, never emoji.
-              <div className="flex h-28 items-center justify-center rounded-xl" style={{ background: "rgba(15,23,42,.04)" }}>
-                <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 44, color: "rgba(15,23,42,.18)" }}>{v.hr.charAt(0).toUpperCase()}</span>
+              <div className="flex h-28 items-center justify-center rounded-xl" style={{ background: "rgba(var(--ink-rgb),.04)" }}>
+                <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 44, color: "rgba(var(--ink-rgb),.18)" }}>{v.hr.charAt(0).toUpperCase()}</span>
               </div>
             )}
             <p className="mt-2.5 inline-flex items-center gap-1.5 text-lg font-bold" style={{ fontFamily: DISPLAY, color: INK }}>
@@ -241,6 +241,8 @@ export function RecapSlideView({
                   />
                 )}
                 <span className="font-semibold" style={{ color: INK }}>
+                  {/* alt="" on purpose: the Croatian word and its English gloss are both
+                      in this same row, so naming the picture would just triple-announce. */}
                   {v.image && <img src={v.image} alt="" className="mr-1.5 inline-block h-7 w-7 rounded object-contain align-middle" />}
                   {v.hr}
                 </span>

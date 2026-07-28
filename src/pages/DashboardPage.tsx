@@ -27,10 +27,10 @@ export default function DashboardPage() {
   const curLevel = p.levels.find((l) => l.code === p.currentLevel);
   const curUnit = curLevel?.units.find((u) => u.done < u.total);
   const milestones = [
-    curUnit && { title: `Unit ${curUnit.number} — ${curUnit.title}`, sub: "Finish every step of the unit", icon: BookOpen, color: "#C93434", pct: (curUnit.done / curUnit.total) * 100, count: `${curUnit.done} / ${curUnit.total}` },
-    curLevel && curLevel.total > 0 && { title: `${curLevel.code} completed`, sub: `Finish the ${curLevel.code} level`, icon: Flag, color: "#8B6FC9", pct: (curLevel.done / curLevel.total) * 100, count: `${curLevel.done} / ${curLevel.total}` },
-    { title: "7-day streak", sub: "Keep studying every day", icon: Star, color: "#3B6FD4", pct: Math.min(100, (s.dayStreak / 7) * 100), count: `${Math.min(s.dayStreak, 7)} / 7` },
-    { title: "Review inbox zero", sub: "Clear today's due cards", icon: Layers, color: "#2F7D53", pct: s.due === 0 ? 100 : 0, count: s.due === 0 ? "done" : `${s.due} due` },
+    curUnit && { title: `Unit ${curUnit.number} — ${curUnit.title}`, sub: "Finish every step of the unit", icon: BookOpen, color: "var(--primary)", pct: (curUnit.done / curUnit.total) * 100, count: `${curUnit.done} / ${curUnit.total}` },
+    curLevel && curLevel.total > 0 && { title: `${curLevel.code} completed`, sub: `Finish the ${curLevel.code} level`, icon: Flag, color: "var(--violet)", pct: (curLevel.done / curLevel.total) * 100, count: `${curLevel.done} / ${curLevel.total}` },
+    { title: "7-day streak", sub: "Keep studying every day", icon: Star, color: "var(--blue)", pct: Math.min(100, (s.dayStreak / 7) * 100), count: `${Math.min(s.dayStreak, 7)} / 7` },
+    { title: "Review inbox zero", sub: "Clear today's due cards", icon: Layers, color: "var(--green)", pct: s.due === 0 ? 100 : 0, count: s.due === 0 ? "done" : `${s.due} due` },
   ].filter(Boolean) as { title: string; sub: string; icon: typeof Flag; color: string; pct: number; count: string }[];
 
   return (
@@ -43,9 +43,9 @@ export default function DashboardPage() {
         </div>
         <StatRow className="pt-1 max-[700px]:w-full max-[700px]:pt-0">
           <StatChip icon={Target} color={INK} value={String(s.dayStreak)} label="Day streak" />
-          <StatChip icon={Flame} color="#C93434" value={String(s.longestStreak)} label="Longest streak" />
-          <StatChip icon={Star} color="#3B6FD4" value={String(s.wordsLearned)} label="Words learned" />
-          {s.timePracticed && <StatChip icon={Clock} color="#2F7D53" value={s.timePracticed} label="Time practiced" />}
+          <StatChip icon={Flame} color="var(--primary)" value={String(s.longestStreak)} label="Longest streak" />
+          <StatChip icon={Star} color="var(--blue)" value={String(s.wordsLearned)} label="Words learned" />
+          {s.timePracticed && <StatChip icon={Clock} color="var(--green)" value={s.timePracticed} label="Time practiced" />}
         </StatRow>
       </div>
 
@@ -63,9 +63,9 @@ export default function DashboardPage() {
                     <Clock size={16} color={MUTED} />About {p.nextLesson.estMinutes} min
                   </div>
                 )}
-                <div className="h-4 w-px" style={{ background: "rgba(15,23,42,.14)" }} />
+                <div className="h-4 w-px" style={{ background: "rgba(var(--ink-rgb),.14)" }} />
                 <div className="flex items-center gap-2 text-sm" style={{ color: BODY2 }}>
-                  <Bookmark size={16} color="#C93434" />Next on your path
+                  <Bookmark size={16} color="var(--primary)" />Next on your path
                 </div>
               </div>
               <BtnPrimary icon={ArrowRight} onClick={() => nav(stepLink(p.next!))}>
@@ -88,10 +88,10 @@ export default function DashboardPage() {
             </div>
             <div className="whitespace-nowrap text-sm" style={{ color: BODY2 }}>{s.goalDone} of {s.goalTotal} steps</div>
           </div>
-          <ProgressBar pct={(s.goalDone / s.goalTotal) * 100} color="#2F7D53" height={8} className="mb-4" />
+          <ProgressBar pct={(s.goalDone / s.goalTotal) * 100} color="var(--green)" height={8} className="mb-4" />
           <div className="flex items-center justify-between gap-3.5">
             <div className="flex items-center gap-2 text-sm" style={{ color: BODY2 }}>
-              <Flame size={16} color="#C93434" />{s.dayStreak}-day streak
+              <Flame size={16} color="var(--primary)" />{s.dayStreak}-day streak
             </div>
             <div className="text-sm" style={{ color: BODY2 }}>
               {s.due > 0 ? `${s.due} cards due · ` : "review clear · "}
@@ -112,8 +112,8 @@ export default function DashboardPage() {
             <button
               key={l.code}
               onClick={() => setSel(l.code)}
-              className="rounded-2xl bg-white p-5 text-left shadow-[0_1px_2px_rgba(15,23,42,.03)] transition-all duration-200"
-              style={{ border: isSel ? `1.5px solid ${l.color}` : "1px solid rgba(15,23,42,.07)", boxShadow: isSel ? "0 12px 30px rgba(15,23,42,.07)" : undefined }}
+              className="rounded-2xl bg-[color:var(--card)] p-5 text-left shadow-[0_1px_2px_rgba(var(--shadow-rgb),.03)] transition-all duration-200"
+              style={{ border: isSel ? `1.5px solid ${l.color}` : "1px solid rgba(var(--ink-rgb),.07)", boxShadow: isSel ? "0 12px 30px rgba(var(--shadow-rgb),.07)" : undefined }}
             >
               <div className="flex items-start justify-between gap-2">
                 <div>
@@ -123,7 +123,7 @@ export default function DashboardPage() {
                 {l.state === "current" && l.done > 0 && (
                   <div className="flex-none whitespace-nowrap rounded-[7px] px-2.5 py-[5px] text-[9.5px] font-bold text-white" style={{ background: l.color, letterSpacing: ".05em" }}>CURRENT</div>
                 )}
-                {locked && <Lock size={17} color="#A9B0BA" />}
+                {locked && <Lock size={17} color="var(--muted3)" />}
               </div>
               <div className="mb-2.5 mt-4 text-[13px]" style={{ color: BODY2 }}>
                 {locked ? "Not built yet — the course grows in order" : `${l.done} of ${l.total} lessons`}
@@ -143,7 +143,7 @@ export default function DashboardPage() {
           </div>
           <div className="mb-5 text-[15px] leading-relaxed" style={{ color: BODY2 }}>{lv.blurb}</div>
           {lv.total === 0 && (
-            <div className="mb-5 flex flex-wrap items-center gap-2 rounded-xl px-4 py-3 text-sm" style={{ background: "rgba(15,23,42,.04)", color: BODY2 }}>
+            <div className="mb-5 flex flex-wrap items-center gap-2 rounded-xl px-4 py-3 text-sm" style={{ background: "rgba(var(--ink-rgb),.04)", color: BODY2 }}>
               <Lock size={15} color={MUTED} />This level isn't authored yet — CroLearn builds strictly in course order.
             </div>
           )}
@@ -157,7 +157,7 @@ export default function DashboardPage() {
         <Card className="p-7">
           <CardH className="mb-4">{lv.code} Curriculum</CardH>
           {lv.units.length === 0 ? (
-            <div className="rounded-xl border border-dashed px-5 py-10 text-center text-sm" style={{ borderColor: "rgba(15,23,42,.12)", color: MUTED }}>
+            <div className="rounded-xl border border-dashed px-5 py-10 text-center text-sm" style={{ borderColor: "rgba(var(--ink-rgb),.12)", color: MUTED }}>
               No units yet — finish the levels before it and they'll appear here.
             </div>
           ) : (
@@ -170,12 +170,12 @@ export default function DashboardPage() {
                   <button
                     key={u.id}
                     onClick={() => target && nav(stepLink(target))}
-                    className="flex items-center gap-4 rounded-xl px-4 py-3.5 text-left transition-colors duration-[180ms] hover:bg-[rgba(15,23,42,.03)]"
+                    className="flex items-center gap-4 rounded-xl px-4 py-3.5 text-left transition-colors duration-[180ms] hover:bg-[rgba(var(--ink-rgb),.03)]"
                     style={{ background: isCurrentUnit ? tint(lv.color, 0.05) : undefined }}
                   >
                     <div
                       className="flex h-[30px] w-[30px] flex-none items-center justify-center rounded-full text-[13px] font-semibold"
-                      style={isCurrentUnit ? { background: lv.color, color: "#fff" } : { background: "rgba(15,23,42,.06)", color: BODY2 }}
+                      style={isCurrentUnit ? { background: lv.color, color: "#fff" } : { background: "rgba(var(--ink-rgb),.06)", color: BODY2 }}
                     >
                       {u.number}
                     </div>
@@ -184,11 +184,11 @@ export default function DashboardPage() {
                       <div className="truncate text-[13px]" style={{ color: MUTED }}>{u.titleEn} · {u.done}/{u.total} steps</div>
                     </div>
                     {complete ? (
-                      <div className="flex h-6 w-6 flex-none items-center justify-center rounded-full" style={{ background: "#2F7D53" }}>
+                      <div className="flex h-6 w-6 flex-none items-center justify-center rounded-full" style={{ background: "var(--green)" }}>
                         <Check size={14} color="#fff" />
                       </div>
                     ) : (
-                      <div className="h-6 w-6 flex-none rounded-full" style={{ border: "2px solid rgba(15,23,42,.14)" }} />
+                      <div className="h-6 w-6 flex-none rounded-full" style={{ border: "2px solid rgba(var(--ink-rgb),.14)" }} />
                     )}
                   </button>
                 );

@@ -94,7 +94,7 @@ export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
               : "This lesson's cards are already in your review deck."}
           </div>
           {pct < 60 && (
-            <p className="mx-auto mb-7 max-w-md rounded-xl px-4 py-3 text-sm leading-relaxed" style={{ background: tint(ORANGE, 0.1), color: "#7A4A12" }}>
+            <p className="mx-auto mb-7 max-w-md rounded-xl px-4 py-3 text-sm leading-relaxed" style={{ background: tint(ORANGE, 0.1), color: "var(--brown)" }}>
               That was a tough one — totally normal. Before moving on, read this lesson's notes and
               replay it once; second passes usually feel completely different.
             </p>
@@ -192,7 +192,7 @@ export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
           onClick={() => setAskOpen(false)}
         >
           <div
-            className="flex h-[85dvh] w-full max-w-2xl flex-col rounded-t-[20px] bg-[#FDFCFA] p-5 shadow-2xl sm:h-[80dvh] sm:rounded-[20px]"
+            className="flex h-[85dvh] w-full max-w-2xl flex-col rounded-t-[20px] bg-[color:var(--card)] p-5 shadow-2xl sm:h-[80dvh] sm:rounded-[20px]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mb-3 flex items-center justify-between">
@@ -201,7 +201,7 @@ export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
                 type="button"
                 aria-label="Close"
                 onClick={() => setAskOpen(false)}
-                className="rounded-lg p-1.5 transition-colors duration-150 hover:bg-[rgba(15,23,42,.06)]"
+                className="rounded-lg p-1.5 transition-colors duration-150 hover:bg-[rgba(var(--ink-rgb),.06)]"
               >
                 <X size={18} color={MUTED} />
               </button>

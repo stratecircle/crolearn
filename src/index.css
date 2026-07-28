@@ -8,24 +8,114 @@
 @import "@fontsource/playfair-display/500-italic.css";
 @import "tailwindcss";
 
-/* Nativ design tokens (design_handoff_nativ_app/README.md §Design Tokens) */
+/*
+ * Theme layer.
+ *
+ * Every colour in the app resolves through one of these custom properties, so
+ * flipping `html.dark` re-skins the whole UI with no per-component `dark:`
+ * variants. `scripts/theme_sweep.py` is what rewrote the colour literals in
+ * src/ into `var(--…)` references — re-run it if new literals creep back in.
+ *
+ * The `*-rgb` triples exist because the design leans on translucent tints
+ * (`rgba(var(--ink-rgb), .07)` for hairline borders and so on).
+ */
+:root {
+  color-scheme: light;
+
+  --page: #efeeea;
+  --card: #fdfcfa;
+  --tint: #f7f4f0;
+  --tint2: #f4f6f2;
+  --tint3: #f1ede7;
+  --tint4: #f3efe9;
+  --tint5: #f6f3ef;
+
+  --ink: #16243d;
+  --ink-strong: #20344f;
+  --body: #3f4a5c;
+  --body2: #5b6472;
+  --muted: #8b93a1;
+  --muted2: #9aa1ad;
+  --muted3: #a9b0ba;
+  --muted4: #b6bcc6;
+
+  --primary: #c93434;
+  --primary-hover: #b32c2c;
+  --green: #2f7d53;
+  --green-strong: #276a46;
+  --orange: #e08a2b;
+  --blue: #3b6fd4;
+  --violet: #8b6fc9;
+  --teal: #3e9fb0;
+  --brown: #7a4a12;
+  --brown2: #9a5b14;
+
+  --ink-rgb: 15, 23, 42;
+  --primary-rgb: 201, 52, 52;
+  --green-rgb: 47, 125, 83;
+  --orange-rgb: 224, 138, 43;
+  --shadow-rgb: 15, 23, 42;
+}
+
+html.dark {
+  color-scheme: dark;
+
+  --page: #10141c;
+  --card: #1a2029;
+  --tint: #232a35;
+  --tint2: #232a35;
+  --tint3: #262d38;
+  --tint4: #262d38;
+  --tint5: #232a35;
+
+  --ink: #e8ecf3;
+  --ink-strong: #f5f8fd;
+  --body: #b8c2d2;
+  --body2: #a2acbb;
+  --muted: #8a94a3;
+  --muted2: #7d8797;
+  --muted3: #737e8e;
+  --muted4: #69737f;
+
+  --primary: #d94a48;
+  --primary-hover: #e66462;
+  --green: #4caf80;
+  --green-strong: #3f9b6d;
+  --orange: #eda049;
+  --blue: #6a97f0;
+  --violet: #a992e0;
+  --teal: #56bccd;
+  --brown: #d6a86a;
+  --brown2: #e0b57c;
+
+  --ink-rgb: 226, 232, 243;
+  --primary-rgb: 224, 90, 88;
+  --green-rgb: 76, 175, 128;
+  --orange-rgb: 237, 160, 73;
+  --shadow-rgb: 0, 0, 0;
+}
+
+/* Nativ design tokens (design_handoff_nativ_app/README.md §Design Tokens).
+   `inline` so utilities emit `var(--ink)` directly and follow the theme flip. */
+@theme inline {
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-body2: var(--body2);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-green: var(--green);
+  --color-orange: var(--orange);
+  --color-violet: var(--violet);
+  --color-blue: var(--blue);
+  --color-teal: var(--teal);
+  --color-page: var(--page);
+  --color-card: var(--card);
+}
+
 @theme {
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
   --font-display: "Playfair Display", Georgia, serif;
-
-  --color-ink: #16243d;
-  --color-body: #3f4a5c;
-  --color-body2: #5b6472;
-  --color-muted: #8b93a1;
-  --color-primary: #c93434;
-  --color-primary-hover: #b32c2c;
-  --color-green: #2f7d53;
-  --color-orange: #e08a2b;
-  --color-violet: #8b6fc9;
-  --color-blue: #3b6fd4;
-  --color-teal: #3e9fb0;
-  --color-page: #efeeea;
-  --color-card: #fdfcfa;
 
   --radius-card: 20px;
   --radius-ctl: 12px;
@@ -33,10 +123,17 @@
 }
 
 html {
-  background: #efeeea;
-  color: #16243d;
+  background: var(--page);
+  color: var(--ink);
   font-family: "Inter", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Only the theme flip animates — kept off first paint and off reduced-motion. */
+html.theme-ready body {
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
 }
 
 button {
@@ -45,16 +142,45 @@ button {
 }
 
 ::selection {
-  background: rgba(201, 52, 52, 0.14);
+  background: rgba(var(--primary-rgb), 0.14);
+}
+
+/* `main[tabindex="-1"]` is only a skip-link landing target — it must not draw a ring. */
+main:focus,
+main:focus-visible {
+  outline: none;
 }
 
 [role="button"]:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible,
 input:focus-visible,
+select:focus-visible,
 button:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid #c93434;
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
   border-radius: 8px;
+}
+
+/* Skip link — off-screen until it takes keyboard focus. */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 2147483647;
+  transform: translateY(-200%);
+  transition: transform 120ms ease;
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid rgba(var(--ink-rgb), 0.14);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
 }
 
 /* Tutor columns scroll internally with hidden scrollbars */
@@ -66,4 +192,18 @@ textarea:focus-visible {
   width: 0;
   height: 0;
   display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.theme-ready body {
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

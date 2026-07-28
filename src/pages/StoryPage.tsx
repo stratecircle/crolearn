@@ -75,7 +75,7 @@ export default function StoryPage() {
 
       {story.glossary.length > 0 && (
         <div className="mt-5 rounded-2xl border p-4" style={{ background: tint(ORANGE, 0.07), borderColor: tint(ORANGE, 0.25) }}>
-          <p className="text-xs font-semibold" style={{ letterSpacing: ".13em", color: "#9A5B14" }}>NEW WORDS IN THIS STORY</p>
+          <p className="text-xs font-semibold" style={{ letterSpacing: ".13em", color: "var(--brown2)" }}>NEW WORDS IN THIS STORY</p>
           <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1.5 text-sm" style={{ color: INK }}>
             {story.glossary.map((g) => (
               <span key={g.word}>
@@ -88,7 +88,7 @@ export default function StoryPage() {
 
       <div className="mt-5 space-y-4">
         {story.paragraphs.map((p, i) => (
-          <div key={i} className="rounded-2xl border bg-white p-5" style={{ borderColor: "rgba(15,23,42,.07)", boxShadow: SHADOW_CARD }}>
+          <div key={i} className="rounded-2xl border bg-[color:var(--card)] p-5" style={{ borderColor: "rgba(var(--ink-rgb),.07)", boxShadow: SHADOW_CARD }}>
             <p className="text-[19px] leading-relaxed max-[700px]:text-[17px]" style={{ fontFamily: DISPLAY, color: INK }}>
               {p.hr} <TtsButton text={p.hr} className="ml-1" /> <TtsButton text={p.hr} slow className="ml-1" />
             </p>

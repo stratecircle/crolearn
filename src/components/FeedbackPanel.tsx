@@ -32,7 +32,7 @@ export default function FeedbackPanel({
           <span className="font-semibold">{canonical}</span> <TtsButton text={canonical} className="ml-1" />
         </p>
       )}
-      {explanation && <p className="mt-1.5 text-sm leading-relaxed" style={{ color: "#5B6472" }}>{explanation}</p>}
+      {explanation && <p className="mt-1.5 text-sm leading-relaxed" style={{ color: "var(--body2)" }}>{explanation}</p>}
       <button
         type="button"
         autoFocus
