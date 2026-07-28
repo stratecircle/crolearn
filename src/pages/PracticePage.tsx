@@ -1,5 +1,12 @@
+/**
+ * Practice — Nativ practice screen (README §Screens 6) over CroLearn's real
+ * practice modes: FSRS flashcards, AI targeted drills, AI-graded free writing,
+ * and story re-reading. Design's Listening/Mixed tiles have no separate
+ * backend mode → hidden (adjust-if-absent); their skills live inside drills.
+ */
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ArrowRight, BookOpen, Clock, Flame, Languages, PenLine, Sparkles, Star, Target, X } from "lucide-react";
 import type { QuizSlide } from "@/types/content";
 import { allUnits, findTest, courseGrounding } from "@/content";
 import { aiErrorMessage, gradeFreeForm, generateExercises, hasApiKey, type AiGradeResult } from "@/lib/claude";
@@ -8,18 +15,17 @@ import { getLeeches } from "@/lib/srs";
 import { stopSpeaking } from "@/lib/tts";
 import SlideRenderer from "@/components/SlideRenderer";
 import { advance, firstTryAccuracy, initDeck, isRetryPosition, type DeckState } from "@/features/lesson/deckMachine";
+import { loadNativProgress, type NativStats } from "@/features/nativ/stats";
+import { BODY2, BtnPrimary, Card, CardH, Chip, GREEN, H, INK, MUTED, ProgressBar, RED, Tile, tint } from "@/ui/kit";
 
-/** A weak spot fed to the exercise generator, with a human-readable label. */
 type WeakSpot = { label: string; focusLine: string };
 
-/** Free-writing tasks, gated to units that exist (index into allUnits). */
 const WRITING_TASKS: { unitIndex: number; task: string }[] = [
   { unitIndex: 0, task: "Say hello, introduce yourself (Ja sam… / Zovem se…), say how you are today, and say goodbye." },
   { unitIndex: 1, task: "Say where you are from, your nationality, which languages you speak, and what your profession is." },
   { unitIndex: 2, task: "Describe your family in 3–4 sentences: who they are, whose they are, what they are like, and what pets you have (or don't have)." },
 ];
 
-/** Describe a missed test slide in one line for the generator. */
 function describeTestSlide(testId: string, slideId: string): string | null {
   const test = findTest(testId);
   if (!test) return null;
@@ -43,25 +49,16 @@ function leechLine(c: SrsCard): string {
   return `Leech card (${c.kind}, lesson ${c.lessonId}): "${c.front}" → "${c.back}"`;
 }
 
-/* ---------------------------- drill runner ---------------------------- */
-
-/**
- * Minimal player over generated quiz slides: same retry semantics as
- * LessonPlayer (wrong answers replay at the end, shuffled; accuracy =
- * first attempts) but nothing persists — this is extra practice.
- */
+/** Same retry semantics as LessonPlayer; nothing persists — extra practice. */
 function PracticeRunner({ slides, onExit }: { slides: QuizSlide[]; onExit: () => void }) {
   const [deck, setDeck] = useState<DeckState>(() => initDeck(slides.length));
   const [runId, setRunId] = useState(0);
-
   const { playlist, pos } = deck;
   const slide = slides[playlist[pos]];
 
   const onDone = useCallback(
     (correct: boolean) => {
       stopSpeaking();
-      // lastIndex: -1 — practice decks have no recap slide, so pending
-      // retries splice only at the very end of the playlist.
       setDeck(advance(deck, { slideId: slide.id, isQuiz: true, correct, lastIndex: -1 }));
       setRunId((r) => r + 1);
     },
@@ -71,48 +68,36 @@ function PracticeRunner({ slides, onExit }: { slides: QuizSlide[]; onExit: () =>
   if (deck.finished) {
     const pct = Math.round(firstTryAccuracy(deck, slides.length) * 100);
     return (
-      <div className="rounded-2xl bg-white p-6 text-center shadow-sm">
-        <div className="text-5xl">{pct >= 90 ? "🏆" : pct >= 70 ? "🎉" : "💪"}</div>
-        <h2 className="mt-2 text-2xl font-black">Practice set complete!</h2>
-        <p className="mt-1 text-stone-600">
-          First-try accuracy: <strong>{pct}%</strong>
+      <div className="mx-auto max-w-[780px] rounded-[20px] border bg-white px-12 py-14 text-center" style={{ borderColor: "rgba(15,23,42,.07)", boxShadow: "0 1px 3px rgba(15,23,42,.04),0 16px 44px rgba(15,23,42,.06)" }}>
+        <div style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 38, color: INK }}>Practice set complete</div>
+        <p className="mt-3 text-[17px]" style={{ color: BODY2 }}>
+          First-try accuracy: <strong style={{ color: INK }}>{pct}%</strong>
         </p>
-        <button
-          type="button"
-          onClick={onExit}
-          className="mt-4 rounded-xl bg-stone-900 px-6 py-3 font-bold text-white hover:bg-stone-700"
-        >
-          Back to practice →
-        </button>
+        <div className="mt-8 flex justify-center">
+          <BtnPrimary onClick={onExit}>Back to practice</BtnPrimary>
+        </div>
       </div>
     );
   }
 
   const isRetry = isRetryPosition(deck);
   return (
-    <div>
-      <div className="mb-3 flex items-center gap-3">
+    <div className="mx-auto max-w-[840px]">
+      <div className="mb-3 flex items-center gap-4">
         <button
-          type="button"
           onClick={onExit}
           aria-label="Exit practice set"
-          className="text-xl text-stone-400 hover:text-stone-700"
+          className="flex h-11 w-11 flex-none items-center justify-center rounded-xl border bg-white transition-colors duration-[180ms] hover:bg-[#F7F4F0]"
+          style={{ borderColor: "rgba(15,23,42,.1)" }}
         >
-          ✕
+          <X size={18} color={BODY2} />
         </button>
-        <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-stone-200">
-          <div
-            className="h-full rounded-full bg-green-600 transition-all"
-            style={{ width: `${Math.round((pos / playlist.length) * 100)}%` }}
-          />
-        </div>
-        <span className="text-sm font-bold text-stone-500">
-          {pos + 1}/{playlist.length}
-        </span>
+        <ProgressBar pct={(pos / playlist.length) * 100} color={RED} height={8} className="flex-1" />
+        <span className="text-sm" style={{ color: BODY2 }}>{pos + 1}/{playlist.length}</span>
       </div>
       {isRetry && (
-        <p className="mb-3 rounded-lg bg-amber-50 px-3 py-1.5 text-sm font-semibold text-amber-800">
-          🔁 Retry — let's get it right!
+        <p className="mb-3 rounded-lg px-3.5 py-2 text-sm font-semibold" style={{ background: tint("#E08A2B", 0.12), color: "#9A5B14" }}>
+          Retry — let's get it right!
         </p>
       )}
       <SlideRenderer key={`${slide.id}-${runId}`} slide={slide} vocab={[]} onDone={onDone} />
@@ -120,13 +105,12 @@ function PracticeRunner({ slides, onExit }: { slides: QuizSlide[]; onExit: () =>
   );
 }
 
-/* ------------------------------- page ------------------------------- */
-
 export default function PracticePage() {
+  const nav = useNavigate();
   const keyPresent = hasApiKey();
+  const [stats, setStats] = useState<NativStats | null>(null);
   const [weakSpots, setWeakSpots] = useState<WeakSpot[]>([]);
   const [loadingSpots, setLoadingSpots] = useState(true);
-
   const [generating, setGenerating] = useState(false);
   const [drillError, setDrillError] = useState<string | null>(null);
   const [drill, setDrill] = useState<QuizSlide[] | null>(null);
@@ -137,16 +121,15 @@ export default function PracticePage() {
   const [grading, setGrading] = useState(false);
   const [gradeError, setGradeError] = useState<string | null>(null);
   const [grade, setGrade] = useState<AiGradeResult | null>(null);
+  const [showWriting, setShowWriting] = useState(false);
 
   useEffect(() => {
+    void loadNativProgress().then((p) => setStats(p.stats));
     let cancelled = false;
     void (async () => {
       const spots: WeakSpot[] = [];
       const leeches = await getLeeches();
-      for (const c of leeches.slice(0, 10)) {
-        spots.push({ label: `🩹 ${c.front} → ${c.back}`, focusLine: leechLine(c) });
-      }
-      // Latest result per test; its wrong items are prime practice targets.
+      for (const c of leeches.slice(0, 10)) spots.push({ label: `${c.front} → ${c.back}`, focusLine: leechLine(c) });
       const results = await db.testResults.toArray();
       const latestByTest = new Map<string, (typeof results)[number]>();
       for (const r of results) {
@@ -156,7 +139,7 @@ export default function PracticePage() {
       for (const r of latestByTest.values()) {
         for (const sid of r.wrongSlideIds) {
           const line = describeTestSlide(r.testId, sid);
-          if (line) spots.push({ label: `❌ ${line.replace(/^Missed /, "")}`, focusLine: line });
+          if (line) spots.push({ label: line.replace(/^Missed /, ""), focusLine: line });
         }
       }
       if (!cancelled) {
@@ -179,7 +162,6 @@ export default function PracticePage() {
         : `No specific weak points recorded — build a varied mixed review of ${latest.levelId} Unit ${latest.number} "${latest.title}" (${latest.theme}), lightly sampling earlier units.`;
       const slides = await generateExercises({ focus, levelContext: courseGrounding({ includeVocab: true }), count: 8 });
       if (!slides.length) throw new Error("empty");
-      // Re-id defensively: generated ids may collide with each other.
       setDrill(slides.map((s, i) => ({ ...s, id: `p${String(i).padStart(2, "0")}` }) as QuizSlide));
     } catch (e) {
       setDrillError((e as Error).message === "empty" ? "The model returned no usable exercises — try again." : aiErrorMessage(e));
@@ -208,113 +190,172 @@ export default function PracticePage() {
   }, [writing, tasks, taskIdx]);
 
   if (drill) {
-    return (
-      <div className="py-6">
-        <PracticeRunner slides={drill} onExit={() => setDrill(null)} />
-      </div>
-    );
+    return <PracticeRunner slides={drill} onExit={() => setDrill(null)} />;
   }
 
+  const kinds = [
+    {
+      title: "Flashcards",
+      desc: "Review your due vocabulary with spaced repetition.",
+      chip: stats ? `${stats.due} cards due` : "…",
+      icon: Languages,
+      color: "#3B6FD4",
+      go: () => nav("/review"),
+      disabled: false,
+    },
+    {
+      title: "Targeted drills",
+      desc: loadingSpots ? "Checking your review deck and test history…" : weakSpots.length ? "AI exercises aimed at your recorded weak spots." : "AI mixed review of your latest unit.",
+      chip: loadingSpots ? "…" : weakSpots.length ? `${weakSpots.length} weak spots` : "8 exercises",
+      icon: Sparkles,
+      color: "#E08A2B",
+      go: () => void generate(),
+      disabled: !keyPresent || generating || loadingSpots,
+    },
+    {
+      title: "Writing",
+      desc: "Free writing with AI feedback and corrections.",
+      chip: `${tasks.length} tasks`,
+      icon: PenLine,
+      color: "#8B6FC9",
+      go: () => setShowWriting((v) => !v),
+      disabled: !keyPresent,
+    },
+    {
+      title: "Reading",
+      desc: "Re-read graded stories at your level.",
+      chip: "Story library",
+      icon: BookOpen,
+      color: "#2F7D53",
+      go: () => nav("/stories"),
+      disabled: false,
+    },
+  ];
+
   return (
-    <div className="py-6">
-      <h1 className="text-3xl font-black">🎯 Practice more</h1>
-      <p className="mt-1 text-stone-600">
-        AI-generated drills aimed at your weak spots, plus free writing with feedback.
-      </p>
+    <div>
+      <div className="mb-6">
+        <H size={26} className="mb-5">Practice</H>
+        {stats && (
+          <div className="flex items-center gap-[34px] max-[700px]:flex-wrap max-[700px]:gap-5">
+            {[
+              { icon: Target, color: INK, value: String(stats.dayStreak), label: "Day streak" },
+              { icon: Flame, color: RED, value: String(stats.longestStreak), label: "Longest streak" },
+              { icon: Star, color: "#3B6FD4", value: String(stats.wordsLearned), label: "Words learned" },
+              ...(stats.timePracticed ? [{ icon: Clock, color: GREEN, value: stats.timePracticed, label: "Time practiced" }] : []),
+            ].map((st) => (
+              <div key={st.label}>
+                <div className="mb-[5px] flex items-center gap-2.5">
+                  <st.icon size={20} color={st.color} strokeWidth={1.7} />
+                  <span style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 26, color: INK }}>{st.value}</span>
+                </div>
+                <div className="whitespace-nowrap text-sm" style={{ color: BODY2 }}>{st.label}</div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
 
       {!keyPresent && (
-        <div className="mt-4 rounded-xl bg-amber-50 p-4 text-amber-800">
-          These features need your Anthropic API key.{" "}
-          <Link to="/settings" className="font-bold underline">
-            Add it in Settings →
-          </Link>{" "}
-          Everything else in the app works without it.
+        <div className="mb-6 rounded-xl px-4 py-3.5 text-sm" style={{ background: tint("#E08A2B", 0.1), color: "#7A4A12" }}>
+          AI drills and writing feedback need your Anthropic API key.{" "}
+          <Link to="/settings" className="font-semibold underline" style={{ color: "#7A4A12" }}>Add it in Settings →</Link>{" "}
+          Flashcards and reading work without it.
         </div>
       )}
 
-      <section className="mt-6 rounded-2xl bg-white p-5 shadow-sm">
-        <h2 className="text-xl font-black">Targeted drills</h2>
-        {loadingSpots ? (
-          <p className="mt-2 text-sm text-stone-500">Checking your review deck and test history…</p>
-        ) : weakSpots.length ? (
-          <>
-            <p className="mt-2 text-sm text-stone-600">
-              Aiming at your {weakSpots.length} recorded weak spot{weakSpots.length === 1 ? "" : "s"}:
-            </p>
-            <ul className="mt-2 max-h-48 space-y-1 overflow-y-auto text-sm">
-              {weakSpots.map((s, i) => (
-                <li key={i} className="truncate rounded-lg bg-stone-50 px-3 py-1.5">
-                  {s.label}
-                </li>
-              ))}
-            </ul>
-          </>
-        ) : (
-          <p className="mt-2 text-sm text-stone-600">
-            No leeches or missed test answers recorded yet — you'll get a mixed review of your latest
-            unit instead.
-          </p>
-        )}
-        <button
-          type="button"
-          disabled={!keyPresent || generating || loadingSpots}
-          onClick={() => void generate()}
-          className="mt-4 w-full rounded-xl bg-stone-900 py-3 font-bold text-white hover:bg-stone-700 disabled:opacity-40"
-        >
-          {generating ? "Generating exercises…" : "Generate a practice set (8 exercises)"}
-        </button>
-        {drillError && <p className="mt-2 text-sm font-semibold text-red-700">{drillError}</p>}
-      </section>
-
-      {tasks.length > 0 && (
-        <section className="mt-6 rounded-2xl bg-white p-5 shadow-sm">
-          <div className="flex items-center justify-between gap-3">
-            <h2 className="text-xl font-black">✍️ Free writing</h2>
+      <Card className="mb-7 p-[30px]">
+        <CardH className="mb-[22px]">Choose your practice</CardH>
+        <div className="grid grid-cols-4 gap-5 max-[1200px]:grid-cols-2 max-[700px]:grid-cols-1">
+          {kinds.map((p) => (
             <button
-              type="button"
+              key={p.title}
+              onClick={p.go}
+              disabled={p.disabled}
+              className="flex flex-col rounded-2xl border bg-white p-6 text-left shadow-[0_1px_2px_rgba(15,23,42,.03)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_16px_36px_rgba(15,23,42,.08)] disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+              style={{ borderColor: "rgba(15,23,42,.07)" }}
+            >
+              <Tile icon={p.icon} color={p.color} size={54} radius={14} iconSize={24} />
+              <div className="mb-2 mt-[18px]" style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 18, color: INK }}>{p.title}</div>
+              <div className="mb-[18px] text-sm leading-normal" style={{ color: BODY2 }}>{p.desc}</div>
+              <Chip color={p.color}>{p.title === "Targeted drills" && generating ? "Generating…" : p.chip}</Chip>
+              <div className="mt-[18px] flex w-full justify-end">
+                <ArrowRight size={18} color={MUTED} />
+              </div>
+            </button>
+          ))}
+        </div>
+        {drillError && <p className="mt-4 text-sm font-semibold" style={{ color: RED }}>{drillError}</p>}
+      </Card>
+
+      {weakSpots.length > 0 && (
+        <>
+          <div className="mb-[18px] flex items-baseline gap-4">
+            <div style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 22, color: INK }}>Recommended for you</div>
+            <div className="text-sm" style={{ color: BODY2 }}>from your review deck and test history</div>
+          </div>
+          <Card className="mb-7 p-6">
+            <div className="grid max-h-56 gap-1.5 overflow-y-auto">
+              {weakSpots.map((s, i) => (
+                <div key={i} className="truncate rounded-lg px-3.5 py-2 text-sm" style={{ background: "rgba(15,23,42,.03)", color: BODY2 }}>
+                  {s.label}
+                </div>
+              ))}
+            </div>
+            <div className="mt-4">
+              <BtnPrimary onClick={() => void generate()} disabled={!keyPresent || generating}>
+                {generating ? "Generating exercises…" : "Generate a practice set (8 exercises)"}
+              </BtnPrimary>
+            </div>
+          </Card>
+        </>
+      )}
+
+      {(showWriting || grade || gradeError) && tasks.length > 0 && (
+        <Card className="p-[30px]">
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <CardH>Free writing</CardH>
+            <button
               onClick={() => {
                 setTaskIdx((i) => (i + 1) % tasks.length);
                 setGrade(null);
                 setGradeError(null);
               }}
-              className="rounded-full px-3 py-1 text-sm font-semibold text-stone-600 hover:bg-stone-100"
+              className="rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors duration-[180ms] hover:bg-[rgba(15,23,42,.04)]"
+              style={{ color: BODY2 }}
             >
-              🎲 Another task
+              Another task
             </button>
           </div>
-          <p className="mt-2 rounded-lg bg-stone-50 px-3 py-2 text-sm">{tasks[taskIdx]?.task}</p>
+          <p className="mb-3.5 rounded-xl px-4 py-3 text-sm" style={{ background: "rgba(15,23,42,.03)", color: INK }}>{tasks[taskIdx]?.task}</p>
           <textarea
             value={writing}
             onChange={(e) => setWriting(e.target.value)}
             rows={4}
             placeholder="Write your answer in Croatian…"
-            className="mt-3 w-full rounded-xl border-2 border-stone-200 p-3 focus:border-stone-900 focus:outline-none"
+            className="w-full rounded-xl border bg-white p-4 text-[15px] outline-none transition-colors duration-150"
+            style={{ borderColor: "rgba(15,23,42,.14)", color: INK }}
           />
-          <button
-            type="button"
-            disabled={!keyPresent || grading || !writing.trim()}
-            onClick={() => void gradeWriting()}
-            className="mt-2 w-full rounded-xl bg-stone-900 py-3 font-bold text-white hover:bg-stone-700 disabled:opacity-40"
-          >
-            {grading ? "Grading…" : "Grade my writing"}
-          </button>
-          {gradeError && <p className="mt-2 text-sm font-semibold text-red-700">{gradeError}</p>}
+          <div className="mt-3">
+            <BtnPrimary onClick={() => void gradeWriting()} disabled={!keyPresent || grading || !writing.trim()}>
+              {grading ? "Grading…" : "Grade my writing"}
+            </BtnPrimary>
+          </div>
+          {gradeError && <p className="mt-3 text-sm font-semibold" style={{ color: RED }}>{gradeError}</p>}
           {grade && (
-            <div className={`mt-4 rounded-xl p-4 ${grade.correct ? "bg-green-50" : "bg-amber-50"}`}>
-              <p className="font-black">
-                {grade.correct ? "✅" : "📝"} Score: {Math.round(grade.score)}/100
-              </p>
-              <p className="mt-1 text-sm">{grade.feedback}</p>
+            <div className="mt-5 rounded-xl p-5" style={{ background: grade.correct ? tint(GREEN, 0.07) : tint("#E08A2B", 0.08) }}>
+              <p className="font-semibold" style={{ color: INK }}>Score: {Math.round(grade.score)}/100</p>
+              <p className="mt-1.5 text-sm leading-relaxed" style={{ color: BODY2 }}>{grade.feedback}</p>
               {grade.corrected_text.trim() && grade.corrected_text.trim() !== writing.trim() && (
-                <p className="mt-2 text-sm">
-                  <span className="font-bold">Corrected:</span> {grade.corrected_text}
+                <p className="mt-2.5 text-sm" style={{ color: INK }}>
+                  <span className="font-semibold">Corrected:</span> {grade.corrected_text}
                 </p>
               )}
               {grade.errors.length > 0 && (
-                <ul className="mt-2 space-y-1 text-sm">
+                <ul className="mt-2.5 space-y-1.5 text-sm" style={{ color: BODY2 }}>
                   {grade.errors.map((err, i) => (
                     <li key={i}>
-                      <span className="rounded bg-white px-1.5 py-0.5 text-xs font-bold">{err.type}</span>{" "}
+                      <span className="rounded bg-white px-1.5 py-0.5 text-xs font-semibold" style={{ color: INK }}>{err.type}</span>{" "}
                       {err.explanation}
                     </li>
                   ))}
@@ -322,7 +363,7 @@ export default function PracticePage() {
               )}
             </div>
           )}
-        </section>
+        </Card>
       )}
     </div>
   );

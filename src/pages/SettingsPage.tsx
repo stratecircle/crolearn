@@ -1,8 +1,16 @@
+/**
+ * Settings — Nativ tabbed layout (README §Screens 8) over CroLearn's real
+ * settings. Adjust-if-absent: no accounts, so plan/member-since/sign-out and
+ * notification rows are hidden; tabs map to what actually exists (AI key &
+ * model, Croatian voice, usage estimate, backup + flagged mistakes).
+ */
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { BarChart3, Bot, Download, Flag, Play, ShieldCheck, Volume2, X, type LucideIcon } from "lucide-react";
 import { db, exportBackup, importBackup, type ErrorReportRow } from "@/lib/db";
 import { getDiagnostics, speak, type TtsDiagnostics } from "@/lib/tts";
 import { getUsage, resetUsage, USAGE_EVENT } from "@/lib/usage";
+import { BODY, BODY2, BtnGhost, BtnPrimary, Card, H, INK, MUTED, RED, tint } from "@/ui/kit";
 
 const MODELS = [
   { id: "claude-opus-4-8", label: "Claude Opus 4.8 (best — default)" },
@@ -10,7 +18,28 @@ const MODELS = [
   { id: "claude-haiku-4-5-20251001", label: "Claude Haiku 4.5 (cheapest)" },
 ];
 
+type Tab = "AI Tutor" | "Voice & Audio" | "AI Usage" | "Data & Privacy";
+const TABS: { key: Tab; icon: LucideIcon }[] = [
+  { key: "AI Tutor", icon: Bot },
+  { key: "Voice & Audio", icon: Volume2 },
+  { key: "AI Usage", icon: BarChart3 },
+  { key: "Data & Privacy", icon: ShieldCheck },
+];
+
+const inputCls = "w-full rounded-xl border bg-white px-4 py-3 text-[15px] outline-none transition-colors duration-150";
+const inputStyle = { borderColor: "rgba(15,23,42,.14)", color: INK };
+
+function RowLabel({ label, sub }: { label: string; sub?: string }) {
+  return (
+    <div>
+      <div className="mb-[3px] text-[15px] font-semibold" style={{ color: INK }}>{label}</div>
+      {sub && <div className="text-sm" style={{ color: MUTED }}>{sub}</div>}
+    </div>
+  );
+}
+
 export default function SettingsPage() {
+  const [tab, setTab] = useState<Tab>("AI Tutor");
   const [apiKey, setApiKey] = useState(() => localStorage.getItem("crolearn.apiKey") ?? "");
   const [model, setModel] = useState(() => localStorage.getItem("crolearn.model") ?? MODELS[0].id);
   const [voice, setVoice] = useState(() => localStorage.getItem("crolearn.ttsVoice") ?? "");
@@ -25,7 +54,6 @@ export default function SettingsPage() {
     void getDiagnostics().then(setDiag);
     void db.errorReports.orderBy("createdAt").reverse().toArray().then(setReports);
   }, []);
-
   useEffect(() => {
     const refresh = () => setUsage(getUsage());
     window.addEventListener(USAGE_EVENT, refresh);
@@ -40,29 +68,22 @@ export default function SettingsPage() {
     await db.errorReports.delete(id);
     setReports((r) => r.filter((x) => x.id !== id));
   };
-
   const saveKey = () => {
     if (apiKey.trim()) localStorage.setItem("crolearn.apiKey", apiKey.trim());
     else localStorage.removeItem("crolearn.apiKey");
     setKeyStatus("Saved.");
   };
-
   const testKey = async () => {
     setKeyStatus("Checking…");
     try {
       const { default: Anthropic } = await import("@anthropic-ai/sdk");
       const client = new Anthropic({ apiKey: apiKey.trim(), dangerouslyAllowBrowser: true });
-      await client.messages.create({
-        model,
-        max_tokens: 16,
-        messages: [{ role: "user", content: "Reci samo: Bok!" }],
-      });
+      await client.messages.create({ model, max_tokens: 16, messages: [{ role: "user", content: "Reci samo: Bok!" }] });
       setKeyStatus("✅ Key works!");
     } catch (e) {
       setKeyStatus(`❌ ${(e as Error).message}`);
     }
   };
-
   const doExport = async () => {
     const json = await exportBackup();
     const blob = new Blob([json], { type: "application/json" });
@@ -74,7 +95,6 @@ export default function SettingsPage() {
     localStorage.setItem("crolearn.lastBackup", new Date().toISOString());
     setBackupStatus("Backup downloaded.");
   };
-
   const doImport = async (file: File) => {
     try {
       await importBackup(await file.text());
@@ -84,203 +104,210 @@ export default function SettingsPage() {
     }
   };
 
+  const divider = { borderBottom: "1px solid rgba(15,23,42,.06)" };
+
   return (
-    <div className="mx-auto max-w-xl">
-      <h1 className="text-2xl font-black">⚙️ Settings</h1>
-
-      <section className="mt-6 rounded-2xl bg-white p-5 shadow-sm">
-        <h2 className="font-black">🤖 AI (Anthropic API key)</h2>
-        <p className="mt-1 text-sm text-stone-600">
-          Powers the AI tutor, answer grading, and extra practice. The key stays in this browser
-          only (localStorage) — never in project files. Everything else works without a key.
-        </p>
-        <input
-          type="password"
-          value={apiKey}
-          onChange={(e) => setApiKey(e.target.value)}
-          placeholder="sk-ant-…"
-          className="mt-3 w-full rounded-xl border-2 border-stone-300 px-4 py-2.5 outline-none focus:border-stone-900"
-        />
-        <label className="mt-3 block text-sm font-semibold text-stone-600">
-          Model
-          <select
-            value={model}
-            onChange={(e) => {
-              setModel(e.target.value);
-              localStorage.setItem("crolearn.model", e.target.value);
-            }}
-            className="mt-1 w-full rounded-xl border-2 border-stone-300 bg-white px-3 py-2.5"
+    <div className="grid grid-cols-[290px_minmax(0,1fr)] items-start gap-8 max-[1200px]:grid-cols-[240px_minmax(0,1fr)] max-[700px]:grid-cols-1">
+      {/* Left: profile + tab nav */}
+      <Card className="p-6">
+        <div className="mb-5 flex items-center gap-4">
+          <div
+            className="flex h-[62px] w-[62px] flex-none items-center justify-center rounded-full border"
+            style={{ background: "#F3EFE9", borderColor: "rgba(15,23,42,.06)", fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 24, color: BODY }}
           >
-            {MODELS.map((m) => (
-              <option key={m.id} value={m.id}>{m.label}</option>
-            ))}
-          </select>
-        </label>
-        <div className="mt-3 flex gap-2">
-          <button type="button" onClick={saveKey} className="rounded-xl bg-stone-900 px-4 py-2 font-bold text-white">
-            Save
-          </button>
-          <button
-            type="button"
-            onClick={() => void testKey()}
-            disabled={!apiKey.trim()}
-            className="rounded-xl border-2 border-stone-900 px-4 py-2 font-bold disabled:opacity-40"
-          >
-            Test connection
-          </button>
+            N
+          </div>
+          <div>
+            <div style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 18, color: INK }}>Noah</div>
+            <div className="text-sm" style={{ color: MUTED }}>Local-first learner</div>
+          </div>
         </div>
-        {keyStatus && <p className="mt-2 text-sm">{keyStatus}</p>}
-      </section>
+        <div className="grid gap-0.5">
+          {TABS.map((t) => {
+            const on = tab === t.key;
+            return (
+              <button
+                key={t.key}
+                onClick={() => setTab(t.key)}
+                className="flex items-center gap-3.5 rounded-xl px-4 py-3 text-left text-[15px] transition-colors duration-[180ms]"
+                style={{ background: on ? "rgba(201,52,52,.07)" : "transparent", color: on ? RED : BODY, fontWeight: on ? 500 : 400 }}
+              >
+                <t.icon size={19} color={on ? RED : BODY2} />
+                {t.key}
+              </button>
+            );
+          })}
+        </div>
+      </Card>
 
-      <section className="mt-4 rounded-2xl bg-white p-5 shadow-sm">
-        <h2 className="font-black">🧮 AI usage (estimate)</h2>
-        <p className="mt-1 text-sm text-stone-600">
-          A rough tally of what the AI features (tutor, grading, extra practice) have used on this
-          device. Estimate only — your{" "}
-          <a
-            href="https://console.anthropic.com/settings/usage"
-            target="_blank"
-            rel="noreferrer"
-            className="underline"
-          >
-            Anthropic Console
-          </a>{" "}
-          is the source of truth.
-        </p>
-        <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
-          <dt className="text-stone-500">Estimated cost</dt>
-          <dd className="text-right font-bold">
-            {usage.costUsd < 0.005 ? "< $0.01" : `$${usage.costUsd.toFixed(2)}`}
-          </dd>
-          <dt className="text-stone-500">AI calls</dt>
-          <dd className="text-right">{usage.calls.toLocaleString()}</dd>
-          <dt className="text-stone-500">Input tokens</dt>
-          <dd className="text-right">{usage.inputTokens.toLocaleString()}</dd>
-          <dt className="text-stone-500">Output tokens</dt>
-          <dd className="text-right">{usage.outputTokens.toLocaleString()}</dd>
-          {usage.cacheReadTokens > 0 && (
-            <>
-              <dt className="text-stone-500">Cache reads</dt>
-              <dd className="text-right">{usage.cacheReadTokens.toLocaleString()}</dd>
-            </>
-          )}
-        </dl>
-        <button
-          type="button"
-          onClick={() => {
-            resetUsage();
-            setUsage(getUsage());
-          }}
-          className="mt-3 rounded-xl border-2 border-stone-300 px-3 py-1.5 text-sm font-bold text-stone-600 hover:border-stone-900"
-        >
-          Reset counter
-        </button>
-      </section>
+      {/* Right: active panel */}
+      <div className="max-w-[820px]">
+        <H size={26} className="mb-[18px]">Settings</H>
 
-      <section className="mt-4 rounded-2xl bg-white p-5 shadow-sm">
-        <h2 className="font-black">🔊 Croatian voice (TTS)</h2>
-        {diag === null ? (
-          <p className="mt-2 text-sm text-stone-500">Checking voices…</p>
-        ) : (
-          <>
-            {diag.recommendation && (
-              <p className="mt-2 rounded-xl bg-amber-50 p-3 text-sm text-amber-800">💡 {diag.recommendation}</p>
-            )}
-            {diag.croatianVoices.length > 0 && (
-              <>
-                <label className="mt-3 block text-sm font-semibold text-stone-600">
-                  Croatian voice
-                  <select
-                    value={voice || (diag.best ?? "")}
-                    onChange={(e) => {
-                      setVoice(e.target.value);
-                      localStorage.setItem("crolearn.ttsVoice", e.target.value);
-                    }}
-                    className="mt-1 w-full rounded-xl border-2 border-stone-300 bg-white px-3 py-2.5"
-                  >
-                    {diag.croatianVoices.map((v) => (
-                      <option key={v.name} value={v.name}>
-                        {v.name} {v.natural ? "⭐" : ""}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <button
-                  type="button"
-                  onClick={() => void speak("Dobar dan! Ja sam tvoj hrvatski glas.")}
-                  className="mt-3 rounded-xl border-2 border-stone-900 px-4 py-2 font-bold"
-                >
-                  ▶ Try the voice
-                </button>
-              </>
-            )}
-          </>
+        {tab === "AI Tutor" && (
+          <Card className="px-7 py-3">
+            <div className="py-5" style={divider}>
+              <RowLabel label="Anthropic API key" sub="Powers the tutor, grading and extra practice. Stays in this browser only — everything else works without it." />
+              <input type="password" value={apiKey} onChange={(e) => setApiKey(e.target.value)} placeholder="sk-ant-…" className={`${inputCls} mt-3`} style={inputStyle} />
+              <div className="mt-3 flex gap-2.5">
+                <BtnPrimary onClick={saveKey}>Save</BtnPrimary>
+                <BtnGhost onClick={() => void testKey()}>Test connection</BtnGhost>
+              </div>
+              {keyStatus && <p className="mt-2.5 text-sm" style={{ color: BODY2 }}>{keyStatus}</p>}
+            </div>
+            <div className="py-5">
+              <RowLabel label="Model" sub="Used for the tutor, grading and exercise generation." />
+              <select
+                value={model}
+                onChange={(e) => {
+                  setModel(e.target.value);
+                  localStorage.setItem("crolearn.model", e.target.value);
+                }}
+                className={`${inputCls} mt-3`}
+                style={inputStyle}
+              >
+                {MODELS.map((m) => (
+                  <option key={m.id} value={m.id}>{m.label}</option>
+                ))}
+              </select>
+            </div>
+          </Card>
         )}
-      </section>
 
-      <section className="mt-4 mb-10 rounded-2xl bg-white p-5 shadow-sm">
-        <h2 className="font-black">💾 Backup</h2>
-        <p className="mt-1 text-sm text-stone-600">
-          All your progress (cards, lessons, tests) in one JSON file. Save it into your OneDrive
-          folder — recommended once a month.
-        </p>
-        <div className="mt-3 flex gap-2">
-          <button type="button" onClick={() => void doExport()} className="rounded-xl bg-stone-900 px-4 py-2 font-bold text-white">
-            Export
-          </button>
-          <button
-            type="button"
-            onClick={() => fileRef.current?.click()}
-            className="rounded-xl border-2 border-stone-900 px-4 py-2 font-bold"
-          >
-            Import…
-          </button>
-          <input
-            ref={fileRef}
-            type="file"
-            accept=".json"
-            className="hidden"
-            onChange={(e) => {
-              const f = e.target.files?.[0];
-              if (f) void doImport(f);
-            }}
-          />
-        </div>
-        {backupStatus && <p className="mt-2 text-sm">{backupStatus}</p>}
-      </section>
+        {tab === "Voice & Audio" && (
+          <Card className="px-7 py-3">
+            <div className="py-5">
+              <RowLabel label="Croatian voice (TTS)" sub="Best neural Croatian voice ships with Microsoft Edge." />
+              {diag === null ? (
+                <p className="mt-3 text-sm" style={{ color: MUTED }}>Checking voices…</p>
+              ) : (
+                <>
+                  {diag.recommendation && (
+                    <p className="mt-3 rounded-xl px-4 py-3 text-sm" style={{ background: tint("#E08A2B", 0.1), color: "#7A4A12" }}>{diag.recommendation}</p>
+                  )}
+                  {diag.croatianVoices.length > 0 && (
+                    <>
+                      <select
+                        value={voice || (diag.best ?? "")}
+                        onChange={(e) => {
+                          setVoice(e.target.value);
+                          localStorage.setItem("crolearn.ttsVoice", e.target.value);
+                        }}
+                        className={`${inputCls} mt-3`}
+                        style={inputStyle}
+                      >
+                        {diag.croatianVoices.map((v) => (
+                          <option key={v.name} value={v.name}>
+                            {v.name} {v.natural ? "⭐" : ""}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="mt-3">
+                        <BtnGhost icon={Play} onClick={() => void speak("Dobar dan! Ja sam tvoj hrvatski glas.")}>Try the voice</BtnGhost>
+                      </div>
+                    </>
+                  )}
+                </>
+              )}
+            </div>
+          </Card>
+        )}
 
-      <section className="mt-4 mb-10 rounded-2xl bg-white p-5 shadow-sm">
-        <h2 className="font-black">🚩 Reported mistakes</h2>
-        <p className="mt-1 text-sm text-stone-600">
-          Slides you flagged with 🚩 while playing. Show these to Claude so the content gets fixed;
-          delete them once handled.
-        </p>
-        {reports.length === 0 ? (
-          <p className="mt-3 text-sm text-stone-500">Nothing flagged — great!</p>
-        ) : (
-          <ul className="mt-3 space-y-2">
-            {reports.map((r) => (
-              <li key={r.id} className="flex items-start justify-between gap-3 rounded-xl bg-stone-50 p-3 text-sm">
-                <div>
-                  <p className="font-bold">
-                    <Link to={`/lesson/${r.lessonId}`} className="underline">{r.lessonId}</Link>
-                    <span className="text-stone-400"> · slide {r.slideId} · {r.createdAt.toLocaleDateString()}</span>
-                  </p>
-                  <p className="mt-0.5">{r.note}</p>
+        {tab === "AI Usage" && (
+          <Card className="px-7 py-3">
+            <div className="py-5" style={divider}>
+              <RowLabel
+                label="AI usage on this device (estimate)"
+                sub="Rough tally of tutor, grading and practice calls. Your Anthropic Console is the source of truth."
+              />
+              <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                <dt style={{ color: MUTED }}>Estimated cost</dt>
+                <dd className="text-right font-semibold" style={{ color: INK }}>{usage.costUsd < 0.005 ? "< $0.01" : `$${usage.costUsd.toFixed(2)}`}</dd>
+                <dt style={{ color: MUTED }}>AI calls</dt>
+                <dd className="text-right" style={{ color: INK }}>{usage.calls.toLocaleString()}</dd>
+                <dt style={{ color: MUTED }}>Input tokens</dt>
+                <dd className="text-right" style={{ color: INK }}>{usage.inputTokens.toLocaleString()}</dd>
+                <dt style={{ color: MUTED }}>Output tokens</dt>
+                <dd className="text-right" style={{ color: INK }}>{usage.outputTokens.toLocaleString()}</dd>
+                {usage.cacheReadTokens > 0 && (
+                  <>
+                    <dt style={{ color: MUTED }}>Cache reads</dt>
+                    <dd className="text-right" style={{ color: INK }}>{usage.cacheReadTokens.toLocaleString()}</dd>
+                  </>
+                )}
+              </dl>
+            </div>
+            <div className="py-5">
+              <BtnGhost
+                onClick={() => {
+                  resetUsage();
+                  setUsage(getUsage());
+                }}
+              >
+                Reset counter
+              </BtnGhost>
+            </div>
+          </Card>
+        )}
+
+        {tab === "Data & Privacy" && (
+          <Card className="px-7 py-3">
+            <div className="py-5" style={divider}>
+              <div className="flex items-center justify-between gap-5 max-[700px]:flex-wrap">
+                <div className="flex items-center gap-4">
+                  <Download size={20} color={BODY2} />
+                  <RowLabel label="Backup" sub="All progress (cards, lessons, tests) in one JSON file — monthly recommended." />
                 </div>
-                <button
-                  type="button"
-                  onClick={() => r.id !== undefined && void deleteReport(r.id)}
-                  aria-label="Delete report"
-                  className="shrink-0 rounded-lg px-2 py-1 font-bold text-stone-400 hover:bg-stone-200 hover:text-stone-700"
-                >
-                  ✕
-                </button>
-              </li>
-            ))}
-          </ul>
+                <div className="flex flex-none gap-2.5">
+                  <BtnPrimary onClick={() => void doExport()}>Export</BtnPrimary>
+                  <BtnGhost onClick={() => fileRef.current?.click()}>Import…</BtnGhost>
+                  <input
+                    ref={fileRef}
+                    type="file"
+                    accept=".json"
+                    className="hidden"
+                    onChange={(e) => {
+                      const f = e.target.files?.[0];
+                      if (f) void doImport(f);
+                    }}
+                  />
+                </div>
+              </div>
+              {backupStatus && <p className="mt-2.5 text-sm" style={{ color: BODY2 }}>{backupStatus}</p>}
+            </div>
+            <div className="py-5">
+              <div className="mb-3 flex items-center gap-4">
+                <Flag size={20} color={BODY2} />
+                <RowLabel label="Reported mistakes" sub="Slides you flagged while playing. Show these to Claude so the content gets fixed." />
+              </div>
+              {reports.length === 0 ? (
+                <p className="text-sm" style={{ color: MUTED }}>Nothing flagged — great!</p>
+              ) : (
+                <ul className="space-y-2">
+                  {reports.map((r) => (
+                    <li key={r.id} className="flex items-start justify-between gap-3 rounded-xl px-4 py-3 text-sm" style={{ background: "rgba(15,23,42,.03)" }}>
+                      <div>
+                        <p className="font-semibold" style={{ color: INK }}>
+                          <Link to={`/lesson/${r.lessonId}`} className="underline">{r.lessonId}</Link>
+                          <span style={{ color: MUTED }}> · slide {r.slideId} · {r.createdAt.toLocaleDateString()}</span>
+                        </p>
+                        <p className="mt-0.5" style={{ color: BODY2 }}>{r.note}</p>
+                      </div>
+                      <button
+                        onClick={() => r.id !== undefined && void deleteReport(r.id)}
+                        aria-label="Delete report"
+                        className="flex-none rounded-lg p-1.5 transition-colors duration-150 hover:bg-[rgba(15,23,42,.06)]"
+                      >
+                        <X size={16} color={MUTED} />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </Card>
         )}
-      </section>
+      </div>
     </div>
   );
 }

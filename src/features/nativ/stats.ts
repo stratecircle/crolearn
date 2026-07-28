@@ -95,15 +95,17 @@ function fmtDuration(ms: number): string | undefined {
 }
 
 export async function loadNativProgress(): Promise<NativProgress> {
-  const [due, lessons, stories, tests, checkpoints, log, recentCards] = await Promise.all([
+  const [due, lessons, stories, tests, checkpoints, log, allCards] = await Promise.all([
     countDue(),
     db.lessonProgress.toArray(),
     db.storyProgress.toArray(),
     db.testResults.toArray(),
     db.checkpointResults.toArray(),
     db.reviewLog.orderBy("reviewedAt").reverse().limit(4000).toArray(),
-    db.cards.orderBy("createdAt").reverse().limit(30).toArray(),
+    // createdAt is not indexed — sort in JS (cards number in the hundreds).
+    db.cards.toArray(),
   ]);
+  const recentCards = allCards.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()).slice(0, 30);
 
   const completedLessons = new Set(lessons.map((l) => l.lessonId));
   const completedStories = new Set(stories.map((s) => s.storyId));
@@ -129,7 +131,7 @@ export async function loadNativProgress(): Promise<NativProgress> {
   }
 
   // Words learned = vocab items with seeded cards (recognition side).
-  const wordsLearned = await db.cards.where("kind").equals("recognition").count();
+  const wordsLearned = allCards.filter((c) => c.kind === "recognition").length;
 
   // Time practiced = review think-time + estMinutes of completed lessons.
   const reviewMs = log.reduce((s, r) => s + Math.min(r.elapsedMs || 0, 120000), 0);
