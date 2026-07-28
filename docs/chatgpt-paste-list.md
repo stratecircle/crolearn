@@ -508,3 +508,367 @@ are calendar/clock concepts; feeling words are faces. No text anywhere.
 39. `grozno` — a grimacing unhappy face (terrible)
 40. `gost` — a smiling visitor arriving at a door with a small gift
 41. `vrijeme` — a sky that is half-sunny, half-cloudy, beside a clock (weather = time)
+
+---
+
+# A2 batches (9–16) — slugs taken from the AUTHORED content files, not the specs
+
+Same drill every time: paste Message 1 (the style lock) in a fresh conversation,
+then one line at a time, download everything to `public/img/incoming/`, tell
+Claude "images are in". Target filename first. No text/letters anywhere except
+where a line explicitly allows digits. Tickets, documents, screens and cards
+always use wordless squiggle lines.
+
+---
+
+# Batch 9 — Unit 9 vocab (travel & future) — 36 words
+
+1. `putovanje` — an open suitcase packed with clothes, sunglasses and a camera
+2. `put` — a winding road stretching toward the horizon
+3. `plan` — a notepad with a route sketched as a dotted line ending at a little flag
+4. `planirati` — a person at a table tracing a route on an open map with a pencil
+5. `otok` — a small green island with a palm tree in a blue sea
+6. `plaza` — a sandy beach with a striped towel and a beach ball
+7. `karta` — a single travel ticket with a punched hole and squiggle lines
+8. `povratna-karta` — two joined tickets, one with an arrow going right, one with an arrow coming back left
+9. `rezervirati` — a hand clicking a glowing highlighted cell on a laptop calendar of blank cells
+10. `rezervacija` — a hotel desk bell beside a tag with a big checkmark
+11. `polazak` — a train pulling away from a platform with motion lines and a forward arrow
+12. `dolazak` — a train arriving at a platform where people wave
+13. `sjedalo` — a single cushioned train seat by a window
+14. `red-voznje` — a station timetable board with wordless squiggle rows under a big clock
+15. `granica` — a road border crossing with a striped barrier and two plain generic flags
+16. `putovnica` — a dark-red passport booklet with a plain gold globe emblem, no text
+17. `prtljaga` — a pile of suitcases and bags on an airport luggage cart
+18. `kovceg` — one rolling suitcase with a telescopic handle
+19. `ruksak` — a hiking backpack
+20. `carina` — a customs officer at a desk inspecting an open suitcase
+21. `obala` — a rocky coastline meeting a blue sea, with a small lighthouse
+22. `kod` — a guest and a host having tea together in a cozy living room, host gesturing welcome (at somebody's place)
+23. `bez` — a cup of coffee next to a sugar cube crossed out with a red slash (without)
+24. `vlak` — a friendly blue passenger train
+25. `avion` — a passenger airplane in flight among small clouds
+26. `let` — a dotted flight path arcing between two clouds with a tiny plane on it
+27. `letjeti` — a plane climbing steeply upward with motion lines
+28. `recepcija` — a hotel reception desk with a bell and a friendly receptionist
+29. `soba` — a tidy hotel room with a bed and a lamp
+30. `kljuc` — a single golden key on a ring with a blank room tag
+31. `odmor` — a person relaxing in a hammock between two palm trees
+32. `spakirati` — a person pressing down the lid of an overstuffed suitcase to close it
+33. `krenuti` — a person stepping out of their front door with a suitcase, bold arrow forward
+34. `stici` — a traveler stepping through an arrival gate, arms raised happily, suitcase beside them
+35. `vodic` — a tour guide holding up a small pennant with two tourists following
+36. `veceras` — a calendar with one day circled and a crescent moon with stars above it (tonight)
+
+---
+
+# Batch 10 — Unit 10 vocab (home, flat, dative) — 39 words
+
+1. `susjed` — a man waving hello over a garden fence
+2. `susjeda` — a woman waving hello over a garden fence
+3. `poklon` — a wrapped gift box with a red bow
+4. `pismo` — an open letter with squiggle lines unfolding from an envelope
+5. `davati` — one person handing an apple to another, mid-give
+6. `pomagati` — a person helping another carry a heavy box
+7. `poslati` — a hand dropping an envelope into a yellow mailbox
+8. `pokazati` — a person showing a friend a framed photo, pointing at it
+9. `svidati-se` — a person admiring a painting with little hearts floating around them
+10. `ulaz` — an apartment building entrance with a green door and an arrow pointing in
+11. `dizalo` — open elevator doors with a person inside and a lit up-arrow
+12. `prozor` — a single open window with curtains and a flower pot on the sill
+13. `vrata` — a wooden front door with a brass handle
+14. `balkon` — a small balcony with a railing, a chair and potted plants
+15. `cistiti` — a person wiping a window with a cloth, sparkles where it's clean
+16. `pospremati` — a person placing books and toys neatly onto a shelf
+17. `prati` — a person washing dishes at a sink full of suds
+18. `sude` — a stack of clean plates with cups and a few soap bubbles
+19. `rublje` — a laundry basket of clothes with a t-shirt hanging on a line
+20. `smece` — a tied garbage bag beside a bin with a lid
+21. `pod` — a mop and bucket on a shiny wooden floor
+22. `kuhinja` — a cozy kitchen with a stove, pots and cabinets
+23. `stanovati` — a building cutaway with one warm lit flat where a person is reading
+24. `iznajmiti` — a hand handing over a key above a small model house
+25. `najam` — a key resting on a contract paper with squiggle lines
+26. `stanarina` — a stack of coins beside a small model apartment building and a calendar with one cell highlighted
+27. `cimer` — two beds in one room, a young man sitting on one waving
+28. `cimerica` — two young women unpacking moving boxes together in a shared flat
+29. `vlasnik` — a man in a sweater-vest holding a bunch of keys beside a door with a blank nameplate
+30. `preseliti-se` — a moving van with boxes and a person carrying a box toward a new house
+31. `kupaonica` — a bathroom with a bathtub, mirror and towels
+32. `spavaca-soba` — a bedroom with a made double bed and a bedside lamp
+33. `dnevni-boravak` — a living room with a sofa, rug and TV
+34. `hodnik` — a hallway with a coat rack and several doors
+35. `namjestaj` — a grouped set of furniture: sofa, table, lamp and wardrobe
+36. `krevet` — a neatly made bed with two pillows
+37. `ormar` — a wooden wardrobe with one door open showing hanging clothes
+38. `stol` — a plain wooden dining table
+39. `stolica` — a single wooden chair
+
+---
+
+# Batch 11 — Unit 11 vocab (health & body) — 39 words
+
+Body parts: a friendly person outline with the named part glowing warm, or a
+clean close-up. Modal verbs are concept gestures.
+
+1. `glava` — a friendly person outline with the head highlighted in a warm glow
+2. `ruka` — an arm with an open hand, sleeve rolled up
+3. `noga` — a leg with a sneaker, mid-step
+4. `oko` — a single friendly open eye with lashes
+5. `uho` — a single ear, close-up
+6. `zub` — a single shiny white tooth with a sparkle
+7. `grlo` — a person outline with the throat highlighted in a warm glow
+8. `trbuh` — a person outline with the belly highlighted in a warm glow
+9. `leda` — a person seen from behind with the back highlighted in a warm glow
+10. `srce` — a bold red heart with a gentle pulse line through it
+11. `boljeti` — a person wincing and holding their arm, red zigzag pain flashes
+12. `morati` — a person hurrying along with a big red exclamation mark above them (must)
+13. `moci` — a person confidently flexing one arm with a bright sparkle (can)
+14. `smjeti` — a friendly guard nodding and lifting a barrier for a pedestrian (may / allowed)
+15. `trebati` — a person on tiptoes reaching for a glowing jar on a high shelf (need)
+16. `lezati` — a person lying on a sofa under a blanket
+17. `ostati` — a person staying wrapped in a blanket on the sofa with a steaming mug while rain falls outside the window
+18. `bolestan` — a person in bed with a red nose and a thermometer in their mouth
+19. `zdrav` — a glowing healthy person giving a thumbs up, apple in the other hand
+20. `prehlada` — a person wrapped in a scarf sneezing into a tissue
+21. `kasalj` — a person coughing into their elbow with little cough puffs
+22. `temperatura` — a person in bed with flushed red cheeks and a thermometer showing a high red reading
+23. `glavobolja` — a person holding their head with zigzag flashes at the temples
+24. `muka` — a queasy green-tinged person holding their stomach, wavy lines rising
+25. `slab` — a drooping person leaning against a wall beside a nearly empty battery icon
+26. `pomoc` — one hand firmly pulling another hand up
+27. `ljekarna` — a pharmacy storefront with a green cross sign
+28. `lijek` — a medicine bottle and a blister pack of pills, no labels
+29. `recept` — a doctor's prescription pad with wordless squiggle lines and a round stamp
+30. `pregled` — a doctor listening to a patient's chest with a stethoscope
+31. `cekaonica` — a waiting room with a row of chairs, a wall clock and one waiting person
+32. `tableta` — a single round white pill beside a glass of water
+33. `zdravlje` — a red apple, a dumbbell and a heart with a pulse line grouped together
+34. `vjezbati` — a person doing stretching exercises on a mat
+35. `trcati` — a person jogging with motion lines
+36. `hodati` — a person walking briskly on a park path
+37. `san` — a fluffy pillow under a crescent moon with little z-shaped sleep marks (sleep)
+38. `dovoljno` — a glass filled exactly to a marked line, a level flat hand beside it (enough)
+39. `brinuti-se` — a person tucking a blanket around someone ill and bringing them tea
+
+---
+
+# Batch 12 — Unit 12 vocab (work, study, instrumental) — 37 words
+
+1. `ured` — an office room with a desk, computer and swivel chair
+2. `tvrtka` — a modern office building with a blank sign panel
+3. `kolega` — a man with a blank lanyard badge waving beside an office desk
+4. `kolegica` — a woman with a blank lanyard badge waving beside an office desk
+5. `sef` — a man in a tie at the head of a desk, gesturing at a wordless wall chart
+6. `sefica` — a woman in a blazer at the head of a desk, gesturing at a wordless wall chart
+7. `sastanak` — four people around a meeting table with a wordless flip chart
+8. `tim` — a group of coworkers stacking their hands together in the middle
+9. `zajedno` — three people rowing one boat in perfect sync (together)
+10. `bicikl` — a friendly city bicycle with a basket
+11. `racunalo` — a desktop computer with keyboard and mouse
+12. `olovka` — a single yellow pencil
+13. `mobitel` — a smartphone with a colourful home screen of blank app icons
+14. `pjesice` — two walking feet with motion lines on a path (on foot)
+15. `stanica` — SKIP — already in Batch 5 (`stanica`, the bus-stop shelter); reuse that file
+16. `radnik` — a workman in overalls and a hard hat carrying a toolbox
+17. `radnica` — a workwoman in overalls and a hard hat carrying a toolbox
+18. `prodavac` — a male shop assistant behind a counter handing over a paper bag
+19. `prodavacica` — a female shop assistant behind a counter handing over a paper bag
+20. `vozac` — a man at a car steering wheel, seen through the windscreen, waving
+21. `vozacica` — a woman at a car steering wheel, seen through the windscreen, waving
+22. `programer` — a man at dual monitors showing colourful abstract code blocks (no letters)
+23. `programerica` — a woman at dual monitors showing colourful abstract code blocks (no letters)
+24. `zaradivati` — a person at a workbench with a small stack of coins growing beside them
+25. `placa` — an envelope with coins and plain banknotes peeking out
+26. `ispit` — a desk with an exam paper of squiggle lines, a pencil and a ticking clock
+27. `predavanje` — a lecturer at a podium before seated students, wordless slide behind them
+28. `zadatak` — a clipboard checklist with squiggle lines, two boxes ticked
+29. `knjiznica` — tall library shelves full of books with a reading lamp
+30. `studirati` — a student at a library desk with a stack of books and a graduation cap hanging nearby
+31. `poloziti` — a student jumping for joy holding a paper with a big green checkmark
+32. `zivotopis` — a CV page with a photo box and wordless squiggle lines
+33. `razgovor-za-posao` — two people in an interview across a desk, one holding a squiggle-lined page
+34. `iskustvo` — a confident person with a few grey streaks in front of a wall of framed wordless certificates
+35. `prilika` — an open door with bright light and a shining star visible through it (opportunity)
+36. `zaposliti-se` — a handshake across a desk over a squiggle-lined contract
+37. `javiti-se` — a person making the "call me" hand gesture (thumb and pinky) with a small phone beside them
+
+---
+
+# Batch 13 — Unit 13 vocab (nature, seasons, comparatives) — 38 words
+
+Adjective pairs are single objects that embody the quality. Seasons are scenes.
+
+1. `priroda` — a green valley with trees, a river and mountains
+2. `planina` — a single snow-capped mountain peak
+3. `rijeka` — a winding blue river through green banks
+4. `jezero` — a calm turquoise lake ringed by pine trees
+5. `suma` — a dense green forest with a path leading in
+6. `polje` — a green field with neat rows of crops
+7. `zivotinja` — a dog, a cat and a rabbit sitting together in a row (animals)
+8. `konj` — a chestnut horse standing in a meadow
+9. `krava` — a black-and-white cow in a pasture
+10. `ovca` — a fluffy white sheep
+11. `medvjed` — a friendly brown bear standing in a forest
+12. `nekoliko` — an open hand holding three cherries (a few)
+13. `proljece` — a blossoming branch with fresh green leaves and a small bird
+14. `jesen` — an autumn tree with orange leaves falling
+15. `zima` — a snowy landscape with a snowman
+16. `godisnjedoba` — a circle of four mini-scenes: blossom, bright sun, falling leaf, snowflake
+17. `topao` — a folded knitted sweater radiating gentle warmth lines
+18. `hladan` — a frosty glass of water with ice cubes and frost sparkles
+19. `vruc` — a steaming mug glowing red with wavy heat lines
+20. `svjez` — a crisp green leaf with dewdrops and a light breeze line
+21. `ljeti` — a blazing sun over a beach with flip-flops in the sand (in summer)
+22. `zimi` — a pair of mittens and a steaming mug against falling snow (in winter)
+23. `dubok` — a cutaway of a deep well with a long rope going far down
+24. `dug` — a very long striped scarf trailing across the whole frame
+25. `kratak` — a tiny stubby pencil with lots of empty space around it
+26. `brz` — a rabbit sprinting with speed lines
+27. `spor` — a snail inching along
+28. `sirok` — a very wide river spanning the whole frame between tiny banks
+29. `drvo` — a single leafy green tree
+30. `cvijet` — a single bright daisy
+31. `trava` — a tuft of green grass, close-up
+32. `nebo` — looking straight up at a blue sky framed by treetops
+33. `zrak` — a person on a mountain meadow breathing deeply, gentle transparent swirls around them
+34. `kamen` — a smooth grey stone
+35. `pogled` — a scenic overlook railing with a vista of a lake and mountains beyond
+36. `predivan` — a breathtaking waterfall with a rainbow
+37. `mjesto` — a glowing red map pin standing on a small patch of grass (a place)
+38. `vise` — two stacks of coins, the right one taller with an up arrow (more)
+
+---
+
+# Batch 14 — Unit 14 vocab (celebrations, months, imperative) — 47 words
+
+Months are a strip of twelve calendar cells with the right cell highlighted plus
+a tiny season icon — same device as the Batch 6 week-strips, no text.
+
+1. `proslava` — a festive room with balloons, streamers and a table of treats
+2. `slaviti` — people tossing confetti and raising juice glasses around a cake
+3. `dragi` — an envelope sealed with a red heart sticker (dear…)
+4. `momak` — a friendly young man giving a thumbs up
+5. `drustvo` — a group of friends laughing around a café table
+6. `gospodica` — a cheerful young woman in a sundress waving politely
+7. `pozvati` — a hand holding out a squiggle-lined invitation card to another person
+8. `donijeti` — a person arriving at a door carrying a covered dish
+9. `otvoriti` — hands lifting the lid off a gift box with light spilling out
+10. `glazba` — colourful music notes flowing from a speaker
+11. `balon` — a bunch of colourful balloons
+12. `ukras` — a paper garland and hanging streamers
+13. `torta` — a tall three-layer cream cake with strawberries, no candles
+14. `secer` — a bowl of white sugar with a few cubes
+15. `brasno` — an open paper sack of flour with a scoop and a little puff of dust, no label
+16. `jaje` — one whole brown egg beside one cracked open showing the yolk
+17. `dodati` — a hand sprinkling sugar into a mixing bowl
+18. `mijesati` — a hand stirring batter in a bowl with a wooden spoon
+19. `staviti` — hands sliding a cake pan into an oven
+20. `pecnica` — a kitchen oven with a window showing a rising cake
+21. `sijecanj` — a twelve-cell strip with the 1st cell highlighted, tiny snowflake
+22. `veljaca` — a twelve-cell strip with the 2nd cell highlighted, tiny red heart
+23. `ozujak` — a twelve-cell strip with the 3rd cell highlighted, tiny green sprout
+24. `travanj` — a twelve-cell strip with the 4th cell highlighted, tiny umbrella with raindrops
+25. `svibanj` — a twelve-cell strip with the 5th cell highlighted, tiny blossom
+26. `lipanj` — a twelve-cell strip with the 6th cell highlighted, tiny sun
+27. `srpanj` — a twelve-cell strip with the 7th cell highlighted, tiny beach ball
+28. `kolovoz` — a twelve-cell strip with the 8th cell highlighted, tiny wheat sheaf
+29. `rujan` — a twelve-cell strip with the 9th cell highlighted, tiny falling orange leaf
+30. `listopad` — a twelve-cell strip with the 10th cell highlighted, tiny bare branch with one leaf
+31. `studeni` — a twelve-cell strip with the 11th cell highlighted, tiny grey cloud with fog lines
+32. `prosinac` — a twelve-cell strip with the 12th cell highlighted, tiny decorated tree
+33. `mjesec` — a wall calendar showing one month grid of blank cells
+34. `bozic` — a decorated Christmas tree with wrapped presents beneath
+35. `uskrs` — painted eggs in a basket with spring flowers
+36. `novagodina` — fireworks bursting over a clock striking midnight
+37. `blagdan` — a calendar with one day marked by a small star and confetti around it
+38. `datum` — a calendar page with one blank cell circled in red
+39. `svijeca` — a single lit candle
+40. `cestitka` — a greeting card standing open with a heart and confetti drawn inside, no words
+41. `cestitati` — a person shaking hands with a graduate and handing them flowers
+42. `pozivnica` — an invitation card with little balloons drawn on it, no words
+43. `zelja` — a person blowing out birthday candles with eyes closed, one small star above
+44. `sreca` — a four-leaf clover with sparkles
+45. `zivjeli` — SKIP — already in Batch 4 (`zivjeli`, the clinking mugs); reuse that file
+46. `iznenadenje` — a person bursting out of a giant gift box with confetti flying
+47. `veseo` — a beaming person clicking their heels mid-skip
+
+---
+
+# Batch 15 — Unit 15 vocab (phones, e-mail, clitics) — 32 words
+
+Screens show wordless chat bubbles / blank icons; symbols (arrows, hearts,
+checkmarks, question marks) are allowed, letters are not.
+
+1. `poziv` — a ringing phone with sound arcs coming off it
+2. `poruka` — a phone screen with two wordless chat bubbles
+3. `nazvati` — a finger tapping a green handset icon on a phone
+4. `zvati` — a person holding a phone to their ear with a small speech bubble
+5. `cuti` — a hand cupped behind an ear with sound waves arriving
+6. `primiti` — a phone with an incoming envelope icon and a little chime spark
+7. `vidjeti` — wide-open friendly eyes with a bright sparkle of noticing
+8. `odgovoriti` — two chat bubbles with an arrow curving from the right one back to the left
+9. `odgovor` — a single reply chat bubble with a checkmark inside
+10. `pitanje` — a big friendly question mark inside a speech bubble
+11. `vijest` — a folded newspaper with squiggle headlines beside a small megaphone
+12. `slika` — a framed photo of a simple landscape
+13. `ostaviti` — a squiggle-lined sticky note being left on a fridge door
+14. `halo` — a person answering a ringing phone with raised eyebrows and a small question spark
+15. `postovani` — a formal letter with an elegant red wax seal
+16. `pozdrav` — a postcard with a small waving hand drawn on it
+17. `potpis` — a fountain pen finishing a flourished signature squiggle
+18. `hitno` — a red siren light above an envelope with speed lines
+19. `zauzet` — a person at a desk buried in papers, palm raised in a "not now" gesture
+20. `email` — a laptop screen with an open envelope icon and a send arrow
+21. `veza` — two puzzle pieces joining with a bright spark between them (connection)
+22. `objava` — a phone screen showing a photo post with a heart icon under it
+23. `pratiti` — a phone screen with a friendly profile picture and a green checkmark button beneath it (follow)
+24. `dopisivatise` — two phones facing each other with chat bubbles flying between them
+25. `videopoziv` — a laptop screen showing a smiling face in a video-call window
+26. `dijeliti` — a photo passing from one phone to another along an arrow
+27. `internet` — a globe wrapped in a glowing network of connected dots
+28. `mreza` — connected glowing dots forming a web pattern
+29. `lozinka` — a padlock above a screen field showing a row of dots
+30. `stranica` — a browser window with squiggle text and one picture block
+31. `aplikacija` — a phone home screen with one big colourful app icon glowing
+32. `objaviti` — a finger tapping a big up-arrow send button, the post flying upward off the screen
+
+---
+
+# Batch 16 — Unit 16 vocab (aspect, biography) — 32 words
+
+Perfective verbs are DONE-ness scenes: the finished thing plus a laid-down tool
+and/or a checkmark. Life stages are literal.
+
+1. `napisati` — a finished letter with the pen laid down beside it and a big checkmark
+2. `procitati` — a closed book with a bookmark at the very last page and a checkmark
+3. `pogledati` — a person leaning in for one quick look at a framed picture, single motion arc
+4. `napraviti` — a finished birdhouse with the tools laid down beside it and a checkmark
+5. `popiti` — an upturned empty glass with one last drop and a checkmark
+6. `pojesti` — an empty plate with crumbs and a fork laid down across it
+7. `nauciti` — a steady bright lightbulb above a closed notebook with a checkmark
+8. `poceti` — a sprinter exploding off the starting blocks
+9. `roditise` — a swaddled newborn baby with a tiny blank hospital tag
+10. `odrasti` — a wall height chart with marks from small to tall and a grown person at the top mark
+11. `djetinjstvo` — a teddy bear, building blocks and a paper boat together
+12. `mladost` — a teenager on a skateboard with a backpack
+13. `upoznati` — two people shaking hands for the first time, both wearing blank name-tag stickers
+14. `promijeniti` — an arrow curving from an old worn chair to a bright new chair
+15. `odluciti` — a person at a fork in the road already striding boldly down the chosen path
+16. `buducnost` — a road stretching toward a bright sunrise horizon with a forward arrow
+17. `cilj` — an archery target with an arrow in the bullseye
+18. `san2` — a person gazing at a thought bubble containing a little house by the sea (a dream)
+19. `nadatise` — a person with hands clasped hopefully, looking up at a small star
+20. `uspjeti` — a climber planting a flag on a mountain summit
+21. `zivot` — a footpath winding from a small house through fields toward sunny mountains
+22. `vjencanje` — a bride and groom under an arch of flowers
+23. `vjencatise` — two hands exchanging rings, close-up
+24. `zavrsiti` — a person breaking through a finish-line ribbon with arms raised
+25. `uspjeh` — a gold trophy cup with sparkles
+26. `brak` — two gold rings interlinked
+27. `prica` — an open storybook with a tiny scene popping up from the pages
+28. `pocetak` — a green flag planted at the very start of a long winding road
+29. `kraj` — a hand placing the final piece into a nearly finished jigsaw puzzle
+30. `sjecatise` — a person gazing at a thought bubble holding a faded old photo
+31. `proslost` — a sepia-toned framed family photo with an arrow curving back
+32. `sadasnjost` — a person standing happily inside a big glowing map pin (the here-and-now)
