@@ -1,15 +1,18 @@
 import { useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Flag, Trophy } from "lucide-react";
 import { findTest } from "@/content";
 import { db } from "@/lib/db";
 import SlideRenderer from "@/components/SlideRenderer";
 import type { QuizSlide } from "@/types/content";
+import { BODY2, BtnGhost, BtnPrimary, DoneCard, Eyebrow, INK, MUTED, ProgressBar, RED } from "@/ui/kit";
 
 /**
  * Unit test (§8): no hints, no retry queue, first-attempt scoring.
  * Soft gate — a fail warns but never blocks (the dashboard still allows moving on).
  */
 export default function TestPage() {
+  const nav = useNavigate();
   const { id } = useParams<{ id: string }>();
   const test = id ? findTest(id) : undefined;
   const flat = useMemo(
@@ -31,66 +34,58 @@ export default function TestPage() {
 
   if (!test)
     return (
-      <p className="py-10 text-center">
+      <p className="py-10 text-center" style={{ color: BODY2 }}>
         Test not found. <Link to="/" className="underline">Back to the path</Link>
       </p>
     );
 
   if (!started) {
     return (
-      <div className="m-auto w-full max-w-xl py-10 text-center">
-        <div className="text-5xl">🏁</div>
-        <h1 className="mt-3 text-3xl font-black">{test.title}</h1>
-        <p className="mt-2 text-stone-600">
-          {flat.length} items · no hints · pass ≥ {test.passPct}%
-        </p>
-        <p className="mt-1 text-sm text-stone-500">
-          Wrong answers are saved with your result, so you know what to revisit.
-        </p>
-        <button
-          type="button"
-          onClick={() => setStarted(true)}
-          className="mt-6 rounded-xl bg-stone-900 px-8 py-3 text-lg font-bold text-white hover:bg-stone-700"
-        >
-          Start the test
-        </button>
+      <div className="m-auto w-full max-w-[720px] py-10">
+        <DoneCard icon={Flag} title={test.title}>
+          <div className="mb-1.5 text-[17px]" style={{ color: BODY2 }}>
+            {flat.length} items · no hints · pass ≥ {test.passPct}%
+          </div>
+          <div className="mb-8 text-sm" style={{ color: MUTED }}>
+            Wrong answers are saved with your result, so you know what to revisit.
+          </div>
+          <div className="flex justify-center">
+            <BtnPrimary onClick={() => setStarted(true)}>Start the test</BtnPrimary>
+          </div>
+        </DoneCard>
       </div>
     );
   }
 
   if (result) {
     return (
-      <div className="m-auto w-full max-w-xl py-10 text-center">
-        <div className="text-6xl">{result.passed ? "🏆" : "💪"}</div>
-        <h2 className="mt-3 text-3xl font-black">{result.passed ? "Passed!" : "Almost there!"}</h2>
-        <p className="mt-2 text-lg">
-          Score: <strong>{result.pct}%</strong> (pass mark {test.passPct}%)
-        </p>
-        {!result.passed && (
-          <p className="mt-2 text-stone-600">
-            Suggestion: revisit this unit's lessons and try again in a day or two. You can also
-            keep going — the test is here to help, not to punish.
-          </p>
-        )}
-        <div className="mt-6 grid gap-3">
+      <div className="m-auto w-full max-w-[720px] py-10">
+        <DoneCard icon={Trophy} title={result.passed ? "Passed!" : "Almost there!"}>
+          <div className="mb-2 text-[17px]" style={{ color: BODY2 }}>
+            Score: <strong style={{ color: INK }}>{result.pct}%</strong> (pass mark {test.passPct}%)
+          </div>
           {!result.passed && (
-            <button
-              type="button"
-              onClick={() => {
-                setI(0);
-                setWrong([]);
-                setResult(null);
-                setStarted(false);
-              }}
-              className="rounded-xl border-2 border-stone-900 py-3 font-bold hover:bg-stone-100"
-            >
-              🔁 Try again
-            </button>
+            <div className="mx-auto mb-6 max-w-[460px] text-[15px] leading-relaxed" style={{ color: BODY2 }}>
+              Suggestion: revisit this unit's lessons and try again in a day or two. You can also
+              keep going — the test is here to help, not to punish.
+            </div>
           )}
-          <Link to="/" className="rounded-xl bg-stone-900 py-3 font-bold text-white hover:bg-stone-700">
-            Back to the path →
-          </Link>
-        </div>
+          <div className="mt-2 flex flex-wrap justify-center gap-3.5">
+            {!result.passed && (
+              <BtnGhost
+                onClick={() => {
+                  setI(0);
+                  setWrong([]);
+                  setResult(null);
+                  setStarted(false);
+                }}
+              >
+                Try again
+              </BtnGhost>
+            )}
+            <BtnPrimary onClick={() => nav("/")}>Back to path</BtnPrimary>
+          </div>
+        </DoneCard>
       </div>
     );
   }
@@ -111,12 +106,13 @@ export default function TestPage() {
 
   return (
     <div className="m-auto w-full max-w-2xl py-6">
-      <div className="mb-4 flex items-center justify-between text-sm font-bold text-stone-500">
-        <span>🏁 {current.section}</span>
-        <span>
-          {i + 1}/{flat.length}
+      <div className="mb-2 flex items-center justify-between">
+        <Eyebrow>{current.section.toUpperCase()}</Eyebrow>
+        <span className="text-sm" style={{ color: BODY2 }}>
+          {i + 1} / {flat.length}
         </span>
       </div>
+      <ProgressBar pct={(i / flat.length) * 100} color={RED} height={8} className="mb-6" />
       <SlideRenderer
         key={`${i}-${current.slide.id}`}
         slide={current.slide}

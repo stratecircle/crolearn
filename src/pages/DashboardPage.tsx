@@ -6,20 +6,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, BookOpen, Bookmark, Check, Clock, Flag, Flame, Layers, Lock, Star, Target } from "lucide-react";
-import { BODY2, BtnPrimary, Card, CardH, Eyebrow, H, INK, MUTED, ProgressBar, Ring, Tile, tint } from "@/ui/kit";
+import { BODY2, BtnPrimary, Card, CardH, Eyebrow, H, INK, MUTED, ProgressBar, Ring, StatChip, StatRow, Tile, tint } from "@/ui/kit";
 import { loadNativProgress, stepDone, stepLink, type NativProgress } from "@/features/nativ/stats";
-
-function StatChip({ icon: Icon, color, value, label }: { icon: typeof Flame; color: string; value: string; label: string }) {
-  return (
-    <div className="flex items-center gap-2.5">
-      <Icon size={20} color={color} strokeWidth={1.7} />
-      <div>
-        <div className="text-[15px] font-semibold leading-tight" style={{ color: INK }}>{value}</div>
-        <div className="whitespace-nowrap text-xs" style={{ color: MUTED }}>{label}</div>
-      </div>
-    </div>
-  );
-}
 
 export default function DashboardPage() {
   const nav = useNavigate();
@@ -53,12 +41,12 @@ export default function DashboardPage() {
           <H size={26} className="mb-1">Dobro došli, Noah.</H>
           <p className="text-sm" style={{ color: MUTED }}>Let's continue your Croatian journey.</p>
         </div>
-        <div className="flex items-center gap-[26px] pt-1 max-[700px]:flex-wrap max-[700px]:gap-x-5 max-[700px]:gap-y-3 max-[700px]:pt-0">
+        <StatRow className="pt-1 max-[700px]:w-full max-[700px]:pt-0">
           <StatChip icon={Target} color={INK} value={String(s.dayStreak)} label="Day streak" />
           <StatChip icon={Flame} color="#C93434" value={String(s.longestStreak)} label="Longest streak" />
           <StatChip icon={Star} color="#3B6FD4" value={String(s.wordsLearned)} label="Words learned" />
           {s.timePracticed && <StatChip icon={Clock} color="#2F7D53" value={s.timePracticed} label="Time practiced" />}
-        </div>
+        </StatRow>
       </div>
 
       {/* Current lesson + Today's goal */}

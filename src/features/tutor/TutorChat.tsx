@@ -89,7 +89,7 @@ export default function TutorChat({
     <div className="flex h-full min-h-0 flex-col">
       <div ref={scroller} className="flex-1 space-y-3 overflow-y-auto pb-4">
         {messages.length === 0 && (
-          <div className="rounded-2xl bg-white p-5 shadow-sm">
+          <div className="rounded-[20px] border border-[rgba(15,23,42,.07)] bg-white p-5 shadow-[0_1px_3px_rgba(15,23,42,.04)]">
             <p className="font-semibold text-stone-800">{emptyHint}</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {starters.map((s) => (
@@ -111,7 +111,7 @@ export default function TutorChat({
             <div
               className={
                 m.role === "user"
-                  ? "max-w-[85%] rounded-2xl bg-stone-900 px-4 py-2.5 text-white"
+                  ? "max-w-[85%] rounded-2xl bg-[#16243D] px-4 py-2.5 text-white"
                   : "max-w-[90%] rounded-2xl bg-white px-4 py-2.5 text-stone-900 shadow-sm"
               }
             >
@@ -144,7 +144,7 @@ export default function TutorChat({
         <button
           type="submit"
           disabled={busy || !input.trim()}
-          className="rounded-xl bg-stone-900 px-5 py-2.5 font-bold text-white disabled:opacity-40"
+          className="rounded-xl bg-[#16243D] px-5 py-2.5 font-bold text-white disabled:opacity-40"
         >
           {busy ? "…" : "Send"}
         </button>

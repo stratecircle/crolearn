@@ -13,7 +13,7 @@ function ContinueButton({ onClick, label = "Continue →" }: { onClick: () => vo
       type="button"
       autoFocus
       onClick={onClick}
-      className="mt-6 w-full rounded-xl bg-stone-900 py-3 text-lg font-bold text-white hover:bg-stone-700"
+      className="mt-6 w-full rounded-xl bg-[#16243D] py-3 text-lg font-bold text-white hover:bg-[#20344F]"
     >
       {label}
     </button>
@@ -36,7 +36,7 @@ export function SectionSlideView({
   return (
     <div className="flex flex-col items-center pt-4 text-center">
       {slide.emoji && <div className="text-7xl">{slide.emoji}</div>}
-      <h2 className="mt-4 text-3xl font-black">{slide.title}</h2>
+      <h2 className="mt-4 font-display text-3xl font-bold text-[#16243D]">{slide.title}</h2>
       {slide.subtitle && <p className="mt-2 max-w-md text-lg text-stone-600">{slide.subtitle}</p>}
       <p className="mt-6 text-xs font-black uppercase tracking-widest text-stone-400">
         {isLessonMenu ? "In this lesson" : "In this part"}
@@ -59,7 +59,7 @@ export function SectionSlideView({
         type="button"
         autoFocus
         onClick={onDone}
-        className="mt-8 w-full max-w-md rounded-xl bg-stone-900 py-3 text-lg font-bold text-white hover:bg-stone-700"
+        className="mt-8 w-full max-w-md rounded-xl bg-[#16243D] py-3 text-lg font-bold text-white hover:bg-[#20344F]"
       >
         {isLessonMenu ? "Start the lesson →" : "Let's go →"}
       </button>
@@ -70,7 +70,7 @@ export function SectionSlideView({
 export function TeachSlideView({ slide, onDone }: { slide: TeachSlide; onDone: () => void }) {
   return (
     <div>
-      <h2 className="text-2xl font-black">{slide.title}</h2>
+      <h2 className="font-display text-2xl font-bold text-[#16243D]">{slide.title}</h2>
       <Markdown text={slide.body} className="mt-3 text-lg" />
       {slide.table && (
         <div className="mt-4">
@@ -134,7 +134,7 @@ export function ExampleList({ items, compact = false }: { items: ExampleItem[]; 
 export function ExampleSlideView({ slide, onDone }: { slide: ExampleSlide; onDone: () => void }) {
   return (
     <div>
-      <h2 className="text-xl font-black">{slide.title ?? "Examples"}</h2>
+      <h2 className="font-display text-xl font-bold text-[#16243D]">{slide.title ?? "Examples"}</h2>
       <ExampleList items={slide.items} />
       <ContinueButton onClick={onDone} />
     </div>
@@ -160,7 +160,7 @@ export function VocabCardsSlideView({
     .filter((v): v is VocabItem => !!v);
   return (
     <div>
-      <h2 className="text-2xl font-black">🖼️ {slide.title ?? "Meet today's words"}</h2>
+      <h2 className="font-display text-2xl font-bold text-[#16243D]">🖼️ {slide.title ?? "Meet today's words"}</h2>
       <p className="mt-1 text-sm text-stone-500">
         Tap each card to hear it. Look at the picture while you listen — see it, hear it, say it.
       </p>
@@ -210,7 +210,7 @@ export function RecapSlideView({
   const entering = vocab.filter((v) => slide.vocabIds.includes(v.id));
   return (
     <div>
-      <h2 className="text-2xl font-black">🎯 Recap</h2>
+      <h2 className="font-display text-2xl font-bold text-[#16243D]">🎯 Recap</h2>
       <Markdown text={slide.summary} className="mt-3 text-lg" />
       <p className="mt-5 text-sm font-bold uppercase tracking-wide text-stone-500">
         Going into your review deck ({entering.length} words)

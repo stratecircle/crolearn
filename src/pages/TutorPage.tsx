@@ -114,9 +114,9 @@ export default function TutorPage() {
   const goalPct = progress ? Math.round((progress.stats.goalDone / progress.stats.goalTotal) * 100) : 0;
 
   return (
-    <div className="nativ-noscrollbar grid h-[calc(100dvh-0px)] grid-cols-[260px_minmax(0,1fr)_300px] gap-[18px] overflow-hidden py-1 max-[1100px]:h-auto max-[1100px]:grid-cols-1 max-[1100px]:overflow-visible">
-      {/* Left: conversations */}
-      <div className="nativ-noscrollbar min-h-0 max-h-full overflow-y-auto">
+    <div className="nativ-noscrollbar grid h-[calc(100dvh-92px)] grid-cols-[260px_minmax(0,1fr)_300px] gap-[18px] overflow-hidden py-1 max-[1100px]:h-auto max-[1100px]:grid-cols-1 max-[1100px]:overflow-visible">
+      {/* Left: conversations (drops below the chat on tablet/phone) */}
+      <div className="nativ-noscrollbar min-h-0 max-h-full overflow-y-auto max-[1100px]:order-2 max-[1100px]:max-h-none">
         <h1 className="mb-1.5" style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 30, lineHeight: 1.1, letterSpacing: "-.015em", color: INK }}>Tutor</h1>
         <p className="mb-4 text-sm leading-relaxed" style={{ color: "#3F4A5C" }}>Ask questions, get explanations, practice conversation.</p>
         <Card className="mb-3.5 p-3.5">
@@ -152,8 +152,8 @@ export default function TutorPage() {
         </Card>
       </div>
 
-      {/* Center: chat */}
-      <Card className="flex min-h-0 flex-col max-[1100px]:min-h-[70dvh]" style={{ height: "100%" }}>
+      {/* Center: chat (first on tablet/phone) */}
+      <Card className="flex min-h-0 flex-col max-[1100px]:order-1 max-[1100px]:min-h-[70dvh]" style={{ height: "100%" }}>
         <div className="px-[22px] pt-[18px]">
           <div className="mb-3.5 flex items-center gap-3.5">
             <div className="flex h-[42px] w-[42px] flex-none items-center justify-center rounded-xl" style={{ background: INK }}>
@@ -231,8 +231,8 @@ export default function TutorPage() {
         </div>
       </Card>
 
-      {/* Right rail */}
-      <div className="nativ-noscrollbar grid min-h-0 max-h-full content-start gap-3.5 overflow-y-auto">
+      {/* Right rail (last on tablet/phone) */}
+      <div className="nativ-noscrollbar grid min-h-0 max-h-full content-start gap-3.5 overflow-y-auto max-[1100px]:order-3 max-[1100px]:max-h-none">
         {progress && (
           <Card className="px-5 py-[18px]">
             <CardH className="mb-5">Today's progress</CardH>

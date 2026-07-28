@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { BookOpen } from "lucide-react";
 import { findStory } from "@/content";
 import { db } from "@/lib/db";
 import { McSlideView } from "@/components/slides/QuizSlides";
 import TtsButton from "@/components/TtsButton";
+import { BODY2, BtnGhost, BtnPrimary, DISPLAY, DoneCard, Eyebrow, INK, MUTED, ORANGE, SHADOW_CARD, tint } from "@/ui/kit";
 
 /** Graded reader: paragraph TTS, EN reveal per paragraph, glossary, comprehension questions. */
 export default function StoryPage() {
+  const nav = useNavigate();
   const { id } = useParams<{ id: string }>();
   const story = id ? findStory(id) : undefined;
   const [shownEn, setShownEn] = useState<Set<number>>(new Set());
@@ -16,7 +19,7 @@ export default function StoryPage() {
 
   if (!story)
     return (
-      <p className="py-10 text-center">
+      <p className="py-10 text-center" style={{ color: BODY2 }}>
         Story not found. <Link to="/stories" className="underline">All stories</Link>
       </p>
     );
@@ -25,9 +28,7 @@ export default function StoryPage() {
     const q = story.questions[qIndex];
     return (
       <div className="m-auto w-full max-w-2xl py-6">
-        <p className="mb-4 text-sm font-bold text-stone-500">
-          Comprehension · {qIndex + 1}/{story.questions.length}
-        </p>
+        <Eyebrow className="mb-4">COMPREHENSION · {qIndex + 1}/{story.questions.length}</Eyebrow>
         <McSlideView
           key={q.id}
           slide={q}
@@ -52,28 +53,30 @@ export default function StoryPage() {
 
   if (phase === "done") {
     return (
-      <div className="m-auto w-full py-16 text-center">
-        <div className="text-6xl">📖</div>
-        <h2 className="mt-3 text-2xl font-black">Story finished!</h2>
-        <p className="mt-1 text-stone-600">
-          Comprehension: {correctCount}/{story.questions.length}
-        </p>
-        <Link to="/" className="mt-6 inline-block rounded-xl bg-stone-900 px-6 py-3 font-bold text-white">
-          Back to the path →
-        </Link>
+      <div className="m-auto w-full max-w-[720px] py-10">
+        <DoneCard icon={BookOpen} title="Story finished">
+          <div className="mx-auto mb-8 text-[17px]" style={{ color: BODY2 }}>
+            Comprehension: <strong style={{ color: INK }}>{correctCount}/{story.questions.length}</strong>
+          </div>
+          <div className="flex justify-center gap-3.5">
+            <BtnPrimary onClick={() => nav("/")}>Back to path</BtnPrimary>
+            <BtnGhost onClick={() => nav("/stories")}>More stories</BtnGhost>
+          </div>
+        </DoneCard>
       </div>
     );
   }
 
   return (
     <article className="mx-auto w-full max-w-2xl py-6">
-      <h1 className="text-3xl font-black">{story.title}</h1>
-      <p className="text-stone-500">{story.titleEn}</p>
+      <Eyebrow className="mb-2">STORY</Eyebrow>
+      <h1 style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(24px,3.4vw,32px)", lineHeight: 1.15, color: INK }}>{story.title}</h1>
+      <p className="mt-1 text-[15px]" style={{ color: MUTED }}>{story.titleEn}</p>
 
       {story.glossary.length > 0 && (
-        <div className="mt-4 rounded-xl bg-amber-50 p-3">
-          <p className="text-xs font-black uppercase tracking-wide text-amber-700">New words in this story</p>
-          <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+        <div className="mt-5 rounded-2xl border p-4" style={{ background: tint(ORANGE, 0.07), borderColor: tint(ORANGE, 0.25) }}>
+          <p className="text-xs font-semibold" style={{ letterSpacing: ".13em", color: "#9A5B14" }}>NEW WORDS IN THIS STORY</p>
+          <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1.5 text-sm" style={{ color: INK }}>
             {story.glossary.map((g) => (
               <span key={g.word}>
                 <strong>{g.word}</strong> — {g.gloss} <TtsButton text={g.word} />
@@ -85,17 +88,18 @@ export default function StoryPage() {
 
       <div className="mt-5 space-y-4">
         {story.paragraphs.map((p, i) => (
-          <div key={i} className="rounded-xl bg-white p-4 shadow-sm">
-            <p className="text-lg leading-relaxed">
+          <div key={i} className="rounded-2xl border bg-white p-5" style={{ borderColor: "rgba(15,23,42,.07)", boxShadow: SHADOW_CARD }}>
+            <p className="text-[19px] leading-relaxed max-[700px]:text-[17px]" style={{ fontFamily: DISPLAY, color: INK }}>
               {p.hr} <TtsButton text={p.hr} className="ml-1" /> <TtsButton text={p.hr} slow className="ml-1" />
             </p>
             {shownEn.has(i) ? (
-              <p className="mt-2 text-stone-500">{p.en}</p>
+              <p className="mt-2.5 text-[15px] leading-relaxed" style={{ color: BODY2 }}>{p.en}</p>
             ) : (
               <button
                 type="button"
                 onClick={() => setShownEn(new Set([...shownEn, i]))}
-                className="mt-2 text-sm font-semibold text-stone-400 underline"
+                className="mt-2.5 text-sm font-medium underline"
+                style={{ color: MUTED }}
               >
                 Show translation
               </button>
@@ -107,7 +111,8 @@ export default function StoryPage() {
       <button
         type="button"
         onClick={() => setPhase("questions")}
-        className="mt-6 mb-10 w-full rounded-xl bg-stone-900 py-3 text-lg font-bold text-white hover:bg-stone-700"
+        className="mb-10 mt-6 flex h-[52px] w-full items-center justify-center rounded-xl text-[16px] font-semibold text-white transition-colors duration-[180ms]"
+        style={{ background: INK }}
       >
         Story questions →
       </button>

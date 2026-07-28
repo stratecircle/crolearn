@@ -27,10 +27,10 @@ export default function NotesPage() {
       <p className="text-sm font-bold text-stone-400">
         Unit {unit.number}: {unit.title} · Notes
       </p>
-      <h1 className="text-3xl font-black">{lesson.title}</h1>
+      <h1 className="font-display text-3xl font-bold text-[#16243D]">{lesson.title}</h1>
       <p className="text-stone-500">{lesson.titleEn}</p>
 
-      <section className="mt-6 rounded-2xl bg-stone-900 p-5 text-white">
+      <section className="mt-6 rounded-2xl bg-[#16243D] p-5 text-white">
         <p className="text-xs font-black uppercase tracking-wide text-stone-400">In one sentence</p>
         <p className="mt-1 text-lg font-semibold">{n.inOneSentence.en}</p>
         <p className="mt-1 text-stone-300">
@@ -40,7 +40,7 @@ export default function NotesPage() {
 
       {n.deepDive.map((d, i) => (
         <section key={i} className="mt-6">
-          <h2 className="text-xl font-black">{d.title}</h2>
+          <h2 className="font-display text-xl font-bold text-[#16243D]">{d.title}</h2>
           <Markdown text={d.body} className="mt-2" />
           {d.table && <div className="mt-3"><ContentTable table={d.table} /></div>}
           {d.diagram && <div className="mt-3"><DiagramView diagram={d.diagram} /></div>}
@@ -48,7 +48,7 @@ export default function NotesPage() {
       ))}
 
       <section className="mt-6">
-        <h2 className="text-xl font-black">📚 Lesson vocabulary</h2>
+        <h2 className="font-display text-xl font-bold text-[#16243D]">📚 Lesson vocabulary</h2>
         <div className="mt-2 overflow-x-auto">
           <table className="w-full text-left">
             <thead>
@@ -80,7 +80,7 @@ export default function NotesPage() {
       </section>
 
       <section className="mt-6">
-        <h2 className="text-xl font-black">⚠️ Common mistakes</h2>
+        <h2 className="font-display text-xl font-bold text-[#16243D]">⚠️ Common mistakes</h2>
         <ul className="mt-2 space-y-2">
           {n.commonMistakes.map((m, i) => (
             <li key={i} className="rounded-xl bg-white p-3 shadow-sm">
@@ -96,7 +96,7 @@ export default function NotesPage() {
       </section>
 
       <section className="mt-6">
-        <h2 className="text-xl font-black">🧠 Memory hooks</h2>
+        <h2 className="font-display text-xl font-bold text-[#16243D]">🧠 Memory hooks</h2>
         <ul className="mt-2 list-disc space-y-1 pl-5">
           {n.memoryHooks.map((h, i) => (
             <li key={i}>{h}</li>
@@ -106,7 +106,7 @@ export default function NotesPage() {
 
       {n.connects.length > 0 && (
         <section className="mt-6">
-          <h2 className="text-xl font-black">🔗 Connected notes</h2>
+          <h2 className="font-display text-xl font-bold text-[#16243D]">🔗 Connected notes</h2>
           <div className="mt-2 flex flex-wrap gap-2">
             {n.connects.map((c, i) => (
               <Link key={i} to={`/notes/${c.lessonId}`} className="rounded-full bg-stone-200 px-3 py-1.5 text-sm font-semibold hover:bg-stone-300">
@@ -118,7 +118,7 @@ export default function NotesPage() {
       )}
 
       <section className="mt-6 mb-10">
-        <h2 className="text-xl font-black">✅ Self-check</h2>
+        <h2 className="font-display text-xl font-bold text-[#16243D]">✅ Self-check</h2>
         <ol className="mt-2 space-y-2">
           {n.selfCheck.map((s, i) => (
             <li key={i} className="rounded-xl bg-white p-3 shadow-sm">

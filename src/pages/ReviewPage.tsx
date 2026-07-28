@@ -26,11 +26,11 @@ const KIND_LABEL: Record<SrsCard["kind"], string> = {
 function CardFace({ eyebrow, big, sub, children, back }: { eyebrow: string; big: string; sub?: string; children?: React.ReactNode; back?: boolean }) {
   return (
     <div
-      className="flex min-h-[340px] flex-col items-center justify-center rounded-[20px] border bg-white px-12 py-11 text-center"
+      className="flex min-h-[340px] flex-col items-center justify-center rounded-[20px] border bg-white px-12 py-11 text-center max-[700px]:min-h-[280px] max-[700px]:px-6"
       style={{ borderColor: "rgba(15,23,42,.07)", boxShadow: "0 1px 3px rgba(15,23,42,.04),0 16px 44px rgba(15,23,42,.06)", gridArea: "1/1", backfaceVisibility: "hidden", transform: back ? "rotateY(180deg)" : undefined }}
     >
       <div className="mb-5 text-xs font-semibold" style={{ letterSpacing: ".13em", color: MUTED }}>{eyebrow}</div>
-      <div className="mb-3" style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: big.length > 24 ? 30 : 48, lineHeight: 1.15, color: INK }}>{big}</div>
+      <div className="mb-3" style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: big.length > 24 ? "clamp(22px,3.4vw,30px)" : "clamp(32px,5.4vw,48px)", lineHeight: 1.15, color: INK }}>{big}</div>
       {sub && <div className="text-[16px] leading-relaxed" style={{ color: BODY2 }}>{sub}</div>}
       {children}
     </div>
@@ -94,7 +94,7 @@ export default function ReviewPage() {
     <div className="mb-7 flex items-start justify-between gap-6">
       <div>
         <Eyebrow className="mb-2.5">REVIEW · SPACED REPETITION</Eyebrow>
-        <div style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 40, lineHeight: 1.1, color: INK }}>Flashcards</div>
+        <div style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: "clamp(28px,4.4vw,40px)", lineHeight: 1.1, color: INK }}>Flashcards</div>
       </div>
       <BtnGhost icon={X} onClick={() => nav("/practice")}>End session</BtnGhost>
     </div>
@@ -209,14 +209,14 @@ export default function ReviewPage() {
           </>
         ) : (
           <>
-            <div className="mb-[22px] flex min-h-[340px] flex-col items-center justify-center rounded-[20px] border bg-white px-12 py-11 text-center" style={{ borderColor: "rgba(15,23,42,.07)", boxShadow: "0 1px 3px rgba(15,23,42,.04),0 16px 44px rgba(15,23,42,.06)" }}>
+            <div className="mb-[22px] flex min-h-[340px] flex-col items-center justify-center rounded-[20px] border bg-white px-12 py-11 text-center max-[700px]:min-h-[280px] max-[700px]:px-5" style={{ borderColor: "rgba(15,23,42,.07)", boxShadow: "0 1px 3px rgba(15,23,42,.04),0 16px 44px rgba(15,23,42,.06)" }}>
               <div className="mb-5 text-xs font-semibold" style={{ letterSpacing: ".13em", color: MUTED }}>{KIND_LABEL[card.kind]}</div>
               {card.kind === "listening" ? (
                 <button onClick={() => void speak(card.tts ?? card.back)} className="mb-6 inline-flex items-center gap-2.5 rounded-xl px-6 py-3 text-[17px] font-semibold text-white" style={{ background: INK }}>
                   <Volume2 size={19} />Play audio
                 </button>
               ) : (
-                <div className="mb-6" style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: card.front.length > 24 ? 28 : 44, lineHeight: 1.2, color: INK }}>{card.front}</div>
+                <div className="mb-6" style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: card.front.length > 24 ? "clamp(20px,3.2vw,28px)" : "clamp(30px,5vw,44px)", lineHeight: 1.2, color: INK }}>{card.front}</div>
               )}
               {!revealed ? (
                 <div className="w-full max-w-[520px]">

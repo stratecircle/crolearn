@@ -28,6 +28,11 @@ export const LEVEL_COLORS: Record<string, string> = {
   C2: TEAL,
 };
 
+/** Playfair Display — the display face for titles and Croatian content. */
+export const DISPLAY = "'Playfair Display',serif";
+export const SHADOW_CARD = "0 1px 3px rgba(15,23,42,.04)";
+export const SHADOW_FLOAT = "0 1px 3px rgba(15,23,42,.04),0 16px 44px rgba(15,23,42,.06)";
+
 export function tint(hex: string, a: number): string {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
@@ -46,12 +51,20 @@ export function Card({ children, className = "", style }: { children: ReactNode;
   );
 }
 
-/** Playfair display heading. */
+/** Playfair display heading. `size` is the desktop size; it scales down fluidly on phones. */
 export function H({ children, size = 26, className = "", style }: { children: ReactNode; size?: number; className?: string; style?: CSSProperties }) {
+  const min = Math.max(18, Math.round(size * 0.72));
   return (
     <div
-      className={`font-display font-bold ${className}`}
-      style={{ fontFamily: "'Playfair Display',serif", fontSize: size, lineHeight: 1.15, letterSpacing: "-.01em", color: INK, ...style }}
+      className={`font-bold ${className}`}
+      style={{
+        fontFamily: DISPLAY,
+        fontSize: `clamp(${min}px, ${(size / 15).toFixed(1)}vw, ${size}px)`,
+        lineHeight: 1.15,
+        letterSpacing: "-.01em",
+        color: INK,
+        ...style,
+      }}
     >
       {children}
     </div>
@@ -163,6 +176,108 @@ export function Toggle({ on, onChange }: { on: boolean; onChange: () => void }) 
         style={{ width: 24, height: 24, boxShadow: "0 1px 3px rgba(15,23,42,.25)", transform: on ? "translateX(22px)" : "translateX(0)" }}
       />
     </button>
+  );
+}
+
+/** Compact stat: icon + value + caption. `big` renders the Practice-header variant. */
+export function StatChip({ icon: Icon, color, value, label, big = false }: { icon: LucideIcon; color: string; value: string; label: string; big?: boolean }) {
+  if (big) {
+    return (
+      <div className="flex-none">
+        <div className="mb-[5px] flex items-center gap-2.5">
+          <Icon size={20} color={color} strokeWidth={1.7} />
+          <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(20px,2.4vw,26px)", color: INK }}>{value}</span>
+        </div>
+        <div className="whitespace-nowrap text-sm" style={{ color: BODY2 }}>{label}</div>
+      </div>
+    );
+  }
+  return (
+    <div className="flex flex-none items-center gap-2.5">
+      <Icon size={20} color={color} strokeWidth={1.7} />
+      <div>
+        <div className="text-[15px] font-semibold leading-tight" style={{ color: INK }}>{value}</div>
+        <div className="whitespace-nowrap text-xs" style={{ color: MUTED }}>{label}</div>
+      </div>
+    </div>
+  );
+}
+
+/** Row of StatChips: normal flex on desktop, swipeable strip on phones. */
+export function StatRow({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return (
+    <div className={`nativ-noscrollbar flex items-center gap-[26px] overflow-x-auto max-[700px]:-mx-4 max-[700px]:gap-5 max-[700px]:px-4 ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+/** Bordered square icon button (player chrome: exit, back, flag…). */
+export function IconBtn({ icon: Icon, onClick, label, disabled, size = 44 }: { icon: LucideIcon; onClick?: () => void; label: string; disabled?: boolean; size?: number }) {
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={label}
+      title={label}
+      className="flex flex-none items-center justify-center rounded-xl border bg-white transition-colors duration-[180ms] hover:bg-[#F7F4F0] disabled:opacity-30 disabled:hover:bg-white"
+      style={{ width: size, height: size, borderColor: "rgba(15,23,42,.1)" }}
+    >
+      <Icon size={Math.round(size * 0.41)} color={BODY2} />
+    </button>
+  );
+}
+
+/** Search field in the card toolbar style. */
+export function SearchBox({ value, onChange, placeholder }: { value: string; onChange: (v: string) => void; placeholder: string }) {
+  return (
+    <div className="flex h-12 min-w-0 flex-1 items-center gap-3 rounded-xl border bg-white px-[18px]" style={{ borderColor: BORDER }}>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={MUTED} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.3-4.3" />
+      </svg>
+      <input
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        className="min-w-0 flex-1 border-none bg-transparent text-[15px] outline-none"
+        style={{ color: INK }}
+      />
+    </div>
+  );
+}
+
+/** Dashed empty-state block. */
+export function EmptyState({ title, sub }: { title: string; sub: string }) {
+  return (
+    <div className="rounded-2xl border border-dashed px-6 py-14 text-center" style={{ borderColor: "rgba(15,23,42,.12)" }}>
+      <div className="mb-1.5 text-base font-semibold" style={{ color: INK }}>{title}</div>
+      <div className="text-sm" style={{ color: MUTED }}>{sub}</div>
+    </div>
+  );
+}
+
+/** Status banner used inside players (looking-back / retry / review notices). */
+export function Banner({ children, color }: { children: ReactNode; color: string }) {
+  return (
+    <p className="mb-3 rounded-xl px-3.5 py-2 text-sm font-semibold" style={{ background: tint(color, 0.1), color }}>
+      {children}
+    </p>
+  );
+}
+
+/** Full-width completion card (lesson / deck / practice endings). */
+export function DoneCard({ icon: Icon = undefined, title, children }: { icon?: LucideIcon; title: string; children: ReactNode }) {
+  return (
+    <div className="rounded-[20px] border bg-white px-12 py-14 text-center max-[700px]:px-6 max-[700px]:py-10" style={{ borderColor: "rgba(15,23,42,.07)", boxShadow: SHADOW_FLOAT }}>
+      {Icon && (
+        <div className="mx-auto mb-[22px] flex h-16 w-16 items-center justify-center rounded-full" style={{ background: tint(GREEN, 0.1) }}>
+          <Icon size={30} color={GREEN} />
+        </div>
+      )}
+      <div className="mb-3" style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(28px,4vw,38px)", lineHeight: 1.15, color: INK }}>{title}</div>
+      {children}
+    </div>
   );
 }
 

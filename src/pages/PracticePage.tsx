@@ -16,7 +16,7 @@ import { stopSpeaking } from "@/lib/tts";
 import SlideRenderer from "@/components/SlideRenderer";
 import { advance, firstTryAccuracy, initDeck, isRetryPosition, type DeckState } from "@/features/lesson/deckMachine";
 import { loadNativProgress, type NativStats } from "@/features/nativ/stats";
-import { BODY2, BtnPrimary, Card, CardH, Chip, GREEN, H, INK, MUTED, ProgressBar, RED, Tile, tint } from "@/ui/kit";
+import { BODY2, BtnPrimary, Card, CardH, Chip, GREEN, H, INK, MUTED, ProgressBar, RED, StatChip, StatRow, Tile, tint } from "@/ui/kit";
 
 type WeakSpot = { label: string; focusLine: string };
 
@@ -237,22 +237,12 @@ export default function PracticePage() {
       <div className="mb-6">
         <H size={26} className="mb-5">Practice</H>
         {stats && (
-          <div className="flex items-center gap-[34px] max-[700px]:flex-wrap max-[700px]:gap-5">
-            {[
-              { icon: Target, color: INK, value: String(stats.dayStreak), label: "Day streak" },
-              { icon: Flame, color: RED, value: String(stats.longestStreak), label: "Longest streak" },
-              { icon: Star, color: "#3B6FD4", value: String(stats.wordsLearned), label: "Words learned" },
-              ...(stats.timePracticed ? [{ icon: Clock, color: GREEN, value: stats.timePracticed, label: "Time practiced" }] : []),
-            ].map((st) => (
-              <div key={st.label}>
-                <div className="mb-[5px] flex items-center gap-2.5">
-                  <st.icon size={20} color={st.color} strokeWidth={1.7} />
-                  <span style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 26, color: INK }}>{st.value}</span>
-                </div>
-                <div className="whitespace-nowrap text-sm" style={{ color: BODY2 }}>{st.label}</div>
-              </div>
-            ))}
-          </div>
+          <StatRow className="gap-[34px]">
+            <StatChip big icon={Target} color={INK} value={String(stats.dayStreak)} label="Day streak" />
+            <StatChip big icon={Flame} color={RED} value={String(stats.longestStreak)} label="Longest streak" />
+            <StatChip big icon={Star} color="#3B6FD4" value={String(stats.wordsLearned)} label="Words learned" />
+            {stats.timePracticed && <StatChip big icon={Clock} color={GREEN} value={stats.timePracticed} label="Time practiced" />}
+          </StatRow>
         )}
       </div>
 

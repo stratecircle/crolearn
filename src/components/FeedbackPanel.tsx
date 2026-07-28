@@ -1,5 +1,6 @@
 import type { GradeResult } from "@/lib/grader";
 import TtsButton from "./TtsButton";
+import { GREEN, INK, ORANGE, RED, tint } from "@/ui/kit";
 
 /**
  * Immediate corrective feedback (§1): verdict + the correct answer + one-line why.
@@ -20,31 +21,24 @@ export default function FeedbackPanel({
 }) {
   const good = verdict === "correct" || verdict === "correct-selfassessed";
   const diacritics = verdict === "diacritics";
+  const color = good ? GREEN : diacritics ? ORANGE : RED;
   return (
-    <div
-      className={`mt-4 rounded-xl border-2 p-4 ${
-        good
-          ? "border-green-600 bg-green-50"
-          : diacritics
-            ? "border-amber-500 bg-amber-50"
-            : "border-red-600 bg-red-50"
-      }`}
-    >
-      <p className="font-bold">
-        {good ? "✅ Correct!" : diacritics ? "🟡 Correct — mind the diacritics (č ć đ š ž)!" : "❌ Not quite."}
+    <div className="mt-4 rounded-xl border p-4" style={{ borderColor: tint(color, 0.4), background: tint(color, 0.07) }}>
+      <p className="font-semibold" style={{ color }}>
+        {good ? "Točno — correct!" : diacritics ? "Correct — mind the diacritics (č ć đ š ž)!" : "Not quite."}
       </p>
       {(diacritics || verdict === "wrong") && canonical && (
-        <p className="mt-1 text-lg">
-          <span className="font-semibold">{canonical}</span>{" "}
-          <TtsButton text={canonical} className="ml-1" />
+        <p className="mt-1.5 text-lg" style={{ color: INK }}>
+          <span className="font-semibold">{canonical}</span> <TtsButton text={canonical} className="ml-1" />
         </p>
       )}
-      {explanation && <p className="mt-1 text-sm text-stone-700">{explanation}</p>}
+      {explanation && <p className="mt-1.5 text-sm leading-relaxed" style={{ color: "#5B6472" }}>{explanation}</p>}
       <button
         type="button"
         autoFocus
         onClick={onContinue}
-        className="mt-3 rounded-xl bg-stone-900 px-5 py-2 font-bold text-white hover:bg-stone-700"
+        className="mt-3.5 inline-flex h-11 items-center rounded-xl px-6 text-[15px] font-semibold text-white transition-colors duration-[180ms]"
+        style={{ background: INK }}
       >
         {continueLabel}
       </button>

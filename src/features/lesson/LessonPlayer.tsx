@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft, BookOpen, Check, Flag, MessageCircle, X } from "lucide-react";
 import type { Lesson } from "@/types/content";
 import { isQuizSlide } from "@/types/content";
 import { db } from "@/lib/db";
@@ -8,6 +9,7 @@ import SlideRenderer from "@/components/SlideRenderer";
 import TutorChat from "@/features/tutor/TutorChat";
 import { hasApiKey } from "@/lib/claude";
 import { stopSpeaking } from "@/lib/tts";
+import { Banner, BLUE, BODY2, BtnGhost, BtnPrimary, DISPLAY, DoneCard, Eyebrow, IconBtn, INK, MUTED, ORANGE, ProgressBar, RED, tint } from "@/ui/kit";
 import {
   advance,
   firstTryAccuracy,
@@ -20,9 +22,11 @@ import {
 /**
  * Thin React shell over the pure deck state machine (deckMachine.ts) —
  * retry/accuracy semantics live and are tested there. Completion persists
- * progress and seeds SRS cards.
+ * progress and seeds SRS cards. Chrome follows the Nativ lesson-player spec
+ * (README §Screens 2): icon buttons, eyebrow + serif title, red progress bar.
  */
 export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
+  const nav = useNavigate();
   const quizTotal = useMemo(() => lesson.slides.filter(isQuizSlide).length, [lesson]);
   const [deck, setDeck] = useState<DeckState>(() => initDeck(lesson.slides.length));
   const [finished, setFinished] = useState<{ accuracy: number; newCards: number } | null>(null);
@@ -79,43 +83,30 @@ export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
   if (finished) {
     const pct = Math.round(finished.accuracy * 100);
     return (
-      <div className="m-auto w-full max-w-xl py-10 text-center">
-        <div className="text-6xl">{pct >= 90 ? "🏆" : pct >= 70 ? "🎉" : "💪"}</div>
-        <h2 className="mt-3 text-3xl font-black">Lesson complete!</h2>
-        <p className="mt-2 text-lg text-stone-600">
-          First-try accuracy: <strong>{pct}%</strong>
-        </p>
-        <p className="text-stone-600">
-          {finished.newCards > 0
-            ? `${finished.newCards} new cards added to your review deck.`
-            : "This lesson's cards are already in your review deck."}
-        </p>
-        {pct < 60 && (
-          <p className="mx-auto mt-4 max-w-md rounded-xl bg-amber-50 p-3 text-sm text-amber-800">
-            💡 That was a tough one — totally normal. Before moving on, read this lesson's notes
-            and replay it once; second passes usually feel completely different.
-          </p>
-        )}
-        <div className="mt-6 grid gap-3">
+      <div className="m-auto w-full max-w-[720px] py-10">
+        <DoneCard icon={Check} title="Lesson complete">
+          <div className="mx-auto mb-2 max-w-[480px] text-[17px] leading-relaxed" style={{ color: BODY2 }}>
+            First-try accuracy: <strong style={{ color: INK }}>{pct}%</strong>
+          </div>
+          <div className="mx-auto mb-7 max-w-[480px] text-[15px]" style={{ color: BODY2 }}>
+            {finished.newCards > 0
+              ? `${finished.newCards} new cards added to your review deck.`
+              : "This lesson's cards are already in your review deck."}
+          </div>
           {pct < 60 && (
-            <button
-              type="button"
-              onClick={() => window.location.reload()}
-              className="rounded-xl border-2 border-amber-500 bg-amber-50 py-3 font-bold text-amber-800 hover:bg-amber-100"
-            >
-              🔁 Replay this lesson
-            </button>
+            <p className="mx-auto mb-7 max-w-md rounded-xl px-4 py-3 text-sm leading-relaxed" style={{ background: tint(ORANGE, 0.1), color: "#7A4A12" }}>
+              That was a tough one — totally normal. Before moving on, read this lesson's notes and
+              replay it once; second passes usually feel completely different.
+            </p>
           )}
-          <Link
-            to={`/notes/${lesson.id}`}
-            className="rounded-xl border-2 border-stone-900 py-3 font-bold hover:bg-stone-100"
-          >
-            📓 Open lesson notes
-          </Link>
-          <Link to="/" className="rounded-xl bg-stone-900 py-3 font-bold text-white hover:bg-stone-700">
-            Back to the path →
-          </Link>
-        </div>
+          <div className="flex flex-wrap justify-center gap-3.5">
+            {pct < 60 && (
+              <BtnGhost onClick={() => window.location.reload()}>Replay this lesson</BtnGhost>
+            )}
+            <BtnGhost icon={BookOpen} onClick={() => nav(`/notes/${lesson.id}`)}>Lesson notes</BtnGhost>
+            <BtnPrimary onClick={() => nav("/")}>Back to path</BtnPrimary>
+          </div>
+        </DoneCard>
       </div>
     );
   }
@@ -135,81 +126,56 @@ export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
 
   return (
     <div className="flex h-dvh w-full flex-col">
-      <div className="mx-auto flex w-full max-w-3xl items-center gap-3 py-3">
-        <Link to="/" aria-label="Exit lesson" className="text-2xl text-stone-400 hover:text-stone-700">
-          ✕
-        </Link>
-        <button
-          type="button"
-          aria-label="Previous slide"
-          title="Go back a slide (nothing gets re-graded)"
-          disabled={pos === 0}
-          onClick={goBack}
-          className="text-xl font-black text-stone-400 hover:text-stone-700 disabled:opacity-25"
-        >
-          ←
-        </button>
-        <div className="h-3 flex-1 overflow-hidden rounded-full bg-stone-200">
-          <div className="h-full rounded-full bg-green-600 transition-all" style={{ width: `${progressPct}%` }} />
-        </div>
-        <span className="text-sm font-bold text-stone-500">
-          {pos + 1}/{playlist.length}
-        </span>
-        {hasApiKey() && slideIndex !== 0 && slide.type !== "section" && (
-          <button
-            type="button"
-            title="Ask the tutor about this slide"
-            className="text-lg opacity-40 hover:opacity-100"
+      <div className="mx-auto w-full max-w-[840px] pt-1">
+        <div className="mb-3 flex items-center gap-3 max-[700px]:gap-2">
+          <IconBtn icon={X} label="Exit lesson" onClick={() => nav("/")} />
+          <IconBtn icon={ArrowLeft} label="Previous slide (nothing gets re-graded)" disabled={pos === 0} onClick={goBack} />
+          <div className="min-w-0 flex-1">
+            <Eyebrow className="mb-0.5 truncate">
+              {lesson.unitId.toUpperCase()} {currentSection && slide.type !== "section" ? `· ${currentSection.toUpperCase()}` : ""}
+            </Eyebrow>
+            <div className="truncate" style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(17px,2.2vw,22px)", lineHeight: 1.15, color: INK }}>
+              {lesson.title}
+            </div>
+          </div>
+          <span className="whitespace-nowrap text-sm max-[700px]:text-[13px]" style={{ color: BODY2 }}>
+            {pos + 1} / {playlist.length}
+          </span>
+          {hasApiKey() && slideIndex !== 0 && slide.type !== "section" && (
+            <IconBtn
+              icon={MessageCircle}
+              label="Ask the tutor about this slide"
+              onClick={() => {
+                stopSpeaking();
+                setAskOpen(true);
+              }}
+            />
+          )}
+          <IconBtn
+            icon={Flag}
+            label="Report a mistake on this slide"
             onClick={() => {
-              stopSpeaking();
-              setAskOpen(true);
+              const note = window.prompt("What looks wrong on this slide? (saved for review)");
+              if (note?.trim()) {
+                void db.errorReports.add({
+                  lessonId: lesson.id,
+                  slideId: slide.id,
+                  note: note.trim(),
+                  createdAt: new Date(),
+                });
+              }
             }}
-          >
-            💬
-          </button>
-        )}
-        <button
-          type="button"
-          title="Report a mistake on this slide"
-          className="text-lg opacity-40 hover:opacity-100"
-          onClick={() => {
-            const note = window.prompt("What looks wrong on this slide? (saved for review)");
-            if (note?.trim()) {
-              void db.errorReports.add({
-                lessonId: lesson.id,
-                slideId: slide.id,
-                note: note.trim(),
-                createdAt: new Date(),
-              });
-            }
-          }}
-        >
-          🚩
-        </button>
+          />
+        </div>
+        <ProgressBar pct={progressPct} color={RED} height={8} />
       </div>
-      {currentSection && slide.type !== "section" && (
-        <p className="text-center text-xs font-black uppercase tracking-widest text-stone-400">
-          {currentSection}
-        </p>
-      )}
+
       {/* The stage: slide centered in the remaining viewport, like a projector deck. */}
       <div className="flex flex-1 overflow-y-auto">
         <div className="m-auto w-full max-w-2xl py-6">
-          {pos < maxPos && (
-            <p className="mb-3 rounded-lg bg-stone-100 px-3 py-1.5 text-sm font-semibold text-stone-600">
-              👀 Looking back — answers here don't count; step forward to continue.
-            </p>
-          )}
-          {isRetry && pos >= maxPos && (
-            <p className="mb-3 rounded-lg bg-amber-50 px-3 py-1.5 text-sm font-semibold text-amber-800">
-              🔁 Retry — let's get it right!
-            </p>
-          )}
-          {slide.review && !isRetry && (
-            <p className="mb-3 rounded-lg bg-sky-50 px-3 py-1.5 text-sm font-semibold text-sky-800">
-              ⏪ Review from an earlier lesson
-            </p>
-          )}
+          {pos < maxPos && <Banner color={INK}>Looking back — answers here don't count; step forward to continue.</Banner>}
+          {isRetry && pos >= maxPos && <Banner color={ORANGE}>Retry — let's get it right!</Banner>}
+          {slide.review && !isRetry && <Banner color={BLUE}>Review from an earlier lesson</Banner>}
           <SlideRenderer
             key={`${slide.id}-${runId}`}
             slide={slide}
@@ -226,18 +192,18 @@ export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
           onClick={() => setAskOpen(false)}
         >
           <div
-            className="flex h-[85dvh] w-full max-w-2xl flex-col rounded-t-2xl bg-stone-50 p-4 shadow-2xl sm:h-[80dvh] sm:rounded-2xl"
+            className="flex h-[85dvh] w-full max-w-2xl flex-col rounded-t-[20px] bg-[#FDFCFA] p-5 shadow-2xl sm:h-[80dvh] sm:rounded-[20px]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-lg font-black">💬 Ask about this slide</h2>
+              <h2 style={{ fontFamily: DISPLAY, fontWeight: 600, fontSize: 18, color: INK }}>Ask about this slide</h2>
               <button
                 type="button"
                 aria-label="Close"
                 onClick={() => setAskOpen(false)}
-                className="text-2xl leading-none text-stone-400 hover:text-stone-700"
+                className="rounded-lg p-1.5 transition-colors duration-150 hover:bg-[rgba(15,23,42,.06)]"
               >
-                ✕
+                <X size={18} color={MUTED} />
               </button>
             </div>
             <div className="min-h-0 flex-1">

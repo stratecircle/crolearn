@@ -67,7 +67,7 @@ export default function CheckpointPage() {
     return (
       <div className="m-auto w-full max-w-xl py-10 text-center">
         <div className="text-5xl">🎓</div>
-        <h1 className="mt-3 text-3xl font-black">{exam.title}</h1>
+        <h1 className="mt-3 font-display text-3xl font-bold text-[#16243D]">{exam.title}</h1>
         <p className="text-stone-500">{exam.titleEn}</p>
         <div className="mt-5 rounded-2xl bg-white p-5 text-left shadow-sm">
           <p className="text-sm text-stone-600">
@@ -88,7 +88,7 @@ export default function CheckpointPage() {
         <button
           type="button"
           onClick={() => setPhase("quiz")}
-          className="mt-6 rounded-xl bg-stone-900 px-8 py-3 text-lg font-bold text-white hover:bg-stone-700"
+          className="mt-6 rounded-xl bg-[#16243D] px-8 py-3 text-lg font-bold text-white hover:bg-[#20344F]"
         >
           Start the exam
         </button>
@@ -247,7 +247,7 @@ function SpeakingSection({
         <span>{i + 1}/{prompts.length}</span>
       </div>
 
-      <div className="rounded-2xl bg-white p-5 shadow-sm">
+      <div className="rounded-[20px] border border-[rgba(15,23,42,.07)] bg-white p-5 shadow-[0_1px_3px_rgba(15,23,42,.04)]">
         <p className="text-lg font-bold">{prompt.task}</p>
         {prompt.rubricFocus && (
           <p className="mt-1 text-xs text-stone-500">Graded on: {prompt.rubricFocus}</p>
@@ -265,7 +265,7 @@ function SpeakingSection({
             type="button"
             disabled={!sttOk || listening}
             onClick={() => void record()}
-            className="rounded-xl bg-stone-900 px-4 py-2.5 font-bold text-white hover:bg-stone-700 disabled:opacity-40"
+            className="rounded-xl bg-[#16243D] px-4 py-2.5 font-bold text-white hover:bg-[#20344F] disabled:opacity-40"
           >
             {listening ? "🎙️ Listening…" : transcript ? "🎙️ Record again" : "🎙️ Record answer"}
           </button>
@@ -298,7 +298,7 @@ function SpeakingSection({
                 type="button"
                 disabled={grading}
                 onClick={() => void grade1()}
-                className="mt-3 rounded-lg bg-stone-900 px-4 py-2 text-sm font-bold text-white disabled:opacity-40"
+                className="mt-3 rounded-lg bg-[#16243D] px-4 py-2 text-sm font-bold text-white disabled:opacity-40"
               >
                 {grading ? "Grading…" : "Grade my answer"}
               </button>
@@ -328,7 +328,7 @@ function SpeakingSection({
       <button
         type="button"
         onClick={advance}
-        className="mt-4 w-full rounded-xl bg-stone-900 py-3 font-bold text-white hover:bg-stone-700"
+        className="mt-4 w-full rounded-xl bg-[#16243D] py-3 font-bold text-white hover:bg-[#20344F]"
       >
         {i + 1 < prompts.length ? "Next prompt →" : "Finish & see results →"}
       </button>
@@ -375,7 +375,7 @@ function WritingSection({ task, onDone }: { task: WritingTask; onDone: () => voi
         <span>1/1</span>
       </div>
 
-      <div className="rounded-2xl bg-white p-5 shadow-sm">
+      <div className="rounded-[20px] border border-[rgba(15,23,42,.07)] bg-white p-5 shadow-[0_1px_3px_rgba(15,23,42,.04)]">
         <p className="text-lg font-bold">{task.task}</p>
         {task.rubricFocus && (
           <p className="mt-1 text-xs text-stone-500">Graded on: {task.rubricFocus}</p>
@@ -406,7 +406,7 @@ function WritingSection({ task, onDone }: { task: WritingTask; onDone: () => voi
               type="button"
               disabled={grading || !text.trim()}
               onClick={() => void gradeIt()}
-              className="rounded-xl bg-stone-900 px-4 py-2.5 font-bold text-white hover:bg-stone-700 disabled:opacity-40"
+              className="rounded-xl bg-[#16243D] px-4 py-2.5 font-bold text-white hover:bg-[#20344F] disabled:opacity-40"
             >
               {grading ? "Grading…" : "Grade my e-mail"}
             </button>
@@ -444,7 +444,7 @@ function WritingSection({ task, onDone }: { task: WritingTask; onDone: () => voi
       <button
         type="button"
         onClick={onDone}
-        className="mt-4 w-full rounded-xl bg-stone-900 py-3 font-bold text-white hover:bg-stone-700"
+        className="mt-4 w-full rounded-xl bg-[#16243D] py-3 font-bold text-white hover:bg-[#20344F]"
       >
         Finish & see results →
       </button>
@@ -467,7 +467,7 @@ function ResultsScreen({
     <div className="m-auto w-full max-w-xl py-10">
       <div className="text-center">
         <div className="text-6xl">{score.passed ? "🏆" : "💪"}</div>
-        <h2 className="mt-3 text-3xl font-black">
+        <h2 className="mt-3 font-display text-3xl font-bold text-[#16243D]">
           {score.passed ? "Čestitamo!" : "Almost there!"}
         </h2>
         <p className="mt-1 text-stone-600">
@@ -480,7 +480,7 @@ function ResultsScreen({
         </p>
       </div>
 
-      <div className="mt-6 rounded-2xl bg-white p-5 shadow-sm">
+      <div className="mt-6 rounded-[20px] border border-[rgba(15,23,42,.07)] bg-white p-5 shadow-[0_1px_3px_rgba(15,23,42,.04)]">
         <p className="text-xs font-black uppercase tracking-wide text-stone-400">By section</p>
         <ul className="mt-2 grid gap-2">
           {score.sections.map((s) => (
@@ -522,7 +522,7 @@ function ResultsScreen({
         >
           🔁 Retake the exam
         </button>
-        <Link to="/" className="rounded-xl bg-stone-900 py-3 text-center font-bold text-white hover:bg-stone-700">
+        <Link to="/" className="rounded-xl bg-[#16243D] py-3 text-center font-bold text-white hover:bg-[#20344F]">
           Back to the path →
         </Link>
       </div>

@@ -69,7 +69,7 @@ export default function DiagramView({ diagram }: { diagram: DiagramSpec }) {
       return (
         <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch">
           {side(diagram.left)}
-          <div className="self-center text-2xl font-black text-stone-400">vs</div>
+          <div className="self-center font-display text-2xl font-bold text-[#16243D] text-stone-400">vs</div>
           {side(diagram.right)}
         </div>
       );
@@ -117,7 +117,7 @@ export default function DiagramView({ diagram }: { diagram: DiagramSpec }) {
             const cc = g.caseId ? CASE_COLORS[g.caseId] : null;
             return (
               <div key={i} className={`rounded-xl border-2 p-3 text-center ${cc ? `${cc.border} ${cc.bg}` : "border-stone-300"}`}>
-                <div className="text-2xl font-black">{g.label}</div>
+                <div className="font-display text-2xl font-bold text-[#16243D]">{g.label}</div>
                 <div className={`text-sm font-bold ${cc?.text ?? "text-stone-600"}`}>{g.rule}</div>
                 <div className="mt-1 font-semibold">{g.example}</div>
               </div>
