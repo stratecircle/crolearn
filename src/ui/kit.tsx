@@ -171,7 +171,7 @@ export function Seg<T extends string>({ options, value, onChange, icons }: { opt
   return (
     <div className="flex overflow-hidden rounded-xl border bg-white" style={{ borderColor: "rgba(15,23,42,.1)" }}>
       {options.map((o, i) => {
-        const Icon = icons?.[o];
+        const Icon: LucideIcon | undefined = icons?.[o];
         const active = o === value;
         return (
           <button
