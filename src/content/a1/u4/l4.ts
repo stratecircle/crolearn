@@ -16,9 +16,9 @@ export const a1u4l4: Lesson = {
   grammarTags: ["accusative-animate", "htjeti"],
   estMinutes: 18,
   vocab: [
-    { id: "a1u4.htjeti", hr: "htjeti", en: "to want (hoću — direct)", pos: "verb", icon: "✋", exampleHr: "Hoću sladoled.", exampleEn: "I want ice cream." },
-    { id: "a1u4.gladan", hr: "gladan", en: "hungry (gladna f)", pos: "adj", icon: "😋", exampleHr: "Jako sam gladan.", exampleEn: "I am very hungry." },
-    { id: "a1u4.zedan", hr: "žedan", en: "thirsty (žedna f)", pos: "adj", icon: "🥵", exampleHr: "Jesi li žedan?", exampleEn: "Are you thirsty?" },
+    { id: "a1u4.htjeti", image: "/img/htjeti.png", hr: "htjeti", en: "to want (hoću — direct)", pos: "verb", icon: "✋", exampleHr: "Hoću sladoled.", exampleEn: "I want ice cream." },
+    { id: "a1u4.gladan", image: "/img/gladan.png", hr: "gladan", en: "hungry (gladna f)", pos: "adj", icon: "😋", exampleHr: "Jako sam gladan.", exampleEn: "I am very hungry." },
+    { id: "a1u4.zedan", image: "/img/zedan.png", hr: "žedan", en: "thirsty (žedna f)", pos: "adj", icon: "🥵", exampleHr: "Jesi li žedan?", exampleEn: "Are you thirsty?" },
     { id: "a1u4.kolac", image: "/img/kolac.png", hr: "kolač", en: "cake", pos: "noun", gender: "m", icon: "🍰", exampleHr: "Hoćeš li kolač?", exampleEn: "Do you want cake?" },
     { id: "a1u4.sladoled", image: "/img/sladoled.png", hr: "sladoled", en: "ice cream", pos: "noun", gender: "m", icon: "🍦", exampleHr: "Hoću sladoled.", exampleEn: "I want ice cream." },
     { id: "a1u4.cokolada", image: "/img/cokolada.png", hr: "čokolada", en: "chocolate", pos: "noun", gender: "f", icon: "🍫", exampleHr: "Volim čokoladu.", exampleEn: "I love chocolate." },

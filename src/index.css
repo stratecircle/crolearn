@@ -1,14 +1,69 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/playfair-display/500.css";
+@import "@fontsource/playfair-display/600.css";
+@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/playfair-display/500-italic.css";
 @import "tailwindcss";
 
+/* Nativ design tokens (design_handoff_nativ_app/README.md §Design Tokens) */
 @theme {
-  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+
+  --color-ink: #16243d;
+  --color-body: #3f4a5c;
+  --color-body2: #5b6472;
+  --color-muted: #8b93a1;
+  --color-primary: #c93434;
+  --color-primary-hover: #b32c2c;
+  --color-green: #2f7d53;
+  --color-orange: #e08a2b;
+  --color-violet: #8b6fc9;
+  --color-blue: #3b6fd4;
+  --color-teal: #3e9fb0;
+  --color-page: #efeeea;
+  --color-card: #fdfcfa;
+
+  --radius-card: 20px;
+  --radius-ctl: 12px;
+  --radius-tile: 16px;
 }
 
 html {
-  @apply bg-stone-50 text-stone-900;
+  background: #efeeea;
+  color: #16243d;
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Croatian special-character buttons and answer inputs need comfy tap targets */
 button {
   cursor: pointer;
+  font-family: inherit;
+}
+
+::selection {
+  background: rgba(201, 52, 52, 0.14);
+}
+
+[role="button"]:focus-visible,
+input:focus-visible,
+button:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #c93434;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Tutor columns scroll internally with hidden scrollbars */
+.nativ-noscrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.nativ-noscrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }

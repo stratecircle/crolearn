@@ -20,9 +20,9 @@ export const a1u4l5: Lesson = {
     { id: "a1u4.racun", image: "/img/racun.png", hr: "račun", en: "bill / check", pos: "noun", gender: "m", icon: "🧾", exampleHr: "Račun, molim!", exampleEn: "The bill, please!" },
     { id: "a1u4.kafic", image: "/img/kafic.png", hr: "kafić", en: "café", pos: "noun", gender: "m", icon: "☕", exampleHr: "Marko je u kafiću.", exampleEn: "Marko is at the café." },
     { id: "a1u4.restoran", image: "/img/restoran.png", hr: "restoran", en: "restaurant", pos: "noun", gender: "m", icon: "🍽️", exampleHr: "Restoran je nov.", exampleEn: "The restaurant is new." },
-    { id: "a1u4.jos", hr: "još", en: "more / another", pos: "adv", icon: "➕", exampleHr: "Još jednu kavu, molim.", exampleEn: "One more coffee, please." },
-    { id: "a1u4.dobar-tek", hr: "Dobar tek!", en: "enjoy your meal!", pos: "phrase", icon: "😋", exampleHr: "Dobar tek! — Hvala!", exampleEn: "Enjoy your meal! — Thanks!" },
-    { id: "a1u4.zivjeli", hr: "Živjeli!", en: "cheers!", pos: "phrase", icon: "🥂", exampleHr: "Živjeli!", exampleEn: "Cheers!" },
+    { id: "a1u4.jos", image: "/img/jos.png", hr: "još", en: "more / another", pos: "adv", icon: "➕", exampleHr: "Još jednu kavu, molim.", exampleEn: "One more coffee, please." },
+    { id: "a1u4.dobar-tek", image: "/img/dobartek.png", hr: "Dobar tek!", en: "enjoy your meal!", pos: "phrase", icon: "😋", exampleHr: "Dobar tek! — Hvala!", exampleEn: "Enjoy your meal! — Thanks!" },
+    { id: "a1u4.zivjeli", image: "/img/zivjeli.png", hr: "Živjeli!", en: "cheers!", pos: "phrase", icon: "🥂", exampleHr: "Živjeli!", exampleEn: "Cheers!" },
   ],
   slides: [
     {
