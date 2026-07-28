@@ -90,7 +90,7 @@ export default function StoryPage() {
         {story.paragraphs.map((p, i) => (
           <div key={i} className="rounded-2xl border bg-[color:var(--card)] p-5" style={{ borderColor: "rgba(var(--ink-rgb),.07)", boxShadow: SHADOW_CARD }}>
             <p className="text-[19px] leading-relaxed max-[700px]:text-[17px]" style={{ fontFamily: DISPLAY, color: INK }}>
-              {p.hr} <TtsButton text={p.hr} className="ml-1" /> <TtsButton text={p.hr} slow className="ml-1" />
+              {p.hr} <TtsButton text={p.hr} className="ml-1" /> <TtsButton text={p.hr} slow label="Slow" className="ml-1" />
             </p>
             {shownEn.has(i) ? (
               <p className="mt-2.5 text-[15px] leading-relaxed" style={{ color: BODY2 }}>{p.en}</p>

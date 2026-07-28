@@ -38,7 +38,7 @@ export default function DashboardPage() {
       {/* Greeting + stat chips */}
       <div className="mb-5 flex items-start justify-between gap-7 max-[700px]:flex-wrap">
         <div>
-          <H size={26} className="mb-1">Dobro došli, Noah.</H>
+          <H size={26} className="mb-1">Bok, Noah.</H>
           <p className="text-sm" style={{ color: MUTED }}>Let's continue your Croatian journey.</p>
         </div>
         <StatRow className="pt-1 max-[700px]:w-full max-[700px]:pt-0">
@@ -81,22 +81,51 @@ export default function DashboardPage() {
           )}
         </Card>
         <Card className="px-[26px] py-6">
-          <div className="mb-3 flex items-center justify-between gap-4">
+          <div className="mb-4 flex items-center justify-between gap-4">
             <div className="flex items-center gap-2.5">
               <Target size={17} color={INK} />
-              <div className="text-[15px] font-semibold" style={{ color: INK, letterSpacing: "-.01em" }}>Today's goal</div>
+              <div className="text-[15px] font-semibold" style={{ color: INK, letterSpacing: "-.01em" }}>Today's session</div>
             </div>
-            <div className="whitespace-nowrap text-sm" style={{ color: BODY2 }}>{s.goalDone} of {s.goalTotal} steps</div>
+            <div className="whitespace-nowrap text-sm" style={{ color: BODY2 }}>{s.minutesToday} min today</div>
           </div>
-          <ProgressBar pct={(s.goalDone / s.goalTotal) * 100} color="var(--green)" height={8} className="mb-4" />
-          <div className="flex items-center justify-between gap-3.5">
-            <div className="flex items-center gap-2 text-sm" style={{ color: BODY2 }}>
-              <Flame size={16} color="var(--primary)" />{s.dayStreak}-day streak
-            </div>
-            <div className="text-sm" style={{ color: BODY2 }}>
-              {s.due > 0 ? `${s.due} cards due · ` : "review clear · "}
-              {s.minutesToday} min today
-            </div>
+          <div className="grid gap-1.5">
+            {[
+              {
+                n: "①",
+                label: "Review",
+                sub: s.due > 0 ? `${s.due} card${s.due === 1 ? "" : "s"} due` : "Inbox clear",
+                done: s.due === 0,
+                to: "/review",
+              },
+              {
+                n: "②",
+                label: "Learn",
+                sub: p.next ? p.next.title : "Course complete",
+                done: !p.next,
+                to: p.next ? stepLink(p.next) : "/stories",
+              },
+              {
+                n: "③",
+                label: "Strengthen",
+                sub: "A drill, a story or some writing",
+                done: false,
+                to: "/practice",
+              },
+            ].map((st) => (
+              <button
+                key={st.label}
+                onClick={() => nav(st.to)}
+                className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors duration-[180ms] hover:bg-[rgba(var(--ink-rgb),.04)]"
+              >
+                <span className="w-6 flex-none text-center text-[17px]" style={{ color: st.done ? "var(--green)" : BODY2 }}>{st.n}</span>
+                <span className="w-[92px] flex-none text-sm font-semibold" style={{ color: INK }}>{st.label}</span>
+                <span className="min-w-0 flex-1 truncate text-sm" style={{ color: st.done ? "var(--green)" : BODY2 }}>{st.sub}</span>
+                {st.done ? <Check size={16} color="var(--green)" className="flex-none" /> : <ArrowRight size={15} color={MUTED} className="flex-none" />}
+              </button>
+            ))}
+          </div>
+          <div className="mt-3 flex items-center gap-2 border-t pt-3 text-sm" style={{ color: BODY2, borderColor: "rgba(var(--ink-rgb),.06)" }}>
+            <Flame size={16} color="var(--primary)" />{s.dayStreak}-day streak — a day counts once ① and ② are done.
           </div>
         </Card>
       </div>

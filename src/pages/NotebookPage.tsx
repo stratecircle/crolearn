@@ -6,10 +6,10 @@
  */
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowRight, BookOpenCheck, FileText, Folder, LayoutGrid, List, Repeat, Search, SquarePen } from "lucide-react";
+import { ArrowRight, BookOpenCheck, Check, FileText, Folder, LayoutGrid, List, Repeat, Search, SquarePen } from "lucide-react";
 import { levels } from "@/content";
 import { db } from "@/lib/db";
-import { BODY, BODY2, Card, H, INK, LEVEL_COLORS, MUTED, RED, Tile, tint } from "@/ui/kit";
+import { BODY, BODY2, Card, H, INK, LEVEL_COLORS, MUTED, RED, tint } from "@/ui/kit";
 
 interface NoteRow {
   lessonId: string;
@@ -17,8 +17,49 @@ interface NoteRow {
   blurb: string;
   levelId: string;
   unitLabel: string;
+  unitTitle: string;
   tags: string[];
   completedAt?: Date;
+}
+
+/** One note row/card: level-colored monogram, calm tags, check when studied. */
+function NoteCard({ n, grid = false, onOpen }: { n: NoteRow; grid?: boolean; onOpen: () => void }) {
+  const color = LEVEL_COLORS[n.levelId] ?? RED;
+  return (
+    <button
+      onClick={onOpen}
+      className={`flex w-full gap-4 rounded-2xl border bg-[color:var(--card)] p-4 text-left shadow-[0_1px_2px_rgba(var(--shadow-rgb),.03)] transition-all duration-[180ms] hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(var(--shadow-rgb),.07)] ${grid ? "flex-col p-5" : "items-center"}`}
+      style={{ borderColor: "rgba(var(--ink-rgb),.06)" }}
+    >
+      <div
+        className="flex h-11 w-11 flex-none items-center justify-center rounded-xl"
+        style={{ background: `linear-gradient(135deg, ${tint(color, 0.14)}, ${tint(color, 0.05)})` }}
+      >
+        <span style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 19, color }}>{n.title.charAt(0)}</span>
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-baseline gap-2.5">
+          <span className="truncate text-[15px] font-semibold" style={{ color: "var(--ink)", letterSpacing: "-.01em" }}>{n.title}</span>
+          <span className={`truncate text-[13px] ${grid ? "hidden" : "max-[900px]:hidden"}`} style={{ color: MUTED }}>{n.blurb}</span>
+        </div>
+        <div className="mt-1 flex flex-wrap items-center gap-1.5">
+          {grid && <span className="mr-1 text-xs" style={{ color: MUTED }}>{n.unitLabel}</span>}
+          {n.tags.map((t) => (
+            <span key={t} className="rounded-md px-2 py-[3px] text-[11px]" style={{ background: "rgba(var(--ink-rgb),.045)", color: "var(--body2)" }}>{t}</span>
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-none items-center" aria-label={n.completedAt ? "Studied" : "Not studied yet"}>
+        {n.completedAt ? (
+          <span className="flex h-6 w-6 items-center justify-center rounded-full" style={{ background: "rgba(var(--green-rgb),.12)" }}>
+            <Check size={13} color="var(--green)" />
+          </span>
+        ) : (
+          <span className="h-6 w-6 rounded-full" style={{ border: "2px solid rgba(var(--ink-rgb),.1)" }} />
+        )}
+      </div>
+    </button>
+  );
 }
 
 export default function NotebookPage() {
@@ -44,6 +85,7 @@ export default function NotebookPage() {
             blurb: l.titleEn,
             levelId: level.id,
             unitLabel: `${level.id} · Unit ${unit.number}`,
+            unitTitle: unit.title,
             tags: l.grammarTags.slice(0, 3),
             completedAt: completed.get(l.id),
           })),
@@ -145,7 +187,7 @@ export default function NotebookPage() {
                   onClick={() => setView(v)}
                   aria-label={`${v} view`}
                   className="flex h-9 w-[38px] items-center justify-center rounded-[9px]"
-                  style={view === v ? { background: "#fff", color: INK, boxShadow: "0 1px 3px rgba(var(--shadow-rgb),.1)" } : { color: MUTED }}
+                  style={view === v ? { background: "var(--card)", color: INK, boxShadow: "0 1px 3px rgba(var(--shadow-rgb),.1)" } : { color: MUTED }}
                 >
                   {v === "list" ? <List size={17} /> : <LayoutGrid size={17} />}
                 </button>
@@ -158,36 +200,30 @@ export default function NotebookPage() {
               <div className="mb-1.5 text-base font-semibold" style={{ color: INK }}>No notes found</div>
               <div className="text-sm" style={{ color: MUTED }}>Nothing matches your search or this category — try different keywords.</div>
             </div>
+          ) : view === "grid" ? (
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
+              {notes.map((n) => (
+                <NoteCard key={n.lessonId} n={n} grid onOpen={() => nav(`/notes/${n.lessonId}`)} />
+              ))}
+            </div>
           ) : (
-            <div className={view === "grid" ? "grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4" : "grid gap-3"}>
-              {notes.map((n) => {
+            // List view groups by unit — the notebook reads like the course's table of contents.
+            <div className="grid gap-2">
+              {notes.map((n, i) => {
+                const newGroup = i === 0 || notes[i - 1].unitLabel !== n.unitLabel;
                 const color = LEVEL_COLORS[n.levelId] ?? RED;
+                const groupCount = notes.filter((x) => x.unitLabel === n.unitLabel).length;
                 return (
-                  <button
-                    key={n.lessonId}
-                    onClick={() => nav(`/notes/${n.lessonId}`)}
-                    className={`flex gap-[18px] rounded-2xl border bg-[color:var(--card)] p-5 text-left shadow-[0_1px_2px_rgba(var(--shadow-rgb),.03)] transition-all duration-[180ms] hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(var(--shadow-rgb),.07)] ${view === "grid" ? "flex-col" : "items-center max-[1100px]:flex-col max-[1100px]:items-start"}`}
-                    style={{ borderColor: "rgba(var(--ink-rgb),.06)" }}
-                  >
-                    <Tile icon={FileText} color={color} size={52} radius={14} iconSize={23} />
-                    <div className="min-w-0 flex-1">
-                      <div className="mb-1 text-base font-semibold" style={{ color: INK, letterSpacing: "-.01em" }}>{n.title}</div>
-                      <div className="mb-2.5 text-sm" style={{ color: MUTED }}>{n.blurb}</div>
-                      <div className="flex flex-wrap gap-2">
-                        {n.tags.map((t) => (
-                          <span key={t} className="rounded-lg px-[11px] py-1 text-xs" style={{ background: tint(color, 0.1), color }}>{t}</span>
-                        ))}
+                  <div key={n.lessonId}>
+                    {newGroup && (
+                      <div className={`flex items-baseline gap-3 px-1 ${i === 0 ? "mb-2" : "mb-2 mt-5"}`}>
+                        <span className="rounded-md px-2 py-0.5 text-[11px] font-bold" style={{ background: tint(color, 0.1), color, letterSpacing: ".05em" }}>{n.unitLabel.toUpperCase()}</span>
+                        <span style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 16, color: INK }}>{n.unitTitle}</span>
+                        <span className="text-xs" style={{ color: MUTED }}>{groupCount} {groupCount === 1 ? "note" : "notes"}</span>
                       </div>
-                    </div>
-                    <div className={`flex flex-none items-center gap-4 ${view === "grid" ? "w-full justify-between" : ""}`}>
-                      <div className="flex items-center gap-2 text-sm" style={{ color: MUTED }}>
-                        <Folder size={16} />{n.unitLabel}
-                      </div>
-                      <div className="w-[92px] text-right text-sm" style={{ color: n.completedAt ? "var(--green)" : MUTED }}>
-                        {n.completedAt ? "Studied" : "Not yet"}
-                      </div>
-                    </div>
-                  </button>
+                    )}
+                    <NoteCard n={n} onOpen={() => nav(`/notes/${n.lessonId}`)} />
+                  </div>
                 );
               })}
             </div>

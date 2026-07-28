@@ -6,7 +6,7 @@
  */
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, BookOpen, Clock, Flame, Languages, PenLine, Sparkles, Star, Target, X } from "lucide-react";
+import { ArrowRight, BookOpen, Clock, Flame, Languages, Lock, PenLine, Sparkles, Star, Target, X } from "lucide-react";
 import type { QuizSlide } from "@/types/content";
 import { allUnits, findTest, courseGrounding } from "@/content";
 import { aiErrorMessage, gradeFreeForm, generateExercises, hasApiKey, type AiGradeResult } from "@/lib/claude";
@@ -20,11 +20,22 @@ import { BODY2, BtnPrimary, Card, CardH, Chip, GREEN, H, INK, MUTED, ProgressBar
 
 type WeakSpot = { label: string; focusLine: string };
 
-const WRITING_TASKS: { unitIndex: number; task: string }[] = [
-  { unitIndex: 0, task: "Say hello, introduce yourself (Ja sam… / Zovem se…), say how you are today, and say goodbye." },
-  { unitIndex: 1, task: "Say where you are from, your nationality, which languages you speak, and what your profession is." },
-  { unitIndex: 2, task: "Describe your family in 3–4 sentences: who they are, whose they are, what they are like, and what pets you have (or don't have)." },
-];
+/**
+ * Writing prompts follow the learner: the four most recent units, newest
+ * first. B1+ units contribute their real guided WritingTask; earlier units get
+ * a themed free-writing prompt built from what the unit taught.
+ */
+function recentWritingTasks(): { label: string; task: string }[] {
+  return allUnits
+    .slice(-4)
+    .reverse()
+    .map((u) => ({
+      label: `${u.levelId} · Unit ${u.number} — ${u.title}`,
+      task:
+        u.test.writing?.task ??
+        `Write 4–6 sentences in Croatian about "${u.titleEn}". Use what Unit ${u.number} taught you — and anything from earlier units.`,
+    }));
+}
 
 function describeTestSlide(testId: string, slideId: string): string | null {
   const test = findTest(testId);
@@ -115,8 +126,8 @@ export default function PracticePage() {
   const [drillError, setDrillError] = useState<string | null>(null);
   const [drill, setDrill] = useState<QuizSlide[] | null>(null);
 
-  const tasks = useMemo(() => WRITING_TASKS.filter((t) => t.unitIndex < allUnits.length), []);
-  const [taskIdx, setTaskIdx] = useState(() => Math.floor(Math.random() * Math.max(1, tasks.length)));
+  const tasks = useMemo(recentWritingTasks, []);
+  const [taskIdx, setTaskIdx] = useState(0);
   const [writing, setWriting] = useState("");
   const [grading, setGrading] = useState(false);
   const [gradeError, setGradeError] = useState<string | null>(null);
@@ -177,7 +188,7 @@ export default function PracticePage() {
     setGrade(null);
     try {
       const result = await gradeFreeForm({
-        task: tasks[taskIdx]?.task ?? WRITING_TASKS[0].task,
+        task: tasks[taskIdx]?.task ?? tasks[0].task,
         learnerAnswer: writing.trim(),
         levelContext: courseGrounding(),
       });
@@ -197,29 +208,32 @@ export default function PracticePage() {
     {
       title: "Flashcards",
       desc: "Review your due vocabulary with spaced repetition.",
-      chip: stats ? `${stats.due} cards due` : "…",
+      chip: stats ? (stats.due > 0 ? `${stats.due} cards due` : "Inbox clear") : "Counting…",
       icon: Languages,
       color: "var(--blue)",
       go: () => nav("/review"),
       disabled: false,
+      locked: false,
     },
     {
       title: "Targeted drills",
-      desc: loadingSpots ? "Checking your review deck and test history…" : weakSpots.length ? "AI exercises aimed at your recorded weak spots." : "AI mixed review of your latest unit.",
-      chip: loadingSpots ? "…" : weakSpots.length ? `${weakSpots.length} weak spots` : "8 exercises",
+      desc: weakSpots.length ? "AI exercises aimed at your recorded weak spots." : "AI mixed review of your latest unit.",
+      chip: !keyPresent ? "Needs API key" : loadingSpots ? "Checking history…" : weakSpots.length ? `${weakSpots.length} weak spots` : "8 exercises",
       icon: Sparkles,
       color: "var(--orange)",
       go: () => void generate(),
       disabled: !keyPresent || generating || loadingSpots,
+      locked: !keyPresent,
     },
     {
       title: "Writing",
       desc: "Free writing with AI feedback and corrections.",
-      chip: `${tasks.length} tasks`,
+      chip: !keyPresent ? "Needs API key" : `${tasks.length} tasks`,
       icon: PenLine,
       color: "var(--violet)",
       go: () => setShowWriting((v) => !v),
       disabled: !keyPresent,
+      locked: !keyPresent,
     },
     {
       title: "Reading",
@@ -229,6 +243,7 @@ export default function PracticePage() {
       color: "var(--green)",
       go: () => nav("/stories"),
       disabled: false,
+      locked: false,
     },
   ];
 
@@ -262,15 +277,21 @@ export default function PracticePage() {
               key={p.title}
               onClick={p.go}
               disabled={p.disabled}
-              className="flex flex-col rounded-2xl border bg-[color:var(--card)] p-6 text-left shadow-[0_1px_2px_rgba(var(--shadow-rgb),.03)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_16px_36px_rgba(var(--shadow-rgb),.08)] disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
-              style={{ borderColor: "rgba(var(--ink-rgb),.07)" }}
+              className="flex flex-col rounded-2xl border bg-[color:var(--card)] p-6 text-left shadow-[0_1px_2px_rgba(var(--shadow-rgb),.03)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_16px_36px_rgba(var(--shadow-rgb),.08)] disabled:hover:translate-y-0 disabled:hover:shadow-none"
+              style={{ borderColor: "rgba(var(--ink-rgb),.07)", cursor: p.disabled ? "default" : undefined }}
             >
               <Tile icon={p.icon} color={p.color} size={54} radius={14} iconSize={24} />
               <div className="mb-2 mt-[18px]" style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 18, color: INK }}>{p.title}</div>
               <div className="mb-[18px] text-sm leading-normal" style={{ color: BODY2 }}>{p.desc}</div>
-              <Chip color={p.color}>{p.title === "Targeted drills" && generating ? "Generating…" : p.chip}</Chip>
+              {p.locked ? (
+                <span className="inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold" style={{ background: tint("var(--orange)", 0.12), color: "var(--brown)" }}>
+                  <Lock size={12} />{p.chip}
+                </span>
+              ) : (
+                <Chip color={p.color}>{p.title === "Targeted drills" && generating ? "Generating…" : p.chip}</Chip>
+              )}
               <div className="mt-[18px] flex w-full justify-end">
-                <ArrowRight size={18} color={MUTED} />
+                <ArrowRight size={18} color={p.disabled ? "var(--muted3)" : MUTED} />
               </div>
             </button>
           ))}
@@ -317,7 +338,10 @@ export default function PracticePage() {
               Another task
             </button>
           </div>
-          <p className="mb-3.5 rounded-xl px-4 py-3 text-sm" style={{ background: "rgba(var(--ink-rgb),.03)", color: INK }}>{tasks[taskIdx]?.task}</p>
+          <div className="mb-3.5 rounded-xl px-4 py-3" style={{ background: "rgba(var(--ink-rgb),.03)" }}>
+            <p className="mb-1 text-xs font-semibold" style={{ color: MUTED, letterSpacing: ".08em" }}>{tasks[taskIdx]?.label.toUpperCase()}</p>
+            <p className="text-sm" style={{ color: INK }}>{tasks[taskIdx]?.task}</p>
+          </div>
           <textarea
             value={writing}
             onChange={(e) => setWriting(e.target.value)}

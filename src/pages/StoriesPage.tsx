@@ -7,7 +7,7 @@
  */
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, BookOpen, Brain, Clock, FileText, Trophy } from "lucide-react";
+import { ArrowRight, BookOpen, Brain, Check, Clock, FileText, Trophy } from "lucide-react";
 import { allUnits, allLessons } from "@/content";
 import { db, type StoryProgressRow } from "@/lib/db";
 import { BODY2, Card, CardH, Eyebrow, H, INK, LEVEL_COLORS, MUTED, ProgressBar, RED, Tile, tint } from "@/ui/kit";
@@ -88,23 +88,24 @@ export default function StoriesPage() {
       <Card className="mb-7 p-[30px]">
         <CardH className="mb-5">Story Library</CardH>
         <div className="mb-6 flex flex-wrap gap-2">
-          {FILTERS.map((f) => {
+          {FILTERS.filter((f) => f === "All Levels" || stories.some((s) => s.levelId === f)).map((f) => {
             const on = filter === f;
+            const count = f === "All Levels" ? stories.length : stories.filter((s) => s.levelId === f).length;
             return (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
                 className="rounded-full px-[18px] py-2.5 text-sm transition-colors duration-[180ms]"
-                style={on ? { background: "#fff", border: "1px solid rgba(var(--primary-rgb),.35)", color: RED } : { border: "1px solid transparent", color: BODY2 }}
+                style={on ? { background: "var(--card)", border: "1px solid rgba(var(--primary-rgb),.35)", color: RED, boxShadow: "0 1px 3px rgba(var(--shadow-rgb),.06)" } : { border: "1px solid transparent", color: BODY2 }}
               >
                 {f}
+                <span className="ml-1.5 text-xs" style={{ color: on ? RED : "var(--muted3)" }}>{count}</span>
               </button>
             );
           })}
         </div>
         <div className="grid grid-cols-4 gap-5 max-[1200px]:grid-cols-3 max-[900px]:grid-cols-2 max-[700px]:grid-cols-1">
           {visible.map((s) => {
-            const pct = s.row ? 100 : 0;
             return (
               <button
                 key={s.id}
@@ -126,13 +127,18 @@ export default function StoriesPage() {
                 <div className="p-[18px]">
                   <div className="mb-2" style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 17, lineHeight: 1.25, color: INK }}>{s.title}</div>
                   <div className="mb-3.5 text-[13px] leading-normal" style={{ color: BODY2 }}>{s.titleEn}</div>
-                  <div className="mb-3.5 flex gap-3.5 text-xs" style={{ color: MUTED }}>
-                    <div className="flex items-center gap-1.5"><Clock size={14} />{s.readMin} min read</div>
-                    <div className="flex items-center gap-1.5"><FileText size={14} />{s.words} words</div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <ProgressBar pct={pct} color={pct === 100 ? "var(--green)" : s.color} height={6} className="flex-1" />
-                    <div className="text-xs" style={{ color: pct === 0 ? MUTED : "var(--green)" }}>{s.row ? `${s.row.scorePct}%` : "new"}</div>
+                  <div className="flex items-center justify-between gap-3 border-t pt-3" style={{ borderColor: "rgba(var(--ink-rgb),.06)" }}>
+                    <div className="flex gap-3.5 text-xs" style={{ color: MUTED }}>
+                      <div className="flex items-center gap-1.5"><Clock size={14} />{s.readMin} min</div>
+                      <div className="flex items-center gap-1.5"><FileText size={14} />{s.words} words</div>
+                    </div>
+                    {s.row ? (
+                      <div className="flex items-center gap-1 text-xs font-semibold" style={{ color: "var(--green)" }}>
+                        <Check size={13} />{s.row.scorePct}%
+                      </div>
+                    ) : (
+                      <span className="rounded-full px-2.5 py-0.5 text-[10px] font-bold" style={{ background: tint(s.color, 0.1), color: s.color, letterSpacing: ".05em" }}>NEW</span>
+                    )}
                   </div>
                 </div>
               </button>

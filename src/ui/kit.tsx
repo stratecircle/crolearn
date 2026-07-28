@@ -305,7 +305,7 @@ export function Seg<T extends string>({ options, value, onChange, icons }: { opt
             className="flex h-12 flex-1 items-center justify-center gap-2 text-[15px] transition-colors duration-[180ms]"
             style={{
               borderLeft: i === 0 ? "none" : "1px solid rgba(var(--ink-rgb),.1)",
-              background: active ? "var(--tint5)" : "#fff",
+              background: active ? "var(--tint5)" : "var(--card)",
               color: active ? INK : BODY2,
               fontWeight: active ? 600 : 400,
             }}
