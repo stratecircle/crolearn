@@ -19,7 +19,7 @@ export const a1u8l4: Lesson = {
   grammarTags: ["weather", "perfekt", "impersonal"],
   estMinutes: 18,
   vocab: [
-    { id: "a1u8.vrijeme", hr: "vrijeme", en: "weather (also = time!)", pos: "noun", gender: "n", icon: "🌦️", exampleHr: "Kakvo je vrijeme danas?", exampleEn: "What's the weather like today?" },
+    { id: "a1u8.vrijeme", image: "/img/vrijeme.png", hr: "vrijeme", en: "weather (also = time!)", pos: "noun", gender: "n", icon: "🌦️", exampleHr: "Kakvo je vrijeme danas?", exampleEn: "What's the weather like today?" },
     { id: "a1u8.sunce", hr: "sunce", en: "sun", pos: "noun", gender: "n", icon: "☀️", exampleHr: "Volim sunce i more.", exampleEn: "I love the sun and the sea." },
     { id: "a1u8.kisa", hr: "kiša", en: "rain", pos: "noun", gender: "f", icon: "🌧️", exampleHr: "Pada kiša.", exampleEn: "It's raining." },
     { id: "a1u8.snijeg", hr: "snijeg", en: "snow", pos: "noun", gender: "m", icon: "❄️", exampleHr: "Pada snijeg.", exampleEn: "It's snowing." },

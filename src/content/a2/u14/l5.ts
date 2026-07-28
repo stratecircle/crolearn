@@ -20,7 +20,7 @@ export const a2u14l5: Lesson = {
     { id: "a2u14.pozivnica", hr: "pozivnica", en: "invitation (card)", pos: "noun", gender: "f", icon: "💌", exampleHr: "Tom piše pozivnice.", exampleEn: "Tom is writing the invitations." },
     { id: "a2u14.zelja", hr: "želja", en: "wish", pos: "noun", gender: "f", icon: "🌠", exampleHr: "Imam jednu želju.", exampleEn: "I have one wish." },
     { id: "a2u14.sreca", hr: "sreća", en: "luck / happiness", pos: "noun", gender: "f", icon: "🍀", exampleHr: "Želim ti puno sreće!", exampleEn: "I wish you lots of luck!" },
-    { id: "a2u14.zivjeli", hr: "Živjeli!", en: "Cheers! (lit. may we live!)", pos: "phrase", icon: "🥂", exampleHr: "Živjeli!", exampleEn: "Cheers!", tags: ["chunk"] },
+    { id: "a2u14.zivjeli", image: "/img/zivjeli.png", hr: "Živjeli!", en: "Cheers! (lit. may we live!)", pos: "phrase", icon: "🥂", exampleHr: "Živjeli!", exampleEn: "Cheers!", tags: ["chunk"] },
     { id: "a2u14.iznenadenje", hr: "iznenađenje", en: "surprise", pos: "noun", gender: "n", icon: "🎊", exampleHr: "Proslava je iznenađenje!", exampleEn: "The party is a surprise!" },
     { id: "a2u14.veseo", hr: "veseo", en: "cheerful (vesela, veselo)", pos: "adj", icon: "😄", exampleHr: "Marko je veseo.", exampleEn: "Marko is cheerful." },
   ],

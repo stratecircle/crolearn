@@ -20,13 +20,13 @@ export const a1u6l5: Lesson = {
   grammarTags: ["integration", "sequencers", "review"],
   estMinutes: 20,
   vocab: [
-    { id: "a1u6.doruckovati", hr: "doručkovati", en: "to have breakfast — doručkujem", pos: "verb", icon: "🥐", exampleHr: "Doručkujem u pola osam.", exampleEn: "I have breakfast at 7:30." },
-    { id: "a1u6.pocinjati", hr: "počinjati", en: "to begin — počinje", pos: "verb", icon: "▶️", exampleHr: "Posao počinje u devet.", exampleEn: "Work begins at nine." },
-    { id: "a1u6.zavrsavati", hr: "završavati", en: "to finish / end — završava", pos: "verb", icon: "⏹️", exampleHr: "Posao završava u pet.", exampleEn: "Work ends at five." },
-    { id: "a1u6.obicno", hr: "obično", en: "usually", pos: "adv", icon: "🔁", exampleHr: "Obično večeram u sedam.", exampleEn: "I usually have dinner at seven." },
-    { id: "a1u6.prvo", hr: "prvo", en: "first (of all)", pos: "adv", icon: "1️⃣", exampleHr: "Prvo se budim.", exampleEn: "First I wake up." },
-    { id: "a1u6.onda", hr: "onda", en: "then / next", pos: "adv", icon: "➡️", exampleHr: "Onda doručkujem.", exampleEn: "Then I have breakfast." },
-    { id: "a1u6.na-kraju", hr: "na kraju", en: "finally / at the end (chunk)", pos: "phrase", icon: "🏁", exampleHr: "Na kraju idem spavati.", exampleEn: "Finally I go to bed.", tags: ["chunk"] },
+    { id: "a1u6.doruckovati", image: "/img/doruckovati.png", hr: "doručkovati", en: "to have breakfast — doručkujem", pos: "verb", icon: "🥐", exampleHr: "Doručkujem u pola osam.", exampleEn: "I have breakfast at 7:30." },
+    { id: "a1u6.pocinjati", image: "/img/pocinjati.png", hr: "počinjati", en: "to begin — počinje", pos: "verb", icon: "▶️", exampleHr: "Posao počinje u devet.", exampleEn: "Work begins at nine." },
+    { id: "a1u6.zavrsavati", image: "/img/zavrsavati.png", hr: "završavati", en: "to finish / end — završava", pos: "verb", icon: "⏹️", exampleHr: "Posao završava u pet.", exampleEn: "Work ends at five." },
+    { id: "a1u6.obicno", image: "/img/obicno.png", hr: "obično", en: "usually", pos: "adv", icon: "🔁", exampleHr: "Obično večeram u sedam.", exampleEn: "I usually have dinner at seven." },
+    { id: "a1u6.prvo", image: "/img/prvo.png", hr: "prvo", en: "first (of all)", pos: "adv", icon: "1️⃣", exampleHr: "Prvo se budim.", exampleEn: "First I wake up." },
+    { id: "a1u6.onda", image: "/img/onda.png", hr: "onda", en: "then / next", pos: "adv", icon: "➡️", exampleHr: "Onda doručkujem.", exampleEn: "Then I have breakfast." },
+    { id: "a1u6.na-kraju", image: "/img/nakraju.png", hr: "na kraju", en: "finally / at the end (chunk)", pos: "phrase", icon: "🏁", exampleHr: "Na kraju idem spavati.", exampleEn: "Finally I go to bed.", tags: ["chunk"] },
   ],
   slides: [
     {

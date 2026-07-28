@@ -18,14 +18,14 @@ export const a1u5l2: Lesson = {
   grammarTags: ["accusative", "locative", "direction-vs-location"],
   estMinutes: 18,
   vocab: [
-    { id: "a1u5.gdje", hr: "gdje", en: "where (at rest)", pos: "adv", icon: "📍", exampleHr: "Gdje si?", exampleEn: "Where are you?" },
-    { id: "a1u5.kamo", hr: "kamo", en: "where to (direction)", pos: "adv", icon: "➡️", exampleHr: "Kamo ideš?", exampleEn: "Where are you going?" },
-    { id: "a1u5.ovdje", hr: "ovdje", en: "here", pos: "adv", icon: "📌", exampleHr: "Ovdje sam.", exampleEn: "I am here." },
-    { id: "a1u5.tamo", hr: "tamo", en: "there", pos: "adv", icon: "👉", exampleHr: "Muzej je tamo.", exampleEn: "The museum is there." },
-    { id: "a1u5.kino", hr: "kino", en: "cinema", pos: "noun", gender: "n", icon: "🎬", exampleHr: "Idem u kino.", exampleEn: "I am going to the cinema." },
-    { id: "a1u5.kolodvor", hr: "kolodvor", en: "(train/bus) station", pos: "noun", gender: "m", icon: "🚉", exampleHr: "Tom je na kolodvoru.", exampleEn: "Tom is at the station." },
-    { id: "a1u5.blizu", hr: "blizu", en: "near / close", pos: "adv", icon: "🤏", exampleHr: "Pošta je blizu.", exampleEn: "The post office is near." },
-    { id: "a1u5.daleko", hr: "daleko", en: "far", pos: "adv", icon: "🔭", exampleHr: "Kolodvor je daleko.", exampleEn: "The station is far." },
+    { id: "a1u5.gdje", image: "/img/gdje.png", hr: "gdje", en: "where (at rest)", pos: "adv", icon: "📍", exampleHr: "Gdje si?", exampleEn: "Where are you?" },
+    { id: "a1u5.kamo", image: "/img/kamo.png", hr: "kamo", en: "where to (direction)", pos: "adv", icon: "➡️", exampleHr: "Kamo ideš?", exampleEn: "Where are you going?" },
+    { id: "a1u5.ovdje", image: "/img/ovdje.png", hr: "ovdje", en: "here", pos: "adv", icon: "📌", exampleHr: "Ovdje sam.", exampleEn: "I am here." },
+    { id: "a1u5.tamo", image: "/img/tamo.png", hr: "tamo", en: "there", pos: "adv", icon: "👉", exampleHr: "Muzej je tamo.", exampleEn: "The museum is there." },
+    { id: "a1u5.kino", image: "/img/kino.png", hr: "kino", en: "cinema", pos: "noun", gender: "n", icon: "🎬", exampleHr: "Idem u kino.", exampleEn: "I am going to the cinema." },
+    { id: "a1u5.kolodvor", image: "/img/kolodvor.png", hr: "kolodvor", en: "(train/bus) station", pos: "noun", gender: "m", icon: "🚉", exampleHr: "Tom je na kolodvoru.", exampleEn: "Tom is at the station." },
+    { id: "a1u5.blizu", image: "/img/blizu.png", hr: "blizu", en: "near / close", pos: "adv", icon: "🤏", exampleHr: "Pošta je blizu.", exampleEn: "The post office is near." },
+    { id: "a1u5.daleko", image: "/img/daleko.png", hr: "daleko", en: "far", pos: "adv", icon: "🔭", exampleHr: "Kolodvor je daleko.", exampleEn: "The station is far." },
   ],
   slides: [
     {

@@ -16,12 +16,12 @@ export const a1u1l1: Lesson = {
     { id: "a1u1.ne", hr: "ne", en: "no", pos: "interj", icon: "👎", exampleHr: "Kava? — Ne, voda!", exampleEn: "Coffee? — No, water!" },
     { id: "a1u1.i", hr: "i", en: "and", pos: "conj", exampleHr: "Kava i voda.", exampleEn: "Coffee and water." },
     { id: "a1u1.dobro", hr: "dobro", en: "good / well", pos: "adv", icon: "✨", exampleHr: "Dobro jutro!", exampleEn: "Good morning!" },
-    { id: "a1u1.jutro", hr: "jutro", en: "morning", pos: "noun", gender: "n", icon: "🌅", image: "/img/jutro.png", exampleHr: "Dobro jutro!", exampleEn: "Good morning!" },
-    { id: "a1u1.dan", hr: "dan", en: "day", pos: "noun", gender: "m", icon: "🌤️", image: "/img/dan.png", exampleHr: "Dobar dan!", exampleEn: "Good day! (hello)" },
-    { id: "a1u1.vecer", hr: "večer", en: "evening", pos: "noun", gender: "f", icon: "🌆", image: "/img/vecer.png", exampleHr: "Dobra večer!", exampleEn: "Good evening!" },
-    { id: "a1u1.noc", hr: "noć", en: "night", pos: "noun", gender: "f", icon: "🌙", image: "/img/noc.png", exampleHr: "Dan i noć.", exampleEn: "Day and night." },
-    { id: "a1u1.kava", hr: "kava", en: "coffee", pos: "noun", gender: "f", icon: "☕", image: "/img/kava.png", exampleHr: "Kava i voda.", exampleEn: "Coffee and water." },
-    { id: "a1u1.voda", hr: "voda", en: "water", pos: "noun", gender: "f", icon: "💧", image: "/img/voda.png", exampleHr: "Voda i kava.", exampleEn: "Water and coffee." },
+    { id: "a1u1.jutro", image: "/img/jutro.png", hr: "jutro", en: "morning", pos: "noun", gender: "n", icon: "🌅", image: "/img/jutro.png", exampleHr: "Dobro jutro!", exampleEn: "Good morning!" },
+    { id: "a1u1.dan", image: "/img/dan.png", hr: "dan", en: "day", pos: "noun", gender: "m", icon: "🌤️", image: "/img/dan.png", exampleHr: "Dobar dan!", exampleEn: "Good day! (hello)" },
+    { id: "a1u1.vecer", image: "/img/vecer.png", hr: "večer", en: "evening", pos: "noun", gender: "f", icon: "🌆", image: "/img/vecer.png", exampleHr: "Dobra večer!", exampleEn: "Good evening!" },
+    { id: "a1u1.noc", image: "/img/noc.png", hr: "noć", en: "night", pos: "noun", gender: "f", icon: "🌙", image: "/img/noc.png", exampleHr: "Dan i noć.", exampleEn: "Day and night." },
+    { id: "a1u1.kava", image: "/img/kava.png", hr: "kava", en: "coffee", pos: "noun", gender: "f", icon: "☕", image: "/img/kava.png", exampleHr: "Kava i voda.", exampleEn: "Coffee and water." },
+    { id: "a1u1.voda", image: "/img/voda.png", hr: "voda", en: "water", pos: "noun", gender: "f", icon: "💧", image: "/img/voda.png", exampleHr: "Voda i kava.", exampleEn: "Water and coffee." },
   ],
   slides: [
     {

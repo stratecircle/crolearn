@@ -25,7 +25,7 @@ export const a2u12l2: Lesson = {
     { id: "a2u12.olovka", hr: "olovka", en: "pencil", pos: "noun", gender: "f", icon: "✏️", exampleHr: "Pišem olovkom.", exampleEn: "I write with a pencil." },
     { id: "a2u12.mobitel", hr: "mobitel", en: "mobile phone", pos: "noun", gender: "m", icon: "📱", exampleHr: "Plaćam mobitelom.", exampleEn: "I pay with my phone." },
     { id: "a2u12.pjesice", hr: "pješice", en: "on foot (an adverb — no case!)", pos: "adv", icon: "🚶", exampleHr: "Ana ide pješice.", exampleEn: "Ana goes on foot." },
-    { id: "a2u12.stanica", hr: "stanica", en: "(bus/tram) stop", pos: "noun", gender: "f", icon: "🚏", exampleHr: "Čekam autobus na stanici.", exampleEn: "I'm waiting for the bus at the stop." },
+    { id: "a2u12.stanica", image: "/img/stanica.png", hr: "stanica", en: "(bus/tram) stop", pos: "noun", gender: "f", icon: "🚏", exampleHr: "Čekam autobus na stanici.", exampleEn: "I'm waiting for the bus at the stop." },
   ],
   slides: [
     {

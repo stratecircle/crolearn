@@ -27,7 +27,7 @@ export const a1u7l2: Lesson = {
     { id: "a1u7.iz", hr: "iz", en: "from / out of (+ genitive)", pos: "prep", icon: "📤", exampleHr: "Tom je iz Kanade.", exampleEn: "Tom is from Canada." },
     { id: "a1u7.od", hr: "od", en: "from (a point/person) (+ genitive)", pos: "prep", icon: "↩️", exampleHr: "Daleko od trga.", exampleEn: "Far from the square." },
     { id: "a1u7.do", hr: "do", en: "to / until (+ genitive)", pos: "prep", icon: "➡️", exampleHr: "Idem do trgovine.", exampleEn: "I'm going to the shop." },
-    { id: "a1u7.blizu", hr: "blizu", en: "near (+ genitive)", pos: "prep", icon: "📍", exampleHr: "Blizu trga.", exampleEn: "Near the square." },
+    { id: "a1u7.blizu", image: "/img/blizu.png", hr: "blizu", en: "near (+ genitive)", pos: "prep", icon: "📍", exampleHr: "Blizu trga.", exampleEn: "Near the square." },
   ],
   slides: [
     {
