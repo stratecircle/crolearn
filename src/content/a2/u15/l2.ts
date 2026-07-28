@@ -19,12 +19,12 @@ export const a2u15l2: Lesson = {
   grammarTags: ["dat-clitics", "verb-valence", "second-position"],
   estMinutes: 19,
   vocab: [
-    { id: "a2u15.odgovoriti", hr: "odgovoriti", en: "to answer (+ DAT: odgovorim ti)", pos: "verb", icon: "↩️", exampleHr: "Odgovorit ću ti sutra.", exampleEn: "I'll answer you tomorrow." },
-    { id: "a2u15.odgovor", hr: "odgovor", en: "answer", pos: "noun", gender: "m", icon: "✅", exampleHr: "Čekam odgovor.", exampleEn: "I'm waiting for an answer." },
-    { id: "a2u15.pitanje", hr: "pitanje", en: "question", pos: "noun", gender: "n", icon: "❓", exampleHr: "Imam pitanje.", exampleEn: "I have a question." },
-    { id: "a2u15.vijest", hr: "vijest", en: "news item (f — an -i noun!)", pos: "noun", gender: "f", icon: "📰", exampleHr: "Imam dobru vijest!", exampleEn: "I have good news!" },
-    { id: "a2u15.slika", hr: "slika", en: "picture / photo", pos: "noun", gender: "f", icon: "🖼️", exampleHr: "Pošalji mi sliku!", exampleEn: "Send me the picture!" },
-    { id: "a2u15.ostaviti", hr: "ostaviti", en: "to leave (a message; ostavim)", pos: "verb", icon: "📩", exampleHr: "Ostavi poruku!", exampleEn: "Leave a message!" },
+    { id: "a2u15.odgovoriti", image: "/img/odgovoriti.png", hr: "odgovoriti", en: "to answer (+ DAT: odgovorim ti)", pos: "verb", icon: "↩️", exampleHr: "Odgovorit ću ti sutra.", exampleEn: "I'll answer you tomorrow." },
+    { id: "a2u15.odgovor", image: "/img/odgovor.png", hr: "odgovor", en: "answer", pos: "noun", gender: "m", icon: "✅", exampleHr: "Čekam odgovor.", exampleEn: "I'm waiting for an answer." },
+    { id: "a2u15.pitanje", image: "/img/pitanje.png", hr: "pitanje", en: "question", pos: "noun", gender: "n", icon: "❓", exampleHr: "Imam pitanje.", exampleEn: "I have a question." },
+    { id: "a2u15.vijest", image: "/img/vijest.png", hr: "vijest", en: "news item (f — an -i noun!)", pos: "noun", gender: "f", icon: "📰", exampleHr: "Imam dobru vijest!", exampleEn: "I have good news!" },
+    { id: "a2u15.slika", image: "/img/slika.png", hr: "slika", en: "picture / photo", pos: "noun", gender: "f", icon: "🖼️", exampleHr: "Pošalji mi sliku!", exampleEn: "Send me the picture!" },
+    { id: "a2u15.ostaviti", image: "/img/ostaviti.png", hr: "ostaviti", en: "to leave (a message; ostavim)", pos: "verb", icon: "📩", exampleHr: "Ostavi poruku!", exampleEn: "Leave a message!" },
   ],
   slides: [
     {

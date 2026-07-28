@@ -19,14 +19,14 @@ export const a2u14l3: Lesson = {
   grammarTags: ["negative-imperative", "imperative", "recipes"],
   estMinutes: 19,
   vocab: [
-    { id: "a2u14.torta", hr: "torta", en: "cake (big, layered)", pos: "noun", gender: "f", icon: "🎂", exampleHr: "Radimo tortu za rođendan.", exampleEn: "We're making a cake for the birthday." },
-    { id: "a2u14.secer", hr: "šećer", en: "sugar", pos: "noun", gender: "m", icon: "🍬", exampleHr: "Pijem kavu sa šećerom.", exampleEn: "I drink coffee with sugar." },
-    { id: "a2u14.brasno", hr: "brašno", en: "flour", pos: "noun", gender: "n", icon: "🌾", exampleHr: "Kupujem brašno za tortu.", exampleEn: "I'm buying flour for the cake." },
-    { id: "a2u14.jaje", hr: "jaje", en: "egg (pl jaja!)", pos: "noun", gender: "n", icon: "🥚", exampleHr: "Imam tri jaja.", exampleEn: "I have three eggs." },
-    { id: "a2u14.dodati", hr: "dodati", en: "to add (dodaj!)", pos: "verb", icon: "➕", exampleHr: "Dodaj šećer i brašno!", exampleEn: "Add the sugar and flour!" },
-    { id: "a2u14.mijesati", hr: "miješati", en: "to stir / mix (miješaj!)", pos: "verb", icon: "🥄", exampleHr: "Miješaj pet minuta!", exampleEn: "Stir for five minutes!" },
-    { id: "a2u14.staviti", hr: "staviti", en: "to put (stavi!)", pos: "verb", icon: "📥", exampleHr: "Stavi tortu u pećnicu!", exampleEn: "Put the cake in the oven!" },
-    { id: "a2u14.pecnica", hr: "pećnica", en: "oven", pos: "noun", gender: "f", icon: "🔥", exampleHr: "Torta je u pećnici.", exampleEn: "The cake is in the oven." },
+    { id: "a2u14.torta", image: "/img/torta.png", hr: "torta", en: "cake (big, layered)", pos: "noun", gender: "f", icon: "🎂", exampleHr: "Radimo tortu za rođendan.", exampleEn: "We're making a cake for the birthday." },
+    { id: "a2u14.secer", image: "/img/secer.png", hr: "šećer", en: "sugar", pos: "noun", gender: "m", icon: "🍬", exampleHr: "Pijem kavu sa šećerom.", exampleEn: "I drink coffee with sugar." },
+    { id: "a2u14.brasno", image: "/img/brasno.png", hr: "brašno", en: "flour", pos: "noun", gender: "n", icon: "🌾", exampleHr: "Kupujem brašno za tortu.", exampleEn: "I'm buying flour for the cake." },
+    { id: "a2u14.jaje", image: "/img/jaje.png", hr: "jaje", en: "egg (pl jaja!)", pos: "noun", gender: "n", icon: "🥚", exampleHr: "Imam tri jaja.", exampleEn: "I have three eggs." },
+    { id: "a2u14.dodati", image: "/img/dodati.png", hr: "dodati", en: "to add (dodaj!)", pos: "verb", icon: "➕", exampleHr: "Dodaj šećer i brašno!", exampleEn: "Add the sugar and flour!" },
+    { id: "a2u14.mijesati", image: "/img/mijesati.png", hr: "miješati", en: "to stir / mix (miješaj!)", pos: "verb", icon: "🥄", exampleHr: "Miješaj pet minuta!", exampleEn: "Stir for five minutes!" },
+    { id: "a2u14.staviti", image: "/img/staviti.png", hr: "staviti", en: "to put (stavi!)", pos: "verb", icon: "📥", exampleHr: "Stavi tortu u pećnicu!", exampleEn: "Put the cake in the oven!" },
+    { id: "a2u14.pecnica", image: "/img/pecnica.png", hr: "pećnica", en: "oven", pos: "noun", gender: "f", icon: "🔥", exampleHr: "Torta je u pećnici.", exampleEn: "The cake is in the oven." },
   ],
   slides: [
     {

@@ -18,12 +18,12 @@ export const b1u17l1: Lesson = {
   grammarTags: ["aspect-formation", "aspect-prefixation"],
   estMinutes: 19,
   vocab: [
-    { id: "b1u17.novine", hr: "novine", en: "newspaper (f, ALWAYS plural)", pos: "noun", gender: "f", icon: "📰", exampleHr: "Svaki dan čitam novine.", exampleEn: "I read the paper every day." },
-    { id: "b1u17.clanak", hr: "članak", en: "article (GEN članka — the a runs away!)", pos: "noun", gender: "m", icon: "📄", exampleHr: "Danas sam pročitao dug članak.", exampleEn: "Today I read a long article (to the end)." },
-    { id: "b1u17.naslov", hr: "naslov", en: "headline / title", pos: "noun", gender: "m", icon: "🔠", exampleHr: "Naslov je kratak.", exampleEn: "The headline is short." },
-    { id: "b1u17.portal", hr: "portal", en: "news site / portal", pos: "noun", gender: "m", icon: "🖥️", exampleHr: "Čitam vijesti na portalu.", exampleEn: "I read the news on the site." },
-    { id: "b1u17.novinar", hr: "novinar", en: "journalist (m; novinarka f)", pos: "noun", gender: "m", icon: "🎤", exampleHr: "Novinar je napisao članak.", exampleEn: "The journalist wrote the article." },
-    { id: "b1u17.poslusati", hr: "poslušati", en: "to listen through (once) — pf of slušati", pos: "verb", icon: "🎧", exampleHr: "Poslušaj ovo!", exampleEn: "Listen to this!" },
+    { id: "b1u17.novine", image: "/img/novine.png", hr: "novine", en: "newspaper (f, ALWAYS plural)", pos: "noun", gender: "f", icon: "📰", exampleHr: "Svaki dan čitam novine.", exampleEn: "I read the paper every day." },
+    { id: "b1u17.clanak", image: "/img/clanak.png", hr: "članak", en: "article (GEN članka — the a runs away!)", pos: "noun", gender: "m", icon: "📄", exampleHr: "Danas sam pročitao dug članak.", exampleEn: "Today I read a long article (to the end)." },
+    { id: "b1u17.naslov", image: "/img/naslov.png", hr: "naslov", en: "headline / title", pos: "noun", gender: "m", icon: "🔠", exampleHr: "Naslov je kratak.", exampleEn: "The headline is short." },
+    { id: "b1u17.portal", image: "/img/portal.png", hr: "portal", en: "news site / portal", pos: "noun", gender: "m", icon: "🖥️", exampleHr: "Čitam vijesti na portalu.", exampleEn: "I read the news on the site." },
+    { id: "b1u17.novinar", image: "/img/novinar.png", hr: "novinar", en: "journalist (m; novinarka f)", pos: "noun", gender: "m", icon: "🎤", exampleHr: "Novinar je napisao članak.", exampleEn: "The journalist wrote the article." },
+    { id: "b1u17.poslusati", image: "/img/poslusati.png", hr: "poslušati", en: "to listen through (once) — pf of slušati", pos: "verb", icon: "🎧", exampleHr: "Poslušaj ovo!", exampleEn: "Listen to this!" },
   ],
   slides: [
     {

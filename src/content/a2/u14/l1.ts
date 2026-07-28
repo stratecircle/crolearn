@@ -20,12 +20,12 @@ export const a2u14l1: Lesson = {
   grammarTags: ["vocative", "register"],
   estMinutes: 18,
   vocab: [
-    { id: "a2u14.proslava", hr: "proslava", en: "celebration / party", pos: "noun", gender: "f", icon: "🎉", exampleHr: "Proslava je u subotu.", exampleEn: "The party is on Saturday." },
-    { id: "a2u14.slaviti", hr: "slaviti", en: "to celebrate (slavim)", pos: "verb", icon: "🥳", exampleHr: "Slavimo rođendan.", exampleEn: "We're celebrating a birthday." },
-    { id: "a2u14.dragi", hr: "dragi", en: "dear (dragi m / draga f)", pos: "adj", icon: "💌", exampleHr: "Draga bako, kako si?", exampleEn: "Dear grandma, how are you?" },
-    { id: "a2u14.momak", hr: "momak", en: "young man (GEN momka)", pos: "noun", gender: "m", icon: "🧑", exampleHr: "Ivan je dobar momak.", exampleEn: "Ivan is a good guy." },
-    { id: "a2u14.drustvo", hr: "društvo", en: "company / group of friends", pos: "noun", gender: "n", icon: "👥", exampleHr: "Imamo dobro društvo.", exampleEn: "We have good company." },
-    { id: "a2u14.gospodica", hr: "gospođica", en: "Miss / young lady", pos: "noun", gender: "f", icon: "👩", exampleHr: "Gospođica Kovač je učiteljica.", exampleEn: "Miss Kovač is a teacher." },
+    { id: "a2u14.proslava", image: "/img/proslava.png", hr: "proslava", en: "celebration / party", pos: "noun", gender: "f", icon: "🎉", exampleHr: "Proslava je u subotu.", exampleEn: "The party is on Saturday." },
+    { id: "a2u14.slaviti", image: "/img/slaviti.png", hr: "slaviti", en: "to celebrate (slavim)", pos: "verb", icon: "🥳", exampleHr: "Slavimo rođendan.", exampleEn: "We're celebrating a birthday." },
+    { id: "a2u14.dragi", image: "/img/dragi.png", hr: "dragi", en: "dear (dragi m / draga f)", pos: "adj", icon: "💌", exampleHr: "Draga bako, kako si?", exampleEn: "Dear grandma, how are you?" },
+    { id: "a2u14.momak", image: "/img/momak.png", hr: "momak", en: "young man (GEN momka)", pos: "noun", gender: "m", icon: "🧑", exampleHr: "Ivan je dobar momak.", exampleEn: "Ivan is a good guy." },
+    { id: "a2u14.drustvo", image: "/img/drustvo.png", hr: "društvo", en: "company / group of friends", pos: "noun", gender: "n", icon: "👥", exampleHr: "Imamo dobro društvo.", exampleEn: "We have good company." },
+    { id: "a2u14.gospodica", image: "/img/gospodica.png", hr: "gospođica", en: "Miss / young lady", pos: "noun", gender: "f", icon: "👩", exampleHr: "Gospođica Kovač je učiteljica.", exampleEn: "Miss Kovač is a teacher." },
   ],
   slides: [
     {

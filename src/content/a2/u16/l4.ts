@@ -19,12 +19,12 @@ export const a2u16l4: Lesson = {
   grammarTags: ["biography-schema", "aspect-past", "sequencers"],
   estMinutes: 19,
   vocab: [
-    { id: "a2u16.zivot", hr: "život", en: "life", pos: "noun", gender: "m", icon: "🌍", exampleHr: "Moj život je u Zagrebu.", exampleEn: "My life is in Zagreb." },
-    { id: "a2u16.vjencanje", hr: "vjenčanje", en: "wedding", pos: "noun", gender: "n", icon: "💒", exampleHr: "Vjenčanje je u svibnju.", exampleEn: "The wedding is in May." },
-    { id: "a2u16.vjencatise", hr: "vjenčati se", en: "to get married (pf)", pos: "verb", icon: "💍", exampleHr: "Vjenčali su se prošle godine.", exampleEn: "They got married last year." },
-    { id: "a2u16.zavrsiti", hr: "završiti", en: "to finish (pf; završim)", pos: "verb", icon: "🎓", exampleHr: "Završila sam školu.", exampleEn: "I finished school." },
-    { id: "a2u16.uspjeh", hr: "uspjeh", en: "success", pos: "noun", gender: "m", icon: "🏆", exampleHr: "To je velik uspjeh!", exampleEn: "That's a big success!" },
-    { id: "a2u16.brak", hr: "brak", en: "marriage", pos: "noun", gender: "m", icon: "💞", exampleHr: "Njihov brak je sretan.", exampleEn: "Their marriage is a happy one." },
+    { id: "a2u16.zivot", image: "/img/zivot.png", hr: "život", en: "life", pos: "noun", gender: "m", icon: "🌍", exampleHr: "Moj život je u Zagrebu.", exampleEn: "My life is in Zagreb." },
+    { id: "a2u16.vjencanje", image: "/img/vjencanje.png", hr: "vjenčanje", en: "wedding", pos: "noun", gender: "n", icon: "💒", exampleHr: "Vjenčanje je u svibnju.", exampleEn: "The wedding is in May." },
+    { id: "a2u16.vjencatise", image: "/img/vjencatise.png", hr: "vjenčati se", en: "to get married (pf)", pos: "verb", icon: "💍", exampleHr: "Vjenčali su se prošle godine.", exampleEn: "They got married last year." },
+    { id: "a2u16.zavrsiti", image: "/img/zavrsiti.png", hr: "završiti", en: "to finish (pf; završim)", pos: "verb", icon: "🎓", exampleHr: "Završila sam školu.", exampleEn: "I finished school." },
+    { id: "a2u16.uspjeh", image: "/img/uspjeh.png", hr: "uspjeh", en: "success", pos: "noun", gender: "m", icon: "🏆", exampleHr: "To je velik uspjeh!", exampleEn: "That's a big success!" },
+    { id: "a2u16.brak", image: "/img/brak.png", hr: "brak", en: "marriage", pos: "noun", gender: "m", icon: "💞", exampleHr: "Njihov brak je sretan.", exampleEn: "Their marriage is a happy one." },
   ],
   slides: [
     {

@@ -20,9 +20,9 @@ export const a1u2l3: Lesson = {
     { id: "a1u2.konobarica", hr: "konobarica", en: "waitress", pos: "noun", gender: "f", icon: "💁‍♀️", image: "/img/konobarica.png", exampleHr: "Ona je konobarica.", exampleEn: "She is a waitress." },
     { id: "a1u2.inzenjer", hr: "inženjer", en: "engineer (m)", pos: "noun", gender: "m", icon: "👷", image: "/img/inzenjer.png", exampleHr: "On je inženjer.", exampleEn: "He is an engineer." },
     { id: "a1u2.inzenjerka", hr: "inženjerka", en: "engineer (f)", pos: "noun", gender: "f", icon: "👷‍♀️", image: "/img/inzenjerka.png", exampleHr: "Ona je inženjerka.", exampleEn: "She is an engineer." },
-    { id: "a1u2.dobar", hr: "dobar", en: "good", pos: "adj", icon: "👍", exampleHr: "Čaj je dobar.", exampleEn: "The tea is good." },
-    { id: "a1u2.los", hr: "loš", en: "bad", pos: "adj", icon: "👎", exampleHr: "On je loš učitelj.", exampleEn: "He is a bad teacher." },
-    { id: "a1u2.nov", hr: "nov", en: "new", pos: "adj", icon: "✨", exampleHr: "Grad je nov.", exampleEn: "The city is new." },
+    { id: "a1u2.dobar", image: "/img/dobar.png", hr: "dobar", en: "good", pos: "adj", icon: "👍", exampleHr: "Čaj je dobar.", exampleEn: "The tea is good." },
+    { id: "a1u2.los", image: "/img/los.png", hr: "loš", en: "bad", pos: "adj", icon: "👎", exampleHr: "On je loš učitelj.", exampleEn: "He is a bad teacher." },
+    { id: "a1u2.nov", image: "/img/nov.png", hr: "nov", en: "new", pos: "adj", icon: "✨", exampleHr: "Grad je nov.", exampleEn: "The city is new." },
   ],
   slides: [
     {

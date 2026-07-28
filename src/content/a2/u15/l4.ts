@@ -20,13 +20,13 @@ export const a2u15l4: Lesson = {
   grammarTags: ["phone-script", "email-register", "vi-register"],
   estMinutes: 19,
   vocab: [
-    { id: "a2u15.halo", hr: "halo", en: "hello? (PHONE ONLY)", pos: "interj", icon: "📞", exampleHr: "Halo, tko je?", exampleEn: "Hello, who is it?" },
-    { id: "a2u15.postovani", hr: "poštovani", en: "Dear… (formal; poštovana f)", pos: "adj", icon: "🎩", exampleHr: "Poštovana gospođo Horvat!", exampleEn: "Dear Mrs Horvat! (formal)" },
-    { id: "a2u15.pozdrav", hr: "pozdrav", en: "greeting / regards", pos: "noun", gender: "m", icon: "👋", exampleHr: "Pozdrav iz Splita!", exampleEn: "Greetings from Split!" },
-    { id: "a2u15.potpis", hr: "potpis", en: "signature", pos: "noun", gender: "m", icon: "✍️", exampleHr: "Na kraju je potpis.", exampleEn: "At the end comes the signature." },
-    { id: "a2u15.hitno", hr: "hitno", en: "urgent(ly)", pos: "adv", icon: "🚨", exampleHr: "Hitno je! Nazovi me!", exampleEn: "It's urgent! Call me!" },
-    { id: "a2u15.zauzet", hr: "zauzet", en: "busy / engaged (zauzeta, zauzeto)", pos: "adj", icon: "⛔", exampleHr: "Broj je zauzet.", exampleEn: "The number is busy." },
-    { id: "a2u15.email", hr: "e-mail", en: "e-mail", pos: "noun", gender: "m", icon: "📧", exampleHr: "Pišem e-mail šefici.", exampleEn: "I'm writing the boss an e-mail." },
+    { id: "a2u15.halo", image: "/img/halo.png", hr: "halo", en: "hello? (PHONE ONLY)", pos: "interj", icon: "📞", exampleHr: "Halo, tko je?", exampleEn: "Hello, who is it?" },
+    { id: "a2u15.postovani", image: "/img/postovani.png", hr: "poštovani", en: "Dear… (formal; poštovana f)", pos: "adj", icon: "🎩", exampleHr: "Poštovana gospođo Horvat!", exampleEn: "Dear Mrs Horvat! (formal)" },
+    { id: "a2u15.pozdrav", image: "/img/pozdrav.png", hr: "pozdrav", en: "greeting / regards", pos: "noun", gender: "m", icon: "👋", exampleHr: "Pozdrav iz Splita!", exampleEn: "Greetings from Split!" },
+    { id: "a2u15.potpis", image: "/img/potpis.png", hr: "potpis", en: "signature", pos: "noun", gender: "m", icon: "✍️", exampleHr: "Na kraju je potpis.", exampleEn: "At the end comes the signature." },
+    { id: "a2u15.hitno", image: "/img/hitno.png", hr: "hitno", en: "urgent(ly)", pos: "adv", icon: "🚨", exampleHr: "Hitno je! Nazovi me!", exampleEn: "It's urgent! Call me!" },
+    { id: "a2u15.zauzet", image: "/img/zauzet.png", hr: "zauzet", en: "busy / engaged (zauzeta, zauzeto)", pos: "adj", icon: "⛔", exampleHr: "Broj je zauzet.", exampleEn: "The number is busy." },
+    { id: "a2u15.email", image: "/img/email.png", hr: "e-mail", en: "e-mail", pos: "noun", gender: "m", icon: "📧", exampleHr: "Pišem e-mail šefici.", exampleEn: "I'm writing the boss an e-mail." },
   ],
   slides: [
     {

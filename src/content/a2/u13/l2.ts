@@ -20,12 +20,12 @@ export const a2u13l2: Lesson = {
   grammarTags: ["number-government", "gen-plural", "quantity-words"],
   estMinutes: 18,
   vocab: [
-    { id: "a2u13.zivotinja", hr: "životinja", en: "animal", pos: "noun", gender: "f", icon: "🐾", exampleHr: "U šumi ima puno životinja.", exampleEn: "There are a lot of animals in the forest." },
-    { id: "a2u13.konj", hr: "konj", en: "horse", pos: "noun", gender: "m", icon: "🐴", exampleHr: "Konj je velik i brz.", exampleEn: "The horse is big and fast." },
-    { id: "a2u13.krava", hr: "krava", en: "cow", pos: "noun", gender: "f", icon: "🐄", exampleHr: "Krava je na polju.", exampleEn: "The cow is in the field." },
-    { id: "a2u13.ovca", hr: "ovca", en: "sheep (GEN pl ovaca!)", pos: "noun", gender: "f", icon: "🐑", exampleHr: "Baka ima pet ovaca.", exampleEn: "Grandma has five sheep." },
-    { id: "a2u13.medvjed", hr: "medvjed", en: "bear", pos: "noun", gender: "m", icon: "🐻", exampleHr: "Medvjed živi u šumi.", exampleEn: "The bear lives in the forest." },
-    { id: "a2u13.nekoliko", hr: "nekoliko", en: "a few / several (+ GEN pl)", pos: "adv", icon: "🔢", exampleHr: "Baka ima nekoliko ovaca.", exampleEn: "Grandma has a few sheep." },
+    { id: "a2u13.zivotinja", image: "/img/zivotinja.png", hr: "životinja", en: "animal", pos: "noun", gender: "f", icon: "🐾", exampleHr: "U šumi ima puno životinja.", exampleEn: "There are a lot of animals in the forest." },
+    { id: "a2u13.konj", image: "/img/konj.png", hr: "konj", en: "horse", pos: "noun", gender: "m", icon: "🐴", exampleHr: "Konj je velik i brz.", exampleEn: "The horse is big and fast." },
+    { id: "a2u13.krava", image: "/img/krava.png", hr: "krava", en: "cow", pos: "noun", gender: "f", icon: "🐄", exampleHr: "Krava je na polju.", exampleEn: "The cow is in the field." },
+    { id: "a2u13.ovca", image: "/img/ovca.png", hr: "ovca", en: "sheep (GEN pl ovaca!)", pos: "noun", gender: "f", icon: "🐑", exampleHr: "Baka ima pet ovaca.", exampleEn: "Grandma has five sheep." },
+    { id: "a2u13.medvjed", image: "/img/medvjed.png", hr: "medvjed", en: "bear", pos: "noun", gender: "m", icon: "🐻", exampleHr: "Medvjed živi u šumi.", exampleEn: "The bear lives in the forest." },
+    { id: "a2u13.nekoliko", image: "/img/nekoliko.png", hr: "nekoliko", en: "a few / several (+ GEN pl)", pos: "adv", icon: "🔢", exampleHr: "Baka ima nekoliko ovaca.", exampleEn: "Grandma has a few sheep." },
   ],
   slides: [
     {

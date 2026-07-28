@@ -20,12 +20,12 @@ export const a2u13l1: Lesson = {
   grammarTags: ["gen-plural", "fleeting-a"],
   estMinutes: 18,
   vocab: [
-    { id: "a2u13.priroda", hr: "priroda", en: "nature", pos: "noun", gender: "f", icon: "🏞️", exampleHr: "Priroda u Hrvatskoj je lijepa.", exampleEn: "Nature in Croatia is beautiful." },
-    { id: "a2u13.planina", hr: "planina", en: "mountain", pos: "noun", gender: "f", icon: "⛰️", exampleHr: "Planina je visoka.", exampleEn: "The mountain is high." },
-    { id: "a2u13.rijeka", hr: "rijeka", en: "river", pos: "noun", gender: "f", icon: "🏞️", exampleHr: "Blizu sela je rijeka.", exampleEn: "There's a river near the village." },
-    { id: "a2u13.jezero", hr: "jezero", en: "lake", pos: "noun", gender: "n", icon: "💧", exampleHr: "Jezero je lijepo.", exampleEn: "The lake is beautiful." },
-    { id: "a2u13.suma", hr: "šuma", en: "forest", pos: "noun", gender: "f", icon: "🌲", exampleHr: "U šumi ima ptica.", exampleEn: "There are birds in the forest." },
-    { id: "a2u13.polje", hr: "polje", en: "field", pos: "noun", gender: "n", icon: "🌾", exampleHr: "Polje je veliko.", exampleEn: "The field is big." },
+    { id: "a2u13.priroda", image: "/img/priroda.png", hr: "priroda", en: "nature", pos: "noun", gender: "f", icon: "🏞️", exampleHr: "Priroda u Hrvatskoj je lijepa.", exampleEn: "Nature in Croatia is beautiful." },
+    { id: "a2u13.planina", image: "/img/planina.png", hr: "planina", en: "mountain", pos: "noun", gender: "f", icon: "⛰️", exampleHr: "Planina je visoka.", exampleEn: "The mountain is high." },
+    { id: "a2u13.rijeka", image: "/img/rijeka.png", hr: "rijeka", en: "river", pos: "noun", gender: "f", icon: "🏞️", exampleHr: "Blizu sela je rijeka.", exampleEn: "There's a river near the village." },
+    { id: "a2u13.jezero", image: "/img/jezero.png", hr: "jezero", en: "lake", pos: "noun", gender: "n", icon: "💧", exampleHr: "Jezero je lijepo.", exampleEn: "The lake is beautiful." },
+    { id: "a2u13.suma", image: "/img/suma.png", hr: "šuma", en: "forest", pos: "noun", gender: "f", icon: "🌲", exampleHr: "U šumi ima ptica.", exampleEn: "There are birds in the forest." },
+    { id: "a2u13.polje", image: "/img/polje.png", hr: "polje", en: "field", pos: "noun", gender: "n", icon: "🌾", exampleHr: "Polje je veliko.", exampleEn: "The field is big." },
   ],
   slides: [
     {

@@ -17,10 +17,10 @@ export const a1u1l2: Lesson = {
     { id: "a1u1.dak", image: "/img/dak.png", hr: "đak", en: "pupil", pos: "noun", gender: "m", icon: "🎒", exampleHr: "On je đak.", exampleEn: "He is a pupil." },
     { id: "a1u1.dzep", image: "/img/dzep.png", hr: "džep", en: "pocket", pos: "noun", gender: "m", icon: "👖", exampleHr: "Njegov džep.", exampleEn: "His pocket." },
     { id: "a1u1.ljeto", image: "/img/ljeto.png", hr: "ljeto", en: "summer", pos: "noun", gender: "n", icon: "☀️", exampleHr: "To je ljeto.", exampleEn: "That is summer." },
-    { id: "a1u1.njegov", hr: "njegov", en: "his", pos: "pron", exampleHr: "Njegov čaj.", exampleEn: "His tea." },
+    { id: "a1u1.njegov", image: "/img/njegov.png", hr: "njegov", en: "his", pos: "pron", exampleHr: "Njegov čaj.", exampleEn: "His tea." },
     { id: "a1u1.skola", image: "/img/skola.png", hr: "škola", en: "school", pos: "noun", gender: "f", icon: "🏫", exampleHr: "To je škola.", exampleEn: "That is a school." },
     { id: "a1u1.zena", image: "/img/zena.png", hr: "žena", en: "woman / wife", pos: "noun", gender: "f", icon: "👩", exampleHr: "Žena i čovjek.", exampleEn: "A woman and a man." },
-    { id: "a1u1.cao", hr: "ćao", en: "hi / bye (casual)", pos: "interj", icon: "👋", exampleHr: "Ćao! Kako si?", exampleEn: "Hi! How are you?", tags: ["greeting"] },
+    { id: "a1u1.cao", image: "/img/cao.png", hr: "ćao", en: "hi / bye (casual)", pos: "interj", icon: "👋", exampleHr: "Ćao! Kako si?", exampleEn: "Hi! How are you?", tags: ["greeting"] },
     { id: "a1u1.hrvatska", image: "/img/hrvatska.png", hr: "Hrvatska", en: "Croatia", pos: "noun", gender: "f", icon: "🇭🇷", exampleHr: "To je Hrvatska.", exampleEn: "That is Croatia." },
   ],
   slides: [

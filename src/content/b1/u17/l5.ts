@@ -20,12 +20,12 @@ export const b1u17l5: Lesson = {
   grammarTags: ["aspect-consolidation", "writing-prep"],
   estMinutes: 21,
   vocab: [
-    { id: "b1u17.mediji", hr: "mediji", en: "the media (m pl; sg medij)", pos: "noun", gender: "m", icon: "📱", exampleHr: "Mediji su danas brzi.", exampleEn: "The media are fast these days." },
-    { id: "b1u17.casopis", hr: "časopis", en: "magazine", pos: "noun", gender: "m", icon: "📖", exampleHr: "Čitam časopis svaki tjedan.", exampleEn: "I read a magazine every week." },
-    { id: "b1u17.intervju", hr: "intervju", en: "interview", pos: "noun", gender: "m", icon: "🎤", exampleHr: "Novinar je napravio intervju s Markom.", exampleEn: "The journalist did an interview with Marko." },
-    { id: "b1u17.reklama", hr: "reklama", en: "advertisement / commercial", pos: "noun", gender: "f", icon: "📢", exampleHr: "Reklama je bila duga.", exampleEn: "The ad was long." },
-    { id: "b1u17.drustvene-mreze", hr: "društvene mreže", en: "social media (f pl)", pos: "phrase", icon: "🌐", exampleHr: "Tom voli društvene mreže.", exampleEn: "Tom likes social media." },
-    { id: "b1u17.voditi", hr: "voditi", en: "to host / lead (impf; vodim) — the verb inside voditelj!", pos: "verb", icon: "🎙️", exampleHr: "Voditeljica vodi emisiju.", exampleEn: "The presenter hosts the show." },
+    { id: "b1u17.mediji", image: "/img/mediji.png", hr: "mediji", en: "the media (m pl; sg medij)", pos: "noun", gender: "m", icon: "📱", exampleHr: "Mediji su danas brzi.", exampleEn: "The media are fast these days." },
+    { id: "b1u17.casopis", image: "/img/casopis.png", hr: "časopis", en: "magazine", pos: "noun", gender: "m", icon: "📖", exampleHr: "Čitam časopis svaki tjedan.", exampleEn: "I read a magazine every week." },
+    { id: "b1u17.intervju", image: "/img/intervju.png", hr: "intervju", en: "interview", pos: "noun", gender: "m", icon: "🎤", exampleHr: "Novinar je napravio intervju s Markom.", exampleEn: "The journalist did an interview with Marko." },
+    { id: "b1u17.reklama", image: "/img/reklama.png", hr: "reklama", en: "advertisement / commercial", pos: "noun", gender: "f", icon: "📢", exampleHr: "Reklama je bila duga.", exampleEn: "The ad was long." },
+    { id: "b1u17.drustvene-mreze", image: "/img/drustvenemreze.png", hr: "društvene mreže", en: "social media (f pl)", pos: "phrase", icon: "🌐", exampleHr: "Tom voli društvene mreže.", exampleEn: "Tom likes social media." },
+    { id: "b1u17.voditi", image: "/img/voditi.png", hr: "voditi", en: "to host / lead (impf; vodim) — the verb inside voditelj!", pos: "verb", icon: "🎙️", exampleHr: "Voditeljica vodi emisiju.", exampleEn: "The presenter hosts the show." },
   ],
   slides: [
     {

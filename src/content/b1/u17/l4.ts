@@ -19,14 +19,14 @@ export const b1u17l4: Lesson = {
   grammarTags: ["aspect-narration", "dok-clauses"],
   estMinutes: 20,
   vocab: [
-    { id: "b1u17.dogoditi-se", hr: "dogoditi se", en: "to happen (pf)", pos: "verb", icon: "💥", exampleHr: "Što se dogodilo?", exampleEn: "What happened?" },
-    { id: "b1u17.dogadaj", hr: "događaj", en: "event (m)", pos: "noun", gender: "m", icon: "📅", exampleHr: "Događaj je počeo u devet.", exampleEn: "The event started at nine." },
-    { id: "b1u17.dok", hr: "dok", en: "while (opens the background)", pos: "conj", icon: "⏳", exampleHr: "Dok je Ana gledala vijesti, Marko je došao.", exampleEn: "While Ana was watching the news, Marko arrived." },
-    { id: "b1u17.odjednom", hr: "odjednom", en: "suddenly", pos: "adv", icon: "⚡", exampleHr: "Odjednom je počela kiša.", exampleEn: "Suddenly it started raining." },
-    { id: "b1u17.napokon", hr: "napokon", en: "finally / at last", pos: "adv", icon: "🏁", exampleHr: "Portal je napokon objavio vijest.", exampleEn: "The news site finally published the story." },
-    { id: "b1u17.objavljivati", hr: "objavljivati", en: "to publish (impf; objavljujem!) — pair of objaviti", pos: "verb", icon: "🚀", exampleHr: "Novinari objavljuju članke svaki dan.", exampleEn: "Journalists publish articles every day." },
-    { id: "b1u17.prenositi", hr: "prenositi", en: "to broadcast / carry (impf; prenosim)", pos: "verb", icon: "📡", exampleHr: "Radio prenosi koncert.", exampleEn: "The radio is broadcasting a concert." },
-    { id: "b1u17.prenijeti", hr: "prenijeti", en: "to broadcast (once) — pf; prenesem, prenio/prenijela", pos: "verb", icon: "📦", exampleHr: "Televizija je prenijela vijest.", exampleEn: "The TV carried the story." },
+    { id: "b1u17.dogoditi-se", image: "/img/dogoditise.png", hr: "dogoditi se", en: "to happen (pf)", pos: "verb", icon: "💥", exampleHr: "Što se dogodilo?", exampleEn: "What happened?" },
+    { id: "b1u17.dogadaj", image: "/img/dogadaj.png", hr: "događaj", en: "event (m)", pos: "noun", gender: "m", icon: "📅", exampleHr: "Događaj je počeo u devet.", exampleEn: "The event started at nine." },
+    { id: "b1u17.dok", image: "/img/dok.png", hr: "dok", en: "while (opens the background)", pos: "conj", icon: "⏳", exampleHr: "Dok je Ana gledala vijesti, Marko je došao.", exampleEn: "While Ana was watching the news, Marko arrived." },
+    { id: "b1u17.odjednom", image: "/img/odjednom.png", hr: "odjednom", en: "suddenly", pos: "adv", icon: "⚡", exampleHr: "Odjednom je počela kiša.", exampleEn: "Suddenly it started raining." },
+    { id: "b1u17.napokon", image: "/img/napokon.png", hr: "napokon", en: "finally / at last", pos: "adv", icon: "🏁", exampleHr: "Portal je napokon objavio vijest.", exampleEn: "The news site finally published the story." },
+    { id: "b1u17.objavljivati", image: "/img/objavljivati.png", hr: "objavljivati", en: "to publish (impf; objavljujem!) — pair of objaviti", pos: "verb", icon: "🚀", exampleHr: "Novinari objavljuju članke svaki dan.", exampleEn: "Journalists publish articles every day." },
+    { id: "b1u17.prenositi", image: "/img/prenositi.png", hr: "prenositi", en: "to broadcast / carry (impf; prenosim)", pos: "verb", icon: "📡", exampleHr: "Radio prenosi koncert.", exampleEn: "The radio is broadcasting a concert." },
+    { id: "b1u17.prenijeti", image: "/img/prenijeti.png", hr: "prenijeti", en: "to broadcast (once) — pf; prenesem, prenio/prenijela", pos: "verb", icon: "📦", exampleHr: "Televizija je prenijela vijest.", exampleEn: "The TV carried the story." },
   ],
   slides: [
     {

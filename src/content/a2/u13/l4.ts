@@ -19,12 +19,12 @@ export const a2u13l4: Lesson = {
   grammarTags: ["superlatives", "od-nego-comparison", "comparatives"],
   estMinutes: 19,
   vocab: [
-    { id: "a2u13.dubok", hr: "dubok", en: "deep (comp. dublji)", pos: "adj", icon: "🌊", exampleHr: "Jezero je duboko.", exampleEn: "The lake is deep." },
-    { id: "a2u13.dug", hr: "dug", en: "long (comp. dulji/duži)", pos: "adj", icon: "📏", exampleHr: "Rijeka je duga.", exampleEn: "The river is long." },
-    { id: "a2u13.kratak", hr: "kratak", en: "short (comp. kraći)", pos: "adj", icon: "✂️", exampleHr: "Zimi je dan kratak.", exampleEn: "In winter the day is short." },
-    { id: "a2u13.brz", hr: "brz", en: "fast (comp. brži)", pos: "adj", icon: "🐇", exampleHr: "Konj je brz.", exampleEn: "The horse is fast." },
-    { id: "a2u13.spor", hr: "spor", en: "slow (comp. sporiji)", pos: "adj", icon: "🐢", exampleHr: "Vlak je spor.", exampleEn: "The train is slow." },
-    { id: "a2u13.sirok", hr: "širok", en: "wide (comp. širi)", pos: "adj", icon: "↔️", exampleHr: "Rijeka je široka.", exampleEn: "The river is wide." },
+    { id: "a2u13.dubok", image: "/img/dubok.png", hr: "dubok", en: "deep (comp. dublji)", pos: "adj", icon: "🌊", exampleHr: "Jezero je duboko.", exampleEn: "The lake is deep." },
+    { id: "a2u13.dug", image: "/img/dug.png", hr: "dug", en: "long (comp. dulji/duži)", pos: "adj", icon: "📏", exampleHr: "Rijeka je duga.", exampleEn: "The river is long." },
+    { id: "a2u13.kratak", image: "/img/kratak.png", hr: "kratak", en: "short (comp. kraći)", pos: "adj", icon: "✂️", exampleHr: "Zimi je dan kratak.", exampleEn: "In winter the day is short." },
+    { id: "a2u13.brz", image: "/img/brz.png", hr: "brz", en: "fast (comp. brži)", pos: "adj", icon: "🐇", exampleHr: "Konj je brz.", exampleEn: "The horse is fast." },
+    { id: "a2u13.spor", image: "/img/spor.png", hr: "spor", en: "slow (comp. sporiji)", pos: "adj", icon: "🐢", exampleHr: "Vlak je spor.", exampleEn: "The train is slow." },
+    { id: "a2u13.sirok", image: "/img/sirok.png", hr: "širok", en: "wide (comp. širi)", pos: "adj", icon: "↔️", exampleHr: "Rijeka je široka.", exampleEn: "The river is wide." },
   ],
   slides: [
     {

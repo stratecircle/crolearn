@@ -18,12 +18,12 @@ export const a2u16l2: Lesson = {
   grammarTags: ["aspect-past", "perfekt", "life-events"],
   estMinutes: 19,
   vocab: [
-    { id: "a2u16.roditise", hr: "roditi se", en: "to be born (pf; rodio/rodila se)", pos: "verb", icon: "👶", exampleHr: "Rodio sam se u Kanadi.", exampleEn: "I was born in Canada." },
-    { id: "a2u16.odrasti", hr: "odrasti", en: "to grow up (pf; odrastao/odrasla)", pos: "verb", icon: "🌱", exampleHr: "Baka je odrasla u Slavoniji.", exampleEn: "Grandma grew up in Slavonia." },
-    { id: "a2u16.djetinjstvo", hr: "djetinjstvo", en: "childhood", pos: "noun", gender: "n", icon: "🧸", exampleHr: "Moje djetinjstvo je bilo lijepo.", exampleEn: "My childhood was lovely." },
-    { id: "a2u16.mladost", hr: "mladost", en: "youth (f — an -i noun)", pos: "noun", gender: "f", icon: "🌼", exampleHr: "Mladost je kratka.", exampleEn: "Youth is short." },
-    { id: "a2u16.upoznati", hr: "upoznati", en: "to meet (for the first time; pf)", pos: "verb", icon: "🤝", exampleHr: "Upoznala sam muža na poslu.", exampleEn: "I met my husband at work." },
-    { id: "a2u16.promijeniti", hr: "promijeniti", en: "to change (sth; pf)", pos: "verb", icon: "🔄", exampleHr: "Promijenio sam plan.", exampleEn: "I changed the plan." },
+    { id: "a2u16.roditise", image: "/img/roditise.png", hr: "roditi se", en: "to be born (pf; rodio/rodila se)", pos: "verb", icon: "👶", exampleHr: "Rodio sam se u Kanadi.", exampleEn: "I was born in Canada." },
+    { id: "a2u16.odrasti", image: "/img/odrasti.png", hr: "odrasti", en: "to grow up (pf; odrastao/odrasla)", pos: "verb", icon: "🌱", exampleHr: "Baka je odrasla u Slavoniji.", exampleEn: "Grandma grew up in Slavonia." },
+    { id: "a2u16.djetinjstvo", image: "/img/djetinjstvo.png", hr: "djetinjstvo", en: "childhood", pos: "noun", gender: "n", icon: "🧸", exampleHr: "Moje djetinjstvo je bilo lijepo.", exampleEn: "My childhood was lovely." },
+    { id: "a2u16.mladost", image: "/img/mladost.png", hr: "mladost", en: "youth (f — an -i noun)", pos: "noun", gender: "f", icon: "🌼", exampleHr: "Mladost je kratka.", exampleEn: "Youth is short." },
+    { id: "a2u16.upoznati", image: "/img/upoznati.png", hr: "upoznati", en: "to meet (for the first time; pf)", pos: "verb", icon: "🤝", exampleHr: "Upoznala sam muža na poslu.", exampleEn: "I met my husband at work." },
+    { id: "a2u16.promijeniti", image: "/img/promijeniti.png", hr: "promijeniti", en: "to change (sth; pf)", pos: "verb", icon: "🔄", exampleHr: "Promijenio sam plan.", exampleEn: "I changed the plan." },
   ],
   slides: [
     {

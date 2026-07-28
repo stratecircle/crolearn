@@ -17,14 +17,14 @@ export const a1u2l1: Lesson = {
     { id: "a1u2.grad", hr: "grad", en: "city", pos: "noun", gender: "m", icon: "🏙️", image: "/img/grad.png", exampleHr: "Zagreb je grad.", exampleEn: "Zagreb is a city." },
     { id: "a1u2.selo", hr: "selo", en: "village", pos: "noun", gender: "n", icon: "🏡", image: "/img/selo.png", exampleHr: "To je selo.", exampleEn: "That is a village." },
     { id: "a1u2.more", hr: "more", en: "sea", pos: "noun", gender: "n", icon: "🌊", image: "/img/more.png", exampleHr: "More je tu.", exampleEn: "The sea is here." },
-    { id: "a1u2.jezik", hr: "jezik", en: "language; tongue", pos: "noun", gender: "m", icon: "🗣️", exampleHr: "Hrvatski je jezik.", exampleEn: "Croatian is a language." },
+    { id: "a1u2.jezik", image: "/img/jezik.png", hr: "jezik", en: "language; tongue", pos: "noun", gender: "m", icon: "🗣️", exampleHr: "Hrvatski je jezik.", exampleEn: "Croatian is a language." },
     { id: "a1u2.kanada", hr: "Kanada", en: "Canada", pos: "noun", gender: "f", icon: "🇨🇦", image: "/img/kanada.png", exampleHr: "Kanada je zemlja.", exampleEn: "Canada is a country." },
     { id: "a1u2.njemacka", hr: "Njemačka", en: "Germany", pos: "noun", gender: "f", icon: "🇩🇪", image: "/img/njemacka.png", exampleHr: "Njemačka je zemlja.", exampleEn: "Germany is a country." },
     { id: "a1u2.engleska", hr: "Engleska", en: "England", pos: "noun", gender: "f", icon: "🇬🇧", image: "/img/engleska.png", exampleHr: "Engleska je zemlja.", exampleEn: "England is a country." },
     { id: "a1u2.amerika", hr: "Amerika", en: "America", pos: "noun", gender: "f", icon: "🇺🇸", image: "/img/amerika.png", exampleHr: "Amerika je zemlja.", exampleEn: "America is a country." },
     { id: "a1u2.francuska", hr: "Francuska", en: "France", pos: "noun", gender: "f", icon: "🇫🇷", image: "/img/francuska.png", exampleHr: "Francuska je zemlja.", exampleEn: "France is a country." },
     { id: "a1u2.iz", image: "/img/iz.png", hr: "iz", en: "from (for now ONLY in memorized chunks: iz Kanade)", pos: "prep", icon: "📍", exampleHr: "Ja sam iz Kanade.", exampleEn: "I am from Canada.", tags: ["chunk"] },
-    { id: "a1u2.ili", hr: "ili", en: "or", pos: "conj", icon: "⚖️", exampleHr: "Kava ili čaj?", exampleEn: "Coffee or tea?" },
+    { id: "a1u2.ili", image: "/img/ili.png", hr: "ili", en: "or", pos: "conj", icon: "⚖️", exampleHr: "Kava ili čaj?", exampleEn: "Coffee or tea?" },
   ],
   slides: [
     {

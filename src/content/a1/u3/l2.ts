@@ -24,10 +24,10 @@ export const a1u3l2: Lesson = {
     { id: "a1u3.dijete", image: "/img/dijete.png", hr: "dijete", en: "child", pos: "noun", gender: "n", icon: "🧒", exampleHr: "Njihovo dijete je tu.", exampleEn: "Their child is here." },
     { id: "a1u3.unuk", image: "/img/unuk.png", hr: "unuk", en: "grandson", pos: "noun", gender: "m", icon: "👦", exampleHr: "To je njihov unuk.", exampleEn: "That is their grandson." },
     { id: "a1u3.unuka", image: "/img/unuka.png", hr: "unuka", en: "granddaughter", pos: "noun", gender: "f", icon: "👧", exampleHr: "To je njihova unuka.", exampleEn: "That is their granddaughter." },
-    { id: "a1u3.njegov", hr: "njegov", en: "his (njegov / njegova / njegovo)", pos: "pron", icon: "👨", exampleHr: "Njegov brat je student.", exampleEn: "His brother is a student." },
-    { id: "a1u3.njezin", hr: "njezin", en: "her (njezin / njezina / njezino)", pos: "pron", icon: "👩", exampleHr: "Njezina sestra je liječnica.", exampleEn: "Her sister is a doctor." },
-    { id: "a1u3.njihov", hr: "njihov", en: "their (njihov / njihova / njihovo)", pos: "pron", icon: "👨‍👩‍👧", exampleHr: "Njihovo dijete je tu.", exampleEn: "Their child is here." },
-    { id: "a1u3.ciji", hr: "čiji", en: "whose (čiji / čija / čije)", pos: "pron", icon: "❓", exampleHr: "Čiji je to brat?", exampleEn: "Whose brother is that?" },
+    { id: "a1u3.njegov", image: "/img/njegov.png", hr: "njegov", en: "his (njegov / njegova / njegovo)", pos: "pron", icon: "👨", exampleHr: "Njegov brat je student.", exampleEn: "His brother is a student." },
+    { id: "a1u3.njezin", image: "/img/njezin.png", hr: "njezin", en: "her (njezin / njezina / njezino)", pos: "pron", icon: "👩", exampleHr: "Njezina sestra je liječnica.", exampleEn: "Her sister is a doctor." },
+    { id: "a1u3.njihov", image: "/img/njihov.png", hr: "njihov", en: "their (njihov / njihova / njihovo)", pos: "pron", icon: "👨‍👩‍👧", exampleHr: "Njihovo dijete je tu.", exampleEn: "Their child is here." },
+    { id: "a1u3.ciji", image: "/img/ciji.png", hr: "čiji", en: "whose (čiji / čija / čije)", pos: "pron", icon: "❓", exampleHr: "Čiji je to brat?", exampleEn: "Whose brother is that?" },
   ],
   slides: [
     {

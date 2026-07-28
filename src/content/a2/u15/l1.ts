@@ -19,13 +19,13 @@ export const a2u15l1: Lesson = {
   grammarTags: ["acc-clitics", "second-position"],
   estMinutes: 19,
   vocab: [
-    { id: "a2u15.poziv", hr: "poziv", en: "(phone) call", pos: "noun", gender: "m", icon: "📞", exampleHr: "Imam poziv od bake.", exampleEn: "I have a call from grandma." },
-    { id: "a2u15.poruka", hr: "poruka", en: "message / text", pos: "noun", gender: "f", icon: "💬", exampleHr: "Pišem poruku.", exampleEn: "I'm writing a message." },
-    { id: "a2u15.nazvati", hr: "nazvati", en: "to call up (nazovem)", pos: "verb", icon: "📲", exampleHr: "Nazvat ću baku večeras.", exampleEn: "I'll call grandma tonight." },
-    { id: "a2u15.zvati", hr: "zvati", en: "to call sb (zovem — vs zvati se!)", pos: "verb", icon: "🔔", exampleHr: "Marko zove Anu.", exampleEn: "Marko is calling Ana." },
-    { id: "a2u15.cuti", hr: "čuti", en: "to hear (čujem)", pos: "verb", icon: "👂", exampleHr: "Ne čujem dobro.", exampleEn: "I can't hear well." },
-    { id: "a2u15.primiti", hr: "primiti", en: "to receive (primim)", pos: "verb", icon: "📥", exampleHr: "Primio sam tvoju poruku.", exampleEn: "I received your message." },
-    { id: "a2u15.vidjeti", hr: "vidjeti", en: "to see (vidim)", pos: "verb", icon: "👀", exampleHr: "Vidim more!", exampleEn: "I can see the sea!" },
+    { id: "a2u15.poziv", image: "/img/poziv.png", hr: "poziv", en: "(phone) call", pos: "noun", gender: "m", icon: "📞", exampleHr: "Imam poziv od bake.", exampleEn: "I have a call from grandma." },
+    { id: "a2u15.poruka", image: "/img/poruka.png", hr: "poruka", en: "message / text", pos: "noun", gender: "f", icon: "💬", exampleHr: "Pišem poruku.", exampleEn: "I'm writing a message." },
+    { id: "a2u15.nazvati", image: "/img/nazvati.png", hr: "nazvati", en: "to call up (nazovem)", pos: "verb", icon: "📲", exampleHr: "Nazvat ću baku večeras.", exampleEn: "I'll call grandma tonight." },
+    { id: "a2u15.zvati", image: "/img/zvati.png", hr: "zvati", en: "to call sb (zovem — vs zvati se!)", pos: "verb", icon: "🔔", exampleHr: "Marko zove Anu.", exampleEn: "Marko is calling Ana." },
+    { id: "a2u15.cuti", image: "/img/cuti.png", hr: "čuti", en: "to hear (čujem)", pos: "verb", icon: "👂", exampleHr: "Ne čujem dobro.", exampleEn: "I can't hear well." },
+    { id: "a2u15.primiti", image: "/img/primiti.png", hr: "primiti", en: "to receive (primim)", pos: "verb", icon: "📥", exampleHr: "Primio sam tvoju poruku.", exampleEn: "I received your message." },
+    { id: "a2u15.vidjeti", image: "/img/vidjeti.png", hr: "vidjeti", en: "to see (vidim)", pos: "verb", icon: "👀", exampleHr: "Vidim more!", exampleEn: "I can see the sea!" },
   ],
   slides: [
     {

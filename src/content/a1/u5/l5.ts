@@ -23,7 +23,7 @@ export const a1u5l5: Lesson = {
     { id: "a1u5.lijevo", image: "/img/lijevo.png", hr: "lijevo", en: "left", pos: "adv", icon: "⬅️", exampleHr: "Skrenite lijevo.", exampleEn: "Turn left." },
     { id: "a1u5.desno", image: "/img/desno.png", hr: "desno", en: "right", pos: "adv", icon: "➡️", exampleHr: "Skrenite desno.", exampleEn: "Turn right." },
     { id: "a1u5.ravno", image: "/img/ravno.png", hr: "ravno", en: "straight (ahead)", pos: "adv", icon: "⬆️", exampleHr: "Idite ravno.", exampleEn: "Go straight." },
-    { id: "a1u5.pa", hr: "pa", en: "then / and then", pos: "conj", icon: "➕", exampleHr: "Idite ravno, pa skrenite lijevo.", exampleEn: "Go straight, then turn left." },
+    { id: "a1u5.pa", image: "/img/pa.png", hr: "pa", en: "then / and then", pos: "conj", icon: "➕", exampleHr: "Idite ravno, pa skrenite lijevo.", exampleEn: "Go straight, then turn left." },
     { id: "a1u5.most", image: "/img/most.png", hr: "most", en: "bridge", pos: "noun", gender: "m", icon: "🌉", exampleHr: "Skrenite desno na mostu.", exampleEn: "Turn right at the bridge." },
     { id: "a1u5.hotel", image: "/img/hotel.png", hr: "hotel", en: "hotel", pos: "noun", gender: "m", icon: "🏨", exampleHr: "Hotel je na trgu.", exampleEn: "The hotel is on the square." },
     { id: "a1u5.idite", image: "/img/idite.png", hr: "idite", en: "go! (polite command — a chunk)", pos: "phrase", icon: "🚶", exampleHr: "Idite ravno.", exampleEn: "Go straight.", tags: ["chunk"] },

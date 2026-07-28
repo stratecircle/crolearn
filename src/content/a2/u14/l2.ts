@@ -19,12 +19,12 @@ export const a2u14l2: Lesson = {
   grammarTags: ["imperative", "imperative-formation"],
   estMinutes: 19,
   vocab: [
-    { id: "a2u14.pozvati", hr: "pozvati", en: "to invite (pozovem!)", pos: "verb", icon: "💌", exampleHr: "Pozovi Anu na proslavu!", exampleEn: "Invite Ana to the party!" },
-    { id: "a2u14.donijeti", hr: "donijeti", en: "to bring (donesem!)", pos: "verb", icon: "🎁", exampleHr: "Donesi poklon!", exampleEn: "Bring the gift!" },
-    { id: "a2u14.otvoriti", hr: "otvoriti", en: "to open (otvorim)", pos: "verb", icon: "🔓", exampleHr: "Otvori poklon!", exampleEn: "Open the present!" },
-    { id: "a2u14.glazba", hr: "glazba", en: "music", pos: "noun", gender: "f", icon: "🎶", exampleHr: "Volim glazbu.", exampleEn: "I love music." },
-    { id: "a2u14.balon", hr: "balon", en: "balloon", pos: "noun", gender: "m", icon: "🎈", exampleHr: "Balon je velik i crven.", exampleEn: "The balloon is big and red." },
-    { id: "a2u14.ukras", hr: "ukras", en: "decoration", pos: "noun", gender: "m", icon: "✨", exampleHr: "Kupujemo ukrase za proslavu.", exampleEn: "We're buying decorations for the party." },
+    { id: "a2u14.pozvati", image: "/img/pozvati.png", hr: "pozvati", en: "to invite (pozovem!)", pos: "verb", icon: "💌", exampleHr: "Pozovi Anu na proslavu!", exampleEn: "Invite Ana to the party!" },
+    { id: "a2u14.donijeti", image: "/img/donijeti.png", hr: "donijeti", en: "to bring (donesem!)", pos: "verb", icon: "🎁", exampleHr: "Donesi poklon!", exampleEn: "Bring the gift!" },
+    { id: "a2u14.otvoriti", image: "/img/otvoriti.png", hr: "otvoriti", en: "to open (otvorim)", pos: "verb", icon: "🔓", exampleHr: "Otvori poklon!", exampleEn: "Open the present!" },
+    { id: "a2u14.glazba", image: "/img/glazba.png", hr: "glazba", en: "music", pos: "noun", gender: "f", icon: "🎶", exampleHr: "Volim glazbu.", exampleEn: "I love music." },
+    { id: "a2u14.balon", image: "/img/balon.png", hr: "balon", en: "balloon", pos: "noun", gender: "m", icon: "🎈", exampleHr: "Balon je velik i crven.", exampleEn: "The balloon is big and red." },
+    { id: "a2u14.ukras", image: "/img/ukras.png", hr: "ukras", en: "decoration", pos: "noun", gender: "m", icon: "✨", exampleHr: "Kupujemo ukrase za proslavu.", exampleEn: "We're buying decorations for the party." },
   ],
   slides: [
     {

@@ -19,7 +19,7 @@ export const a1u3l4: Lesson = {
   grammarTags: ["imati", "have"],
   estMinutes: 18,
   vocab: [
-    { id: "a1u3.imati", hr: "imati", en: "to have (imam, imaš…)", pos: "verb", icon: "🤲", exampleHr: "Imam brata i sestru.", exampleEn: "I have a brother and a sister." },
+    { id: "a1u3.imati", image: "/img/imati.png", hr: "imati", en: "to have (imam, imaš…)", pos: "verb", icon: "🤲", exampleHr: "Imam brata i sestru.", exampleEn: "I have a brother and a sister." },
     { id: "a1u3.pas", image: "/img/pas.png", hr: "pas", en: "dog", pos: "noun", gender: "m", icon: "🐶", exampleHr: "Imam psa.", exampleEn: "I have a dog." },
     { id: "a1u3.macka", image: "/img/macka.png", hr: "mačka", en: "cat", pos: "noun", gender: "f", icon: "🐱", exampleHr: "Imaš li mačku?", exampleEn: "Do you have a cat?" },
     { id: "a1u3.beba", image: "/img/beba.png", hr: "beba", en: "baby", pos: "noun", gender: "f", icon: "👶", exampleHr: "Oni imaju bebu.", exampleEn: "They have a baby." },

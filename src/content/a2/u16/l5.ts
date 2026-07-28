@@ -16,12 +16,12 @@ export const a2u16l5: Lesson = {
   grammarTags: ["capstone", "aspect", "review"],
   estMinutes: 21,
   vocab: [
-    { id: "a2u16.prica", hr: "priča", en: "story", pos: "noun", gender: "f", icon: "📖", exampleHr: "Ovo je moja priča.", exampleEn: "This is my story." },
-    { id: "a2u16.pocetak", hr: "početak", en: "beginning (GEN početka)", pos: "noun", gender: "m", icon: "🌅", exampleHr: "To je početak priče.", exampleEn: "That's the beginning of the story." },
-    { id: "a2u16.kraj", hr: "kraj", en: "end (na kraju = in the end)", pos: "noun", gender: "m", icon: "🌇", exampleHr: "Kraj je sretan!", exampleEn: "The ending is happy!" },
-    { id: "a2u16.sjecatise", hr: "sjećati se", en: "to remember (+ GEN!)", pos: "verb", icon: "💭", exampleHr: "Sjećam se djetinjstva.", exampleEn: "I remember my childhood." },
-    { id: "a2u16.proslost", hr: "prošlost", en: "the past (f — an -i noun)", pos: "noun", gender: "f", icon: "⏪", exampleHr: "Ne živim u prošlosti.", exampleEn: "I don't live in the past." },
-    { id: "a2u16.sadasnjost", hr: "sadašnjost", en: "the present (f)", pos: "noun", gender: "f", icon: "📍", exampleHr: "Sadašnjost je lijepa.", exampleEn: "The present is beautiful." },
+    { id: "a2u16.prica", image: "/img/prica.png", hr: "priča", en: "story", pos: "noun", gender: "f", icon: "📖", exampleHr: "Ovo je moja priča.", exampleEn: "This is my story." },
+    { id: "a2u16.pocetak", image: "/img/pocetak.png", hr: "početak", en: "beginning (GEN početka)", pos: "noun", gender: "m", icon: "🌅", exampleHr: "To je početak priče.", exampleEn: "That's the beginning of the story." },
+    { id: "a2u16.kraj", image: "/img/kraj.png", hr: "kraj", en: "end (na kraju = in the end)", pos: "noun", gender: "m", icon: "🌇", exampleHr: "Kraj je sretan!", exampleEn: "The ending is happy!" },
+    { id: "a2u16.sjecatise", image: "/img/sjecatise.png", hr: "sjećati se", en: "to remember (+ GEN!)", pos: "verb", icon: "💭", exampleHr: "Sjećam se djetinjstva.", exampleEn: "I remember my childhood." },
+    { id: "a2u16.proslost", image: "/img/proslost.png", hr: "prošlost", en: "the past (f — an -i noun)", pos: "noun", gender: "f", icon: "⏪", exampleHr: "Ne živim u prošlosti.", exampleEn: "I don't live in the past." },
+    { id: "a2u16.sadasnjost", image: "/img/sadasnjost.png", hr: "sadašnjost", en: "the present (f)", pos: "noun", gender: "f", icon: "📍", exampleHr: "Sadašnjost je lijepa.", exampleEn: "The present is beautiful." },
   ],
   slides: [
     {

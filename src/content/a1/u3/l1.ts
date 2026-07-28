@@ -27,10 +27,10 @@ export const a1u3l1: Lesson = {
     { id: "a1u3.sin", image: "/img/sin.png", hr: "sin", en: "son", pos: "noun", gender: "m", icon: "🧒", exampleHr: "To je moj sin.", exampleEn: "That is my son." },
     { id: "a1u3.kci", image: "/img/kci.png", hr: "kći", en: "daughter (f — irregular)", pos: "noun", gender: "f", icon: "👧", exampleHr: "To je moja kći.", exampleEn: "That is my daughter." },
     { id: "a1u3.roditelji", image: "/img/roditelji.png", hr: "roditelji", en: "parents (plural)", pos: "noun", gender: "m", icon: "👪", exampleHr: "Roditelji su tu.", exampleEn: "The parents are here." },
-    { id: "a1u3.moj", hr: "moj", en: "my (moj / moja / moje)", pos: "pron", icon: "🙋", exampleHr: "Moj brat je tu.", exampleEn: "My brother is here." },
-    { id: "a1u3.tvoj", hr: "tvoj", en: "your (tvoj / tvoja / tvoje)", pos: "pron", icon: "👉", exampleHr: "Tvoj otac je dobar.", exampleEn: "Your father is good." },
-    { id: "a1u3.nas", hr: "naš", en: "our (naš / naša / naše)", pos: "pron", icon: "👥", exampleHr: "Naš tata je inženjer.", exampleEn: "Our dad is an engineer." },
-    { id: "a1u3.vas", hr: "vaš", en: "your — plural/formal (vaš / vaša / vaše)", pos: "pron", icon: "🙇", exampleHr: "Vaše ime, molim?", exampleEn: "Your name, please?" },
+    { id: "a1u3.moj", image: "/img/moj.png", hr: "moj", en: "my (moj / moja / moje)", pos: "pron", icon: "🙋", exampleHr: "Moj brat je tu.", exampleEn: "My brother is here." },
+    { id: "a1u3.tvoj", image: "/img/tvoj.png", hr: "tvoj", en: "your (tvoj / tvoja / tvoje)", pos: "pron", icon: "👉", exampleHr: "Tvoj otac je dobar.", exampleEn: "Your father is good." },
+    { id: "a1u3.nas", image: "/img/nas.png", hr: "naš", en: "our (naš / naša / naše)", pos: "pron", icon: "👥", exampleHr: "Naš tata je inženjer.", exampleEn: "Our dad is an engineer." },
+    { id: "a1u3.vas", image: "/img/vas.png", hr: "vaš", en: "your — plural/formal (vaš / vaša / vaše)", pos: "pron", icon: "🙇", exampleHr: "Vaše ime, molim?", exampleEn: "Your name, please?" },
   ],
   slides: [
     {

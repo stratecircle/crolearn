@@ -19,14 +19,14 @@ export const a2u16l1: Lesson = {
   grammarTags: ["aspect-pairs", "aspect-intro"],
   estMinutes: 19,
   vocab: [
-    { id: "a2u16.napisati", hr: "napisati", en: "to write (and FINISH) — pf of pisati", pos: "verb", icon: "✅", exampleHr: "Želim napisati pismo.", exampleEn: "I want to write the letter (and finish it)." },
-    { id: "a2u16.procitati", hr: "pročitati", en: "to read (to the end) — pf of čitati", pos: "verb", icon: "📗", exampleHr: "Danas želim pročitati cijelu knjigu.", exampleEn: "Today I want to read the whole book." },
-    { id: "a2u16.pogledati", hr: "pogledati", en: "to take a look — pf of gledati", pos: "verb", icon: "👁️", exampleHr: "Pogledaj ovo!", exampleEn: "Look at this!" },
-    { id: "a2u16.napraviti", hr: "napraviti", en: "to make / get done — pf of raditi", pos: "verb", icon: "🛠️", exampleHr: "Moram napraviti plan.", exampleEn: "I have to make a plan." },
-    { id: "a2u16.popiti", hr: "popiti", en: "to drink up — pf of piti", pos: "verb", icon: "🥤", exampleHr: "Popij kavu — idemo!", exampleEn: "Drink up your coffee — we're going!" },
-    { id: "a2u16.pojesti", hr: "pojesti", en: "to eat up — pf of jesti", pos: "verb", icon: "🍽️", exampleHr: "Tom je pojeo cijelu tortu!", exampleEn: "Tom ate the whole cake!" },
-    { id: "a2u16.nauciti", hr: "naučiti", en: "to learn (master it) — pf of učiti", pos: "verb", icon: "🎓", exampleHr: "Želim naučiti hrvatski.", exampleEn: "I want to learn Croatian (all the way)." },
-    { id: "a2u16.poceti", hr: "početi", en: "to begin (pf; počnem) — pair of počinjati", pos: "verb", icon: "🚀", exampleHr: "Mogu početi u ponedjeljak.", exampleEn: "I can start on Monday." },
+    { id: "a2u16.napisati", image: "/img/napisati.png", hr: "napisati", en: "to write (and FINISH) — pf of pisati", pos: "verb", icon: "✅", exampleHr: "Želim napisati pismo.", exampleEn: "I want to write the letter (and finish it)." },
+    { id: "a2u16.procitati", image: "/img/procitati.png", hr: "pročitati", en: "to read (to the end) — pf of čitati", pos: "verb", icon: "📗", exampleHr: "Danas želim pročitati cijelu knjigu.", exampleEn: "Today I want to read the whole book." },
+    { id: "a2u16.pogledati", image: "/img/pogledati.png", hr: "pogledati", en: "to take a look — pf of gledati", pos: "verb", icon: "👁️", exampleHr: "Pogledaj ovo!", exampleEn: "Look at this!" },
+    { id: "a2u16.napraviti", image: "/img/napraviti.png", hr: "napraviti", en: "to make / get done — pf of raditi", pos: "verb", icon: "🛠️", exampleHr: "Moram napraviti plan.", exampleEn: "I have to make a plan." },
+    { id: "a2u16.popiti", image: "/img/popiti.png", hr: "popiti", en: "to drink up — pf of piti", pos: "verb", icon: "🥤", exampleHr: "Popij kavu — idemo!", exampleEn: "Drink up your coffee — we're going!" },
+    { id: "a2u16.pojesti", image: "/img/pojesti.png", hr: "pojesti", en: "to eat up — pf of jesti", pos: "verb", icon: "🍽️", exampleHr: "Tom je pojeo cijelu tortu!", exampleEn: "Tom ate the whole cake!" },
+    { id: "a2u16.nauciti", image: "/img/nauciti.png", hr: "naučiti", en: "to learn (master it) — pf of učiti", pos: "verb", icon: "🎓", exampleHr: "Želim naučiti hrvatski.", exampleEn: "I want to learn Croatian (all the way)." },
+    { id: "a2u16.poceti", image: "/img/poceti.png", hr: "početi", en: "to begin (pf; počnem) — pair of počinjati", pos: "verb", icon: "🚀", exampleHr: "Mogu početi u ponedjeljak.", exampleEn: "I can start on Monday." },
   ],
   slides: [
     {

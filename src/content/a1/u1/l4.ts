@@ -13,16 +13,16 @@ export const a1u1l4: Lesson = {
   grammarTags: ["questions", "chunks"],
   estMinutes: 17,
   vocab: [
-    { id: "a1u1.kako", hr: "kako", en: "how", pos: "adv", icon: "❓", exampleHr: "Kako si?", exampleEn: "How are you?" },
-    { id: "a1u1.tko", hr: "tko", en: "who", pos: "pron", icon: "👤", exampleHr: "Tko je to?", exampleEn: "Who is that?" },
+    { id: "a1u1.kako", image: "/img/kako.png", hr: "kako", en: "how", pos: "adv", icon: "❓", exampleHr: "Kako si?", exampleEn: "How are you?" },
+    { id: "a1u1.tko", image: "/img/tko.png", hr: "tko", en: "who", pos: "pron", icon: "👤", exampleHr: "Tko je to?", exampleEn: "Who is that?" },
     { id: "a1u1.sto", image: "/img/sto.png", hr: "što", en: "what", pos: "pron", icon: "⬛", exampleHr: "Što je to?", exampleEn: "What is that?" },
-    { id: "a1u1.ime", hr: "ime", en: "name", pos: "noun", gender: "n", icon: "🏷️", exampleHr: "Moje ime je Ana.", exampleEn: "My name is Ana." },
-    { id: "a1u1.prijatelj", hr: "prijatelj", en: "friend (male)", pos: "noun", gender: "m", icon: "🤝", exampleHr: "Tom je prijatelj.", exampleEn: "Tom is a friend." },
-    { id: "a1u1.prijateljica", hr: "prijateljica", en: "friend (female)", pos: "noun", gender: "f", icon: "👭", exampleHr: "Ana je prijateljica.", exampleEn: "Ana is a friend." },
+    { id: "a1u1.ime", image: "/img/ime.png", hr: "ime", en: "name", pos: "noun", gender: "n", icon: "🏷️", exampleHr: "Moje ime je Ana.", exampleEn: "My name is Ana." },
+    { id: "a1u1.prijatelj", image: "/img/prijatelj.png", hr: "prijatelj", en: "friend (male)", pos: "noun", gender: "m", icon: "🤝", exampleHr: "Tom je prijatelj.", exampleEn: "Tom is a friend." },
+    { id: "a1u1.prijateljica", image: "/img/prijateljica.png", hr: "prijateljica", en: "friend (female)", pos: "noun", gender: "f", icon: "👭", exampleHr: "Ana je prijateljica.", exampleEn: "Ana is a friend." },
     { id: "a1u1.gospodin", image: "/img/gospodin.png", hr: "gospodin", en: "Mr. / sir", pos: "noun", gender: "m", icon: "🎩", exampleHr: "To je gospodin Horvat.", exampleEn: "That is Mr. Horvat." },
     { id: "a1u1.gospoda", image: "/img/gospoda.png", hr: "gospođa", en: "Mrs. / madam", pos: "noun", gender: "f", icon: "👒", exampleHr: "To je gospođa Kovač.", exampleEn: "That is Mrs. Kovač." },
-    { id: "a1u1.drago-mi-je", hr: "drago mi je", en: "nice to meet you", pos: "phrase", icon: "🤗", exampleHr: "Drago mi je!", exampleEn: "Nice to meet you!", tags: ["chunk"] },
-    { id: "a1u1.zovem-se", hr: "zovem se", en: "my name is (lit. “I call myself”)", pos: "phrase", icon: "💬", exampleHr: "Zovem se Tom.", exampleEn: "My name is Tom.", tags: ["chunk"] },
+    { id: "a1u1.drago-mi-je", image: "/img/dragomije.png", hr: "drago mi je", en: "nice to meet you", pos: "phrase", icon: "🤗", exampleHr: "Drago mi je!", exampleEn: "Nice to meet you!", tags: ["chunk"] },
+    { id: "a1u1.zovem-se", image: "/img/zovemse.png", hr: "zovem se", en: "my name is (lit. “I call myself”)", pos: "phrase", icon: "💬", exampleHr: "Zovem se Tom.", exampleEn: "My name is Tom.", tags: ["chunk"] },
   ],
   slides: [
     {

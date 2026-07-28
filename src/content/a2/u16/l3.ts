@@ -19,12 +19,12 @@ export const a2u16l3: Lesson = {
   grammarTags: ["aspect-future", "future-1", "plans"],
   estMinutes: 19,
   vocab: [
-    { id: "a2u16.odluciti", hr: "odlučiti", en: "to decide (pf; odlučim)", pos: "verb", icon: "⚖️", exampleHr: "Odlučio sam: idem u Hrvatsku!", exampleEn: "I've decided: I'm going to Croatia!" },
-    { id: "a2u16.buducnost", hr: "budućnost", en: "future (f — an -i noun)", pos: "noun", gender: "f", icon: "🔮", exampleHr: "Moja budućnost je u Hrvatskoj.", exampleEn: "My future is in Croatia." },
-    { id: "a2u16.cilj", hr: "cilj", en: "goal", pos: "noun", gender: "m", icon: "🎯", exampleHr: "Moj cilj je naučiti hrvatski.", exampleEn: "My goal is to learn Croatian." },
-    { id: "a2u16.san2", hr: "san", en: "dream (also = sleep, U11!)", pos: "noun", gender: "m", icon: "💭", exampleHr: "Imam san: živjeti u Hrvatskoj.", exampleEn: "I have a dream: to live in Croatia." },
-    { id: "a2u16.nadatise", hr: "nadati se", en: "to hope (nadam se)", pos: "verb", icon: "🤞", exampleHr: "Nadam se!", exampleEn: "I hope so!" },
-    { id: "a2u16.uspjeti", hr: "uspjeti", en: "to succeed (pf; uspijem, uspio/uspjela)", pos: "verb", icon: "🏆", exampleHr: "Uspjet ću!", exampleEn: "I will succeed!" },
+    { id: "a2u16.odluciti", image: "/img/odluciti.png", hr: "odlučiti", en: "to decide (pf; odlučim)", pos: "verb", icon: "⚖️", exampleHr: "Odlučio sam: idem u Hrvatsku!", exampleEn: "I've decided: I'm going to Croatia!" },
+    { id: "a2u16.buducnost", image: "/img/buducnost.png", hr: "budućnost", en: "future (f — an -i noun)", pos: "noun", gender: "f", icon: "🔮", exampleHr: "Moja budućnost je u Hrvatskoj.", exampleEn: "My future is in Croatia." },
+    { id: "a2u16.cilj", image: "/img/cilj.png", hr: "cilj", en: "goal", pos: "noun", gender: "m", icon: "🎯", exampleHr: "Moj cilj je naučiti hrvatski.", exampleEn: "My goal is to learn Croatian." },
+    { id: "a2u16.san2", image: "/img/san2.png", hr: "san", en: "dream (also = sleep, U11!)", pos: "noun", gender: "m", icon: "💭", exampleHr: "Imam san: živjeti u Hrvatskoj.", exampleEn: "I have a dream: to live in Croatia." },
+    { id: "a2u16.nadatise", image: "/img/nadatise.png", hr: "nadati se", en: "to hope (nadam se)", pos: "verb", icon: "🤞", exampleHr: "Nadam se!", exampleEn: "I hope so!" },
+    { id: "a2u16.uspjeti", image: "/img/uspjeti.png", hr: "uspjeti", en: "to succeed (pf; uspijem, uspio/uspjela)", pos: "verb", icon: "🏆", exampleHr: "Uspjet ću!", exampleEn: "I will succeed!" },
   ],
   slides: [
     {

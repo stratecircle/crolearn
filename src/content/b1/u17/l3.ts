@@ -20,14 +20,14 @@ export const b1u17l3: Lesson = {
   grammarTags: ["aspect-formation", "aspect-suppletive", "aspect-habits"],
   estMinutes: 20,
   vocab: [
-    { id: "b1u17.radio", hr: "radio", en: "radio (m; GEN radija)", pos: "noun", gender: "m", icon: "📻", exampleHr: "Ujutro slušam radio.", exampleEn: "In the morning I listen to the radio." },
-    { id: "b1u17.slusatelj", hr: "slušatelj", en: "listener (m — the -telj people)", pos: "noun", gender: "m", icon: "🎧", exampleHr: "Slušatelji vole glazbu.", exampleEn: "The listeners love music." },
-    { id: "b1u17.reci", hr: "reći", en: "to say (pf; rekao/rekla — \"I say\" = kažem)", pos: "verb", icon: "💬", exampleHr: "Baka je rekla: »Dolazim sutra!«", exampleEn: "Grandma said: \"I'm coming tomorrow!\"" },
-    { id: "b1u17.dolaziti", hr: "dolaziti", en: "to come (impf; dolazim)", pos: "verb", icon: "🚶", exampleHr: "Tom dolazi svaki dan.", exampleEn: "Tom comes every day." },
-    { id: "b1u17.doci", hr: "doći", en: "to come / arrive (pf; dođem, došao — U9's doći ću!)", pos: "verb", icon: "🏁", exampleHr: "Danas je došao rano.", exampleEn: "Today he came early." },
-    { id: "b1u17.otici", hr: "otići", en: "to leave (pf; odem, otišao)", pos: "verb", icon: "🚪", exampleHr: "Uzeo sam novine i otišao.", exampleEn: "I took the paper and left." },
-    { id: "b1u17.uzimati", hr: "uzimati", en: "to take (impf; uzimam)", pos: "verb", icon: "✋", exampleHr: "Baka uzima lijek svaki dan.", exampleEn: "Grandma takes her medicine every day." },
-    { id: "b1u17.uzeti", hr: "uzeti", en: "to take (pf; uzmem, uzeo — the U11 chunk!)", pos: "verb", icon: "🤲", exampleHr: "Tom je uzeo novine.", exampleEn: "Tom took the newspaper." },
+    { id: "b1u17.radio", image: "/img/radio.png", hr: "radio", en: "radio (m; GEN radija)", pos: "noun", gender: "m", icon: "📻", exampleHr: "Ujutro slušam radio.", exampleEn: "In the morning I listen to the radio." },
+    { id: "b1u17.slusatelj", image: "/img/slusatelj.png", hr: "slušatelj", en: "listener (m — the -telj people)", pos: "noun", gender: "m", icon: "🎧", exampleHr: "Slušatelji vole glazbu.", exampleEn: "The listeners love music." },
+    { id: "b1u17.reci", image: "/img/reci.png", hr: "reći", en: "to say (pf; rekao/rekla — \"I say\" = kažem)", pos: "verb", icon: "💬", exampleHr: "Baka je rekla: »Dolazim sutra!«", exampleEn: "Grandma said: \"I'm coming tomorrow!\"" },
+    { id: "b1u17.dolaziti", image: "/img/dolaziti.png", hr: "dolaziti", en: "to come (impf; dolazim)", pos: "verb", icon: "🚶", exampleHr: "Tom dolazi svaki dan.", exampleEn: "Tom comes every day." },
+    { id: "b1u17.doci", image: "/img/doci.png", hr: "doći", en: "to come / arrive (pf; dođem, došao — U9's doći ću!)", pos: "verb", icon: "🏁", exampleHr: "Danas je došao rano.", exampleEn: "Today he came early." },
+    { id: "b1u17.otici", image: "/img/otici.png", hr: "otići", en: "to leave (pf; odem, otišao)", pos: "verb", icon: "🚪", exampleHr: "Uzeo sam novine i otišao.", exampleEn: "I took the paper and left." },
+    { id: "b1u17.uzimati", image: "/img/uzimati.png", hr: "uzimati", en: "to take (impf; uzimam)", pos: "verb", icon: "✋", exampleHr: "Baka uzima lijek svaki dan.", exampleEn: "Grandma takes her medicine every day." },
+    { id: "b1u17.uzeti", image: "/img/uzeti.png", hr: "uzeti", en: "to take (pf; uzmem, uzeo — the U11 chunk!)", pos: "verb", icon: "🤲", exampleHr: "Tom je uzeo novine.", exampleEn: "Tom took the newspaper." },
   ],
   slides: [
     {
