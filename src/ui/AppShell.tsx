@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
 import { BookOpen, Map, MessageCircle, Puzzle, Settings, SquarePen, type LucideIcon } from "lucide-react";
 import { countDue } from "@/lib/srs";
-import { INK, RED } from "./kit";
+import { INK, RED, Sahovnica } from "./kit";
 
 const NAV: { label: string; to: string; icon: LucideIcon }[] = [
   { label: "Path", to: "/", icon: Map },
@@ -45,7 +45,7 @@ function RailItem({
     <button
       onClick={onClick}
       aria-current={active ? "page" : undefined}
-      className="relative flex w-16 flex-col items-center gap-[3px] rounded-xl pb-[7px] pt-[9px] transition-colors duration-150 max-[900px]:w-14"
+      className="relative flex w-16 flex-col items-center gap-[3px] rounded-lg pb-[7px] pt-[9px] transition-colors duration-150 max-[900px]:w-14"
       style={{ background: active ? "rgba(var(--primary-rgb),.08)" : "transparent", color: active ? RED : "var(--body2)" }}
     >
       <Icon size={21} strokeWidth={1.7} />
@@ -57,7 +57,7 @@ function RailItem({
           {badge > 99 ? "99+" : badge}
         </span>
       )}
-      <div className="text-[10px] font-semibold" style={{ letterSpacing: ".02em" }}>
+      <div className="text-[9px] font-bold uppercase" style={{ letterSpacing: ".1em" }}>
         {label}
       </div>
       {badge > 0 && <span className="sr-only">{badge} card{badge === 1 ? "" : "s"} due for review</span>}
@@ -92,12 +92,12 @@ export function Rail() {
   const due = useDueCount(pathname);
   return (
     <div
-      className="fixed bottom-0 left-0 top-0 z-50 flex w-[84px] flex-col items-center border-r bg-[color:var(--card)] pb-3.5 pt-4 max-[900px]:top-auto max-[900px]:right-0 max-[900px]:w-auto max-[900px]:flex-row max-[900px]:justify-around max-[900px]:border-r-0 max-[900px]:border-t max-[900px]:px-2.5 max-[900px]:pb-[calc(6px+env(safe-area-inset-bottom))] max-[900px]:pt-1.5"
-      style={{ borderColor: "rgba(var(--ink-rgb),.08)" }}
+      className="fixed bottom-0 left-0 top-0 z-50 flex w-[84px] flex-col items-center border-r bg-[color:var(--page)] pb-3.5 pt-5 max-[900px]:top-auto max-[900px]:right-0 max-[900px]:w-auto max-[900px]:flex-row max-[900px]:justify-around max-[900px]:border-r-0 max-[900px]:border-t max-[900px]:bg-[color:var(--card)] max-[900px]:px-2.5 max-[900px]:pb-[calc(6px+env(safe-area-inset-bottom))] max-[900px]:pt-1.5"
+      style={{ borderColor: "rgba(var(--ink-rgb),.16)" }}
     >
-      <button onClick={() => nav("/")} className="relative mb-4 flex h-10 w-10 items-center justify-center max-[900px]:hidden" aria-label="Home">
-        <span style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 32, lineHeight: 1, color: INK, transform: "skewX(-7deg)" }}>N</span>
-        <div className="absolute right-[3px] top-0 h-1.5 w-1.5 rounded-full" style={{ background: RED }} />
+      <button onClick={() => nav("/")} className="mb-5 flex flex-col items-center gap-1.5 max-[900px]:hidden" aria-label="Home" title="CroLearn">
+        <Sahovnica size={27} cols={3} rows={3} />
+        <span className="text-[8.5px] font-bold" style={{ color: INK, letterSpacing: ".22em" }}>CRO</span>
       </button>
       <nav aria-label="Main" className="flex flex-1 flex-col gap-1.5 max-[900px]:flex-1 max-[900px]:flex-row max-[900px]:justify-around max-[900px]:gap-0.5">
         {NAV.map((n) => (

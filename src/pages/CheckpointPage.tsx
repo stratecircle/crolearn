@@ -69,7 +69,7 @@ export default function CheckpointPage() {
       <div className="m-auto w-full max-w-xl py-10 text-center">
         <h1 className="font-display text-3xl font-bold text-[color:var(--ink)]" style={{ fontSize: "clamp(26px,3.6vw,34px)" }}>{exam.title}</h1>
         <p className="text-[color:var(--muted)]">{exam.titleEn}</p>
-        <div className="mt-5 rounded-[20px] border border-[rgba(var(--ink-rgb),.07)] bg-[color:var(--card)] p-6 text-left shadow-[0_1px_3px_rgba(var(--shadow-rgb),.04)]">
+        <div className="mt-5 rounded-[10px] border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] p-6 text-left">
           <p className="text-sm text-[color:var(--body2)]">
             {totalQuiz} graded questions across {exam.sections.length} sections
             {exam.speaking ? `, plus ${exam.speaking.prompts.length} speaking prompts` : ""}
@@ -88,7 +88,7 @@ export default function CheckpointPage() {
         <button
           type="button"
           onClick={() => setPhase("quiz")}
-          className="mt-6 rounded-xl bg-[color:var(--primary)] px-8 py-3 text-lg font-semibold text-white transition-colors duration-[180ms] hover:bg-[color:var(--primary-hover)]"
+          className="mt-6 rounded-lg bg-[color:var(--primary)] px-8 py-3 text-lg font-semibold text-white transition-colors duration-[180ms] hover:bg-[color:var(--primary-hover)]"
         >
           Start the exam
         </button>
@@ -105,7 +105,7 @@ export default function CheckpointPage() {
           <span className="text-xs font-semibold tracking-[.13em] text-[color:var(--primary)]">{current.section.toUpperCase()}</span>
           <span className="text-sm text-[color:var(--body2)]">{qi + 1} / {totalQuiz}</span>
         </div>
-        <div className="mb-6 h-2 overflow-hidden rounded-full bg-[rgba(var(--ink-rgb),.09)]">
+        <div className="mb-6 h-2 overflow-hidden rounded-full bg-[rgba(var(--ink-rgb),.15)]">
           <div className="h-full rounded-full bg-[color:var(--primary)]" style={{ width: `${(qi / totalQuiz) * 100}%` }} />
         </div>
         <SlideRenderer
@@ -247,7 +247,7 @@ function SpeakingSection({
         <span>{i + 1}/{prompts.length}</span>
       </div>
 
-      <div className="rounded-[20px] border border-[rgba(var(--ink-rgb),.07)] bg-[color:var(--card)] p-5 shadow-[0_1px_3px_rgba(var(--shadow-rgb),.04)]">
+      <div className="rounded-[10px] border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] p-5">
         <p className="text-lg font-bold">{prompt.task}</p>
         {prompt.rubricFocus && (
           <p className="mt-1 text-xs text-[color:var(--muted)]">Graded on: {prompt.rubricFocus}</p>
@@ -265,7 +265,7 @@ function SpeakingSection({
             type="button"
             disabled={!sttOk || listening}
             onClick={() => void record()}
-            className="rounded-xl bg-[color:var(--ink)] px-4 py-2.5 font-bold text-white hover:bg-[color:var(--ink-strong)] disabled:opacity-40"
+            className="rounded-lg bg-[color:var(--ink)] px-4 py-2.5 font-bold text-white hover:bg-[color:var(--ink-strong)] disabled:opacity-40"
           >
             {listening ? "🎙️ Listening…" : transcript ? "🎙️ Record again" : "🎙️ Record answer"}
           </button>
@@ -276,7 +276,7 @@ function SpeakingSection({
                 setRevealed(true);
                 if (prompt.modelHr) void speak(prompt.modelHr);
               }}
-              className="rounded-xl border-2 border-[color:var(--ink)] px-4 py-2.5 font-bold hover:bg-[rgba(var(--ink-rgb),.05)]"
+              className="rounded-lg border-2 border-[color:var(--ink)] px-4 py-2.5 font-bold hover:bg-[rgba(var(--ink-rgb),.05)]"
             >
               💡 Show model answer
             </button>
@@ -290,7 +290,7 @@ function SpeakingSection({
         {sttError && <p className="mt-2 text-sm text-amber-700">{sttError}</p>}
 
         {transcript && (
-          <div className="mt-4 rounded-xl bg-[rgba(var(--ink-rgb),.03)] p-3">
+          <div className="mt-4 rounded-lg bg-[rgba(var(--ink-rgb),.03)] p-3">
             <p className="text-xs font-semibold uppercase tracking-[.13em] text-[color:var(--muted)]">WHAT WE HEARD</p>
             <p className="mt-1">{transcript}</p>
             {keyPresent && !grade && (
@@ -308,7 +308,7 @@ function SpeakingSection({
         )}
 
         {grade && (
-          <div className={`mt-3 rounded-xl p-4 ${grade.correct ? "bg-green-50" : "bg-amber-50"}`}>
+          <div className={`mt-3 rounded-lg p-4 ${grade.correct ? "bg-green-50" : "bg-amber-50"}`}>
             <p className="font-semibold text-[color:var(--ink)]">Score: {Math.round(grade.score)}/100</p>
             <p className="mt-1 text-sm">{grade.feedback}</p>
             {grade.corrected_text.trim() && grade.corrected_text.trim() !== transcript.trim() && (
@@ -318,7 +318,7 @@ function SpeakingSection({
         )}
 
         {revealed && prompt.modelHr && (
-          <div className="mt-3 rounded-xl bg-sky-50 p-3">
+          <div className="mt-3 rounded-lg bg-sky-50 p-3">
             <p className="text-xs font-semibold uppercase tracking-[.13em] text-[color:var(--blue)]">Model answer</p>
             <p className="mt-1">{prompt.modelHr}</p>
           </div>
@@ -328,7 +328,7 @@ function SpeakingSection({
       <button
         type="button"
         onClick={advance}
-        className="mt-4 w-full rounded-xl bg-[color:var(--ink)] py-3 font-bold text-white hover:bg-[color:var(--ink-strong)]"
+        className="mt-4 w-full rounded-lg bg-[color:var(--ink)] py-3 font-bold text-white hover:bg-[color:var(--ink-strong)]"
       >
         {i + 1 < prompts.length ? "Next prompt →" : "Finish & see results →"}
       </button>
@@ -363,7 +363,7 @@ function ResultsScreen({
         </p>
       </div>
 
-      <div className="mt-6 rounded-[20px] border border-[rgba(var(--ink-rgb),.07)] bg-[color:var(--card)] p-5 shadow-[0_1px_3px_rgba(var(--shadow-rgb),.04)]">
+      <div className="mt-6 rounded-[10px] border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] p-5">
         <p className="text-xs font-semibold uppercase tracking-[.13em] text-[color:var(--muted)]">BY SECTION</p>
         <ul className="mt-2 grid gap-2">
           {score.sections.map((s) => (
@@ -372,7 +372,7 @@ function ResultsScreen({
                 <span>{s.title}</span>
                 <span>{s.correct}/{s.total} · {s.pct}%</span>
               </div>
-              <div className="mt-1 h-2 overflow-hidden rounded-full bg-[rgba(var(--ink-rgb),.09)]">
+              <div className="mt-1 h-2 overflow-hidden rounded-full bg-[rgba(var(--ink-rgb),.15)]">
                 <div
                   className={`h-full rounded-full ${s.pct >= exam.passPct ? "bg-[color:var(--green)]" : "bg-[color:var(--orange)]"}`}
                   style={{ width: `${s.pct}%` }}
@@ -384,7 +384,7 @@ function ResultsScreen({
       </div>
 
       {score.weakestSections.length > 0 && (
-        <div className="mt-4 rounded-2xl border border-[rgba(var(--orange-rgb),.25)] bg-[rgba(var(--orange-rgb),.08)] p-4 text-[color:var(--brown)]">
+        <div className="mt-4 rounded-[10px] border border-[rgba(var(--orange-rgb),.25)] bg-[rgba(var(--orange-rgb),.08)] p-4 text-[color:var(--brown)]">
           <p className="font-semibold">Worth revisiting</p>
           <p className="mt-1 text-sm">
             Your weakest {score.weakestSections.length === 1 ? "area" : "areas"}:{" "}
@@ -401,11 +401,11 @@ function ResultsScreen({
         <button
           type="button"
           onClick={onRetake}
-          className="rounded-xl border border-[rgba(var(--ink-rgb),.12)] bg-[color:var(--card)] py-3 font-semibold text-[color:var(--body)] transition-colors duration-[180ms] hover:bg-[color:var(--tint)]"
+          className="rounded-lg border border-[rgba(var(--ink-rgb),.12)] bg-[color:var(--card)] py-3 font-semibold text-[color:var(--body)] transition-colors duration-[180ms] hover:bg-[color:var(--tint)]"
         >
           Retake the exam
         </button>
-        <Link to="/" className="rounded-xl bg-[color:var(--primary)] py-3 text-center font-semibold text-white transition-colors duration-[180ms] hover:bg-[color:var(--primary-hover)]">
+        <Link to="/" className="rounded-lg bg-[color:var(--primary)] py-3 text-center font-semibold text-white transition-colors duration-[180ms] hover:bg-[color:var(--primary-hover)]">
           Back to path
         </Link>
       </div>

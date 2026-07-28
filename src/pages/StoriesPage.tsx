@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight, BookOpen, Brain, Check, Clock, FileText, Trophy } from "lucide-react";
 import { allUnits, allLessons } from "@/content";
 import { db, type StoryProgressRow } from "@/lib/db";
-import { BODY2, Card, CardH, Eyebrow, H, INK, LEVEL_COLORS, MUTED, ProgressBar, RED, Tile, tint } from "@/ui/kit";
+import { BODY2, Card, CardH, Eyebrow, H, INK, LEVEL_COLORS, MUTED, ProgressBar, RED, SectionTitle, Tile, tint } from "@/ui/kit";
 
 const FILTERS = ["All Levels", "A1", "A2", "B1", "B2"] as const;
 
@@ -55,11 +55,11 @@ export default function StoriesPage() {
       <H size={26} className="mb-4">Stories</H>
 
       {next && (
-        <Card className="mb-6 max-w-[660px] px-[26px] py-6" style={{ boxShadow: "0 2px 10px rgba(var(--shadow-rgb),.06)" }}>
+        <Card className="mb-6 max-w-[660px] px-[26px] py-6" style={{ boxShadow: "none" }}>
           <Eyebrow className="mb-4">{readCount > 0 ? "NEXT STORY" : "START READING"}</Eyebrow>
           <div className="flex items-start gap-5 max-[700px]:flex-wrap">
             <div
-              className="flex h-[130px] w-[150px] flex-none items-center justify-center rounded-xl"
+              className="flex h-[130px] w-[150px] flex-none items-center justify-center rounded-lg"
               style={{ background: `linear-gradient(135deg, ${tint(next.color, 0.16)}, ${tint(next.color, 0.05)})` }}
             >
               <span style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 44, color: next.color }}>{next.title.replace(/[«»]/g, "").charAt(0)}</span>
@@ -70,7 +70,7 @@ export default function StoriesPage() {
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => nav(`/story/${next.id}`)}
-                  className="inline-flex h-[46px] flex-none items-center gap-2 rounded-xl px-[22px] text-[15px] font-semibold text-white transition-colors duration-[180ms]"
+                  className="inline-flex h-[46px] flex-none items-center gap-2 rounded-lg px-[22px] text-[15px] font-semibold text-white transition-colors duration-[180ms]"
                   style={{ background: RED }}
                 >
                   Read<ArrowRight size={17} />
@@ -110,8 +110,8 @@ export default function StoriesPage() {
               <button
                 key={s.id}
                 onClick={() => nav(`/story/${s.id}`)}
-                className="overflow-hidden rounded-2xl border bg-[color:var(--card)] text-left shadow-[0_1px_2px_rgba(var(--shadow-rgb),.03)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_16px_36px_rgba(var(--shadow-rgb),.08)]"
-                style={{ borderColor: "rgba(var(--ink-rgb),.07)" }}
+                className="overflow-hidden rounded-[10px] border bg-[color:var(--card)] text-left transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_6px_16px_rgba(var(--shadow-rgb),.08)]"
+                style={{ borderColor: "rgba(var(--ink-rgb),.14)" }}
               >
                 <div className="relative">
                   <div
@@ -127,7 +127,7 @@ export default function StoriesPage() {
                 <div className="p-[18px]">
                   <div className="mb-2" style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 17, lineHeight: 1.25, color: INK }}>{s.title}</div>
                   <div className="mb-3.5 text-[13px] leading-normal" style={{ color: BODY2 }}>{s.titleEn}</div>
-                  <div className="flex items-center justify-between gap-3 border-t pt-3" style={{ borderColor: "rgba(var(--ink-rgb),.06)" }}>
+                  <div className="flex items-center justify-between gap-3 border-t pt-3" style={{ borderColor: "rgba(var(--ink-rgb),.12)" }}>
                     <div className="flex gap-3.5 text-xs" style={{ color: MUTED }}>
                       <div className="flex items-center gap-1.5"><Clock size={14} />{s.readMin} min</div>
                       <div className="flex items-center gap-1.5"><FileText size={14} />{s.words} words</div>
@@ -147,7 +147,7 @@ export default function StoriesPage() {
         </div>
       </Card>
 
-      <div className="mb-[18px]" style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 22, color: INK }}>Your Progress</div>
+      <SectionTitle className="mb-[18px]">Your Progress</SectionTitle>
       <div className="grid grid-cols-4 gap-5 max-[1200px]:grid-cols-2 max-[700px]:grid-cols-1">
         {[
           { value: `${readCount} / ${stories.length}`, label: "Stories read", icon: BookOpen, color: RED, pct: (readCount / Math.max(1, stories.length)) * 100 },

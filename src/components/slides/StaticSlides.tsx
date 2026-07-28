@@ -8,7 +8,7 @@ import { CASE_COLORS, GENDER_COLORS } from "@/ui/caseColors";
 import { speak } from "@/lib/tts";
 import { BODY2, DISPLAY, INK, MUTED, ORANGE, SHADOW_CARD } from "@/ui/kit";
 
-const CARD = "rounded-2xl border border-[rgba(var(--ink-rgb),.07)] bg-[color:var(--card)] shadow-[0_1px_3px_rgba(var(--shadow-rgb),.04)]";
+const CARD = "rounded-[10px] border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)]";
 
 function ContinueButton({ onClick, label = "Continue →" }: { onClick: () => void; label?: string }) {
   return (
@@ -16,7 +16,7 @@ function ContinueButton({ onClick, label = "Continue →" }: { onClick: () => vo
       type="button"
       autoFocus
       onClick={onClick}
-      className="mt-6 flex h-[52px] w-full items-center justify-center rounded-xl text-[16px] font-semibold text-white transition-colors duration-[180ms]"
+      className="mt-6 flex h-[52px] w-full items-center justify-center rounded-lg text-[16px] font-semibold text-white transition-colors duration-[180ms]"
       style={{ background: INK }}
     >
       {label}
@@ -187,10 +187,10 @@ export function VocabCardsSlideView({
             className={`${CARD} p-4 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(var(--shadow-rgb),.08)]`}
           >
             {v.image ? (
-              <img src={v.image} alt={v.en} className="h-28 w-full rounded-xl object-contain" />
+              <img src={v.image} alt={v.en} className="h-28 w-full rounded-lg object-contain" />
             ) : (
               // Image not generated yet (see docs/chatgpt-paste-list.md) — neutral letter tile, never emoji.
-              <div className="flex h-28 items-center justify-center rounded-xl" style={{ background: "rgba(var(--ink-rgb),.04)" }}>
+              <div className="flex h-28 items-center justify-center rounded-lg" style={{ background: "rgba(var(--ink-rgb),.04)" }}>
                 <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 44, color: "rgba(var(--ink-rgb),.18)" }}>{v.hr.charAt(0).toUpperCase()}</span>
               </div>
             )}

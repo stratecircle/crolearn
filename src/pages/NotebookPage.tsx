@@ -28,11 +28,11 @@ function NoteCard({ n, grid = false, onOpen }: { n: NoteRow; grid?: boolean; onO
   return (
     <button
       onClick={onOpen}
-      className={`flex w-full gap-4 rounded-2xl border bg-[color:var(--card)] p-4 text-left shadow-[0_1px_2px_rgba(var(--shadow-rgb),.03)] transition-all duration-[180ms] hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(var(--shadow-rgb),.07)] ${grid ? "flex-col p-5" : "items-center"}`}
-      style={{ borderColor: "rgba(var(--ink-rgb),.06)" }}
+      className={`flex w-full gap-4 rounded-[10px] border bg-[color:var(--card)] p-4 text-left transition-all duration-[180ms] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(var(--shadow-rgb),.08)] ${grid ? "flex-col p-5" : "items-center"}`}
+      style={{ borderColor: "rgba(var(--ink-rgb),.12)" }}
     >
       <div
-        className="flex h-11 w-11 flex-none items-center justify-center rounded-xl"
+        className="flex h-11 w-11 flex-none items-center justify-center rounded-lg"
         style={{ background: `linear-gradient(135deg, ${tint(color, 0.14)}, ${tint(color, 0.05)})` }}
       >
         <span style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 19, color }}>{n.title.charAt(0)}</span>
@@ -55,7 +55,7 @@ function NoteCard({ n, grid = false, onOpen }: { n: NoteRow; grid?: boolean; onO
             <Check size={13} color="var(--green)" />
           </span>
         ) : (
-          <span className="h-6 w-6 rounded-full" style={{ border: "2px solid rgba(var(--ink-rgb),.1)" }} />
+          <span className="h-6 w-6 rounded-full" style={{ border: "2px solid rgba(var(--ink-rgb),.18)" }} />
         )}
       </div>
     </button>
@@ -119,7 +119,7 @@ export default function NotebookPage() {
                 <button
                   key={c.label}
                   onClick={() => setCat(c.label)}
-                  className="flex items-center gap-3 rounded-xl px-3.5 py-[11px] text-left text-sm transition-colors duration-[180ms]"
+                  className="flex items-center gap-3 rounded-lg px-3.5 py-[11px] text-left text-sm transition-colors duration-[180ms]"
                   style={{ background: on ? "rgba(var(--primary-rgb),.07)" : "transparent", color: on ? RED : BODY, fontWeight: on ? 500 : 400 }}
                 >
                   <c.icon size={17} color={on ? RED : MUTED} />
@@ -129,7 +129,7 @@ export default function NotebookPage() {
               );
             })}
           </div>
-          <div className="mb-[18px] h-px" style={{ background: "rgba(var(--ink-rgb),.06)" }} />
+          <div className="mb-[18px] h-px" style={{ background: "rgba(var(--ink-rgb),.12)" }} />
           <div className="mb-2.5 px-3.5 text-sm font-semibold" style={{ color: INK }}>Notebooks</div>
           <div className="mb-[22px] grid gap-0.5">
             {levels
@@ -141,7 +141,7 @@ export default function NotebookPage() {
                   <button
                     key={l.id}
                     onClick={() => setBook(on ? null : l.id)}
-                    className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-left text-sm transition-colors duration-[180ms] hover:bg-[rgba(var(--ink-rgb),.03)]"
+                    className="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-left text-sm transition-colors duration-[180ms] hover:bg-[rgba(var(--ink-rgb),.03)]"
                     style={{ color: on ? RED : BODY, fontWeight: on ? 500 : 400 }}
                   >
                     <Folder size={17} color={on ? RED : MUTED} />
@@ -151,16 +151,16 @@ export default function NotebookPage() {
                 );
               })}
           </div>
-          <div className="rounded-2xl border p-5" style={{ background: "var(--tint2)", borderColor: "rgba(var(--green-rgb),.12)" }}>
-            <div className="mb-3.5 flex h-11 w-11 items-center justify-center rounded-xl" style={{ background: "rgba(var(--green-rgb),.11)" }}>
+          <div className="rounded-[10px] border p-5" style={{ background: "var(--tint2)", borderColor: "rgba(var(--green-rgb),.12)" }}>
+            <div className="mb-3.5 flex h-11 w-11 items-center justify-center rounded-lg" style={{ background: "rgba(var(--green-rgb),.11)" }}>
               <Repeat size={20} color="var(--green)" />
             </div>
             <div className="mb-1.5 text-base font-semibold" style={{ color: INK, letterSpacing: "-.01em" }}>Review smarter</div>
             <div className="mb-4 text-sm leading-relaxed" style={{ color: BODY2 }}>Revisit your notes with spaced repetition.</div>
             <button
               onClick={() => nav("/review")}
-              className="inline-flex h-[42px] items-center gap-2 rounded-xl border bg-[color:var(--card)] px-[18px] text-sm font-medium transition-colors duration-[180ms] hover:bg-[color:var(--tint)]"
-              style={{ borderColor: "rgba(var(--ink-rgb),.1)", color: INK }}
+              className="inline-flex h-[42px] items-center gap-2 rounded-lg border bg-[color:var(--card)] px-[18px] text-sm font-medium transition-colors duration-[180ms] hover:bg-[color:var(--tint)]"
+              style={{ borderColor: "rgba(var(--ink-rgb),.18)", color: INK }}
             >
               Start review<ArrowRight size={16} color={MUTED} />
             </button>
@@ -170,7 +170,7 @@ export default function NotebookPage() {
         {/* Main */}
         <Card className="p-[26px]">
           <div className="mb-[22px] flex items-center gap-3.5 max-[700px]:flex-wrap">
-            <div className="flex h-12 min-w-0 flex-1 items-center gap-3 rounded-xl border bg-[color:var(--card)] px-[18px]" style={{ borderColor: "rgba(var(--ink-rgb),.09)" }}>
+            <div className="flex h-12 min-w-0 flex-1 items-center gap-3 rounded-lg border bg-[color:var(--card)] px-[18px]" style={{ borderColor: "rgba(var(--ink-rgb),.15)" }}>
               <Search size={18} color={MUTED} />
               <input
                 value={q}
@@ -180,7 +180,7 @@ export default function NotebookPage() {
                 style={{ color: INK }}
               />
             </div>
-            <div className="flex flex-none rounded-xl p-1" style={{ background: "var(--tint3)" }}>
+            <div className="flex flex-none rounded-lg p-1" style={{ background: "var(--tint3)" }}>
               {(["list", "grid"] as const).map((v) => (
                 <button
                   key={v}
@@ -196,7 +196,7 @@ export default function NotebookPage() {
           </div>
 
           {notes.length === 0 ? (
-            <div className="rounded-2xl border border-dashed px-6 py-14 text-center" style={{ borderColor: "rgba(var(--ink-rgb),.12)" }}>
+            <div className="rounded-[10px] border border-dashed px-6 py-14 text-center" style={{ borderColor: "rgba(var(--ink-rgb),.12)" }}>
               <div className="mb-1.5 text-base font-semibold" style={{ color: INK }}>No notes found</div>
               <div className="text-sm" style={{ color: MUTED }}>Nothing matches your search or this category — try different keywords.</div>
             </div>

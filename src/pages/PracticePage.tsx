@@ -16,7 +16,7 @@ import { stopSpeaking } from "@/lib/tts";
 import SlideRenderer from "@/components/SlideRenderer";
 import { advance, firstTryAccuracy, initDeck, isRetryPosition, type DeckState } from "@/features/lesson/deckMachine";
 import { loadNativProgress, type NativStats } from "@/features/nativ/stats";
-import { BODY2, BtnPrimary, Card, CardH, Chip, GREEN, H, INK, MUTED, ProgressBar, RED, StatChip, StatRow, Tile, tint } from "@/ui/kit";
+import { BODY2, BtnPrimary, Card, CardH, Chip, GREEN, H, INK, MUTED, ProgressBar, RED, SectionTitle, StatChip, StatRow, Tile, tint } from "@/ui/kit";
 
 type WeakSpot = { label: string; focusLine: string };
 
@@ -79,7 +79,7 @@ function PracticeRunner({ slides, onExit }: { slides: QuizSlide[]; onExit: () =>
   if (deck.finished) {
     const pct = Math.round(firstTryAccuracy(deck, slides.length) * 100);
     return (
-      <div className="mx-auto max-w-[780px] rounded-[20px] border bg-[color:var(--card)] px-12 py-14 text-center" style={{ borderColor: "rgba(var(--ink-rgb),.07)", boxShadow: "0 1px 3px rgba(var(--shadow-rgb),.04),0 16px 44px rgba(var(--shadow-rgb),.06)" }}>
+      <div className="mx-auto max-w-[780px] rounded-[10px] border bg-[color:var(--card)] px-12 py-14 text-center" style={{ borderColor: "rgba(var(--ink-rgb),.14)", boxShadow: "none" }}>
         <div style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 38, color: INK }}>Practice set complete</div>
         <p className="mt-3 text-[17px]" style={{ color: BODY2 }}>
           First-try accuracy: <strong style={{ color: INK }}>{pct}%</strong>
@@ -98,8 +98,8 @@ function PracticeRunner({ slides, onExit }: { slides: QuizSlide[]; onExit: () =>
         <button
           onClick={onExit}
           aria-label="Exit practice set"
-          className="flex h-11 w-11 flex-none items-center justify-center rounded-xl border bg-[color:var(--card)] transition-colors duration-[180ms] hover:bg-[color:var(--tint)]"
-          style={{ borderColor: "rgba(var(--ink-rgb),.1)" }}
+          className="flex h-11 w-11 flex-none items-center justify-center rounded-lg border bg-[color:var(--card)] transition-colors duration-[180ms] hover:bg-[color:var(--tint)]"
+          style={{ borderColor: "rgba(var(--ink-rgb),.18)" }}
         >
           <X size={18} color={BODY2} />
         </button>
@@ -262,7 +262,7 @@ export default function PracticePage() {
       </div>
 
       {!keyPresent && (
-        <div className="mb-6 rounded-xl px-4 py-3.5 text-sm" style={{ background: tint("var(--orange)", 0.1), color: "var(--brown)" }}>
+        <div className="mb-6 rounded-lg px-4 py-3.5 text-sm" style={{ background: tint("var(--orange)", 0.1), color: "var(--brown)" }}>
           AI drills and writing feedback need your Anthropic API key.{" "}
           <Link to="/settings" className="font-semibold underline" style={{ color: "var(--brown)" }}>Add it in Settings →</Link>{" "}
           Flashcards and reading work without it.
@@ -277,8 +277,8 @@ export default function PracticePage() {
               key={p.title}
               onClick={p.go}
               disabled={p.disabled}
-              className="flex flex-col rounded-2xl border bg-[color:var(--card)] p-6 text-left shadow-[0_1px_2px_rgba(var(--shadow-rgb),.03)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_16px_36px_rgba(var(--shadow-rgb),.08)] disabled:hover:translate-y-0 disabled:hover:shadow-none"
-              style={{ borderColor: "rgba(var(--ink-rgb),.07)", cursor: p.disabled ? "default" : undefined }}
+              className="flex flex-col rounded-[10px] border bg-[color:var(--card)] p-6 text-left transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_6px_16px_rgba(var(--shadow-rgb),.08)] disabled:hover:translate-y-0 disabled:hover:shadow-none"
+              style={{ borderColor: "rgba(var(--ink-rgb),.14)", cursor: p.disabled ? "default" : undefined }}
             >
               <Tile icon={p.icon} color={p.color} size={54} radius={14} iconSize={24} />
               <div className="mb-2 mt-[18px]" style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 18, color: INK }}>{p.title}</div>
@@ -301,10 +301,7 @@ export default function PracticePage() {
 
       {weakSpots.length > 0 && (
         <>
-          <div className="mb-[18px] flex items-baseline gap-4">
-            <div style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 22, color: INK }}>Recommended for you</div>
-            <div className="text-sm" style={{ color: BODY2 }}>from your review deck and test history</div>
-          </div>
+          <SectionTitle className="mb-[18px]" right="from your review deck and test history">Recommended for you</SectionTitle>
           <Card className="mb-7 p-6">
             <div className="grid max-h-56 gap-1.5 overflow-y-auto">
               {weakSpots.map((s, i) => (
@@ -338,7 +335,7 @@ export default function PracticePage() {
               Another task
             </button>
           </div>
-          <div className="mb-3.5 rounded-xl px-4 py-3" style={{ background: "rgba(var(--ink-rgb),.03)" }}>
+          <div className="mb-3.5 rounded-lg px-4 py-3" style={{ background: "rgba(var(--ink-rgb),.03)" }}>
             <p className="mb-1 text-xs font-semibold" style={{ color: MUTED, letterSpacing: ".08em" }}>{tasks[taskIdx]?.label.toUpperCase()}</p>
             <p className="text-sm" style={{ color: INK }}>{tasks[taskIdx]?.task}</p>
           </div>
@@ -347,7 +344,7 @@ export default function PracticePage() {
             onChange={(e) => setWriting(e.target.value)}
             rows={4}
             placeholder="Write your answer in Croatian…"
-            className="w-full rounded-xl border bg-[color:var(--card)] p-4 text-[15px] outline-none transition-colors duration-150"
+            className="w-full rounded-lg border bg-[color:var(--card)] p-4 text-[15px] outline-none transition-colors duration-150"
             style={{ borderColor: "rgba(var(--ink-rgb),.14)", color: INK }}
           />
           <div className="mt-3">
@@ -357,7 +354,7 @@ export default function PracticePage() {
           </div>
           {gradeError && <p className="mt-3 text-sm font-semibold" style={{ color: RED }}>{gradeError}</p>}
           {grade && (
-            <div className="mt-5 rounded-xl p-5" style={{ background: grade.correct ? tint(GREEN, 0.07) : tint("var(--orange)", 0.08) }}>
+            <div className="mt-5 rounded-lg p-5" style={{ background: grade.correct ? tint(GREEN, 0.07) : tint("var(--orange)", 0.08) }}>
               <p className="font-semibold" style={{ color: INK }}>Score: {Math.round(grade.score)}/100</p>
               <p className="mt-1.5 text-sm leading-relaxed" style={{ color: BODY2 }}>{grade.feedback}</p>
               {grade.corrected_text.trim() && grade.corrected_text.trim() !== writing.trim() && (

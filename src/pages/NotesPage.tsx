@@ -30,7 +30,7 @@ export default function NotesPage() {
       <h1 className="font-display text-3xl font-bold text-[color:var(--ink)]">{lesson.title}</h1>
       <p className="text-[color:var(--muted)]">{lesson.titleEn}</p>
 
-      <section className="mt-6 rounded-2xl bg-[color:var(--ink)] p-5 text-white">
+      <section className="mt-6 rounded-[10px] bg-[color:var(--ink)] p-5 text-white">
         <p className="text-xs font-semibold uppercase tracking-[.13em] text-[color:var(--muted4)]">In one sentence</p>
         <p className="mt-1 text-lg font-semibold">{n.inOneSentence.en}</p>
         <p className="mt-1 text-[color:var(--muted4)]">
@@ -41,7 +41,7 @@ export default function NotesPage() {
       {n.deepDive.map((d, i) => (
         <section key={i} className="mt-6">
           <h2 className="font-display text-xl font-bold text-[color:var(--ink)]">{d.title}</h2>
-          <Markdown text={d.body} className="mt-2" />
+          <Markdown text={d.body} className="reading mt-2 text-[15.5px] leading-[1.75]" />
           {d.table && <div className="mt-3"><ContentTable table={d.table} /></div>}
           {d.diagram && <div className="mt-3"><DiagramView diagram={d.diagram} /></div>}
         </section>
@@ -61,7 +61,7 @@ export default function NotesPage() {
             </thead>
             <tbody>
               {lesson.vocab.map((v) => (
-                <tr key={v.id} className="border-b border-[rgba(var(--ink-rgb),.09)] odd:bg-[rgba(var(--ink-rgb),.025)]">
+                <tr key={v.id} className="border-b border-[rgba(var(--ink-rgb),.15)] odd:bg-[rgba(var(--ink-rgb),.025)]">
                   <td className="px-2 py-1.5 font-semibold">
                     {v.gender && <span className={`mr-1.5 inline-block h-2 w-2 rounded-full ${GENDER_COLORS[v.gender]}`} />}
                     {/* alt="" on purpose: the Croatian and English columns of this same
@@ -85,7 +85,7 @@ export default function NotesPage() {
         <h2 className="font-display text-xl font-bold text-[color:var(--ink)]">Common mistakes</h2>
         <ul className="mt-2 space-y-2">
           {n.commonMistakes.map((m, i) => (
-            <li key={i} className="rounded-xl border border-[rgba(var(--ink-rgb),.07)] bg-[color:var(--card)] p-3.5 shadow-[0_1px_3px_rgba(var(--shadow-rgb),.04)]">
+            <li key={i} className="rounded-lg border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] p-3.5">
               <p>
                 <span className="font-semibold text-[color:var(--primary)] line-through">{m.wrong}</span>
                 <span className="mx-2">→</span>
@@ -111,7 +111,7 @@ export default function NotesPage() {
           <h2 className="font-display text-xl font-bold text-[color:var(--ink)]">Connected notes</h2>
           <div className="mt-2 flex flex-wrap gap-2">
             {n.connects.map((c, i) => (
-              <Link key={i} to={`/notes/${c.lessonId}`} className="rounded-full bg-[rgba(var(--ink-rgb),.09)] px-3 py-1.5 text-sm font-semibold hover:bg-[rgba(var(--ink-rgb),.14)]">
+              <Link key={i} to={`/notes/${c.lessonId}`} className="rounded-full bg-[rgba(var(--ink-rgb),.15)] px-3 py-1.5 text-sm font-semibold hover:bg-[rgba(var(--ink-rgb),.14)]">
                 {c.label}
               </Link>
             ))}
@@ -123,7 +123,7 @@ export default function NotesPage() {
         <h2 className="font-display text-xl font-bold text-[color:var(--ink)]">Self-check</h2>
         <ol className="mt-2 space-y-2">
           {n.selfCheck.map((s, i) => (
-            <li key={i} className="rounded-xl border border-[rgba(var(--ink-rgb),.07)] bg-[color:var(--card)] p-3.5 shadow-[0_1px_3px_rgba(var(--shadow-rgb),.04)]">
+            <li key={i} className="rounded-lg border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] p-3.5">
               <p className="font-semibold">{i + 1}. {s.q}</p>
               {openAnswers.has(i) ? (
                 <p className="mt-1 text-[color:var(--green)]">{s.a}</p>

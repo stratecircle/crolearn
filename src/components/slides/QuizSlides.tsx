@@ -43,7 +43,7 @@ export function QuizSetSlideView({ slide, onDone }: QuizProps<QuizSetSlide>) {
           const verdictKnown = checked;
           const isRight = picked[qi] === item.correctIndex;
           return (
-            <li key={qi} className="rounded-xl border border-[rgba(var(--ink-rgb),.07)] bg-[color:var(--card)] p-4 shadow-[0_1px_3px_rgba(var(--shadow-rgb),.04)]">
+            <li key={qi} className="rounded-lg border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] p-4">
               <p className="font-bold">
                 {qi + 1}. {item.prompt}{" "}
                 {item.tts && <TtsButton text={item.tts} className="ml-1 align-middle" />}
@@ -89,7 +89,7 @@ export function QuizSetSlideView({ slide, onDone }: QuizProps<QuizSetSlide>) {
           type="button"
           disabled={!allAnswered}
           onClick={() => setChecked(true)}
-          className="mt-4 w-full rounded-xl bg-[color:var(--ink)] py-2.5 font-bold text-white disabled:opacity-40"
+          className="mt-4 w-full rounded-lg bg-[color:var(--ink)] py-2.5 font-bold text-white disabled:opacity-40"
         >
           Check all
         </button>
@@ -126,7 +126,7 @@ export function McSlideView({ slide, onDone }: QuizProps<McSlide>) {
             type="button"
             disabled={answered}
             onClick={() => setPicked(i)}
-            className={`rounded-xl border-2 px-4 py-3 text-left text-lg font-semibold transition ${
+            className={`rounded-lg border-2 px-4 py-3 text-left text-lg font-semibold transition ${
               !answered
                 ? "border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] hover:border-[color:var(--ink)]"
                 : i === slide.correctIndex
@@ -173,7 +173,7 @@ export function TypeSlideView({ slide, onDone }: QuizProps<TypeSlide>) {
           type="button"
           disabled={!value.trim()}
           onClick={() => setResult(gradeTyped(value, slide.answers))}
-          className="mt-4 rounded-xl bg-[color:var(--ink)] px-5 py-2 font-bold text-white disabled:opacity-40"
+          className="mt-4 rounded-lg bg-[color:var(--ink)] px-5 py-2 font-bold text-white disabled:opacity-40"
         >
           Check
         </button>
@@ -216,7 +216,7 @@ export function ListenTypeSlideView({ slide, onDone }: QuizProps<ListenTypeSlide
           type="button"
           disabled={!value.trim()}
           onClick={() => setResult(gradeTyped(value, answers))}
-          className="mt-4 rounded-xl bg-[color:var(--ink)] px-5 py-2 font-bold text-white disabled:opacity-40"
+          className="mt-4 rounded-lg bg-[color:var(--ink)] px-5 py-2 font-bold text-white disabled:opacity-40"
         >
           Check
         </button>
@@ -262,7 +262,7 @@ export function SpeakSlideView({ slide, onDone }: QuizProps<SpeakSlide>) {
   return (
     <div>
       <h2 className="font-display text-xl font-bold text-[color:var(--ink)]">Say it out loud</h2>
-      <div className="mt-4 rounded-xl border border-[rgba(var(--ink-rgb),.07)] bg-[color:var(--card)] p-4 shadow-[0_1px_3px_rgba(var(--shadow-rgb),.04)]">
+      <div className="mt-4 rounded-lg border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] p-4">
         <p className="text-2xl font-bold">
           {slide.targetHr} <TtsButton text={slide.targetHr} className="ml-1" />
           <TtsButton text={slide.targetHr} slow className="ml-1" />
@@ -276,12 +276,12 @@ export function SpeakSlideView({ slide, onDone }: QuizProps<SpeakSlide>) {
           type="button"
           onClick={record}
           disabled={state === "listening"}
-          className="mt-4 w-full rounded-xl border border-[color:var(--ink)] py-3 text-lg font-semibold hover:bg-[color:var(--tint)] disabled:opacity-50"
+          className="mt-4 w-full rounded-lg border border-[color:var(--ink)] py-3 text-lg font-semibold hover:bg-[color:var(--tint)] disabled:opacity-50"
         >
           {state === "listening" ? "Listening…" : "Record yourself"}
         </button>
       ) : (
-        <p className="mt-4 rounded-xl bg-amber-50 p-3 text-sm text-amber-800">
+        <p className="mt-4 rounded-lg bg-amber-50 p-3 text-sm text-amber-800">
           Speech recognition isn't available in this browser (use Edge or Chrome). Say it out
           loud along with the audio, then rate yourself below.
         </p>
@@ -301,14 +301,14 @@ export function SpeakSlideView({ slide, onDone }: QuizProps<SpeakSlide>) {
         <button
           type="button"
           onClick={() => onDone(true)}
-          className="flex-1 rounded-xl bg-[color:var(--green)] py-2.5 font-semibold text-white hover:bg-[color:var(--green-strong)]"
+          className="flex-1 rounded-lg bg-[color:var(--green)] py-2.5 font-semibold text-white hover:bg-[color:var(--green-strong)]"
         >
           {score !== null && score >= 0.75 ? "Continue →" : "I said it correctly"}
         </button>
         <button
           type="button"
           onClick={() => onDone(false)}
-          className="flex-1 rounded-xl border border-[rgba(var(--ink-rgb),.12)] bg-[color:var(--card)] py-2.5 font-semibold text-[color:var(--body)] hover:bg-[color:var(--tint)]"
+          className="flex-1 rounded-lg border border-[rgba(var(--ink-rgb),.12)] bg-[color:var(--card)] py-2.5 font-semibold text-[color:var(--body)] hover:bg-[color:var(--tint)]"
         >
           I need more practice
         </button>
@@ -362,7 +362,7 @@ export function MatchSlideView({ slide, onDone }: QuizProps<MatchSlide>) {
               type="button"
               disabled={matched.has(p.a)}
               onClick={() => setSelectedA(p.a)}
-              className={`rounded-xl border-2 px-3 py-2.5 font-semibold transition ${
+              className={`rounded-lg border-2 px-3 py-2.5 font-semibold transition ${
                 matched.has(p.a)
                   ? "border-[color:var(--green)] bg-[rgba(var(--green-rgb),.07)] opacity-60"
                   : selectedA === p.a
@@ -383,7 +383,7 @@ export function MatchSlideView({ slide, onDone }: QuizProps<MatchSlide>) {
                 type="button"
                 disabled={isMatched || !selectedA}
                 onClick={() => tryMatch(b)}
-                className={`rounded-xl border-2 px-3 py-2.5 font-semibold transition ${
+                className={`rounded-lg border-2 px-3 py-2.5 font-semibold transition ${
                   isMatched
                     ? "border-[color:var(--green)] bg-[rgba(var(--green-rgb),.07)] opacity-60"
                     : flash === b
@@ -484,7 +484,7 @@ export function FillSlideView({ slide, onDone }: QuizProps<FillSlide>) {
           type="button"
           disabled={!allFilled}
           onClick={submit}
-          className="mt-4 rounded-xl bg-[color:var(--ink)] px-5 py-2 font-bold text-white disabled:opacity-40"
+          className="mt-4 rounded-lg bg-[color:var(--ink)] px-5 py-2 font-bold text-white disabled:opacity-40"
         >
           Check
         </button>
@@ -509,7 +509,7 @@ export function ReorderSlideView({ slide, onDone }: QuizProps<ReorderSlide>) {
     <div>
       <h2 className="font-display text-xl font-bold text-[color:var(--ink)]">Build the sentence</h2>
       <p className="mt-1 text-[color:var(--muted)]">{slide.en}</p>
-      <div className="mt-4 min-h-14 rounded-xl border-2 border-dashed border-[rgba(var(--ink-rgb),.16)] bg-[color:var(--card)] p-3">
+      <div className="mt-4 min-h-14 rounded-lg border-2 border-dashed border-[rgba(var(--ink-rgb),.16)] bg-[color:var(--card)] p-3">
         <div className="flex flex-wrap gap-2">
           {chosen.map((w, i) => (
             <button
@@ -548,7 +548,7 @@ export function ReorderSlideView({ slide, onDone }: QuizProps<ReorderSlide>) {
           type="button"
           disabled={pool.length > 0}
           onClick={() => setResult(gradeReorder(chosen.join(" "), slide.answers))}
-          className="mt-4 rounded-xl bg-[color:var(--ink)] px-5 py-2 font-bold text-white disabled:opacity-40"
+          className="mt-4 rounded-lg bg-[color:var(--ink)] px-5 py-2 font-bold text-white disabled:opacity-40"
         >
           Check
         </button>

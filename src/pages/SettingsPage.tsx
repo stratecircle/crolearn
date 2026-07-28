@@ -34,7 +34,7 @@ const THEME_CHOICES: { key: ThemeMode; label: string; sub: string; icon: LucideI
   { key: "system", label: "System", sub: "Follow device", icon: Monitor },
 ];
 
-const inputCls = "w-full rounded-xl border bg-[color:var(--card)] px-4 py-3 text-[15px] outline-none transition-colors duration-150";
+const inputCls = "w-full rounded-lg border bg-[color:var(--card)] px-4 py-3 text-[15px] outline-none transition-colors duration-150";
 const inputStyle = { borderColor: "rgba(var(--ink-rgb),.14)", color: INK };
 
 function RowLabel({ label, sub }: { label: string; sub?: string }) {
@@ -121,7 +121,7 @@ export default function SettingsPage() {
     }
   };
 
-  const divider = { borderBottom: "1px solid rgba(var(--ink-rgb),.06)" };
+  const divider = { borderBottom: "1px solid rgba(var(--ink-rgb),.12)" };
 
   return (
     <div className="grid grid-cols-[290px_minmax(0,1fr)] items-start gap-8 max-[1200px]:grid-cols-[240px_minmax(0,1fr)] max-[700px]:grid-cols-1">
@@ -130,7 +130,7 @@ export default function SettingsPage() {
         <div className="mb-5 flex items-center gap-4">
           <div
             className="flex h-[62px] w-[62px] flex-none items-center justify-center rounded-full border"
-            style={{ background: "var(--tint4)", borderColor: "rgba(var(--ink-rgb),.06)", fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 24, color: BODY }}
+            style={{ background: "var(--tint4)", borderColor: "rgba(var(--ink-rgb),.12)", fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 24, color: BODY }}
           >
             N
           </div>
@@ -146,7 +146,7 @@ export default function SettingsPage() {
               <button
                 key={t.key}
                 onClick={() => setTab(t.key)}
-                className="flex items-center gap-3.5 rounded-xl px-4 py-3 text-left text-[15px] transition-colors duration-[180ms]"
+                className="flex items-center gap-3.5 rounded-lg px-4 py-3 text-left text-[15px] transition-colors duration-[180ms]"
                 style={{ background: on ? "rgba(var(--primary-rgb),.07)" : "transparent", color: on ? RED : BODY, fontWeight: on ? 500 : 400 }}
               >
                 <t.icon size={19} color={on ? RED : BODY2} />
@@ -214,7 +214,7 @@ export default function SettingsPage() {
                         setMode(c.key);
                         setResolved(setThemeMode(c.key));
                       }}
-                      className="flex flex-col items-start gap-1 rounded-2xl border px-4 py-3.5 text-left transition-colors duration-150"
+                      className="flex flex-col items-start gap-1 rounded-[10px] border px-4 py-3.5 text-left transition-colors duration-150"
                       style={{
                         borderColor: on ? RED : "rgba(var(--ink-rgb),.12)",
                         background: on ? tint("var(--primary)", 0.06) : "transparent",
@@ -240,7 +240,7 @@ export default function SettingsPage() {
               ) : (
                 <>
                   {diag.recommendation && (
-                    <p className="mt-3 rounded-xl px-4 py-3 text-sm" style={{ background: tint("var(--orange)", 0.1), color: "var(--brown)" }}>{diag.recommendation}</p>
+                    <p className="mt-3 rounded-lg px-4 py-3 text-sm" style={{ background: tint("var(--orange)", 0.1), color: "var(--brown)" }}>{diag.recommendation}</p>
                   )}
                   {diag.croatianVoices.length > 0 && (
                     <>
@@ -342,7 +342,7 @@ export default function SettingsPage() {
               ) : (
                 <ul className="space-y-2">
                   {reports.map((r) => (
-                    <li key={r.id} className="flex items-start justify-between gap-3 rounded-xl px-4 py-3 text-sm" style={{ background: "rgba(var(--ink-rgb),.03)" }}>
+                    <li key={r.id} className="flex items-start justify-between gap-3 rounded-lg px-4 py-3 text-sm" style={{ background: "rgba(var(--ink-rgb),.03)" }}>
                       <div>
                         <p className="font-semibold" style={{ color: INK }}>
                           <Link to={`/lesson/${r.lessonId}`} className="underline">{r.lessonId}</Link>
@@ -353,7 +353,7 @@ export default function SettingsPage() {
                       <button
                         onClick={() => r.id !== undefined && void deleteReport(r.id)}
                         aria-label="Delete report"
-                        className="flex-none rounded-lg p-1.5 transition-colors duration-150 hover:bg-[rgba(var(--ink-rgb),.06)]"
+                        className="flex-none rounded-lg p-1.5 transition-colors duration-150 hover:bg-[rgba(var(--ink-rgb),.12)]"
                       >
                         <X size={16} color={MUTED} />
                       </button>

@@ -23,7 +23,7 @@ export default function FeedbackPanel({
   const diacritics = verdict === "diacritics";
   const color = good ? GREEN : diacritics ? ORANGE : RED;
   return (
-    <div className="mt-4 rounded-xl border p-4" style={{ borderColor: tint(color, 0.4), background: tint(color, 0.07) }}>
+    <div className="mt-4 rounded-lg border p-4" style={{ borderColor: tint(color, 0.4), background: tint(color, 0.07) }}>
       <p className="font-semibold" style={{ color }}>
         {good ? "Točno — correct!" : diacritics ? "Correct — mind the diacritics (č ć đ š ž)!" : "Not quite."}
       </p>
@@ -37,7 +37,7 @@ export default function FeedbackPanel({
         type="button"
         autoFocus
         onClick={onContinue}
-        className="mt-3.5 inline-flex h-11 items-center rounded-xl px-6 text-[15px] font-semibold text-white transition-colors duration-[180ms]"
+        className="mt-3.5 inline-flex h-11 items-center rounded-lg px-6 text-[15px] font-semibold text-white transition-colors duration-[180ms]"
         style={{ background: INK }}
       >
         {continueLabel}

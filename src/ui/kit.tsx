@@ -16,8 +16,8 @@ export const ORANGE = "var(--orange)";
 export const VIOLET = "var(--violet)";
 export const BLUE = "var(--blue)";
 export const TEAL = "var(--teal)";
-export const BORDER = "rgba(var(--ink-rgb),.09)";
-export const DIVIDER = "rgba(var(--ink-rgb),.06)";
+export const BORDER = "rgba(var(--ink-rgb),.15)";
+export const DIVIDER = "rgba(var(--ink-rgb),.12)";
 
 export const LEVEL_COLORS: Record<string, string> = {
   A1: RED,
@@ -188,7 +188,7 @@ export function Ring({ pct, color, size = 112, hole = 88, children }: { pct: num
   return (
     <div
       className="relative flex items-center justify-center rounded-full"
-      style={{ width: size, height: size, background: `conic-gradient(${color} 0 ${Math.round(pct)}%, rgba(var(--ink-rgb),.09) 0 100%)` }}
+      style={{ width: size, height: size, background: `conic-gradient(${color} 0 ${Math.round(pct)}%, rgba(var(--ink-rgb),.15) 0 100%)` }}
     >
       <div className="flex flex-col items-center justify-center rounded-full bg-[color:var(--card)]" style={{ width: hole, height: hole }}>
         {children}
@@ -278,8 +278,8 @@ export function IconBtn({ icon: Icon, onClick, label, disabled, size = 44 }: { i
       disabled={disabled}
       aria-label={label}
       title={label}
-      className="flex flex-none items-center justify-center rounded-xl border bg-[color:var(--card)] transition-colors duration-[180ms] hover:bg-[color:var(--tint)] disabled:opacity-30 disabled:hover:bg-[color:var(--card)]"
-      style={{ width: size, height: size, borderColor: "rgba(var(--ink-rgb),.1)" }}
+      className="flex flex-none items-center justify-center rounded-lg border bg-[color:var(--card)] transition-colors duration-[180ms] hover:bg-[color:var(--tint)] disabled:opacity-30 disabled:hover:bg-[color:var(--card)]"
+      style={{ width: size, height: size, borderColor: "rgba(var(--ink-rgb),.18)" }}
     >
       <Icon size={Math.round(size * 0.41)} color={BODY2} />
     </button>
@@ -289,7 +289,7 @@ export function IconBtn({ icon: Icon, onClick, label, disabled, size = 44 }: { i
 /** Search field in the card toolbar style. */
 export function SearchBox({ value, onChange, placeholder }: { value: string; onChange: (v: string) => void; placeholder: string }) {
   return (
-    <div className="flex h-12 min-w-0 flex-1 items-center gap-3 rounded-xl border bg-[color:var(--card)] px-[18px]" style={{ borderColor: BORDER }}>
+    <div className="flex h-12 min-w-0 flex-1 items-center gap-3 rounded-lg border bg-[color:var(--card)] px-[18px]" style={{ borderColor: BORDER }}>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={MUTED} strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="11" cy="11" r="8" />
         <path d="m21 21-4.3-4.3" />
@@ -308,7 +308,7 @@ export function SearchBox({ value, onChange, placeholder }: { value: string; onC
 /** Dashed empty-state block. */
 export function EmptyState({ title, sub }: { title: string; sub: string }) {
   return (
-    <div className="rounded-2xl border border-dashed px-6 py-14 text-center" style={{ borderColor: "rgba(var(--ink-rgb),.12)" }}>
+    <div className="rounded-[10px] border border-dashed px-6 py-14 text-center" style={{ borderColor: "rgba(var(--ink-rgb),.12)" }}>
       <div className="mb-1.5 text-base font-semibold" style={{ color: INK }}>{title}</div>
       <div className="text-sm" style={{ color: MUTED }}>{sub}</div>
     </div>
@@ -318,7 +318,7 @@ export function EmptyState({ title, sub }: { title: string; sub: string }) {
 /** Status banner used inside players (looking-back / retry / review notices). */
 export function Banner({ children, color }: { children: ReactNode; color: string }) {
   return (
-    <p className="mb-3 rounded-xl px-3.5 py-2 text-sm font-semibold" style={{ background: tint(color, 0.1), color }}>
+    <p className="mb-3 rounded-lg px-3.5 py-2 text-sm font-semibold" style={{ background: tint(color, 0.1), color }}>
       {children}
     </p>
   );
@@ -343,7 +343,7 @@ export function DoneCard({ icon: Icon = undefined, title, children }: { icon?: L
 /** Segmented control (theme / font size pickers). */
 export function Seg<T extends string>({ options, value, onChange, icons }: { options: T[]; value: T; onChange: (v: T) => void; icons?: Partial<Record<T, LucideIcon>> }) {
   return (
-    <div className="flex overflow-hidden rounded-xl border bg-[color:var(--card)]" style={{ borderColor: "rgba(var(--ink-rgb),.1)" }}>
+    <div className="flex overflow-hidden rounded-lg border bg-[color:var(--card)]" style={{ borderColor: "rgba(var(--ink-rgb),.18)" }}>
       {options.map((o, i) => {
         const Icon: LucideIcon | undefined = icons?.[o];
         const active = o === value;
@@ -353,7 +353,7 @@ export function Seg<T extends string>({ options, value, onChange, icons }: { opt
             onClick={() => onChange(o)}
             className="flex h-12 flex-1 items-center justify-center gap-2 text-[15px] transition-colors duration-[180ms]"
             style={{
-              borderLeft: i === 0 ? "none" : "1px solid rgba(var(--ink-rgb),.1)",
+              borderLeft: i === 0 ? "none" : "1px solid rgba(var(--ink-rgb),.18)",
               background: active ? "var(--tint5)" : "var(--card)",
               color: active ? INK : BODY2,
               fontWeight: active ? 600 : 400,

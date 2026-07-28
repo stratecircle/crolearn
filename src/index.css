@@ -176,6 +176,18 @@ body::after {
   font-family: "Lora", Georgia, serif;
 }
 
+/* Drop cap for the first paragraph of a story — Playfair, crveni. */
+.dropcap::first-letter {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  font-size: 3.1em;
+  line-height: 0.82;
+  float: left;
+  padding-right: 9px;
+  padding-top: 4px;
+  color: var(--primary);
+}
+
 /* Only the theme flip animates — kept off first paint and off reduced-motion. */
 html.theme-ready body {
   transition:

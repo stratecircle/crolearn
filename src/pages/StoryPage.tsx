@@ -5,7 +5,7 @@ import { findStory } from "@/content";
 import { db } from "@/lib/db";
 import { McSlideView } from "@/components/slides/QuizSlides";
 import TtsButton from "@/components/TtsButton";
-import { BODY2, BtnGhost, BtnPrimary, DISPLAY, DoneCard, Eyebrow, INK, MUTED, ORANGE, SHADOW_CARD, tint } from "@/ui/kit";
+import { BODY2, BtnGhost, BtnPrimary, DISPLAY, DoneCard, Eyebrow, INK, MUTED, ORANGE, tint } from "@/ui/kit";
 
 /** Graded reader: paragraph TTS, EN reveal per paragraph, glossary, comprehension questions. */
 export default function StoryPage() {
@@ -74,7 +74,7 @@ export default function StoryPage() {
       <p className="mt-1 text-[15px]" style={{ color: MUTED }}>{story.titleEn}</p>
 
       {story.glossary.length > 0 && (
-        <div className="mt-5 rounded-2xl border p-4" style={{ background: tint(ORANGE, 0.07), borderColor: tint(ORANGE, 0.25) }}>
+        <div className="mt-5 rounded-[10px] border p-4" style={{ background: tint(ORANGE, 0.07), borderColor: tint(ORANGE, 0.25) }}>
           <p className="text-xs font-semibold" style={{ letterSpacing: ".13em", color: "var(--brown2)" }}>NEW WORDS IN THIS STORY</p>
           <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1.5 text-sm" style={{ color: INK }}>
             {story.glossary.map((g) => (
@@ -86,19 +86,20 @@ export default function StoryPage() {
         </div>
       )}
 
-      <div className="mt-5 space-y-4">
+      {/* One continuous page, like the book it wants to be. */}
+      <div className="mt-5 rounded-[10px] border bg-[color:var(--card)] px-8 py-7 max-[700px]:px-5" style={{ borderColor: "rgba(var(--ink-rgb),.16)" }}>
         {story.paragraphs.map((p, i) => (
-          <div key={i} className="rounded-2xl border bg-[color:var(--card)] p-5" style={{ borderColor: "rgba(var(--ink-rgb),.07)", boxShadow: SHADOW_CARD }}>
-            <p className="text-[19px] leading-relaxed max-[700px]:text-[17px]" style={{ fontFamily: DISPLAY, color: INK }}>
+          <div key={i} className={i === 0 ? "" : "mt-6"}>
+            <p className={`reading text-[18px] leading-[1.85] max-[700px]:text-[16.5px] ${i === 0 ? "dropcap" : ""}`} style={{ color: INK }}>
               {p.hr} <TtsButton text={p.hr} className="ml-1" /> <TtsButton text={p.hr} slow label="Slow" className="ml-1" />
             </p>
             {shownEn.has(i) ? (
-              <p className="mt-2.5 text-[15px] leading-relaxed" style={{ color: BODY2 }}>{p.en}</p>
+              <p className="reading mt-2 border-l-2 pl-3.5 text-[14.5px] italic leading-relaxed" style={{ color: BODY2, borderColor: "rgba(var(--ink-rgb),.16)" }}>{p.en}</p>
             ) : (
               <button
                 type="button"
                 onClick={() => setShownEn(new Set([...shownEn, i]))}
-                className="mt-2.5 text-sm font-medium underline"
+                className="mt-1.5 text-[13px] font-medium underline decoration-dotted underline-offset-4"
                 style={{ color: MUTED }}
               >
                 Show translation
@@ -111,7 +112,7 @@ export default function StoryPage() {
       <button
         type="button"
         onClick={() => setPhase("questions")}
-        className="mb-10 mt-6 flex h-[52px] w-full items-center justify-center rounded-xl text-[16px] font-semibold text-white transition-colors duration-[180ms]"
+        className="mb-10 mt-6 flex h-[52px] w-full items-center justify-center rounded-lg text-[16px] font-semibold text-white transition-colors duration-[180ms]"
         style={{ background: INK }}
       >
         Story questions →

@@ -13,7 +13,7 @@ export default function DiagramView({ diagram }: { diagram: DiagramSpec }) {
       };
       const icons = { warn: "⚠️", info: "💡", success: "🎉" };
       return (
-        <div className={`rounded-xl border-2 p-4 ${tones[diagram.tone]}`}>
+        <div className={`rounded-lg border-2 p-4 ${tones[diagram.tone]}`}>
           <p className="font-bold">
             {icons[diagram.tone]} {diagram.title ?? ""}
           </p>
@@ -31,7 +31,7 @@ export default function DiagramView({ diagram }: { diagram: DiagramSpec }) {
           </p>
           <div className="grid gap-3 sm:grid-cols-2">
             {diagram.boxes.map((box, i) => (
-              <div key={i} className={`rounded-xl border-2 p-3 ${cc.border} ${cc.bg}`}>
+              <div key={i} className={`rounded-lg border-2 p-3 ${cc.border} ${cc.bg}`}>
                 <p className="font-bold">{box.label}</p>
                 {box.examples.map((ex, j) => (
                   <p key={j} className="mt-1 text-sm">
@@ -51,7 +51,7 @@ export default function DiagramView({ diagram }: { diagram: DiagramSpec }) {
       const side = (s: typeof diagram.left) => {
         const cc = s.caseId ? CASE_COLORS[s.caseId] : null;
         return (
-          <div className={`flex-1 rounded-xl border-2 p-4 ${cc ? `${cc.border} ${cc.bg}` : "border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)]"}`}>
+          <div className={`flex-1 rounded-lg border-2 p-4 ${cc ? `${cc.border} ${cc.bg}` : "border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)]"}`}>
             <p className={`font-bold ${cc?.text ?? ""}`}>
               {s.emoji && <span className="mr-1 text-xl">{s.emoji}</span>}
               {s.title}
@@ -80,7 +80,7 @@ export default function DiagramView({ diagram }: { diagram: DiagramSpec }) {
         <div className="flex flex-wrap items-center gap-2">
           {diagram.steps.map((s, i) => (
             <div key={i} className="flex items-center gap-2">
-              <div className="rounded-xl border-2 border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] px-3 py-2 text-center">
+              <div className="rounded-lg border-2 border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] px-3 py-2 text-center">
                 {s.emoji && <div className="text-xl">{s.emoji}</div>}
                 <div className="text-sm font-bold">{s.label}</div>
                 {s.example && <div className="text-xs text-[color:var(--muted)]">{s.example}</div>}
@@ -116,7 +116,7 @@ export default function DiagramView({ diagram }: { diagram: DiagramSpec }) {
           {diagram.groups.map((g, i) => {
             const cc = g.caseId ? CASE_COLORS[g.caseId] : null;
             return (
-              <div key={i} className={`rounded-xl border-2 p-3 text-center ${cc ? `${cc.border} ${cc.bg}` : "border-[rgba(var(--ink-rgb),.14)]"}`}>
+              <div key={i} className={`rounded-lg border-2 p-3 text-center ${cc ? `${cc.border} ${cc.bg}` : "border-[rgba(var(--ink-rgb),.14)]"}`}>
                 <div className="font-display text-2xl font-bold text-[color:var(--ink)]">{g.label}</div>
                 <div className={`text-sm font-bold ${cc?.text ?? "text-[color:var(--body2)]"}`}>{g.rule}</div>
                 <div className="mt-1 font-semibold">{g.example}</div>

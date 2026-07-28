@@ -26,8 +26,8 @@ const KIND_LABEL: Record<SrsCard["kind"], string> = {
 function CardFace({ eyebrow, big, sub, children, back }: { eyebrow: string; big: string; sub?: string; children?: React.ReactNode; back?: boolean }) {
   return (
     <div
-      className="flex min-h-[340px] flex-col items-center justify-center rounded-[20px] border bg-[color:var(--card)] px-12 py-11 text-center max-[700px]:min-h-[280px] max-[700px]:px-6"
-      style={{ borderColor: "rgba(var(--ink-rgb),.07)", boxShadow: "0 1px 3px rgba(var(--shadow-rgb),.04),0 16px 44px rgba(var(--shadow-rgb),.06)", gridArea: "1/1", backfaceVisibility: "hidden", transform: back ? "rotateY(180deg)" : undefined }}
+      className="flex min-h-[340px] flex-col items-center justify-center rounded-[10px] border bg-[color:var(--card)] px-12 py-11 text-center max-[700px]:min-h-[280px] max-[700px]:px-6"
+      style={{ borderColor: "rgba(var(--ink-rgb),.14)", boxShadow: "none", gridArea: "1/1", backfaceVisibility: "hidden", transform: back ? "rotateY(180deg)" : undefined }}
     >
       <div className="mb-5 text-xs font-semibold" style={{ letterSpacing: ".13em", color: MUTED }}>{eyebrow}</div>
       <div className="mb-3" style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: big.length > 24 ? "clamp(22px,3.4vw,30px)" : "clamp(32px,5.4vw,48px)", lineHeight: 1.15, color: INK }}>{big}</div>
@@ -105,7 +105,7 @@ export default function ReviewPage() {
       <div className="flex flex-col items-center pt-8">
         <div className="w-full max-w-[780px]">
           {header}
-          <div className="rounded-[20px] border bg-[color:var(--card)] px-12 py-14 text-center" style={{ borderColor: "rgba(var(--ink-rgb),.07)", boxShadow: "0 1px 3px rgba(var(--shadow-rgb),.04),0 16px 44px rgba(var(--shadow-rgb),.06)" }}>
+          <div className="rounded-[10px] border bg-[color:var(--card)] px-12 py-14 text-center" style={{ borderColor: "rgba(var(--ink-rgb),.14)", boxShadow: "none" }}>
             <div className="mx-auto mb-[22px] flex h-16 w-16 items-center justify-center rounded-full" style={{ background: tint(GREEN, 0.1) }}>
               <Check size={30} color={GREEN} />
             </div>
@@ -161,7 +161,7 @@ export default function ReviewPage() {
           key={label}
           disabled={rating}
           onClick={() => void applyRating(r)}
-          className="flex h-14 flex-1 items-center justify-center gap-2.5 rounded-xl text-[16px] font-semibold text-white transition-transform duration-[180ms] hover:-translate-y-px disabled:opacity-50"
+          className="flex h-14 flex-1 items-center justify-center gap-2.5 rounded-lg text-[16px] font-semibold text-white transition-transform duration-[180ms] hover:-translate-y-px disabled:opacity-50"
           style={{ background: color, boxShadow: suggested === r ? `0 8px 22px ${tint(color, 0.35)}, 0 0 0 3px ${tint(color, 0.3)}` : undefined }}
         >
           {r === Rating.Again ? <RotateCcw size={18} /> : <Check size={18} />}
@@ -190,8 +190,8 @@ export default function ReviewPage() {
                   {card.tts && (
                     <button
                       onClick={(e) => { e.stopPropagation(); void speak(card.tts!); }}
-                      className="mt-6 inline-flex items-center gap-2 rounded-xl border bg-[color:var(--card)] px-4 py-2 text-sm"
-                      style={{ borderColor: "rgba(var(--ink-rgb),.1)", color: BODY2 }}
+                      className="mt-6 inline-flex items-center gap-2 rounded-lg border bg-[color:var(--card)] px-4 py-2 text-sm"
+                      style={{ borderColor: "rgba(var(--ink-rgb),.18)", color: BODY2 }}
                     >
                       <Volume2 size={16} color={MUTED} />Hear it
                     </button>
@@ -202,17 +202,17 @@ export default function ReviewPage() {
             {revealed ? (
               ratingButtons
             ) : (
-              <button onClick={reveal} className="flex h-14 w-full items-center justify-center gap-2.5 rounded-xl text-[16px] font-semibold text-white transition-colors duration-[180ms]" style={{ background: INK }}>
+              <button onClick={reveal} className="flex h-14 w-full items-center justify-center gap-2.5 rounded-lg text-[16px] font-semibold text-white transition-colors duration-[180ms]" style={{ background: INK }}>
                 Show meaning
               </button>
             )}
           </>
         ) : (
           <>
-            <div className="mb-[22px] flex min-h-[340px] flex-col items-center justify-center rounded-[20px] border bg-[color:var(--card)] px-12 py-11 text-center max-[700px]:min-h-[280px] max-[700px]:px-5" style={{ borderColor: "rgba(var(--ink-rgb),.07)", boxShadow: "0 1px 3px rgba(var(--shadow-rgb),.04),0 16px 44px rgba(var(--shadow-rgb),.06)" }}>
+            <div className="mb-[22px] flex min-h-[340px] flex-col items-center justify-center rounded-[10px] border bg-[color:var(--card)] px-12 py-11 text-center max-[700px]:min-h-[280px] max-[700px]:px-5" style={{ borderColor: "rgba(var(--ink-rgb),.14)", boxShadow: "none" }}>
               <div className="mb-5 text-xs font-semibold" style={{ letterSpacing: ".13em", color: MUTED }}>{KIND_LABEL[card.kind]}</div>
               {card.kind === "listening" ? (
-                <button onClick={() => void speak(card.tts ?? card.back)} className="mb-6 inline-flex items-center gap-2.5 rounded-xl px-6 py-3 text-[17px] font-semibold text-white" style={{ background: INK }}>
+                <button onClick={() => void speak(card.tts ?? card.back)} className="mb-6 inline-flex items-center gap-2.5 rounded-lg px-6 py-3 text-[17px] font-semibold text-white" style={{ background: INK }}>
                   <Volume2 size={19} />Play audio
                 </button>
               ) : (
@@ -224,14 +224,14 @@ export default function ReviewPage() {
                   <button
                     disabled={!value.trim()}
                     onClick={check}
-                    className="mt-3.5 flex h-[50px] w-full items-center justify-center rounded-xl text-[15px] font-semibold transition-colors duration-[180ms]"
-                    style={value.trim() ? { background: INK, color: "#fff" } : { background: "rgba(var(--ink-rgb),.07)", color: "var(--muted2)", cursor: "default" }}
+                    className="mt-3.5 flex h-[50px] w-full items-center justify-center rounded-lg text-[15px] font-semibold transition-colors duration-[180ms]"
+                    style={value.trim() ? { background: INK, color: "#fff" } : { background: "rgba(var(--ink-rgb),.14)", color: "var(--muted2)", cursor: "default" }}
                   >
                     Check answer
                   </button>
                 </div>
               ) : (
-                <div className="w-full max-w-[520px] border-t pt-5" style={{ borderColor: "rgba(var(--ink-rgb),.07)" }}>
+                <div className="w-full max-w-[520px] border-t pt-5" style={{ borderColor: "rgba(var(--ink-rgb),.14)" }}>
                   {typedResult && (
                     <div className="mb-2 text-[15px] font-semibold" style={{ color: typedResult.verdict === "wrong" ? RED : typedResult.verdict === "diacritics" ? "var(--orange)" : GREEN }}>
                       {typedResult.verdict === "wrong" ? "Not quite" : typedResult.verdict === "diacritics" ? "Correct — mind the diacritics" : "Točno — correct!"}

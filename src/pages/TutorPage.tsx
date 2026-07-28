@@ -122,7 +122,7 @@ export default function TutorPage() {
         <Card className="mb-3.5 p-3.5">
           <button
             onClick={newConversation}
-            className="mb-3.5 flex h-12 w-full items-center gap-[11px] rounded-xl px-4 text-[15px] font-medium transition-colors duration-[180ms] hover:bg-[rgba(var(--primary-rgb),.06)]"
+            className="mb-3.5 flex h-12 w-full items-center gap-[11px] rounded-lg px-4 text-[15px] font-medium transition-colors duration-[180ms] hover:bg-[rgba(var(--primary-rgb),.06)]"
             style={{ color: RED }}
           >
             <Plus size={18} />New conversation
@@ -136,7 +136,7 @@ export default function TutorPage() {
                 <button
                   key={s.id}
                   onClick={() => openSession(s)}
-                  className="flex items-center gap-[13px] rounded-xl px-4 py-3 text-left transition-colors duration-[180ms]"
+                  className="flex items-center gap-[13px] rounded-lg px-4 py-3 text-left transition-colors duration-[180ms]"
                   style={{ background: on ? "rgba(var(--primary-rgb),.06)" : "transparent" }}
                 >
                   <Tile icon={MessageSquare} color={on ? RED : "var(--blue)"} size={34} radius={10} iconSize={16} />
@@ -156,7 +156,7 @@ export default function TutorPage() {
       <Card className="flex min-h-0 flex-col max-[1100px]:order-1 max-[1100px]:min-h-[70dvh]" style={{ height: "100%" }}>
         <div className="px-[22px] pt-[18px]">
           <div className="mb-3.5 flex items-center gap-3.5">
-            <div className="flex h-[42px] w-[42px] flex-none items-center justify-center rounded-xl" style={{ background: INK }}>
+            <div className="flex h-[42px] w-[42px] flex-none items-center justify-center rounded-lg" style={{ background: INK }}>
               <Sparkles size={19} color="#fff" />
             </div>
             <div>
@@ -164,13 +164,13 @@ export default function TutorPage() {
               <div className="text-sm" style={{ color: BODY2 }}>How can I help you today?</div>
             </div>
           </div>
-          <div className="flex flex-wrap gap-2 border-b pb-4" style={{ borderColor: "rgba(var(--ink-rgb),.06)" }}>
+          <div className="flex flex-wrap gap-2 border-b pb-4" style={{ borderColor: "rgba(var(--ink-rgb),.12)" }}>
             {PROMPTS.map((p) => (
               <button
                 key={p}
                 onClick={() => void send(p)}
                 className="rounded-full border bg-[color:var(--card)] px-3.5 py-2 text-sm transition-colors duration-[180ms] hover:bg-[color:var(--tint)]"
-                style={{ borderColor: "rgba(var(--ink-rgb),.1)", color: "var(--body)" }}
+                style={{ borderColor: "rgba(var(--ink-rgb),.18)", color: "var(--body)" }}
               >
                 {p}
               </button>
@@ -180,7 +180,7 @@ export default function TutorPage() {
 
         <div ref={scroller} className="nativ-noscrollbar flex min-h-0 flex-1 flex-col gap-[18px] overflow-y-auto px-6 py-5">
           {!keyPresent && (
-            <div className="rounded-2xl border bg-[color:var(--card)] p-6 text-[15px] leading-relaxed" style={{ borderColor: "rgba(var(--ink-rgb),.07)", color: BODY2 }}>
+            <div className="rounded-[10px] border bg-[color:var(--card)] p-6 text-[15px] leading-relaxed" style={{ borderColor: "rgba(var(--ink-rgb),.14)", color: BODY2 }}>
               The tutor needs your Anthropic API key to reply.{" "}
               <Link to="/settings" className="font-semibold" style={{ color: RED }}>Add it in Settings →</Link>{" "}
               Everything else in CroLearn works without it.
@@ -189,25 +189,25 @@ export default function TutorPage() {
           {messages.map((m, i) => (
             <div key={i} className="flex flex-col gap-[7px]" style={{ alignItems: m.role === "user" ? "flex-end" : "flex-start" }}>
               {m.role === "user" ? (
-                <div className="max-w-[70%] rounded-2xl px-[22px] py-4 text-[16px] leading-normal text-white" style={{ background: INK }}>{m.text}</div>
+                <div className="max-w-[70%] rounded-[10px] px-[22px] py-4 text-[16px] leading-normal text-white" style={{ background: INK }}>{m.text}</div>
               ) : (
-                <div className="max-w-[82%] rounded-2xl border bg-[color:var(--card)] px-[26px] py-5 text-[16px] leading-relaxed" style={{ borderColor: "rgba(var(--ink-rgb),.07)", boxShadow: "0 1px 2px rgba(var(--shadow-rgb),.03)", color: INK }}>
+                <div className="max-w-[82%] rounded-[10px] border bg-[color:var(--card)] px-[26px] py-5 text-[16px] leading-relaxed" style={{ borderColor: "rgba(var(--ink-rgb),.14)", boxShadow: "0 1px 2px rgba(var(--shadow-rgb),.03)", color: INK }}>
                   {m.text ? <Markdown text={m.text} /> : <span style={{ color: MUTED }}>…</span>}
                 </div>
               )}
             </div>
           ))}
-          {error && <div className="rounded-xl px-4 py-3 text-sm" style={{ background: tint("var(--orange)", 0.1), color: "var(--brown)" }}>{error}</div>}
+          {error && <div className="rounded-lg px-4 py-3 text-sm" style={{ background: tint("var(--orange)", 0.1), color: "var(--brown)" }}>{error}</div>}
         </div>
 
-        <div className="rounded-b-[20px] border-t px-[22px] pb-[22px] pt-[18px]" style={{ borderColor: "rgba(var(--ink-rgb),.06)", background: "var(--card)" }}>
+        <div className="rounded-b-[20px] border-t px-[22px] pb-[22px] pt-[18px]" style={{ borderColor: "rgba(var(--ink-rgb),.12)", background: "var(--card)" }}>
           <form
             onSubmit={(e) => {
               e.preventDefault();
               void send(draft);
             }}
             className="flex min-h-14 items-center gap-1.5 rounded-full border bg-[color:var(--card)] py-1.5 pl-4 pr-1.5"
-            style={{ borderColor: "rgba(var(--ink-rgb),.1)", boxShadow: "0 2px 10px rgba(var(--shadow-rgb),.05)" }}
+            style={{ borderColor: "rgba(var(--ink-rgb),.18)", boxShadow: "0 2px 10px rgba(var(--shadow-rgb),.05)" }}
           >
             <input
               value={draft}
@@ -245,7 +245,7 @@ export default function TutorPage() {
                 {progress.stats.due > 0 ? `${progress.stats.due} cards still due today.` : progress.stats.goalDone >= progress.stats.goalTotal ? "Daily goal complete!" : "Review is clear — one lesson to go."}
               </div>
             </div>
-            <div className="mb-[18px] h-px" style={{ background: "rgba(var(--ink-rgb),.06)" }} />
+            <div className="mb-[18px] h-px" style={{ background: "rgba(var(--ink-rgb),.12)" }} />
             <div className="flex items-center gap-3">
               <ProgressBar pct={goalPct} color={GREEN} height={7} className="flex-1" />
               <div className="text-[13px]" style={{ color: BODY2 }}>{goalPct}%</div>
@@ -258,7 +258,7 @@ export default function TutorPage() {
             <CardH className="mb-3.5">Recently learned</CardH>
             <div className="grid">
               {progress.recentWords.map((w) => (
-                <div key={w.hr} className="flex items-center gap-3.5 border-t py-[11px]" style={{ borderColor: "rgba(var(--ink-rgb),.06)" }}>
+                <div key={w.hr} className="flex items-center gap-3.5 border-t py-[11px]" style={{ borderColor: "rgba(var(--ink-rgb),.12)" }}>
                   <Tile icon={PenLine} color="var(--blue)" size={32} radius={9} iconSize={15} />
                   <div className="min-w-0 flex-1">
                     <div className="text-[15px] font-semibold" style={{ color: INK }}>{w.hr}</div>
@@ -277,7 +277,7 @@ export default function TutorPage() {
               <button
                 key={t.title}
                 onClick={() => void send(t.prompt)}
-                className="flex items-center gap-3.5 rounded-xl px-2.5 py-3 text-left transition-colors duration-[180ms] hover:bg-[rgba(var(--ink-rgb),.03)]"
+                className="flex items-center gap-3.5 rounded-lg px-2.5 py-3 text-left transition-colors duration-[180ms] hover:bg-[rgba(var(--ink-rgb),.03)]"
               >
                 <Tile icon={t.icon} color={t.color} size={34} radius={10} iconSize={16} />
                 <div className="min-w-0 flex-1">

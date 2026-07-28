@@ -6,7 +6,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, BookOpen, Bookmark, Check, Clock, Flag, Flame, Layers, Lock, Star, Target } from "lucide-react";
-import { BODY2, BtnPrimary, Card, CardH, Eyebrow, H, INK, MUTED, ProgressBar, Ring, StatChip, StatRow, Tile, tint } from "@/ui/kit";
+import { BODY2, BtnPrimary, Card, CardH, Eyebrow, H, INK, MUTED, ProgressBar, Ring, SectionTitle, StatChip, StatRow, Tile, tint } from "@/ui/kit";
 import { loadNativProgress, stepDone, stepLink, type NativProgress } from "@/features/nativ/stats";
 
 export default function DashboardPage() {
@@ -115,7 +115,7 @@ export default function DashboardPage() {
               <button
                 key={st.label}
                 onClick={() => nav(st.to)}
-                className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors duration-[180ms] hover:bg-[rgba(var(--ink-rgb),.04)]"
+                className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors duration-[180ms] hover:bg-[rgba(var(--ink-rgb),.04)]"
               >
                 <span className="w-6 flex-none text-center text-[17px]" style={{ color: st.done ? "var(--green)" : BODY2 }}>{st.n}</span>
                 <span className="w-[92px] flex-none text-sm font-semibold" style={{ color: INK }}>{st.label}</span>
@@ -124,14 +124,14 @@ export default function DashboardPage() {
               </button>
             ))}
           </div>
-          <div className="mt-3 flex items-center gap-2 border-t pt-3 text-sm" style={{ color: BODY2, borderColor: "rgba(var(--ink-rgb),.06)" }}>
+          <div className="mt-3 flex items-center gap-2 border-t pt-3 text-sm" style={{ color: BODY2, borderColor: "rgba(var(--ink-rgb),.12)" }}>
             <Flame size={16} color="var(--primary)" />{s.dayStreak}-day streak — a day counts once ① and ② are done.
           </div>
         </Card>
       </div>
 
       {/* Learning Path level cards */}
-      <CardH className="mb-3.5 mt-6">Learning Path</CardH>
+      <SectionTitle className="mb-4 mt-7">Learning Path</SectionTitle>
       <div className="grid grid-cols-4 gap-5 max-[1200px]:grid-cols-2 max-[700px]:grid-cols-1">
         {p.levels.map((l) => {
           const isSel = l.code === selCode;
@@ -141,8 +141,8 @@ export default function DashboardPage() {
             <button
               key={l.code}
               onClick={() => setSel(l.code)}
-              className="rounded-2xl bg-[color:var(--card)] p-5 text-left shadow-[0_1px_2px_rgba(var(--shadow-rgb),.03)] transition-all duration-200"
-              style={{ border: isSel ? `1.5px solid ${l.color}` : "1px solid rgba(var(--ink-rgb),.07)", boxShadow: isSel ? "0 12px 30px rgba(var(--shadow-rgb),.07)" : undefined }}
+              className="rounded-[10px] bg-[color:var(--card)] p-5 text-left transition-all duration-200"
+              style={{ border: isSel ? `1.5px solid ${l.color}` : "1px solid rgba(var(--ink-rgb),.14)", boxShadow: isSel ? "0 4px 14px rgba(var(--shadow-rgb),.08)" : undefined }}
             >
               <div className="flex items-start justify-between gap-2">
                 <div>
@@ -172,7 +172,7 @@ export default function DashboardPage() {
           </div>
           <div className="mb-5 text-[15px] leading-relaxed" style={{ color: BODY2 }}>{lv.blurb}</div>
           {lv.total === 0 && (
-            <div className="mb-5 flex flex-wrap items-center gap-2 rounded-xl px-4 py-3 text-sm" style={{ background: "rgba(var(--ink-rgb),.04)", color: BODY2 }}>
+            <div className="mb-5 flex flex-wrap items-center gap-2 rounded-lg px-4 py-3 text-sm" style={{ background: "rgba(var(--ink-rgb),.04)", color: BODY2 }}>
               <Lock size={15} color={MUTED} />This level isn't authored yet — CroLearn builds strictly in course order.
             </div>
           )}
@@ -186,7 +186,7 @@ export default function DashboardPage() {
         <Card className="p-7">
           <CardH className="mb-4">{lv.code} Curriculum</CardH>
           {lv.units.length === 0 ? (
-            <div className="rounded-xl border border-dashed px-5 py-10 text-center text-sm" style={{ borderColor: "rgba(var(--ink-rgb),.12)", color: MUTED }}>
+            <div className="rounded-lg border border-dashed px-5 py-10 text-center text-sm" style={{ borderColor: "rgba(var(--ink-rgb),.12)", color: MUTED }}>
               No units yet — finish the levels before it and they'll appear here.
             </div>
           ) : (
@@ -199,18 +199,25 @@ export default function DashboardPage() {
                   <button
                     key={u.id}
                     onClick={() => target && nav(stepLink(target))}
-                    className="flex items-center gap-4 rounded-xl px-4 py-3.5 text-left transition-colors duration-[180ms] hover:bg-[rgba(var(--ink-rgb),.03)]"
+                    className="flex items-center gap-4 rounded-lg px-4 py-3.5 text-left transition-colors duration-[180ms] hover:bg-[rgba(var(--ink-rgb),.03)]"
                     style={{ background: isCurrentUnit ? tint(lv.color, 0.05) : undefined }}
                   >
                     <div
                       className="flex h-[30px] w-[30px] flex-none items-center justify-center rounded-full text-[13px] font-semibold"
-                      style={isCurrentUnit ? { background: lv.color, color: "#fff" } : { background: "rgba(var(--ink-rgb),.06)", color: BODY2 }}
+                      style={isCurrentUnit ? { background: lv.color, color: "#fff" } : { background: "rgba(var(--ink-rgb),.12)", color: BODY2 }}
                     >
                       {u.number}
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="mb-0.5 truncate" style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 16, color: INK }}>{u.title}</div>
-                      <div className="truncate text-[13px]" style={{ color: MUTED }}>{u.titleEn} · {u.done}/{u.total} steps</div>
+                      <div className="truncate text-[13px]" style={{ color: MUTED }}>{u.titleEn}</div>
+                      {/* šahovnica step strip — one square per path step, filled as done */}
+                      <div className="mt-1.5 flex items-center gap-[3px]">
+                        {u.steps.map((st) => (
+                          <span key={st.id} className="h-[7px] w-[7px]" style={{ background: stepDone(st, p) ? lv.color : "rgba(var(--ink-rgb),.14)" }} />
+                        ))}
+                        <span className="ml-2 text-[11px] tabular-nums" style={{ color: MUTED }}>{u.done}/{u.total}</span>
+                      </div>
                     </div>
                     {complete ? (
                       <div className="flex h-6 w-6 flex-none items-center justify-center rounded-full" style={{ background: "var(--green)" }}>
@@ -255,9 +262,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Upcoming milestones (derived from real path state) */}
-      <div className="mb-[18px] flex items-center justify-between">
-        <div style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 22, color: INK }}>Upcoming Milestones</div>
-      </div>
+      <SectionTitle className="mb-[18px]">Upcoming Milestones</SectionTitle>
       <div className="grid grid-cols-4 gap-5 max-[1200px]:grid-cols-2 max-[700px]:grid-cols-1">
         {milestones.map((m) => (
           <Card key={m.title} className="flex items-start gap-4 p-[22px]">

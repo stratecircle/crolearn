@@ -36,7 +36,7 @@ export default function ContentTable({ table }: { table: TableSpec }) {
                 return (
                   <td
                     key={c}
-                    className={`border-b border-[rgba(var(--ink-rgb),.09)] px-3 py-2 ${
+                    className={`border-b border-[rgba(var(--ink-rgb),.15)] px-3 py-2 ${
                       cc ? `font-semibold ${CASE_COLORS[cc].text}` : ""
                     }`}
                   >

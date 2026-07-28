@@ -46,7 +46,7 @@ export default function WritingSection({ task, onDone }: { task: WritingTask; on
         <span>1/1</span>
       </div>
 
-      <div className="rounded-[20px] border border-[rgba(var(--ink-rgb),.07)] bg-[color:var(--card)] p-5 shadow-[0_1px_3px_rgba(var(--shadow-rgb),.04)]">
+      <div className="rounded-[10px] border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] p-5">
         <p className="text-lg font-bold">{task.task}</p>
         {task.rubricFocus && (
           <p className="mt-1 text-xs text-[color:var(--muted)]">Graded on: {task.rubricFocus}</p>
@@ -64,7 +64,7 @@ export default function WritingSection({ task, onDone }: { task: WritingTask; on
           onChange={(e) => setText(e.target.value)}
           rows={7}
           placeholder="Piši ovdje…"
-          className="mt-4 w-full rounded-xl border-2 border-[rgba(var(--ink-rgb),.09)] p-3 focus:border-[color:var(--ink)] focus:outline-none"
+          className="mt-4 w-full rounded-lg border-2 border-[rgba(var(--ink-rgb),.15)] p-3 focus:border-[color:var(--ink)] focus:outline-none"
         />
         <p className={`mt-1 text-xs ${inRange ? "text-[color:var(--muted)]" : "text-amber-700"}`}>
           {words} {words === 1 ? "word" : "words"}
@@ -77,7 +77,7 @@ export default function WritingSection({ task, onDone }: { task: WritingTask; on
               type="button"
               disabled={grading || !text.trim()}
               onClick={() => void gradeIt()}
-              className="rounded-xl bg-[color:var(--ink)] px-4 py-2.5 font-bold text-white hover:bg-[color:var(--ink-strong)] disabled:opacity-40"
+              className="rounded-lg bg-[color:var(--ink)] px-4 py-2.5 font-bold text-white hover:bg-[color:var(--ink-strong)] disabled:opacity-40"
             >
               {grading ? "Grading…" : "Grade my writing"}
             </button>
@@ -86,7 +86,7 @@ export default function WritingSection({ task, onDone }: { task: WritingTask; on
             <button
               type="button"
               onClick={() => setRevealed(true)}
-              className="rounded-xl border-2 border-[color:var(--ink)] px-4 py-2.5 font-bold hover:bg-[rgba(var(--ink-rgb),.05)]"
+              className="rounded-lg border-2 border-[color:var(--ink)] px-4 py-2.5 font-bold hover:bg-[rgba(var(--ink-rgb),.05)]"
             >
               💡 Show a model text
             </button>
@@ -95,7 +95,7 @@ export default function WritingSection({ task, onDone }: { task: WritingTask; on
         {gradeError && <p className="mt-2 text-sm text-red-700">{gradeError}</p>}
 
         {grade && (
-          <div className={`mt-3 rounded-xl p-4 ${grade.correct ? "bg-green-50" : "bg-amber-50"}`}>
+          <div className={`mt-3 rounded-lg p-4 ${grade.correct ? "bg-green-50" : "bg-amber-50"}`}>
             <p className="font-semibold text-[color:var(--ink)]">Score: {Math.round(grade.score)}/100</p>
             <p className="mt-1 text-sm">{grade.feedback}</p>
             {grade.corrected_text.trim() && grade.corrected_text.trim() !== text.trim() && (
@@ -105,7 +105,7 @@ export default function WritingSection({ task, onDone }: { task: WritingTask; on
         )}
 
         {revealed && task.modelHr && (
-          <div className="mt-3 rounded-xl bg-sky-50 p-3">
+          <div className="mt-3 rounded-lg bg-sky-50 p-3">
             <p className="text-xs font-semibold uppercase tracking-[.13em] text-[color:var(--blue)]">Model text</p>
             <p className="mt-1 whitespace-pre-line">{task.modelHr}</p>
           </div>
@@ -115,7 +115,7 @@ export default function WritingSection({ task, onDone }: { task: WritingTask; on
       <button
         type="button"
         onClick={onDone}
-        className="mt-4 w-full rounded-xl bg-[color:var(--ink)] py-3 font-bold text-white hover:bg-[color:var(--ink-strong)]"
+        className="mt-4 w-full rounded-lg bg-[color:var(--ink)] py-3 font-bold text-white hover:bg-[color:var(--ink-strong)]"
       >
         Finish & see results →
       </button>
