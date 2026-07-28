@@ -1,15 +1,14 @@
 /**
- * Notes — Nativ notes screen (README §Screens 4) over CroLearn's lesson
- * NotesDocs. Adjust-if-absent: no user-authored notes exist, so "New Note",
- * stars and "Recently Deleted" are hidden; categories map to real study state
- * and notebooks map to levels.
+ * Notes — the index over CroLearn's lesson NotesDocs, read as the course's
+ * table of contents: units as sections, lessons as rows. No user-authored
+ * notes exist, so there is no "New note", starring or trash.
  */
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowRight, BookOpenCheck, Check, FileText, Folder, LayoutGrid, List, Repeat, Search, SquarePen } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { levels } from "@/content";
 import { db } from "@/lib/db";
-import { BODY, BODY2, Card, H, INK, LEVEL_COLORS, MUTED, RED, tint } from "@/ui/kit";
+import { Divider, EmptyState, INK, Meta, MUTED, PageHeader, SearchBox } from "@/ui/kit";
 
 interface NoteRow {
   lessonId: string;
@@ -22,54 +21,14 @@ interface NoteRow {
   completedAt?: Date;
 }
 
-/** One note row/card: level-colored monogram, calm tags, check when studied. */
-function NoteCard({ n, grid = false, onOpen }: { n: NoteRow; grid?: boolean; onOpen: () => void }) {
-  const color = LEVEL_COLORS[n.levelId] ?? RED;
-  return (
-    <button
-      onClick={onOpen}
-      className={`flex w-full gap-4 rounded-[10px] border bg-[color:var(--card)] p-4 text-left transition-all duration-[180ms] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(var(--shadow-rgb),.08)] ${grid ? "flex-col p-5" : "items-center"}`}
-      style={{ borderColor: "rgba(var(--ink-rgb),.12)" }}
-    >
-      <div
-        className="flex h-11 w-11 flex-none items-center justify-center rounded-lg"
-        style={{ background: `linear-gradient(135deg, ${tint(color, 0.14)}, ${tint(color, 0.05)})` }}
-      >
-        <span style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: 19, color }}>{n.title.charAt(0)}</span>
-      </div>
-      <div className="min-w-0 flex-1">
-        <div className="flex items-baseline gap-2.5">
-          <span className="truncate text-[15px] font-semibold" style={{ color: "var(--ink)", letterSpacing: "-.01em" }}>{n.title}</span>
-          <span className={`truncate text-[13px] ${grid ? "hidden" : "max-[900px]:hidden"}`} style={{ color: MUTED }}>{n.blurb}</span>
-        </div>
-        <div className="mt-1 flex flex-wrap items-center gap-1.5">
-          {grid && <span className="mr-1 text-xs" style={{ color: MUTED }}>{n.unitLabel}</span>}
-          {n.tags.map((t) => (
-            <span key={t} className="rounded-md px-2 py-[3px] text-[11px]" style={{ background: "rgba(var(--ink-rgb),.045)", color: "var(--body2)" }}>{t}</span>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-none items-center" aria-label={n.completedAt ? "Studied" : "Not studied yet"}>
-        {n.completedAt ? (
-          <span className="flex h-6 w-6 items-center justify-center rounded-full" style={{ background: "rgba(var(--green-rgb),.12)" }}>
-            <Check size={13} color="var(--green)" />
-          </span>
-        ) : (
-          <span className="h-6 w-6 rounded-full" style={{ border: "2px solid rgba(var(--ink-rgb),.18)" }} />
-        )}
-      </div>
-    </button>
-  );
-}
+const CATS = ["All", "Studied", "Not yet"] as const;
 
 export default function NotebookPage() {
   const nav = useNavigate();
   const [params] = useSearchParams();
   const [completed, setCompleted] = useState<Map<string, Date>>(new Map());
   const [q, setQ] = useState(params.get("q") ?? "");
-  const [cat, setCat] = useState<"All Notes" | "Studied" | "Not yet studied">("All Notes");
-  const [book, setBook] = useState<string | null>(null);
-  const [view, setView] = useState<"list" | "grid">("list");
+  const [cat, setCat] = useState<(typeof CATS)[number]>("All");
 
   useEffect(() => {
     void db.lessonProgress.toArray().then((rows) => setCompleted(new Map(rows.map((r) => [r.lessonId, r.completedAt]))));
@@ -96,140 +55,83 @@ export default function NotebookPage() {
 
   const needle = q.trim().toLowerCase();
   const notes = all
-    .filter((n) => (cat === "Studied" ? !!n.completedAt : cat === "Not yet studied" ? !n.completedAt : true))
-    .filter((n) => !book || n.levelId === book)
+    .filter((n) => (cat === "Studied" ? !!n.completedAt : cat === "Not yet" ? !n.completedAt : true))
     .filter((n) => !needle || `${n.title} ${n.blurb} ${n.tags.join(" ")} ${n.unitLabel}`.toLowerCase().includes(needle));
 
-  const cats = [
-    { label: "All Notes" as const, icon: FileText, count: all.length },
-    { label: "Studied" as const, icon: BookOpenCheck, count: all.filter((n) => n.completedAt).length },
-    { label: "Not yet studied" as const, icon: SquarePen, count: all.filter((n) => !n.completedAt).length },
-  ];
+  const studied = all.filter((n) => n.completedAt).length;
 
   return (
     <div>
-      <H size={26} className="mb-5">My Notes</H>
-      <div className="grid grid-cols-[300px_minmax(0,1fr)] items-start gap-6 max-[1200px]:grid-cols-[240px_minmax(0,1fr)] max-[700px]:grid-cols-1">
-        {/* Sidebar */}
-        <Card className="p-5">
-          <div className="mb-5 grid gap-0.5">
-            {cats.map((c) => {
-              const on = cat === c.label;
-              return (
-                <button
-                  key={c.label}
-                  onClick={() => setCat(c.label)}
-                  className="flex items-center gap-3 rounded-lg px-3.5 py-[11px] text-left text-sm transition-colors duration-[180ms]"
-                  style={{ background: on ? "rgba(var(--primary-rgb),.07)" : "transparent", color: on ? RED : BODY, fontWeight: on ? 500 : 400 }}
-                >
-                  <c.icon size={17} color={on ? RED : MUTED} />
-                  <div className="min-w-0 flex-1">{c.label}</div>
-                  <div className="text-[13px]" style={{ color: on ? RED : MUTED }}>{c.count}</div>
-                </button>
-              );
-            })}
+      <PageHeader
+        title="Notes"
+        sub={`${studied} of ${all.length} lessons studied`}
+        right={
+          <div className="flex gap-4">
+            {CATS.map((c) => (
+              <button
+                key={c}
+                onClick={() => setCat(c)}
+                className="meta transition-colors duration-100"
+                style={{ color: cat === c ? INK : "var(--muted3)" }}
+              >
+                {c}
+              </button>
+            ))}
           </div>
-          <div className="mb-[18px] h-px" style={{ background: "rgba(var(--ink-rgb),.12)" }} />
-          <div className="mb-2.5 px-3.5 text-sm font-semibold" style={{ color: INK }}>Notebooks</div>
-          <div className="mb-[22px] grid gap-0.5">
-            {levels
-              .filter((l) => l.units.length > 0)
-              .map((l) => {
-                const count = all.filter((n) => n.levelId === l.id).length;
-                const on = book === l.id;
-                return (
-                  <button
-                    key={l.id}
-                    onClick={() => setBook(on ? null : l.id)}
-                    className="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-left text-sm transition-colors duration-[180ms] hover:bg-[rgba(var(--ink-rgb),.03)]"
-                    style={{ color: on ? RED : BODY, fontWeight: on ? 500 : 400 }}
-                  >
-                    <Folder size={17} color={on ? RED : MUTED} />
-                    <div className="min-w-0 flex-1">{l.title}</div>
-                    <div className="text-[13px]" style={{ color: MUTED }}>{count}</div>
-                  </button>
-                );
-              })}
-          </div>
-          <div className="rounded-[10px] border p-5" style={{ background: "var(--tint2)", borderColor: "rgba(var(--green-rgb),.12)" }}>
-            <div className="mb-3.5 flex h-11 w-11 items-center justify-center rounded-lg" style={{ background: "rgba(var(--green-rgb),.11)" }}>
-              <Repeat size={20} color="var(--green)" />
-            </div>
-            <div className="mb-1.5 text-base font-semibold" style={{ color: INK, letterSpacing: "-.01em" }}>Review smarter</div>
-            <div className="mb-4 text-sm leading-relaxed" style={{ color: BODY2 }}>Revisit your notes with spaced repetition.</div>
-            <button
-              onClick={() => nav("/review")}
-              className="inline-flex h-[42px] items-center gap-2 rounded-lg border bg-[color:var(--card)] px-[18px] text-sm font-medium transition-colors duration-[180ms] hover:bg-[color:var(--tint)]"
-              style={{ borderColor: "rgba(var(--ink-rgb),.18)", color: INK }}
-            >
-              Start review<ArrowRight size={16} color={MUTED} />
-            </button>
-          </div>
-        </Card>
+        }
+      />
 
-        {/* Main */}
-        <Card className="p-[26px]">
-          <div className="mb-[22px] flex items-center gap-3.5 max-[700px]:flex-wrap">
-            <div className="flex h-12 min-w-0 flex-1 items-center gap-3 rounded-lg border bg-[color:var(--card)] px-[18px]" style={{ borderColor: "rgba(var(--ink-rgb),.15)" }}>
-              <Search size={18} color={MUTED} />
-              <input
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                placeholder="Search notes…"
-                className="min-w-0 flex-1 border-none bg-transparent text-[15px] outline-none"
-                style={{ color: INK }}
-              />
-            </div>
-            <div className="flex flex-none rounded-lg p-1" style={{ background: "var(--tint3)" }}>
-              {(["list", "grid"] as const).map((v) => (
-                <button
-                  key={v}
-                  onClick={() => setView(v)}
-                  aria-label={`${v} view`}
-                  className="flex h-9 w-[38px] items-center justify-center rounded-[9px]"
-                  style={view === v ? { background: "var(--card)", color: INK, boxShadow: "0 1px 3px rgba(var(--shadow-rgb),.1)" } : { color: MUTED }}
-                >
-                  {v === "list" ? <List size={17} /> : <LayoutGrid size={17} />}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {notes.length === 0 ? (
-            <div className="rounded-[10px] border border-dashed px-6 py-14 text-center" style={{ borderColor: "rgba(var(--ink-rgb),.12)" }}>
-              <div className="mb-1.5 text-base font-semibold" style={{ color: INK }}>No notes found</div>
-              <div className="text-sm" style={{ color: MUTED }}>Nothing matches your search or this category — try different keywords.</div>
-            </div>
-          ) : view === "grid" ? (
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
-              {notes.map((n) => (
-                <NoteCard key={n.lessonId} n={n} grid onOpen={() => nav(`/notes/${n.lessonId}`)} />
-              ))}
-            </div>
-          ) : (
-            // List view groups by unit — the notebook reads like the course's table of contents.
-            <div className="grid gap-2">
-              {notes.map((n, i) => {
-                const newGroup = i === 0 || notes[i - 1].unitLabel !== n.unitLabel;
-                const color = LEVEL_COLORS[n.levelId] ?? RED;
-                const groupCount = notes.filter((x) => x.unitLabel === n.unitLabel).length;
-                return (
-                  <div key={n.lessonId}>
-                    {newGroup && (
-                      <div className={`flex items-baseline gap-3 px-1 ${i === 0 ? "mb-2" : "mb-2 mt-5"}`}>
-                        <span className="rounded-md px-2 py-0.5 text-[11px] font-bold" style={{ background: tint(color, 0.1), color, letterSpacing: ".05em" }}>{n.unitLabel.toUpperCase()}</span>
-                        <span style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: 16, color: INK }}>{n.unitTitle}</span>
-                        <span className="text-xs" style={{ color: MUTED }}>{groupCount} {groupCount === 1 ? "note" : "notes"}</span>
-                      </div>
-                    )}
-                    <NoteCard n={n} onOpen={() => nav(`/notes/${n.lessonId}`)} />
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </Card>
+      <div className="mt-8 flex">
+        <SearchBox value={q} onChange={setQ} placeholder="Search notes…" />
       </div>
+
+      {notes.length === 0 ? (
+        <div className="mt-10">
+          <EmptyState title="No notes found" sub="Nothing matches your search — try different keywords." />
+        </div>
+      ) : (
+        <div className="mt-10">
+          {notes.map((n, i) => {
+            const newGroup = i === 0 || notes[i - 1].unitLabel !== n.unitLabel;
+            return (
+              <div key={n.lessonId}>
+                {newGroup ? (
+                  <div className={`flex items-baseline gap-3 ${i === 0 ? "mb-1" : "mb-1 mt-10"}`}>
+                    <Meta>{n.unitLabel}</Meta>
+                    <span className="text-[13px]" style={{ color: MUTED }}>{n.unitTitle}</span>
+                  </div>
+                ) : (
+                  <Divider />
+                )}
+                <button
+                  onClick={() => nav(`/notes/${n.lessonId}`)}
+                  className="group flex w-full items-center gap-4 py-3.5 text-left"
+                >
+                  <span className="flex h-4 w-4 flex-none items-center justify-center" aria-label={n.completedAt ? "Studied" : "Not studied yet"}>
+                    {n.completedAt ? (
+                      <Check size={14} color="var(--green)" strokeWidth={2.6} />
+                    ) : (
+                      <span className="h-3.5 w-3.5 rounded-full border" style={{ borderColor: "rgba(var(--ink-rgb),.18)" }} />
+                    )}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="flex items-baseline gap-2.5">
+                      <span className="truncate text-[15px] font-semibold" style={{ color: INK, letterSpacing: "-.01em" }}>{n.title}</span>
+                      <span className="truncate text-[13px] max-[700px]:hidden" style={{ color: MUTED }}>{n.blurb}</span>
+                    </span>
+                  </span>
+                  {n.tags.length > 0 && (
+                    <span className="meta flex-none truncate max-[900px]:hidden" style={{ color: "var(--muted3)" }}>
+                      {n.tags.join(" · ")}
+                    </span>
+                  )}
+                  <ArrowRight size={14} color={MUTED} className="flex-none opacity-0 transition-opacity duration-100 group-hover:opacity-100" />
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

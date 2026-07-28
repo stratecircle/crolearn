@@ -6,9 +6,9 @@ import Markdown from "../Markdown";
 import TtsButton from "../TtsButton";
 import { CASE_COLORS, GENDER_COLORS } from "@/ui/caseColors";
 import { speak } from "@/lib/tts";
-import { BODY2, DISPLAY, INK, MUTED, ORANGE, SHADOW_CARD } from "@/ui/kit";
+import { BODY2, INK, MUTED, ORANGE } from "@/ui/kit";
 
-const CARD = "rounded-[10px] border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)]";
+const DIVIDE = "divide-y divide-[rgba(var(--ink-rgb),.08)]";
 
 function ContinueButton({ onClick, label = "Continue →" }: { onClick: () => void; label?: string }) {
   return (
@@ -16,7 +16,7 @@ function ContinueButton({ onClick, label = "Continue →" }: { onClick: () => vo
       type="button"
       autoFocus
       onClick={onClick}
-      className="mt-6 flex h-[52px] w-full items-center justify-center rounded-lg text-[16px] font-semibold text-white transition-colors duration-[180ms]"
+      className="mt-8 flex h-11 w-full items-center justify-center rounded-lg text-[15px] font-semibold text-white transition-[background,transform] duration-150 active:scale-[.99]"
       style={{ background: INK }}
     >
       {label}
@@ -24,25 +24,24 @@ function ContinueButton({ onClick, label = "Continue →" }: { onClick: () => vo
   );
 }
 
-function SlideTitle({ children, size = 24 }: { children: React.ReactNode; size?: number }) {
+function SlideTitle({ children, size = 22 }: { children: React.ReactNode; size?: number }) {
   return (
-    <h2 style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: `clamp(${Math.round(size * 0.85)}px, 3vw, ${size}px)`, lineHeight: 1.2, color: INK }}>
+    <h2
+      className="font-bold"
+      style={{ fontSize: `clamp(${Math.round(size * 0.85)}px, 3vw, ${size}px)`, lineHeight: 1.25, letterSpacing: "-.02em", color: INK }}
+    >
       {children}
     </h2>
   );
 }
 
 function SlideEyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-xs font-semibold" style={{ letterSpacing: ".13em", color: MUTED }}>
-      {children}
-    </p>
-  );
+  return <p className="meta" style={{ color: MUTED }}>{children}</p>;
 }
 
 /**
- * Section overview — the visual "what's inside" spread that opens a lesson
- * (menu) or one of its parts. Icons and short labels, never walls of text.
+ * Section overview — the "what's inside" spread that opens a lesson (menu) or
+ * one of its parts. Icons and short labels, never walls of text.
  */
 export function SectionSlideView({
   slide,
@@ -54,22 +53,22 @@ export function SectionSlideView({
   onDone: () => void;
 }) {
   return (
-    <div className="flex flex-col items-center pt-4 text-center">
-      {slide.emoji && <div className="text-7xl">{slide.emoji}</div>}
-      <div className="mt-4">
-        <SlideTitle size={30}>{slide.title}</SlideTitle>
+    <div className="flex flex-col items-center pt-6 text-center">
+      {slide.emoji && <div className="text-5xl">{slide.emoji}</div>}
+      <div className="mt-5">
+        <SlideTitle size={28}>{slide.title}</SlideTitle>
       </div>
-      {slide.subtitle && <p className="mt-2 max-w-md text-lg" style={{ color: BODY2 }}>{slide.subtitle}</p>}
-      <div className="mt-6">
-        <SlideEyebrow>{isLessonMenu ? "IN THIS LESSON" : "IN THIS PART"}</SlideEyebrow>
+      {slide.subtitle && <p className="mt-2 max-w-md text-[15px]" style={{ color: BODY2 }}>{slide.subtitle}</p>}
+      <div className="mt-8">
+        <SlideEyebrow>{isLessonMenu ? "In this lesson" : "In this part"}</SlideEyebrow>
       </div>
-      <div className="mt-3 grid w-full max-w-md gap-2.5">
+      <div className={`mt-2 w-full max-w-md ${DIVIDE}`}>
         {slide.items.map((it, i) => (
-          <div key={i} className={`flex items-center gap-3.5 px-4 py-3 text-left ${CARD}`}>
-            <span className="text-3xl">{it.emoji}</span>
+          <div key={i} className="flex items-center gap-3.5 py-3 text-left">
+            <span className="text-2xl">{it.emoji}</span>
             <div>
-              <p className="font-semibold" style={{ color: INK }}>{it.label}</p>
-              {it.hint && <p className="text-sm" style={{ color: MUTED }}>{it.hint}</p>}
+              <p className="text-[15px] font-semibold" style={{ color: INK }}>{it.label}</p>
+              {it.hint && <p className="text-[13px]" style={{ color: MUTED }}>{it.hint}</p>}
             </div>
           </div>
         ))}
@@ -85,20 +84,20 @@ export function TeachSlideView({ slide, onDone }: { slide: TeachSlide; onDone: (
   return (
     <div>
       <SlideTitle>{slide.title}</SlideTitle>
-      <Markdown text={slide.body} className="mt-3 text-lg" />
+      <Markdown text={slide.body} className="mt-3 text-[16px] leading-relaxed" />
       {slide.table && (
-        <div className="mt-4">
+        <div className="mt-5">
           <ContentTable table={slide.table} />
         </div>
       )}
       {slide.diagram && (
-        <div className="mt-4">
+        <div className="mt-5">
           <DiagramView diagram={slide.diagram} />
         </div>
       )}
       {slide.examples && slide.examples.length > 0 && (
-        <div className="mt-5">
-          <SlideEyebrow>EXAMPLES</SlideEyebrow>
+        <div className="mt-6">
+          <SlideEyebrow>Examples</SlideEyebrow>
           <ExampleList items={slide.examples} compact />
         </div>
       )}
@@ -130,15 +129,15 @@ function highlightHr(hr: string, highlight?: { text: string; caseId: keyof typeo
 /** Shared example rendering — used inline on teach slides and on example slides. */
 export function ExampleList({ items, compact = false }: { items: ExampleItem[]; compact?: boolean }) {
   return (
-    <ul className={compact ? "mt-2 space-y-2.5" : "mt-4 space-y-4"}>
+    <ul className={`${DIVIDE} ${compact ? "mt-1" : "mt-2"}`}>
       {items.map((it, i) => (
-        <li key={i} className={`${CARD} ${compact ? "p-3.5" : "p-4"}`}>
-          <p className={compact ? "text-lg" : "text-xl"} style={{ fontFamily: DISPLAY, fontWeight: 600, color: INK }}>
+        <li key={i} className={compact ? "py-3" : "py-4"}>
+          <p className={compact ? "text-[17px]" : "text-[19px]"} style={{ fontWeight: 600, letterSpacing: "-.01em", color: INK }}>
             {highlightHr(it.hr, it.highlight)} <TtsButton text={it.hr} className="ml-1" />
             <TtsButton text={it.hr} slow className="ml-1" />
           </p>
-          <p className="mt-0.5 text-[15px]" style={{ color: BODY2 }}>{it.en}</p>
-          {it.note && <p className="mt-1.5 text-sm" style={{ color: ORANGE }}>{it.note}</p>}
+          <p className="mt-0.5 text-sm" style={{ color: BODY2 }}>{it.en}</p>
+          {it.note && <p className="mt-1 text-[13px]" style={{ color: ORANGE }}>{it.note}</p>}
         </li>
       ))}
     </ul>
@@ -178,28 +177,28 @@ export function VocabCardsSlideView({
       <p className="mt-1.5 text-sm" style={{ color: MUTED }}>
         Tap each card to hear it. Look at the picture while you listen — see it, hear it, say it.
       </p>
-      <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
         {cards.map((v) => (
           <button
             key={v.id}
             type="button"
             onClick={() => void speak(v.hr)}
-            className={`${CARD} p-4 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(var(--shadow-rgb),.08)]`}
+            className="rounded-[10px] border border-[rgba(var(--ink-rgb),.1)] bg-[color:var(--card)] p-4 text-center transition-colors duration-150 hover:border-[rgba(var(--ink-rgb),.22)]"
           >
             {v.image ? (
               <img src={v.image} alt={v.en} className="h-28 w-full rounded-lg object-contain" />
             ) : (
               // Image not generated yet (see docs/chatgpt-paste-list.md) — neutral letter tile, never emoji.
-              <div className="flex h-28 items-center justify-center rounded-lg" style={{ background: "rgba(var(--ink-rgb),.04)" }}>
-                <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 44, color: "rgba(var(--ink-rgb),.18)" }}>{v.hr.charAt(0).toUpperCase()}</span>
+              <div className="flex h-28 items-center justify-center rounded-lg" style={{ background: "var(--tint)" }}>
+                <span className="font-bold" style={{ fontSize: 40, color: "rgba(var(--ink-rgb),.18)" }}>{v.hr.charAt(0).toUpperCase()}</span>
               </div>
             )}
-            <p className="mt-2.5 inline-flex items-center gap-1.5 text-lg font-bold" style={{ fontFamily: DISPLAY, color: INK }}>
+            <p className="mt-2.5 inline-flex items-center gap-1.5 text-[17px] font-bold" style={{ color: INK, letterSpacing: "-.01em" }}>
               {v.hr} <Volume2 size={14} color={MUTED} />
             </p>
             <p className="text-sm" style={{ color: BODY2 }}>{v.en}</p>
             {v.gender && (
-              <p className="mt-1 flex items-center justify-center gap-1 text-xs" style={{ color: MUTED }}>
+              <p className="mt-1 flex items-center justify-center gap-1.5 text-xs" style={{ color: MUTED }}>
                 <span className={`inline-block h-2 w-2 rounded-full ${GENDER_COLORS[v.gender]}`} />
                 {v.gender}
               </p>
@@ -225,18 +224,18 @@ export function RecapSlideView({
   return (
     <div>
       <SlideTitle>Recap</SlideTitle>
-      <Markdown text={slide.summary} className="mt-3 text-lg" />
+      <Markdown text={slide.summary} className="mt-3 text-[16px] leading-relaxed" />
       {entering.length > 0 && (
         <>
-          <div className="mt-5">
-            <SlideEyebrow>GOING INTO YOUR REVIEW DECK ({entering.length} WORDS)</SlideEyebrow>
+          <div className="mt-6">
+            <SlideEyebrow>Going into your review deck · {entering.length} words</SlideEyebrow>
           </div>
-          <ul className="mt-2.5 grid gap-2 sm:grid-cols-2">
+          <ul className={`mt-1 ${DIVIDE}`}>
             {entering.map((v) => (
-              <li key={v.id} className={`flex items-center gap-2 px-3 py-2 ${CARD}`} style={{ boxShadow: SHADOW_CARD }}>
+              <li key={v.id} className="flex items-center gap-2.5 py-2.5">
                 {v.gender && (
                   <span
-                    className={`inline-block h-2.5 w-2.5 rounded-full ${GENDER_COLORS[v.gender]}`}
+                    className={`inline-block h-2 w-2 flex-none rounded-full ${GENDER_COLORS[v.gender]}`}
                     title={v.gender}
                   />
                 )}

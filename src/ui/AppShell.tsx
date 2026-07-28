@@ -1,24 +1,28 @@
 /**
- * Nativ app shell: fixed 84px left icon rail (README §Navigation), content
- * max-width 1280 centered. ≤900px the rail becomes a bottom tab bar.
+ * ČISTO app shell: 220px text sidebar (faint gray, hairline edge), content in
+ * a centered readable column. ≤900px the sidebar becomes an icon tab bar along
+ * the bottom. Players (StageShell) run chrome-free — a focused mode with no
+ * navigation; the ✕ in the player chrome is the way back.
  */
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
-import { BookOpen, Map, MessageCircle, Puzzle, Settings, SquarePen, type LucideIcon } from "lucide-react";
+import { BookOpen, GraduationCap, House, MessageCircle, NotebookText, Puzzle, Settings, type LucideIcon } from "lucide-react";
 import { countDue } from "@/lib/srs";
-import { INK, RED, Sahovnica } from "./kit";
+import { INK, BODY2, Sahovnica } from "./kit";
 
-const NAV: { label: string; to: string; icon: LucideIcon }[] = [
-  { label: "Path", to: "/", icon: Map },
-  { label: "Notes", to: "/notes", icon: SquarePen },
-  { label: "Stories", to: "/stories", icon: BookOpen },
-  { label: "Practice", to: "/practice", icon: Puzzle },
-  { label: "Tutor", to: "/tutor", icon: MessageCircle },
+const NAV: { label: string; to: string; icon: LucideIcon; group: number }[] = [
+  { label: "Home", to: "/", icon: House, group: 0 },
+  { label: "Course", to: "/course", icon: GraduationCap, group: 0 },
+  { label: "Practice", to: "/practice", icon: Puzzle, group: 1 },
+  { label: "Stories", to: "/stories", icon: BookOpen, group: 1 },
+  { label: "Notes", to: "/notes", icon: NotebookText, group: 1 },
+  { label: "Tutor", to: "/tutor", icon: MessageCircle, group: 2 },
 ];
 
-/** Which rail item lights up for the current path (review→Practice, lesson→Path). */
+/** Which item lights up for the current path (review→Practice). */
 function activeFor(pathname: string): string {
   if (pathname === "/") return "/";
+  if (pathname.startsWith("/course")) return "/course";
   if (pathname.startsWith("/review")) return "/practice";
   if (pathname.startsWith("/notes")) return "/notes";
   if (pathname.startsWith("/stories") || pathname.startsWith("/story/")) return "/stories";
@@ -28,7 +32,7 @@ function activeFor(pathname: string): string {
   return "/";
 }
 
-function RailItem({
+function NavItem({
   label,
   icon: Icon,
   active,
@@ -45,22 +49,23 @@ function RailItem({
     <button
       onClick={onClick}
       aria-current={active ? "page" : undefined}
-      className="relative flex w-16 flex-col items-center gap-[3px] rounded-lg pb-[7px] pt-[9px] transition-colors duration-150 max-[900px]:w-14"
-      style={{ background: active ? "rgba(var(--primary-rgb),.08)" : "transparent", color: active ? RED : "var(--body2)" }}
+      className="flex h-8 w-full items-center gap-2.5 rounded-md px-2.5 text-left transition-colors duration-100 max-[900px]:h-auto max-[900px]:w-auto max-[900px]:flex-col max-[900px]:gap-0.5 max-[900px]:rounded-lg max-[900px]:px-3 max-[900px]:py-1.5"
+      style={{ background: active ? "rgba(var(--ink-rgb),.06)" : "transparent", color: active ? INK : BODY2 }}
+      onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = "rgba(var(--ink-rgb),.035)"; }}
+      onMouseLeave={(e) => { if (!active) e.currentTarget.style.background = "transparent"; }}
     >
-      <Icon size={21} strokeWidth={1.7} />
-      {badge > 0 && (
-        <span
-          className="absolute right-[9px] top-[4px] flex h-[17px] min-w-[17px] items-center justify-center rounded-full px-[4px] text-[10px] font-bold tabular-nums max-[900px]:right-[5px]"
-          style={{ background: RED, color: "var(--card)" }}
-        >
-          {badge > 99 ? "99+" : badge}
-        </span>
-      )}
-      <div className="text-[9px] font-bold uppercase" style={{ letterSpacing: ".1em" }}>
+      <Icon size={16} strokeWidth={active ? 2.1 : 1.8} className="flex-none" />
+      <span className="min-w-0 flex-1 truncate text-[13.5px] max-[900px]:hidden" style={{ fontWeight: active ? 600 : 480 }}>
         {label}
-      </div>
-      {badge > 0 && <span className="sr-only">{badge} card{badge === 1 ? "" : "s"} due for review</span>}
+      </span>
+      {badge > 0 && (
+        <>
+          <span className="meta flex-none tabular-nums max-[900px]:absolute max-[900px]:hidden" style={{ color: "var(--primary)" }}>
+            {badge > 99 ? "99+" : badge}
+          </span>
+          <span className="sr-only">{badge} card{badge === 1 ? "" : "s"} due for review</span>
+        </>
+      )}
     </button>
   );
 }
@@ -85,38 +90,50 @@ function useDueCount(pathname: string): number {
   return due;
 }
 
-export function Rail() {
+export function Sidebar() {
   const nav = useNavigate();
   const { pathname } = useLocation();
   const active = activeFor(pathname);
   const due = useDueCount(pathname);
   return (
     <div
-      className="fixed bottom-0 left-0 top-0 z-50 flex w-[84px] flex-col items-center border-r bg-[color:var(--page)] pb-3.5 pt-5 max-[900px]:top-auto max-[900px]:right-0 max-[900px]:w-auto max-[900px]:flex-row max-[900px]:justify-around max-[900px]:border-r-0 max-[900px]:border-t max-[900px]:bg-[color:var(--card)] max-[900px]:px-2.5 max-[900px]:pb-[calc(6px+env(safe-area-inset-bottom))] max-[900px]:pt-1.5"
-      style={{ borderColor: "rgba(var(--ink-rgb),.16)" }}
+      className="fixed bottom-0 left-0 top-0 z-50 flex w-[220px] flex-col border-r px-3 pb-3 pt-5 max-[900px]:top-auto max-[900px]:right-0 max-[900px]:w-auto max-[900px]:flex-row max-[900px]:items-center max-[900px]:justify-around max-[900px]:border-r-0 max-[900px]:border-t max-[900px]:px-2 max-[900px]:pb-[calc(4px+env(safe-area-inset-bottom))] max-[900px]:pt-1"
+      style={{ borderColor: "rgba(var(--ink-rgb),.08)", background: "var(--tint4)" }}
     >
-      <button onClick={() => nav("/")} className="mb-5 flex flex-col items-center gap-1.5 max-[900px]:hidden" aria-label="Home" title="CroLearn">
-        <Sahovnica size={27} cols={3} rows={3} />
-        <span className="text-[8.5px] font-bold" style={{ color: INK, letterSpacing: ".22em" }}>CRO</span>
+      <button
+        onClick={() => nav("/")}
+        className="mb-6 flex items-center gap-2.5 rounded-md px-2.5 py-1 max-[900px]:hidden"
+        aria-label="Home"
+        title="CroLearn"
+      >
+        <Sahovnica size={16} cols={4} rows={3} />
+        <span className="text-sm font-bold" style={{ color: INK, letterSpacing: "-.01em" }}>CroLearn</span>
       </button>
-      <nav aria-label="Main" className="flex flex-1 flex-col gap-1.5 max-[900px]:flex-1 max-[900px]:flex-row max-[900px]:justify-around max-[900px]:gap-0.5">
-        {NAV.map((n) => (
-          <RailItem
-            key={n.to}
-            label={n.label}
-            icon={n.icon}
-            active={active === n.to}
-            badge={n.to === "/practice" ? due : 0}
-            onClick={() => nav(n.to)}
-          />
+      <nav aria-label="Main" className="flex flex-1 flex-col gap-px max-[900px]:flex-row max-[900px]:items-center max-[900px]:justify-around max-[900px]:gap-0">
+        {NAV.map((n, i) => (
+          <div key={n.to} className="max-[900px]:contents">
+            {i > 0 && NAV[i - 1].group !== n.group && <div className="h-3 max-[900px]:hidden" />}
+            <NavItem
+              label={n.label}
+              icon={n.icon}
+              active={active === n.to}
+              badge={n.to === "/practice" ? due : 0}
+              onClick={() => nav(n.to)}
+            />
+          </div>
         ))}
+        <div className="min-[901px]:hidden">
+          <NavItem label="Settings" icon={Settings} active={active === "/settings"} onClick={() => nav("/settings")} />
+        </div>
       </nav>
-      <RailItem label="Settings" icon={Settings} active={active === "/settings"} onClick={() => nav("/settings")} />
+      <div className="max-[900px]:hidden">
+        <NavItem label="Settings" icon={Settings} active={active === "/settings"} onClick={() => nav("/settings")} />
+      </div>
     </div>
   );
 }
 
-/** Keyboard users land on the rail first; this jumps them past it. Styled in index.css. */
+/** Keyboard users land on the nav first; this jumps them past it. Styled in index.css. */
 function SkipLink() {
   return (
     <a href="#main" className="skip-link">
@@ -125,16 +142,16 @@ function SkipLink() {
   );
 }
 
-/** Standard screen: rail + centered 1280 column. */
+/** Standard screen: sidebar + centered readable column. */
 export default function AppShell() {
   return (
-    <div className="relative min-h-screen overflow-x-hidden pl-[84px] max-[900px]:pb-[82px] max-[900px]:pl-0">
+    <div className="relative min-h-screen overflow-x-hidden pl-[220px] max-[900px]:pb-[64px] max-[900px]:pl-0">
       <SkipLink />
-      <Rail />
+      <Sidebar />
       <main
         id="main"
         tabIndex={-1}
-        className="relative z-[1] mx-auto max-w-[1280px] px-10 pb-12 pt-8 max-[1200px]:px-6 max-[700px]:px-4 max-[700px]:pb-12 max-[700px]:pt-[18px]"
+        className="mx-auto max-w-[880px] px-10 pb-20 pt-12 max-[1100px]:px-8 max-[700px]:px-5 max-[700px]:pt-8"
       >
         <Outlet />
       </main>
@@ -142,13 +159,12 @@ export default function AppShell() {
   );
 }
 
-/** Full-bleed stage (lesson / story / test / checkpoint players) — keeps the rail. */
+/** Chrome-free stage for the players (lesson / story / test / checkpoint). */
 export function StageShell() {
   return (
-    <div className="relative min-h-dvh overflow-x-hidden pl-[84px] max-[900px]:pb-[82px] max-[900px]:pl-0">
+    <div className="relative min-h-dvh overflow-x-hidden">
       <SkipLink />
-      <Rail />
-      <main id="main" tabIndex={-1} className="relative z-[1] flex min-h-dvh flex-col px-10 pb-14 pt-8 max-[700px]:px-4">
+      <main id="main" tabIndex={-1} className="flex min-h-dvh flex-col">
         <Outlet />
       </main>
     </div>

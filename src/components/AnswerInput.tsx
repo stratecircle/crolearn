@@ -54,7 +54,7 @@ const AnswerInput = forwardRef<
         onKeyDown={(e) => {
           if (e.key === "Enter" && value.trim()) onSubmit();
         }}
-        className="w-full rounded-lg border bg-[color:var(--card)] px-5 py-3.5 text-lg text-[color:var(--ink)] outline-none transition-colors duration-150 focus:border-[color:var(--ink)] disabled:bg-[color:var(--tint)]"
+        className="w-full rounded-[10px] border bg-[color:var(--card)] px-4 py-3 text-[17px] text-[color:var(--ink)] outline-none transition-colors duration-150 focus:border-[color:var(--primary)] disabled:bg-[color:var(--tint)]"
         style={{ borderColor: "rgba(var(--ink-rgb),.14)" }}
       />
       <div className="mt-2.5 flex gap-2">
@@ -65,8 +65,8 @@ const AnswerInput = forwardRef<
             tabIndex={-1}
             disabled={disabled}
             onClick={() => insert(ch)}
-            className="rounded-lg border bg-[color:var(--card)] px-3.5 py-1.5 text-lg font-semibold text-[color:var(--ink)] transition-colors duration-150 hover:bg-[color:var(--tint)] disabled:opacity-40"
-            style={{ borderColor: "rgba(var(--ink-rgb),.18)" }}
+            className="rounded-lg border bg-[color:var(--card)] px-3 py-1 text-[15px] font-semibold text-[color:var(--ink)] transition-colors duration-150 hover:bg-[color:var(--tint)] disabled:opacity-40"
+            style={{ borderColor: "rgba(var(--ink-rgb),.14)" }}
           >
             {ch}
           </button>

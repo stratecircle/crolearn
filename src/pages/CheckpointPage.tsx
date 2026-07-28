@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Lightbulb, Mic, X } from "lucide-react";
 import { findCheckpoint, learnerLevelContext } from "@/content";
 import { db } from "@/lib/db";
 import SlideRenderer from "@/components/SlideRenderer";
@@ -9,8 +10,18 @@ import { speak } from "@/lib/tts";
 import { scoreCheckpoint, type CheckpointScore, type ItemResult } from "@/features/checkpoint/scoring";
 import WritingSection from "@/features/checkpoint/WritingSection";
 import type { QuizSlide, SpeakingPrompt } from "@/types/content";
+import { Banner, BODY2, BtnGhost, BtnPrimary, CRVENI, Divider, GREEN, INK, Meta, MUTED, ProgressBar, StageHeader } from "@/ui/kit";
 
 type Phase = "intro" | "quiz" | "speaking" | "writing" | "results";
+
+/** The chrome-free stage every phase renders into. */
+function Stage({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex flex-1 overflow-y-auto">
+      <div className="m-auto w-full max-w-[640px] px-5 py-8">{children}</div>
+    </div>
+  );
+}
 
 /**
  * Level checkpoint exam (§8): quiz sections graded locally (the pass/fail gate),
@@ -18,6 +29,7 @@ type Phase = "intro" | "quiz" | "speaking" | "writing" | "results";
  * retry queue, first-attempt scoring. Soft gate — a fail warns, never locks.
  */
 export default function CheckpointPage() {
+  const nav = useNavigate();
   const { id } = useParams<{ id: string }>();
   const exam = id ? findCheckpoint(id) : undefined;
 
@@ -41,12 +53,24 @@ export default function CheckpointPage() {
 
   if (!exam)
     return (
-      <p className="py-10 text-center">
-        Checkpoint not found. <Link to="/" className="underline">Back to the path</Link>
+      <p className="py-10 text-center" style={{ color: BODY2 }}>
+        Checkpoint not found. <Link to="/" className="underline">Back home</Link>
       </p>
     );
 
   const totalQuiz = quizItems.length;
+
+  const chrome = (eyebrow: string, pos?: string, pct?: number) => (
+    <StageHeader
+      exitIcon={X}
+      exitLabel="Leave the exam"
+      onExit={() => nav("/course")}
+      eyebrow={eyebrow}
+      title={exam.title}
+      pos={pos}
+      progressPct={pct}
+    />
+  );
 
   const finishExam = async (finalResults: ItemResult[]) => {
     const s = scoreCheckpoint(finalResults, exam.passPct);
@@ -66,32 +90,47 @@ export default function CheckpointPage() {
   /* ------------------------------- intro ------------------------------- */
   if (phase === "intro") {
     return (
-      <div className="m-auto w-full max-w-xl py-10 text-center">
-        <h1 className="font-display text-3xl font-bold text-[color:var(--ink)]" style={{ fontSize: "clamp(26px,3.6vw,34px)" }}>{exam.title}</h1>
-        <p className="text-[color:var(--muted)]">{exam.titleEn}</p>
-        <div className="mt-5 rounded-[10px] border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] p-6 text-left">
-          <p className="text-sm text-[color:var(--body2)]">
+      <div className="flex h-dvh w-full flex-col">
+        {chrome(`${exam.levelId} · Checkpoint`)}
+        <Stage>
+          <div className="text-center">
+            <h1 className="font-bold" style={{ fontSize: "clamp(26px,3.6vw,32px)", lineHeight: 1.2, letterSpacing: "-.02em", color: INK }}>{exam.title}</h1>
+            <p className="mt-1.5 text-[15px]" style={{ color: MUTED }}>{exam.titleEn}</p>
+          </div>
+          <p className="mt-8 text-[15px] leading-relaxed" style={{ color: BODY2 }}>
             {totalQuiz} graded questions across {exam.sections.length} sections
             {exam.speaking ? `, plus ${exam.speaking.prompts.length} speaking prompts` : ""}
             {exam.writing ? " and a guided writing task" : ""}. No hints,
             first-attempt scoring. Pass ≥ {exam.passPct}% on the written sections — a soft gate, so you
             can always continue.
           </p>
-          <ul className="mt-3 grid gap-1 text-sm font-semibold">
-            {exam.sections.map((s) => (
-              <li key={s.title}>{s.title} — {s.slides.length} items</li>
-            ))}
-            {exam.speaking && <li>{exam.speaking.title} — {exam.speaking.prompts.length} prompts (AI-graded)</li>}
-            {exam.writing && <li>{exam.writing.title} — 1 task (AI-graded)</li>}
-          </ul>
-        </div>
-        <button
-          type="button"
-          onClick={() => setPhase("quiz")}
-          className="mt-6 rounded-lg bg-[color:var(--primary)] px-8 py-3 text-lg font-semibold text-white transition-colors duration-[180ms] hover:bg-[color:var(--primary-hover)]"
-        >
-          Start the exam
-        </button>
+          <div className="mt-8">
+            <Meta>What's in it</Meta>
+            <div className="mt-1 divide-y divide-[rgba(var(--ink-rgb),.07)]">
+              {exam.sections.map((s) => (
+                <div key={s.title} className="flex items-baseline justify-between gap-4 py-2.5">
+                  <span className="text-[15px] font-semibold" style={{ color: INK }}>{s.title}</span>
+                  <span className="meta" style={{ color: "var(--muted3)" }}>{s.slides.length} items</span>
+                </div>
+              ))}
+              {exam.speaking && (
+                <div className="flex items-baseline justify-between gap-4 py-2.5">
+                  <span className="text-[15px] font-semibold" style={{ color: INK }}>{exam.speaking.title}</span>
+                  <span className="meta" style={{ color: "var(--muted3)" }}>{exam.speaking.prompts.length} prompts · AI-graded</span>
+                </div>
+              )}
+              {exam.writing && (
+                <div className="flex items-baseline justify-between gap-4 py-2.5">
+                  <span className="text-[15px] font-semibold" style={{ color: INK }}>{exam.writing.title}</span>
+                  <span className="meta" style={{ color: "var(--muted3)" }}>1 task · AI-graded</span>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="mt-10 flex justify-center">
+            <BtnPrimary onClick={() => setPhase("quiz")}>Start the exam</BtnPrimary>
+          </div>
+        </Stage>
       </div>
     );
   }
@@ -100,32 +139,29 @@ export default function CheckpointPage() {
   if (phase === "quiz") {
     const current = quizItems[qi];
     return (
-      <div className="m-auto w-full max-w-2xl py-6">
-        <div className="mb-2 flex items-center justify-between">
-          <span className="text-xs font-semibold tracking-[.13em] text-[color:var(--primary)]">{current.section.toUpperCase()}</span>
-          <span className="text-sm text-[color:var(--body2)]">{qi + 1} / {totalQuiz}</span>
-        </div>
-        <div className="mb-6 h-2 overflow-hidden rounded-full bg-[rgba(var(--ink-rgb),.15)]">
-          <div className="h-full rounded-full bg-[color:var(--primary)]" style={{ width: `${(qi / totalQuiz) * 100}%` }} />
-        </div>
-        <SlideRenderer
-          key={`${qi}-${current.slide.id}`}
-          slide={current.slide}
-          vocab={[]}
-          onDone={(correct) => {
-            const next = [...results, { sectionTitle: current.section, itemId: current.slide.id, correct }];
-            setResults(next);
-            if (qi + 1 < totalQuiz) {
-              setQi(qi + 1);
-            } else if (exam.speaking) {
-              setPhase("speaking");
-            } else if (exam.writing) {
-              setPhase("writing");
-            } else {
-              void finishExam(next);
-            }
-          }}
-        />
+      <div className="flex h-dvh w-full flex-col">
+        {chrome(current.section, `${qi + 1}/${totalQuiz}`, (qi / totalQuiz) * 100)}
+        <Stage>
+          <Meta className="mb-5">{current.section}</Meta>
+          <SlideRenderer
+            key={`${qi}-${current.slide.id}`}
+            slide={current.slide}
+            vocab={[]}
+            onDone={(correct) => {
+              const next = [...results, { sectionTitle: current.section, itemId: current.slide.id, correct }];
+              setResults(next);
+              if (qi + 1 < totalQuiz) {
+                setQi(qi + 1);
+              } else if (exam.speaking) {
+                setPhase("speaking");
+              } else if (exam.writing) {
+                setPhase("writing");
+              } else {
+                void finishExam(next);
+              }
+            }}
+          />
+        </Stage>
       </div>
     );
   }
@@ -136,6 +172,7 @@ export default function CheckpointPage() {
       <SpeakingSection
         title={exam.speaking.title}
         prompts={exam.speaking.prompts}
+        chrome={chrome}
         onDone={() => (exam.writing ? setPhase("writing") : void finishExam(results))}
       />
     );
@@ -143,17 +180,35 @@ export default function CheckpointPage() {
 
   /* ------------------------------ writing ------------------------------ */
   if (phase === "writing" && exam.writing) {
-    return <WritingSection task={exam.writing} onDone={() => void finishExam(results)} />;
+    return (
+      <div className="flex h-dvh w-full flex-col">
+        {chrome("Writing task", undefined, 100)}
+        <Stage>
+          <WritingSection task={exam.writing} onDone={() => void finishExam(results)} />
+        </Stage>
+      </div>
+    );
   }
 
   /* ------------------------------ results ------------------------------ */
   if (phase === "results" && score) {
-    return <ResultsScreen exam={exam} score={score} onRetake={() => {
-      setQi(0);
-      setResults([]);
-      setScore(null);
-      setPhase("intro");
-    }} />;
+    return (
+      <div className="flex h-dvh w-full flex-col">
+        {chrome("Result", undefined, 100)}
+        <Stage>
+          <ResultsScreen
+            exam={exam}
+            score={score}
+            onRetake={() => {
+              setQi(0);
+              setResults([]);
+              setScore(null);
+              setPhase("intro");
+            }}
+          />
+        </Stage>
+      </div>
+    );
   }
 
   return null;
@@ -164,10 +219,12 @@ export default function CheckpointPage() {
 function SpeakingSection({
   title,
   prompts,
+  chrome,
   onDone,
 }: {
   title: string;
   prompts: SpeakingPrompt[];
+  chrome: (eyebrow: string, pos?: string, pct?: number) => React.ReactNode;
   onDone: () => void;
 }) {
   const [i, setI] = useState(0);
@@ -241,97 +298,102 @@ function SpeakingSection({
   };
 
   return (
-    <div className="m-auto w-full max-w-2xl py-6">
-      <div className="mb-4 flex items-center justify-between text-sm font-bold text-[color:var(--muted)]">
-        <span>🎤 {title}</span>
-        <span>{i + 1}/{prompts.length}</span>
-      </div>
-
-      <div className="rounded-[10px] border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] p-5">
-        <p className="text-lg font-bold">{prompt.task}</p>
+    <div className="flex h-dvh w-full flex-col">
+      {chrome(title, `${i + 1}/${prompts.length}`, 100)}
+      <Stage>
+        <p className="text-lg font-bold" style={{ color: INK, letterSpacing: "-.01em" }}>{prompt.task}</p>
         {prompt.rubricFocus && (
-          <p className="mt-1 text-xs text-[color:var(--muted)]">Graded on: {prompt.rubricFocus}</p>
+          <p className="mt-1.5 text-[13px]" style={{ color: MUTED }}>Graded on: {prompt.rubricFocus}</p>
         )}
 
         {!keyPresent && (
-          <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800">
-            No API key — record and self-assess against the model answer.{" "}
-            <Link to="/settings" className="font-bold underline">Add a key</Link> for AI feedback.
-          </p>
+          <div className="mt-4">
+            <Banner color="var(--orange)">
+              No API key — record and self-assess against the model answer.{" "}
+              <Link to="/settings" className="underline">Add a key</Link> for AI feedback.
+            </Banner>
+          </div>
         )}
 
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-6 flex flex-wrap gap-2">
           <button
             type="button"
             disabled={!sttOk || listening}
             onClick={() => void record()}
-            className="rounded-lg bg-[color:var(--ink)] px-4 py-2.5 font-bold text-white hover:bg-[color:var(--ink-strong)] disabled:opacity-40"
+            className="inline-flex h-11 items-center gap-2 rounded-lg border px-4 text-[15px] font-semibold transition-colors duration-150 hover:bg-[color:var(--tint)] disabled:opacity-40"
+            style={{ borderColor: "rgba(var(--ink-rgb),.2)", color: INK }}
           >
-            {listening ? "🎙️ Listening…" : transcript ? "🎙️ Record again" : "🎙️ Record answer"}
+            <Mic size={16} strokeWidth={2} />
+            {listening ? "Listening…" : transcript ? "Record again" : "Record answer"}
           </button>
           {!revealed && (
-            <button
-              type="button"
+            <BtnGhost
+              icon={Lightbulb}
               onClick={() => {
                 setRevealed(true);
                 if (prompt.modelHr) void speak(prompt.modelHr);
               }}
-              className="rounded-lg border-2 border-[color:var(--ink)] px-4 py-2.5 font-bold hover:bg-[rgba(var(--ink-rgb),.05)]"
+              className="!h-11"
             >
-              💡 Show model answer
-            </button>
+              Show model answer
+            </BtnGhost>
           )}
         </div>
         {!sttOk && (
-          <p className="mt-2 text-xs text-[color:var(--muted)]">
-            (Voice capture needs Chrome/Edge — use the model answer to self-assess.)
+          <p className="mt-2 text-[13px]" style={{ color: MUTED }}>
+            Voice capture needs Chrome or Edge — use the model answer to self-assess.
           </p>
         )}
-        {sttError && <p className="mt-2 text-sm text-amber-700">{sttError}</p>}
+        {sttError && <p className="mt-2 text-sm" style={{ color: "var(--orange)" }}>{sttError}</p>}
 
         {transcript && (
-          <div className="mt-4 rounded-lg bg-[rgba(var(--ink-rgb),.03)] p-3">
-            <p className="text-xs font-semibold uppercase tracking-[.13em] text-[color:var(--muted)]">WHAT WE HEARD</p>
-            <p className="mt-1">{transcript}</p>
+          <div className="mt-6 rounded-[10px] p-4" style={{ background: "var(--tint)" }}>
+            <Meta>What we heard</Meta>
+            <p className="mt-1.5 text-[15px]" style={{ color: INK }}>{transcript}</p>
             {keyPresent && !grade && (
-              <button
-                type="button"
-                disabled={grading}
-                onClick={() => void grade1()}
-                className="mt-3 rounded-lg bg-[color:var(--ink)] px-4 py-2 text-sm font-bold text-white disabled:opacity-40"
-              >
-                {grading ? "Grading…" : "Grade my answer"}
-              </button>
+              <div className="mt-3">
+                <BtnPrimary disabled={grading} onClick={() => void grade1()}>
+                  {grading ? "Grading…" : "Grade my answer"}
+                </BtnPrimary>
+              </div>
             )}
-            {gradeError && <p className="mt-2 text-sm text-red-700">{gradeError}</p>}
+            {gradeError && <p className="mt-2 text-sm" style={{ color: CRVENI }}>{gradeError}</p>}
           </div>
         )}
 
         {grade && (
-          <div className={`mt-3 rounded-lg p-4 ${grade.correct ? "bg-green-50" : "bg-amber-50"}`}>
-            <p className="font-semibold text-[color:var(--ink)]">Score: {Math.round(grade.score)}/100</p>
-            <p className="mt-1 text-sm">{grade.feedback}</p>
+          <div
+            className="mt-4 rounded-[10px] p-4"
+            style={{ background: grade.correct ? "rgba(var(--green-rgb),.07)" : "rgba(var(--orange-rgb),.08)" }}
+          >
+            <p className="text-sm font-semibold" style={{ color: grade.correct ? GREEN : "var(--orange)" }}>
+              Score: {Math.round(grade.score)}/100
+            </p>
+            <p className="mt-1.5 text-[15px] leading-relaxed" style={{ color: BODY2 }}>{grade.feedback}</p>
             {grade.corrected_text.trim() && grade.corrected_text.trim() !== transcript.trim() && (
-              <p className="mt-2 text-sm"><span className="font-bold">Better:</span> {grade.corrected_text}</p>
+              <p className="mt-2.5 text-[15px]" style={{ color: INK }}>
+                <span className="font-semibold">Better:</span> {grade.corrected_text}
+              </p>
             )}
           </div>
         )}
 
         {revealed && prompt.modelHr && (
-          <div className="mt-3 rounded-lg bg-sky-50 p-3">
-            <p className="text-xs font-semibold uppercase tracking-[.13em] text-[color:var(--blue)]">Model answer</p>
-            <p className="mt-1">{prompt.modelHr}</p>
+          <div className="mt-4">
+            <Meta style={{ color: "var(--blue)" }}>Model answer</Meta>
+            <p className="reading mt-1.5 text-[16px] leading-relaxed" style={{ color: INK }}>{prompt.modelHr}</p>
           </div>
         )}
-      </div>
 
-      <button
-        type="button"
-        onClick={advance}
-        className="mt-4 w-full rounded-lg bg-[color:var(--ink)] py-3 font-bold text-white hover:bg-[color:var(--ink-strong)]"
-      >
-        {i + 1 < prompts.length ? "Next prompt →" : "Finish & see results →"}
-      </button>
+        <button
+          type="button"
+          onClick={advance}
+          className="mt-10 flex h-11 w-full items-center justify-center rounded-lg text-[15px] font-semibold text-white transition-[background,transform] duration-150 active:scale-[.99]"
+          style={{ background: INK }}
+        >
+          {i + 1 < prompts.length ? "Next prompt →" : "Finish & see results →"}
+        </button>
+      </Stage>
     </div>
   );
 }
@@ -348,65 +410,59 @@ function ResultsScreen({
   onRetake: () => void;
 }) {
   return (
-    <div className="m-auto w-full max-w-xl py-10">
+    <div>
       <div className="text-center">
-        <h2 className="font-display font-bold text-[color:var(--ink)]" style={{ fontSize: "clamp(28px,4vw,38px)" }}>
+        <h2 className="font-bold" style={{ fontSize: "clamp(26px,3.8vw,34px)", lineHeight: 1.15, letterSpacing: "-.02em", color: INK }}>
           {score.passed ? "Čestitamo!" : "Almost there!"}
         </h2>
-        <p className="mt-1 text-[color:var(--body2)]">
+        <p className="mx-auto mt-2 max-w-[440px] text-[15px] leading-relaxed" style={{ color: BODY2 }}>
           {score.passed
             ? `Govorite hrvatski na razini ${exam.levelId}. (You speak Croatian at the ${exam.levelId} level.)`
             : "A soft gate — review your weakest areas and retake when ready. You can still move on."}
         </p>
-        <p className="mt-3 text-lg">
-          Written score: <strong>{score.pct}%</strong> (pass {exam.passPct}%)
+        <p className="mt-4 text-[15px]" style={{ color: BODY2 }}>
+          Written score: <strong style={{ color: INK }}>{score.pct}%</strong> (pass {exam.passPct}%)
         </p>
       </div>
 
-      <div className="mt-6 rounded-[10px] border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] p-5">
-        <p className="text-xs font-semibold uppercase tracking-[.13em] text-[color:var(--muted)]">BY SECTION</p>
-        <ul className="mt-2 grid gap-2">
+      <div className="mt-10">
+        <Meta>By section</Meta>
+        <div className="mt-3 divide-y divide-[rgba(var(--ink-rgb),.07)]">
           {score.sections.map((s) => (
-            <li key={s.title}>
-              <div className="flex justify-between text-sm font-semibold">
-                <span>{s.title}</span>
-                <span>{s.correct}/{s.total} · {s.pct}%</span>
+            <div key={s.title} className="py-3">
+              <div className="flex items-baseline justify-between gap-4">
+                <span className="text-[15px] font-semibold" style={{ color: INK }}>{s.title}</span>
+                <span className="meta tabular-nums" style={{ color: "var(--muted3)" }}>{s.correct}/{s.total} · {s.pct}%</span>
               </div>
-              <div className="mt-1 h-2 overflow-hidden rounded-full bg-[rgba(var(--ink-rgb),.15)]">
-                <div
-                  className={`h-full rounded-full ${s.pct >= exam.passPct ? "bg-[color:var(--green)]" : "bg-[color:var(--orange)]"}`}
-                  style={{ width: `${s.pct}%` }}
-                />
-              </div>
-            </li>
+              <ProgressBar
+                pct={s.pct}
+                color={s.pct >= exam.passPct ? GREEN : "var(--orange)"}
+                className="mt-2"
+              />
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
 
       {score.weakestSections.length > 0 && (
-        <div className="mt-4 rounded-[10px] border border-[rgba(var(--orange-rgb),.25)] bg-[rgba(var(--orange-rgb),.08)] p-4 text-[color:var(--brown)]">
-          <p className="font-semibold">Worth revisiting</p>
-          <p className="mt-1 text-sm">
+        <div className="mt-10">
+          <Meta style={{ color: "var(--orange)" }}>Worth revisiting</Meta>
+          <p className="mt-1.5 text-[15px] leading-relaxed" style={{ color: BODY2 }}>
             Your weakest {score.weakestSections.length === 1 ? "area" : "areas"}:{" "}
-            <strong>{score.weakestSections.join(", ")}</strong>. Replay the related units' lessons and
-            use Practice to drill them, then retake.
+            <strong style={{ color: INK }}>{score.weakestSections.join(", ")}</strong>. Replay the related units'
+            lessons and use Practice to drill them, then retake.
           </p>
-          <Link to="/practice" className="mt-2 inline-block text-sm font-bold underline">
-            Go to Practice →
+          <Link to="/practice" className="meta mt-2 inline-block underline" style={{ color: "var(--orange)" }}>
+            Go to Practice
           </Link>
         </div>
       )}
 
-      <div className="mt-6 grid gap-3">
-        <button
-          type="button"
-          onClick={onRetake}
-          className="rounded-lg border border-[rgba(var(--ink-rgb),.12)] bg-[color:var(--card)] py-3 font-semibold text-[color:var(--body)] transition-colors duration-[180ms] hover:bg-[color:var(--tint)]"
-        >
-          Retake the exam
-        </button>
-        <Link to="/" className="rounded-lg bg-[color:var(--primary)] py-3 text-center font-semibold text-white transition-colors duration-[180ms] hover:bg-[color:var(--primary-hover)]">
-          Back to path
+      <Divider className="mt-10" />
+      <div className="mt-6 flex flex-wrap justify-center gap-3">
+        <BtnGhost onClick={onRetake}>Retake the exam</BtnGhost>
+        <Link to="/">
+          <BtnPrimary>Back home</BtnPrimary>
         </Link>
       </div>
     </div>

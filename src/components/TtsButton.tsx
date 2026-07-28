@@ -20,8 +20,8 @@ export default function TtsButton({
     <button
       type="button"
       aria-label={`Play: ${text}`}
-      className={`inline-flex items-center gap-1.5 rounded-full border bg-[color:var(--card)] px-2.5 py-1 align-middle text-sm font-medium transition-colors duration-150 hover:bg-[color:var(--tint)] disabled:opacity-50 ${className}`}
-      style={{ borderColor: "rgba(var(--ink-rgb),.12)", color: playing ? "var(--primary)" : "var(--body2)" }}
+      className={`inline-flex items-center gap-1.5 rounded-md px-1.5 py-1 align-middle text-[13px] font-medium transition-colors duration-150 hover:bg-[color:var(--tint)] disabled:opacity-50 ${className}`}
+      style={{ color: playing ? "var(--primary)" : "var(--muted)" }}
       disabled={playing}
       onClick={async () => {
         setPlaying(true);
@@ -29,7 +29,7 @@ export default function TtsButton({
         setPlaying(false);
       }}
     >
-      <Icon size={15} />
+      <Icon size={14} strokeWidth={2} />
       {label && <span>{label}</span>}
     </button>
   );

@@ -2,22 +2,27 @@ import type { DiagramSpec } from "@/types/content";
 import { CASE_COLORS } from "@/ui/caseColors";
 import TtsButton from "./TtsButton";
 
+const TONE = {
+  warn: { color: "var(--orange)", icon: "⚠️" },
+  info: { color: "var(--blue)", icon: "💡" },
+  success: { color: "var(--green)", icon: "🎉" },
+} as const;
+
+function wash(color: string, pct = 6): string {
+  return `color-mix(in srgb, ${color} ${pct}%, transparent)`;
+}
+
 /** Renders every diagram kind from the visuals mandate (§4). */
 export default function DiagramView({ diagram }: { diagram: DiagramSpec }) {
   switch (diagram.kind) {
     case "callout": {
-      const tones = {
-        warn: "border-amber-500 bg-amber-50",
-        info: "border-sky-500 bg-sky-50",
-        success: "border-green-600 bg-green-50",
-      };
-      const icons = { warn: "⚠️", info: "💡", success: "🎉" };
+      const t = TONE[diagram.tone];
       return (
-        <div className={`rounded-lg border-2 p-4 ${tones[diagram.tone]}`}>
-          <p className="font-bold">
-            {icons[diagram.tone]} {diagram.title ?? ""}
+        <div className="rounded-[10px] p-4" style={{ background: wash(t.color) }}>
+          <p className="text-sm font-bold" style={{ color: t.color }}>
+            {t.icon} {diagram.title ?? ""}
           </p>
-          <p className="mt-1">{diagram.text}</p>
+          <p className="mt-1 text-[15px] leading-relaxed text-[color:var(--body)]">{diagram.text}</p>
         </div>
       );
     }
@@ -26,15 +31,15 @@ export default function DiagramView({ diagram }: { diagram: DiagramSpec }) {
       const cc = CASE_COLORS[diagram.caseId];
       return (
         <div>
-          <p className={`mb-2 text-sm font-semibold uppercase tracking-[.13em] ${cc.text}`}>
+          <p className={`meta mb-2.5 ${cc.text}`}>
             When do I use the {cc.name.toLowerCase()}?
           </p>
           <div className="grid gap-3 sm:grid-cols-2">
             {diagram.boxes.map((box, i) => (
-              <div key={i} className={`rounded-lg border-2 p-3 ${cc.border} ${cc.bg}`}>
-                <p className="font-bold">{box.label}</p>
+              <div key={i} className={`rounded-[10px] border p-3.5 ${cc.border} ${cc.bg}`}>
+                <p className="text-sm font-bold text-[color:var(--ink)]">{box.label}</p>
                 {box.examples.map((ex, j) => (
-                  <p key={j} className="mt-1 text-sm">
+                  <p key={j} className="mt-1.5 text-sm">
                     <span className={`font-semibold ${cc.text}`}>{ex.hr}</span>{" "}
                     <span className="text-[color:var(--muted)]">— {ex.en}</span>{" "}
                     <TtsButton text={ex.hr} />
@@ -51,13 +56,13 @@ export default function DiagramView({ diagram }: { diagram: DiagramSpec }) {
       const side = (s: typeof diagram.left) => {
         const cc = s.caseId ? CASE_COLORS[s.caseId] : null;
         return (
-          <div className={`flex-1 rounded-lg border-2 p-4 ${cc ? `${cc.border} ${cc.bg}` : "border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)]"}`}>
-            <p className={`font-bold ${cc?.text ?? ""}`}>
-              {s.emoji && <span className="mr-1 text-xl">{s.emoji}</span>}
+          <div className={`flex-1 rounded-[10px] border p-4 ${cc ? `${cc.border} ${cc.bg}` : "border-[rgba(var(--ink-rgb),.1)] bg-[color:var(--card)]"}`}>
+            <p className={`text-sm font-bold ${cc?.text ?? "text-[color:var(--ink)]"}`}>
+              {s.emoji && <span className="mr-1 text-lg">{s.emoji}</span>}
               {s.title}
             </p>
             {s.lines.map((l, i) => (
-              <p key={i} className="mt-1.5">
+              <p key={i} className="mt-1.5 text-[15px]">
                 <span className={`font-semibold ${cc?.text ?? ""}`}>{l.hr}</span>{" "}
                 <span className="text-sm text-[color:var(--muted)]">— {l.en}</span>{" "}
                 <TtsButton text={l.hr} />
@@ -69,7 +74,7 @@ export default function DiagramView({ diagram }: { diagram: DiagramSpec }) {
       return (
         <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch">
           {side(diagram.left)}
-          <div className="self-center font-display text-2xl font-bold text-[color:var(--ink)] text-[color:var(--muted)]">vs</div>
+          <div className="meta self-center text-[color:var(--muted)]">vs</div>
           {side(diagram.right)}
         </div>
       );
@@ -80,12 +85,12 @@ export default function DiagramView({ diagram }: { diagram: DiagramSpec }) {
         <div className="flex flex-wrap items-center gap-2">
           {diagram.steps.map((s, i) => (
             <div key={i} className="flex items-center gap-2">
-              <div className="rounded-lg border-2 border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] px-3 py-2 text-center">
-                {s.emoji && <div className="text-xl">{s.emoji}</div>}
-                <div className="text-sm font-bold">{s.label}</div>
+              <div className="rounded-[10px] border border-[rgba(var(--ink-rgb),.12)] bg-[color:var(--card)] px-3.5 py-2 text-center">
+                {s.emoji && <div className="text-lg">{s.emoji}</div>}
+                <div className="text-sm font-bold text-[color:var(--ink)]">{s.label}</div>
                 {s.example && <div className="text-xs text-[color:var(--muted)]">{s.example}</div>}
               </div>
-              {i < diagram.steps.length - 1 && <span className="text-xl text-[color:var(--muted)]">→</span>}
+              {i < diagram.steps.length - 1 && <span className="text-lg text-[color:var(--muted3)]">→</span>}
             </div>
           ))}
         </div>
@@ -97,10 +102,10 @@ export default function DiagramView({ diagram }: { diagram: DiagramSpec }) {
           <div className="flex items-end gap-1 pb-1">
             {diagram.wagons.map((w, i) => (
               <div key={i} className="flex items-center">
-                <div className="min-w-24 rounded-t-xl rounded-b-md border-2 border-[color:var(--body)] bg-[rgba(var(--ink-rgb),.05)] px-3 py-2 text-center">
-                  <div className="text-xs font-semibold uppercase text-[color:var(--muted)]">{w.label}</div>
-                  <div className="text-sm font-semibold">{w.items.join(" ")}</div>
-                  {w.note && <div className="text-xs text-[color:var(--brown2)]">{w.note}</div>}
+                <div className="min-w-24 rounded-t-xl rounded-b-md border border-[rgba(var(--ink-rgb),.25)] bg-[color:var(--tint)] px-3 py-2 text-center">
+                  <div className="meta text-[color:var(--muted)]">{w.label}</div>
+                  <div className="text-sm font-semibold text-[color:var(--ink)]">{w.items.join(" ")}</div>
+                  {w.note && <div className="text-xs text-[color:var(--orange)]">{w.note}</div>}
                 </div>
                 {i < diagram.wagons.length - 1 && <span className="px-0.5 text-[color:var(--muted)]">–</span>}
               </div>
@@ -116,10 +121,10 @@ export default function DiagramView({ diagram }: { diagram: DiagramSpec }) {
           {diagram.groups.map((g, i) => {
             const cc = g.caseId ? CASE_COLORS[g.caseId] : null;
             return (
-              <div key={i} className={`rounded-lg border-2 p-3 text-center ${cc ? `${cc.border} ${cc.bg}` : "border-[rgba(var(--ink-rgb),.14)]"}`}>
-                <div className="font-display text-2xl font-bold text-[color:var(--ink)]">{g.label}</div>
-                <div className={`text-sm font-bold ${cc?.text ?? "text-[color:var(--body2)]"}`}>{g.rule}</div>
-                <div className="mt-1 font-semibold">{g.example}</div>
+              <div key={i} className={`rounded-[10px] border p-3.5 text-center ${cc ? `${cc.border} ${cc.bg}` : "border-[rgba(var(--ink-rgb),.1)]"}`}>
+                <div className="text-xl font-bold text-[color:var(--ink)]" style={{ letterSpacing: "-.01em" }}>{g.label}</div>
+                <div className={`text-[13px] font-bold ${cc?.text ?? "text-[color:var(--body2)]"}`}>{g.rule}</div>
+                <div className="mt-1 text-[15px] font-semibold text-[color:var(--ink)]">{g.example}</div>
               </div>
             );
           })}

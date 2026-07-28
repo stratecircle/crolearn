@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CroLearn — Croatian, from zero</title>
-    <meta name="theme-color" content="#efeeea" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇭🇷</text></svg>" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- The šahovnica mark (see ui/kit.tsx Sahovnica) as the app icon. -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4'><rect width='4' height='4' fill='%23fff'/><g fill='%23c8342c'><rect x='0' y='0' width='1' height='1'/><rect x='2' y='0' width='1' height='1'/><rect x='1' y='1' width='1' height='1'/><rect x='3' y='1' width='1' height='1'/><rect x='0' y='2' width='1' height='1'/><rect x='2' y='2' width='1' height='1'/><rect x='1' y='3' width='1' height='1'/><rect x='3' y='3' width='1' height='1'/></g></svg>" />
     <!-- Paint the saved theme before first paint. The module bundle is deferred,
          so without this blocking snippet dark-mode users get a white flash. -->
     <script>
@@ -17,7 +18,7 @@
             document.documentElement.classList.add("dark");
             document.documentElement.style.colorScheme = "dark";
             var t = document.querySelector('meta[name="theme-color"]');
-            if (t) t.content = "#10141c";
+            if (t) t.content = "#131316";
           }
         } catch (e) {}
       })();

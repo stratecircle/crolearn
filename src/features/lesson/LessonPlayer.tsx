@@ -9,7 +9,7 @@ import SlideRenderer from "@/components/SlideRenderer";
 import TutorChat from "@/features/tutor/TutorChat";
 import { hasApiKey } from "@/lib/claude";
 import { stopSpeaking } from "@/lib/tts";
-import { Banner, BLUE, BODY2, BtnGhost, BtnPrimary, DISPLAY, DoneCard, Eyebrow, IconBtn, INK, MUTED, ORANGE, ProgressBar, RED, tint } from "@/ui/kit";
+import { ACCENT, Banner, BLUE, BODY2, BtnGhost, BtnPrimary, DoneCard, IconBtn, INK, MUTED, ORANGE, SHADOW_FLOAT } from "@/ui/kit";
 import {
   advance,
   firstTryAccuracy,
@@ -22,8 +22,11 @@ import {
 /**
  * Thin React shell over the pure deck state machine (deckMachine.ts) —
  * retry/accuracy semantics live and are tested there. Completion persists
- * progress and seeds SRS cards. Chrome follows the Nativ lesson-player spec
- * (README §Screens 2): icon buttons, eyebrow + serif title, red progress bar.
+ * progress and seeds SRS cards.
+ *
+ * ČISTO player chrome: a slim full-width bar (exit · back · meta+title ·
+ * position · tutor · flag) over a hairline, with the progress line living in
+ * the bar's bottom edge. The slide sits alone in a centered column.
  */
 export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
   const nav = useNavigate();
@@ -83,28 +86,28 @@ export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
   if (finished) {
     const pct = Math.round(finished.accuracy * 100);
     return (
-      <div className="m-auto w-full max-w-[720px] py-10">
+      <div className="m-auto w-full max-w-[640px] px-5 py-10">
         <DoneCard icon={Check} title="Lesson complete">
-          <div className="mx-auto mb-2 max-w-[480px] text-[17px] leading-relaxed" style={{ color: BODY2 }}>
+          <div className="mx-auto mb-1.5 max-w-[440px] text-[15px] leading-relaxed" style={{ color: BODY2 }}>
             First-try accuracy: <strong style={{ color: INK }}>{pct}%</strong>
           </div>
-          <div className="mx-auto mb-7 max-w-[480px] text-[15px]" style={{ color: BODY2 }}>
+          <div className="mx-auto mb-8 max-w-[440px] text-sm" style={{ color: BODY2 }}>
             {finished.newCards > 0
               ? `${finished.newCards} new cards added to your review deck.`
               : "This lesson's cards are already in your review deck."}
           </div>
           {pct < 60 && (
-            <p className="mx-auto mb-7 max-w-md rounded-lg px-4 py-3 text-sm leading-relaxed" style={{ background: tint(ORANGE, 0.1), color: "var(--brown)" }}>
+            <p className="mx-auto mb-8 max-w-md rounded-[10px] px-4 py-3 text-sm leading-relaxed" style={{ background: "var(--tint)", color: BODY2 }}>
               That was a tough one — totally normal. Before moving on, read this lesson's notes and
               replay it once; second passes usually feel completely different.
             </p>
           )}
-          <div className="flex flex-wrap justify-center gap-3.5">
+          <div className="flex flex-wrap justify-center gap-3">
             {pct < 60 && (
               <BtnGhost onClick={() => window.location.reload()}>Replay this lesson</BtnGhost>
             )}
             <BtnGhost icon={BookOpen} onClick={() => nav(`/notes/${lesson.id}`)}>Lesson notes</BtnGhost>
-            <BtnPrimary onClick={() => nav("/")}>Back to path</BtnPrimary>
+            <BtnPrimary onClick={() => nav("/")}>Back home</BtnPrimary>
           </div>
         </DoneCard>
       </div>
@@ -126,20 +129,21 @@ export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
 
   return (
     <div className="flex h-dvh w-full flex-col">
-      <div className="mx-auto w-full max-w-[840px] pt-1">
-        <div className="mb-3 flex items-center gap-3 max-[700px]:gap-2">
+      <header className="relative flex-none border-b" style={{ borderColor: "rgba(var(--ink-rgb),.08)" }}>
+        <div className="mx-auto flex h-14 w-full max-w-[980px] items-center gap-1.5 px-4">
           <IconBtn icon={X} label="Exit lesson" onClick={() => nav("/")} />
           <IconBtn icon={ArrowLeft} label="Previous slide (nothing gets re-graded)" disabled={pos === 0} onClick={goBack} />
-          <div className="min-w-0 flex-1">
-            <Eyebrow className="mb-0.5 truncate">
-              {lesson.unitId.toUpperCase()} {currentSection && slide.type !== "section" ? `· ${currentSection.toUpperCase()}` : ""}
-            </Eyebrow>
-            <div className="truncate" style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(17px,2.2vw,22px)", lineHeight: 1.15, color: INK }}>
+          <div className="min-w-0 flex-1 px-2">
+            <div className="meta truncate" style={{ color: MUTED }}>
+              {lesson.unitId.toUpperCase()}
+              {currentSection && slide.type !== "section" ? ` · ${currentSection}` : ""}
+            </div>
+            <div className="truncate text-sm font-semibold leading-tight" style={{ color: INK, letterSpacing: "-.01em" }}>
               {lesson.title}
             </div>
           </div>
-          <span className="whitespace-nowrap text-sm max-[700px]:text-[13px]" style={{ color: BODY2 }}>
-            {pos + 1} / {playlist.length}
+          <span className="meta whitespace-nowrap tabular-nums px-1" style={{ color: MUTED }}>
+            {pos + 1}/{playlist.length}
           </span>
           {hasApiKey() && slideIndex !== 0 && slide.type !== "section" && (
             <IconBtn
@@ -167,12 +171,13 @@ export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
             }}
           />
         </div>
-        <ProgressBar pct={progressPct} color={RED} height={8} />
-      </div>
+        {/* progress lives in the header's bottom edge */}
+        <div className="absolute bottom-[-1px] left-0 h-[2px]" style={{ width: `${progressPct}%`, background: ACCENT, transition: "width 300ms ease" }} />
+      </header>
 
       {/* The stage: slide centered in the remaining viewport, like a projector deck. */}
       <div className="flex flex-1 overflow-y-auto">
-        <div className="m-auto w-full max-w-2xl py-6">
+        <div className="m-auto w-full max-w-[640px] px-5 py-8">
           {pos < maxPos && <Banner color={INK}>Looking back — answers here don't count; step forward to continue.</Banner>}
           {isRetry && pos >= maxPos && <Banner color={ORANGE}>Retry — let's get it right!</Banner>}
           {slide.review && !isRetry && <Banner color={BLUE}>Review from an earlier lesson</Banner>}
@@ -188,20 +193,21 @@ export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
 
       {askOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 sm:items-center sm:p-4"
+          className="fixed inset-0 z-50 flex items-end justify-center bg-black/30 sm:items-center sm:p-4"
           onClick={() => setAskOpen(false)}
         >
           <div
-            className="flex h-[85dvh] w-full max-w-2xl flex-col rounded-t-[20px] bg-[color:var(--card)] p-5 shadow-2xl sm:h-[80dvh] sm:rounded-[10px]"
+            className="flex h-[85dvh] w-full max-w-2xl flex-col rounded-t-2xl bg-[color:var(--card)] p-5 sm:h-[80dvh] sm:rounded-xl"
+            style={{ boxShadow: SHADOW_FLOAT }}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mb-3 flex items-center justify-between">
-              <h2 style={{ fontFamily: DISPLAY, fontWeight: 600, fontSize: 18, color: INK }}>Ask about this slide</h2>
+              <h2 className="text-[15px] font-semibold" style={{ color: INK }}>Ask about this slide</h2>
               <button
                 type="button"
                 aria-label="Close"
                 onClick={() => setAskOpen(false)}
-                className="rounded-lg p-1.5 transition-colors duration-150 hover:bg-[rgba(var(--ink-rgb),.12)]"
+                className="rounded-lg p-1.5 transition-colors duration-150 hover:bg-[color:var(--tint)]"
               >
                 <X size={18} color={MUTED} />
               </button>

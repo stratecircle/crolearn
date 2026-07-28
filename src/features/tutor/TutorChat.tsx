@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import { ArrowUp } from "lucide-react";
 import Markdown from "@/components/Markdown";
 import { aiErrorMessage, streamTutor } from "@/lib/claude";
 import { courseGrounding } from "@/content";
 import { db } from "@/lib/db";
+import { ACCENT, Banner, INK, Meta, MUTED } from "@/ui/kit";
 
 type Msg = { role: "user" | "assistant"; text: string };
 
@@ -87,17 +89,18 @@ export default function TutorChat({
 
   return (
     <div className="flex h-full min-h-0 flex-col">
-      <div ref={scroller} className="flex-1 space-y-3 overflow-y-auto pb-4">
+      <div ref={scroller} className="nativ-noscrollbar flex-1 space-y-6 overflow-y-auto pb-6">
         {messages.length === 0 && (
-          <div className="rounded-[10px] border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] p-5">
-            <p className="font-semibold text-[color:var(--ink)]">{emptyHint}</p>
+          <div>
+            <p className="text-[15px] font-semibold" style={{ color: INK }}>{emptyHint}</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {starters.map((s) => (
                 <button
                   key={s}
                   type="button"
                   onClick={() => void send(s)}
-                  className="rounded-full border border-[rgba(var(--ink-rgb),.18)] bg-[color:var(--card)] px-3.5 py-1.5 text-left text-sm text-[color:var(--body)] transition-colors duration-[180ms] hover:bg-[color:var(--tint)]"
+                  className="rounded-full border px-3 py-1.5 text-left text-[13px] transition-colors duration-150 hover:bg-[color:var(--tint)]"
+                  style={{ borderColor: "rgba(var(--ink-rgb),.12)", color: "var(--body2)" }}
                 >
                   {s}
                 </button>
@@ -106,47 +109,50 @@ export default function TutorChat({
           </div>
         )}
 
-        {messages.map((m, i) => (
-          <div key={i} className={m.role === "user" ? "flex justify-end" : "flex justify-start"}>
-            <div
-              className={
-                m.role === "user"
-                  ? "max-w-[85%] rounded-[10px] bg-[color:var(--ink)] px-4 py-2.5 text-white"
-                  : "max-w-[90%] rounded-[10px] border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] px-4 py-2.5 text-[color:var(--ink)]"
-              }
-            >
-              {m.role === "assistant" ? (
-                m.text ? <Markdown text={m.text} /> : <span className="text-[color:var(--muted)]">…</span>
-              ) : (
-                m.text
-              )}
+        {messages.map((m, i) =>
+          m.role === "user" ? (
+            <div key={i} className="flex justify-end">
+              <div className="max-w-[80%] rounded-2xl px-4 py-2.5 text-[15px] leading-relaxed" style={{ background: "var(--tint)", color: INK }}>
+                {m.text}
+              </div>
             </div>
-          </div>
-        ))}
+          ) : (
+            <div key={i}>
+              <Meta className="mb-1.5">Tutor</Meta>
+              <div className="text-[15px] leading-relaxed" style={{ color: INK }}>
+                {m.text ? <Markdown text={m.text} /> : <span style={{ color: MUTED }}>…</span>}
+              </div>
+            </div>
+          ),
+        )}
       </div>
 
-      {error && <p className="mb-2 rounded-lg bg-[rgba(var(--orange-rgb),.1)] px-3.5 py-2 text-sm text-[color:var(--brown)]">{error}</p>}
+      {error && <Banner color="var(--orange)">{error}</Banner>}
 
       <form
         onSubmit={(e) => {
           e.preventDefault();
           void send(input);
         }}
-        className="flex gap-2"
+        className="flex items-center gap-1.5 rounded-xl border py-1.5 pl-4 pr-1.5 transition-colors duration-150 focus-within:border-[color:var(--primary)]"
+        style={{ borderColor: "rgba(var(--ink-rgb),.14)", background: "var(--card)" }}
       >
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask the tutor…"
           disabled={busy}
-          className="flex-1 rounded-lg border border-[rgba(var(--ink-rgb),.14)] bg-[color:var(--card)] px-4 py-2.5 text-[color:var(--ink)] outline-none transition-colors duration-150 focus:border-[color:var(--ink)] disabled:opacity-60"
+          className="min-w-0 flex-1 border-none bg-transparent py-1.5 text-[15px] outline-none disabled:opacity-60"
+          style={{ color: INK }}
         />
         <button
           type="submit"
           disabled={busy || !input.trim()}
-          className="rounded-lg bg-[color:var(--primary)] px-5 py-2.5 font-semibold text-white transition-colors duration-[180ms] hover:bg-[color:var(--primary-hover)] disabled:opacity-40"
+          aria-label="Send"
+          className="flex h-8 w-8 flex-none items-center justify-center rounded-lg transition-opacity duration-150 disabled:opacity-30"
+          style={{ background: ACCENT }}
         >
-          {busy ? "…" : "Send"}
+          <ArrowUp size={16} color="#fff" strokeWidth={2.4} />
         </button>
       </form>
     </div>

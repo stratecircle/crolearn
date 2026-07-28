@@ -14,7 +14,7 @@ function renderInline(text: string): ReactNode[] {
     if (m.index > last) parts.push(text.slice(last, m.index));
     const tok = m[0];
     if (tok.startsWith("**")) parts.push(<strong key={key++}>{tok.slice(2, -2)}</strong>);
-    else if (tok.startsWith("`")) parts.push(<code key={key++} className="rounded bg-[rgba(var(--ink-rgb),.15)] px-1">{tok.slice(1, -1)}</code>);
+    else if (tok.startsWith("`")) parts.push(<code key={key++} className="rounded bg-[color:var(--tint2)] px-1 font-mono text-[.9em]">{tok.slice(1, -1)}</code>);
     else parts.push(<em key={key++}>{tok.slice(1, -1)}</em>);
     last = m.index + tok.length;
   }

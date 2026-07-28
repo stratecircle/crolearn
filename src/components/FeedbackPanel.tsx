@@ -1,6 +1,6 @@
 import type { GradeResult } from "@/lib/grader";
 import TtsButton from "./TtsButton";
-import { GREEN, INK, ORANGE, RED, tint } from "@/ui/kit";
+import { CRVENI, GREEN, INK, ORANGE, tint } from "@/ui/kit";
 
 /**
  * Immediate corrective feedback (§1): verdict + the correct answer + one-line why.
@@ -21,10 +21,10 @@ export default function FeedbackPanel({
 }) {
   const good = verdict === "correct" || verdict === "correct-selfassessed";
   const diacritics = verdict === "diacritics";
-  const color = good ? GREEN : diacritics ? ORANGE : RED;
+  const color = good ? GREEN : diacritics ? ORANGE : CRVENI;
   return (
-    <div className="mt-4 rounded-lg border p-4" style={{ borderColor: tint(color, 0.4), background: tint(color, 0.07) }}>
-      <p className="font-semibold" style={{ color }}>
+    <div className="mt-5 rounded-[10px] p-4" style={{ background: tint(color, 0.06) }}>
+      <p className="text-sm font-semibold" style={{ color }}>
         {good ? "Točno — correct!" : diacritics ? "Correct — mind the diacritics (č ć đ š ž)!" : "Not quite."}
       </p>
       {(diacritics || verdict === "wrong") && canonical && (
@@ -37,7 +37,7 @@ export default function FeedbackPanel({
         type="button"
         autoFocus
         onClick={onContinue}
-        className="mt-3.5 inline-flex h-11 items-center rounded-lg px-6 text-[15px] font-semibold text-white transition-colors duration-[180ms]"
+        className="mt-4 inline-flex h-9 items-center rounded-lg px-4 text-sm font-semibold text-white transition-[background,transform] duration-150 active:scale-[.98]"
         style={{ background: INK }}
       >
         {continueLabel}

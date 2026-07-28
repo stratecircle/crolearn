@@ -50,7 +50,7 @@ function paint(mode: ThemeMode): "light" | "dark" {
   root.style.colorScheme = resolved;
   // Keep the browser UI (address bar / form controls) in step.
   const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
-  if (meta) meta.content = resolved === "dark" ? "#10141c" : "#efeeea";
+  if (meta) meta.content = resolved === "dark" ? "#131316" : "#ffffff";
   listeners.forEach((fn) => fn(resolved, mode));
   return resolved;
 }

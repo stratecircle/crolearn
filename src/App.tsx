@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import AppShell, { StageShell } from "./ui/AppShell";
-import DashboardPage from "./pages/DashboardPage";
+import HomePage from "./pages/HomePage";
+import CoursePage from "./pages/CoursePage";
 import LessonPage from "./pages/LessonPage";
 import ReviewPage from "./pages/ReviewPage";
 import NotebookPage from "./pages/NotebookPage";
@@ -23,7 +24,8 @@ export default function App() {
         <Route path="/checkpoint/:id" element={<CheckpointPage />} />
       </Route>
       <Route element={<AppShell />}>
-        <Route path="/" element={<DashboardPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/course" element={<CoursePage />} />
         <Route path="/review" element={<ReviewPage />} />
         <Route path="/practice" element={<PracticePage />} />
         <Route path="/notes" element={<NotebookPage />} />
