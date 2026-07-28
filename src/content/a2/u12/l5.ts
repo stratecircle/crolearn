@@ -20,12 +20,12 @@ export const a2u12l5: Lesson = {
   grammarTags: ["job-interview", "vi-register", "instrumental-singular"],
   estMinutes: 20,
   vocab: [
-    { id: "a2u12.zivotopis", hr: "životopis", en: "CV / résumé", pos: "noun", gender: "m", icon: "📄", exampleHr: "Moj životopis je nov i dobar.", exampleEn: "My CV is new and good." },
-    { id: "a2u12.razgovor-za-posao", hr: "razgovor za posao", en: "job interview (chunk)", pos: "phrase", icon: "🗣️", exampleHr: "Sutra imam razgovor za posao.", exampleEn: "Tomorrow I have a job interview.", tags: ["chunk"] },
-    { id: "a2u12.iskustvo", hr: "iskustvo", en: "experience", pos: "noun", gender: "n", icon: "🎖️", exampleHr: "Imam iskustvo.", exampleEn: "I have experience." },
-    { id: "a2u12.prilika", hr: "prilika", en: "opportunity / chance", pos: "noun", gender: "f", icon: "🚪", exampleHr: "Ovo je velika prilika.", exampleEn: "This is a big opportunity." },
-    { id: "a2u12.zaposliti-se", hr: "zaposliti se", en: "to get hired (zaposlim se)", pos: "verb", icon: "🤝", exampleHr: "Tom se želi zaposliti u Zagrebu.", exampleEn: "Tom wants to get hired in Zagreb." },
-    { id: "a2u12.javiti-se", hr: "javiti se", en: "to get in touch (chunk: Javit ću se!)", pos: "phrase", icon: "📞", exampleHr: "Hvala na razgovoru — javit ću se!", exampleEn: "Thanks for the interview — I'll be in touch!", tags: ["chunk"] },
+    { id: "a2u12.zivotopis", image: "/img/zivotopis.png", hr: "životopis", en: "CV / résumé", pos: "noun", gender: "m", icon: "📄", exampleHr: "Moj životopis je nov i dobar.", exampleEn: "My CV is new and good." },
+    { id: "a2u12.razgovor-za-posao", image: "/img/razgovorzaposao.png", hr: "razgovor za posao", en: "job interview (chunk)", pos: "phrase", icon: "🗣️", exampleHr: "Sutra imam razgovor za posao.", exampleEn: "Tomorrow I have a job interview.", tags: ["chunk"] },
+    { id: "a2u12.iskustvo", image: "/img/iskustvo.png", hr: "iskustvo", en: "experience", pos: "noun", gender: "n", icon: "🎖️", exampleHr: "Imam iskustvo.", exampleEn: "I have experience." },
+    { id: "a2u12.prilika", image: "/img/prilika.png", hr: "prilika", en: "opportunity / chance", pos: "noun", gender: "f", icon: "🚪", exampleHr: "Ovo je velika prilika.", exampleEn: "This is a big opportunity." },
+    { id: "a2u12.zaposliti-se", image: "/img/zaposlitise.png", hr: "zaposliti se", en: "to get hired (zaposlim se)", pos: "verb", icon: "🤝", exampleHr: "Tom se želi zaposliti u Zagrebu.", exampleEn: "Tom wants to get hired in Zagreb." },
+    { id: "a2u12.javiti-se", image: "/img/javitise.png", hr: "javiti se", en: "to get in touch (chunk: Javit ću se!)", pos: "phrase", icon: "📞", exampleHr: "Hvala na razgovoru — javit ću se!", exampleEn: "Thanks for the interview — I'll be in touch!", tags: ["chunk"] },
   ],
   slides: [
     {

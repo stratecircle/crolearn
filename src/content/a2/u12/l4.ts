@@ -21,12 +21,12 @@ export const a2u12l4: Lesson = {
   grammarTags: ["studirati-acc", "university", "chunk-poloziti-ispit"],
   estMinutes: 18,
   vocab: [
-    { id: "a2u12.ispit", hr: "ispit", en: "exam", pos: "noun", gender: "m", icon: "📝", exampleHr: "Sutra imam ispit.", exampleEn: "Tomorrow I have an exam." },
-    { id: "a2u12.predavanje", hr: "predavanje", en: "lecture", pos: "noun", gender: "n", icon: "🎓", exampleHr: "Predavanje počinje u devet.", exampleEn: "The lecture starts at nine." },
-    { id: "a2u12.zadatak", hr: "zadatak", en: "task / assignment", pos: "noun", gender: "m", icon: "📋", exampleHr: "Zadatak nije težak.", exampleEn: "The assignment isn't hard." },
-    { id: "a2u12.knjiznica", hr: "knjižnica", en: "library", pos: "noun", gender: "f", icon: "📚", exampleHr: "Učim u knjižnici.", exampleEn: "I study in the library." },
-    { id: "a2u12.studirati", hr: "studirati", en: "to study (a major) (studiram + ACC)", pos: "verb", icon: "🎓", exampleHr: "Ana studira medicinu.", exampleEn: "Ana studies medicine." },
-    { id: "a2u12.poloziti", hr: "položiti ispit", en: "to pass an exam (chunk: položim)", pos: "phrase", icon: "✅", exampleHr: "Moram položiti ispit.", exampleEn: "I have to pass the exam.", tags: ["chunk"] },
+    { id: "a2u12.ispit", image: "/img/ispit.png", hr: "ispit", en: "exam", pos: "noun", gender: "m", icon: "📝", exampleHr: "Sutra imam ispit.", exampleEn: "Tomorrow I have an exam." },
+    { id: "a2u12.predavanje", image: "/img/predavanje.png", hr: "predavanje", en: "lecture", pos: "noun", gender: "n", icon: "🎓", exampleHr: "Predavanje počinje u devet.", exampleEn: "The lecture starts at nine." },
+    { id: "a2u12.zadatak", image: "/img/zadatak.png", hr: "zadatak", en: "task / assignment", pos: "noun", gender: "m", icon: "📋", exampleHr: "Zadatak nije težak.", exampleEn: "The assignment isn't hard." },
+    { id: "a2u12.knjiznica", image: "/img/knjiznica.png", hr: "knjižnica", en: "library", pos: "noun", gender: "f", icon: "📚", exampleHr: "Učim u knjižnici.", exampleEn: "I study in the library." },
+    { id: "a2u12.studirati", image: "/img/studirati.png", hr: "studirati", en: "to study (a major) (studiram + ACC)", pos: "verb", icon: "🎓", exampleHr: "Ana studira medicinu.", exampleEn: "Ana studies medicine." },
+    { id: "a2u12.poloziti", image: "/img/poloziti.png", hr: "položiti ispit", en: "to pass an exam (chunk: položim)", pos: "phrase", icon: "✅", exampleHr: "Moram položiti ispit.", exampleEn: "I have to pass the exam.", tags: ["chunk"] },
   ],
   slides: [
     {

@@ -20,13 +20,13 @@ export const a2u11l3: Lesson = {
   grammarTags: ["dative-experiencer", "treba-mi", "symptoms"],
   estMinutes: 18,
   vocab: [
-    { id: "a2u11.prehlada", hr: "prehlada", en: "a cold", pos: "noun", gender: "f", icon: "🤧", exampleHr: "Imam prehladu.", exampleEn: "I have a cold." },
-    { id: "a2u11.kasalj", hr: "kašalj", en: "cough", pos: "noun", gender: "m", icon: "😮‍💨", exampleHr: "Imam kašalj i temperaturu.", exampleEn: "I have a cough and a fever." },
-    { id: "a2u11.temperatura", hr: "temperatura", en: "fever / temperature", pos: "noun", gender: "f", icon: "🌡️", exampleHr: "Imam temperaturu.", exampleEn: "I have a fever." },
-    { id: "a2u11.glavobolja", hr: "glavobolja", en: "headache", pos: "noun", gender: "f", icon: "🤯", exampleHr: "Glavobolja je jaka.", exampleEn: "The headache is strong." },
-    { id: "a2u11.muka", hr: "muka", en: "nausea (chunk: muka mi je)", pos: "noun", gender: "f", icon: "🤢", exampleHr: "Muka mi je.", exampleEn: "I feel sick / nauseous." },
-    { id: "a2u11.slab", hr: "slab", en: "weak", pos: "adj", icon: "🫩", exampleHr: "Slab sam i umoran.", exampleEn: "I'm weak and tired." },
-    { id: "a2u11.pomoc", hr: "pomoć", en: "help (a feminine -i noun)", pos: "noun", gender: "f", icon: "🆘", exampleHr: "Treba mi pomoć.", exampleEn: "I need help." },
+    { id: "a2u11.prehlada", image: "/img/prehlada.png", hr: "prehlada", en: "a cold", pos: "noun", gender: "f", icon: "🤧", exampleHr: "Imam prehladu.", exampleEn: "I have a cold." },
+    { id: "a2u11.kasalj", image: "/img/kasalj.png", hr: "kašalj", en: "cough", pos: "noun", gender: "m", icon: "😮‍💨", exampleHr: "Imam kašalj i temperaturu.", exampleEn: "I have a cough and a fever." },
+    { id: "a2u11.temperatura", image: "/img/temperatura.png", hr: "temperatura", en: "fever / temperature", pos: "noun", gender: "f", icon: "🌡️", exampleHr: "Imam temperaturu.", exampleEn: "I have a fever." },
+    { id: "a2u11.glavobolja", image: "/img/glavobolja.png", hr: "glavobolja", en: "headache", pos: "noun", gender: "f", icon: "🤯", exampleHr: "Glavobolja je jaka.", exampleEn: "The headache is strong." },
+    { id: "a2u11.muka", image: "/img/muka.png", hr: "muka", en: "nausea (chunk: muka mi je)", pos: "noun", gender: "f", icon: "🤢", exampleHr: "Muka mi je.", exampleEn: "I feel sick / nauseous." },
+    { id: "a2u11.slab", image: "/img/slab.png", hr: "slab", en: "weak", pos: "adj", icon: "🫩", exampleHr: "Slab sam i umoran.", exampleEn: "I'm weak and tired." },
+    { id: "a2u11.pomoc", image: "/img/pomoc.png", hr: "pomoć", en: "help (a feminine -i noun)", pos: "noun", gender: "f", icon: "🆘", exampleHr: "Treba mi pomoć.", exampleEn: "I need help." },
   ],
   slides: [
     {

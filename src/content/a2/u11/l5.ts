@@ -20,13 +20,13 @@ export const a2u11l5: Lesson = {
   grammarTags: ["habits", "modals", "future-1"],
   estMinutes: 20,
   vocab: [
-    { id: "a2u11.zdravlje", hr: "zdravlje", en: "health", pos: "noun", gender: "n", icon: "💚", exampleHr: "Brinem se o zdravlju.", exampleEn: "I take care of my health." },
-    { id: "a2u11.vjezbati", hr: "vježbati", en: "to exercise (vježbam)", pos: "verb", icon: "🏋️", exampleHr: "Od sutra ću vježbati!", exampleEn: "From tomorrow I'll exercise!" },
-    { id: "a2u11.trcati", hr: "trčati", en: "to run (trčim)", pos: "verb", icon: "🏃", exampleHr: "Trčim svaki dan.", exampleEn: "I run every day." },
-    { id: "a2u11.hodati", hr: "hodati", en: "to walk (hodam)", pos: "verb", icon: "🚶", exampleHr: "Hodam na posao.", exampleEn: "I walk to work." },
-    { id: "a2u11.san", hr: "san", en: "sleep (GEN: sna)", pos: "noun", gender: "m", icon: "😴", exampleHr: "Treba ti san!", exampleEn: "You need sleep!" },
-    { id: "a2u11.dovoljno", hr: "dovoljno", en: "enough", pos: "adv", icon: "⚖️", exampleHr: "Dovoljno spavam.", exampleEn: "I sleep enough." },
-    { id: "a2u11.brinuti-se", hr: "brinuti se", en: "to take care (brinem se o + LOC)", pos: "verb", icon: "🫶", exampleHr: "Moraš se brinuti o zdravlju.", exampleEn: "You have to take care of your health." },
+    { id: "a2u11.zdravlje", image: "/img/zdravlje.png", hr: "zdravlje", en: "health", pos: "noun", gender: "n", icon: "💚", exampleHr: "Brinem se o zdravlju.", exampleEn: "I take care of my health." },
+    { id: "a2u11.vjezbati", image: "/img/vjezbati.png", hr: "vježbati", en: "to exercise (vježbam)", pos: "verb", icon: "🏋️", exampleHr: "Od sutra ću vježbati!", exampleEn: "From tomorrow I'll exercise!" },
+    { id: "a2u11.trcati", image: "/img/trcati.png", hr: "trčati", en: "to run (trčim)", pos: "verb", icon: "🏃", exampleHr: "Trčim svaki dan.", exampleEn: "I run every day." },
+    { id: "a2u11.hodati", image: "/img/hodati.png", hr: "hodati", en: "to walk (hodam)", pos: "verb", icon: "🚶", exampleHr: "Hodam na posao.", exampleEn: "I walk to work." },
+    { id: "a2u11.san", image: "/img/san.png", hr: "san", en: "sleep (GEN: sna)", pos: "noun", gender: "m", icon: "😴", exampleHr: "Treba ti san!", exampleEn: "You need sleep!" },
+    { id: "a2u11.dovoljno", image: "/img/dovoljno.png", hr: "dovoljno", en: "enough", pos: "adv", icon: "⚖️", exampleHr: "Dovoljno spavam.", exampleEn: "I sleep enough." },
+    { id: "a2u11.brinuti-se", image: "/img/brinutise.png", hr: "brinuti se", en: "to take care (brinem se o + LOC)", pos: "verb", icon: "🫶", exampleHr: "Moraš se brinuti o zdravlju.", exampleEn: "You have to take care of your health." },
   ],
   slides: [
     {

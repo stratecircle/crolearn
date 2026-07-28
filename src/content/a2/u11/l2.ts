@@ -19,14 +19,14 @@ export const a2u11l2: Lesson = {
   grammarTags: ["modals", "modal-infinitive", "verb-moci"],
   estMinutes: 18,
   vocab: [
-    { id: "a2u11.morati", hr: "morati", en: "must / have to (moram)", pos: "verb", icon: "❗", exampleHr: "Moram ležati.", exampleEn: "I have to lie down." },
-    { id: "a2u11.moci", hr: "moći", en: "can / be able (mogu, možeš… mogu)", pos: "verb", icon: "💪", exampleHr: "Ne mogu spavati.", exampleEn: "I can't sleep." },
-    { id: "a2u11.smjeti", hr: "smjeti", en: "may / be allowed (smijem)", pos: "verb", icon: "🚦", exampleHr: "Ne smiješ piti kavu.", exampleEn: "You mustn't drink coffee." },
-    { id: "a2u11.trebati", hr: "trebati", en: "to need / should (trebam)", pos: "verb", icon: "🧭", exampleHr: "Trebam spavati.", exampleEn: "I need to sleep." },
-    { id: "a2u11.lezati", hr: "ležati", en: "to lie (down) (ležim)", pos: "verb", icon: "🛌", exampleHr: "Bolestan sam — ležim.", exampleEn: "I'm ill — I'm lying down." },
-    { id: "a2u11.ostati", hr: "ostati", en: "to stay (ostanem)", pos: "verb", icon: "🏠", exampleHr: "Moram ostati kod kuće.", exampleEn: "I have to stay at home." },
-    { id: "a2u11.bolestan", hr: "bolestan", en: "ill / sick (f: bolesna)", pos: "adj", icon: "🤒", exampleHr: "Tom je bolestan.", exampleEn: "Tom is ill." },
-    { id: "a2u11.zdrav", hr: "zdrav", en: "healthy", pos: "adj", icon: "💚", exampleHr: "Ana je zdrava.", exampleEn: "Ana is healthy." },
+    { id: "a2u11.morati", image: "/img/morati.png", hr: "morati", en: "must / have to (moram)", pos: "verb", icon: "❗", exampleHr: "Moram ležati.", exampleEn: "I have to lie down." },
+    { id: "a2u11.moci", image: "/img/moci.png", hr: "moći", en: "can / be able (mogu, možeš… mogu)", pos: "verb", icon: "💪", exampleHr: "Ne mogu spavati.", exampleEn: "I can't sleep." },
+    { id: "a2u11.smjeti", image: "/img/smjeti.png", hr: "smjeti", en: "may / be allowed (smijem)", pos: "verb", icon: "🚦", exampleHr: "Ne smiješ piti kavu.", exampleEn: "You mustn't drink coffee." },
+    { id: "a2u11.trebati", image: "/img/trebati.png", hr: "trebati", en: "to need / should (trebam)", pos: "verb", icon: "🧭", exampleHr: "Trebam spavati.", exampleEn: "I need to sleep." },
+    { id: "a2u11.lezati", image: "/img/lezati.png", hr: "ležati", en: "to lie (down) (ležim)", pos: "verb", icon: "🛌", exampleHr: "Bolestan sam — ležim.", exampleEn: "I'm ill — I'm lying down." },
+    { id: "a2u11.ostati", image: "/img/ostati.png", hr: "ostati", en: "to stay (ostanem)", pos: "verb", icon: "🏠", exampleHr: "Moram ostati kod kuće.", exampleEn: "I have to stay at home." },
+    { id: "a2u11.bolestan", image: "/img/bolestan.png", hr: "bolestan", en: "ill / sick (f: bolesna)", pos: "adj", icon: "🤒", exampleHr: "Tom je bolestan.", exampleEn: "Tom is ill." },
+    { id: "a2u11.zdrav", image: "/img/zdrav.png", hr: "zdrav", en: "healthy", pos: "adj", icon: "💚", exampleHr: "Ana je zdrava.", exampleEn: "Ana is healthy." },
   ],
   slides: [
     {

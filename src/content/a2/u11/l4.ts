@@ -22,12 +22,12 @@ export const a2u11l4: Lesson = {
   grammarTags: ["doctor-visit", "genitive-prepositions", "modals"],
   estMinutes: 18,
   vocab: [
-    { id: "a2u11.ljekarna", hr: "ljekarna", en: "pharmacy", pos: "noun", gender: "f", icon: "💊", exampleHr: "Ljekarna je blizu kolodvora.", exampleEn: "The pharmacy is near the station." },
-    { id: "a2u11.lijek", hr: "lijek", en: "medicine", pos: "noun", gender: "m", icon: "💊", exampleHr: "Ne mogu kupiti lijek bez recepta.", exampleEn: "I can't buy the medicine without a prescription." },
-    { id: "a2u11.recept", hr: "recept", en: "prescription", pos: "noun", gender: "m", icon: "📄", exampleHr: "Izvolite recept.", exampleEn: "Here is the prescription." },
-    { id: "a2u11.pregled", hr: "pregled", en: "examination / check-up", pos: "noun", gender: "m", icon: "🩺", exampleHr: "Pregled je u devet sati.", exampleEn: "The examination is at nine." },
-    { id: "a2u11.cekaonica", hr: "čekaonica", en: "waiting room", pos: "noun", gender: "f", icon: "🪑", exampleHr: "Čekaonica je puna.", exampleEn: "The waiting room is full." },
-    { id: "a2u11.tableta", hr: "tableta", en: "pill / tablet", pos: "noun", gender: "f", icon: "💊", exampleHr: "Morate uzeti tabletu dva puta na dan.", exampleEn: "You must take a pill twice a day." },
+    { id: "a2u11.ljekarna", image: "/img/ljekarna.png", hr: "ljekarna", en: "pharmacy", pos: "noun", gender: "f", icon: "💊", exampleHr: "Ljekarna je blizu kolodvora.", exampleEn: "The pharmacy is near the station." },
+    { id: "a2u11.lijek", image: "/img/lijek.png", hr: "lijek", en: "medicine", pos: "noun", gender: "m", icon: "💊", exampleHr: "Ne mogu kupiti lijek bez recepta.", exampleEn: "I can't buy the medicine without a prescription." },
+    { id: "a2u11.recept", image: "/img/recept.png", hr: "recept", en: "prescription", pos: "noun", gender: "m", icon: "📄", exampleHr: "Izvolite recept.", exampleEn: "Here is the prescription." },
+    { id: "a2u11.pregled", image: "/img/pregled.png", hr: "pregled", en: "examination / check-up", pos: "noun", gender: "m", icon: "🩺", exampleHr: "Pregled je u devet sati.", exampleEn: "The examination is at nine." },
+    { id: "a2u11.cekaonica", image: "/img/cekaonica.png", hr: "čekaonica", en: "waiting room", pos: "noun", gender: "f", icon: "🪑", exampleHr: "Čekaonica je puna.", exampleEn: "The waiting room is full." },
+    { id: "a2u11.tableta", image: "/img/tableta.png", hr: "tableta", en: "pill / tablet", pos: "noun", gender: "f", icon: "💊", exampleHr: "Morate uzeti tabletu dva puta na dan.", exampleEn: "You must take a pill twice a day." },
   ],
   slides: [
     {

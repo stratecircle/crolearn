@@ -20,11 +20,11 @@ export const a2u12l2: Lesson = {
   grammarTags: ["instrumental-means", "bare-instrumental", "transport"],
   estMinutes: 18,
   vocab: [
-    { id: "a2u12.bicikl", hr: "bicikl", en: "bicycle", pos: "noun", gender: "m", icon: "🚲", exampleHr: "Idem na posao biciklom.", exampleEn: "I go to work by bike." },
-    { id: "a2u12.racunalo", hr: "računalo", en: "computer", pos: "noun", gender: "n", icon: "💻", exampleHr: "Radim računalom.", exampleEn: "I work with a computer." },
-    { id: "a2u12.olovka", hr: "olovka", en: "pencil", pos: "noun", gender: "f", icon: "✏️", exampleHr: "Pišem olovkom.", exampleEn: "I write with a pencil." },
-    { id: "a2u12.mobitel", hr: "mobitel", en: "mobile phone", pos: "noun", gender: "m", icon: "📱", exampleHr: "Plaćam mobitelom.", exampleEn: "I pay with my phone." },
-    { id: "a2u12.pjesice", hr: "pješice", en: "on foot (an adverb — no case!)", pos: "adv", icon: "🚶", exampleHr: "Ana ide pješice.", exampleEn: "Ana goes on foot." },
+    { id: "a2u12.bicikl", image: "/img/bicikl.png", hr: "bicikl", en: "bicycle", pos: "noun", gender: "m", icon: "🚲", exampleHr: "Idem na posao biciklom.", exampleEn: "I go to work by bike." },
+    { id: "a2u12.racunalo", image: "/img/racunalo.png", hr: "računalo", en: "computer", pos: "noun", gender: "n", icon: "💻", exampleHr: "Radim računalom.", exampleEn: "I work with a computer." },
+    { id: "a2u12.olovka", image: "/img/olovka.png", hr: "olovka", en: "pencil", pos: "noun", gender: "f", icon: "✏️", exampleHr: "Pišem olovkom.", exampleEn: "I write with a pencil." },
+    { id: "a2u12.mobitel", image: "/img/mobitel.png", hr: "mobitel", en: "mobile phone", pos: "noun", gender: "m", icon: "📱", exampleHr: "Plaćam mobitelom.", exampleEn: "I pay with my phone." },
+    { id: "a2u12.pjesice", image: "/img/pjesice.png", hr: "pješice", en: "on foot (an adverb — no case!)", pos: "adv", icon: "🚶", exampleHr: "Ana ide pješice.", exampleEn: "Ana goes on foot." },
     { id: "a2u12.stanica", image: "/img/stanica.png", hr: "stanica", en: "(bus/tram) stop", pos: "noun", gender: "f", icon: "🚏", exampleHr: "Čekam autobus na stanici.", exampleEn: "I'm waiting for the bus at the stop." },
   ],
   slides: [
