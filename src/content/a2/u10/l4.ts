@@ -21,14 +21,14 @@ export const a2u10l4: Lesson = {
   grammarTags: ["present-tense-ujem", "living-situations", "perfekt-se"],
   estMinutes: 18,
   vocab: [
-    { id: "a2u10.stanovati", hr: "stanovati", en: "to reside / live somewhere (stanujem)", pos: "verb", icon: "🏠", exampleHr: "Stanujem u stanu u centru grada.", exampleEn: "I live in a flat in the city centre." },
-    { id: "a2u10.iznajmiti", hr: "iznajmiti", en: "to rent (iznajmim)", pos: "verb", icon: "🔑", exampleHr: "Ana želi iznajmiti sobu.", exampleEn: "Ana wants to rent a room." },
-    { id: "a2u10.najam", hr: "najam", en: "rent / lease", pos: "noun", gender: "m", icon: "📄", exampleHr: "Stan je za najam.", exampleEn: "The flat is for rent." },
-    { id: "a2u10.stanarina", hr: "stanarina", en: "(monthly) rent", pos: "noun", gender: "f", icon: "💶", exampleHr: "Kolika je stanarina?", exampleEn: "How much is the rent?" },
-    { id: "a2u10.cimer", hr: "cimer", en: "flatmate (m)", pos: "noun", gender: "m", icon: "🧑‍🤝‍🧑", exampleHr: "Imam cimera.", exampleEn: "I have a flatmate." },
-    { id: "a2u10.cimerica", hr: "cimerica", en: "flatmate (f)", pos: "noun", gender: "f", icon: "👭", exampleHr: "Moja cimerica je studentica.", exampleEn: "My flatmate is a student." },
-    { id: "a2u10.vlasnik", hr: "vlasnik", en: "landlord / owner", pos: "noun", gender: "m", icon: "🧔‍♂️", exampleHr: "Vlasnik je dobar čovjek.", exampleEn: "The landlord is a good man." },
-    { id: "a2u10.preseliti-se", hr: "preseliti se", en: "to move house (preselim se; preselio se)", pos: "verb", icon: "📦", exampleHr: "Marko se preselio u Split.", exampleEn: "Marko moved to Split." },
+    { id: "a2u10.stanovati", image: "/img/stanovati.png", hr: "stanovati", en: "to reside / live somewhere (stanujem)", pos: "verb", icon: "🏠", exampleHr: "Stanujem u stanu u centru grada.", exampleEn: "I live in a flat in the city centre." },
+    { id: "a2u10.iznajmiti", image: "/img/iznajmiti.png", hr: "iznajmiti", en: "to rent (iznajmim)", pos: "verb", icon: "🔑", exampleHr: "Ana želi iznajmiti sobu.", exampleEn: "Ana wants to rent a room." },
+    { id: "a2u10.najam", image: "/img/najam.png", hr: "najam", en: "rent / lease", pos: "noun", gender: "m", icon: "📄", exampleHr: "Stan je za najam.", exampleEn: "The flat is for rent." },
+    { id: "a2u10.stanarina", image: "/img/stanarina.png", hr: "stanarina", en: "(monthly) rent", pos: "noun", gender: "f", icon: "💶", exampleHr: "Kolika je stanarina?", exampleEn: "How much is the rent?" },
+    { id: "a2u10.cimer", image: "/img/cimer.png", hr: "cimer", en: "flatmate (m)", pos: "noun", gender: "m", icon: "🧑‍🤝‍🧑", exampleHr: "Imam cimera.", exampleEn: "I have a flatmate." },
+    { id: "a2u10.cimerica", image: "/img/cimerica.png", hr: "cimerica", en: "flatmate (f)", pos: "noun", gender: "f", icon: "👭", exampleHr: "Moja cimerica je studentica.", exampleEn: "My flatmate is a student." },
+    { id: "a2u10.vlasnik", image: "/img/vlasnik.png", hr: "vlasnik", en: "landlord / owner", pos: "noun", gender: "m", icon: "🧔‍♂️", exampleHr: "Vlasnik je dobar čovjek.", exampleEn: "The landlord is a good man." },
+    { id: "a2u10.preseliti-se", image: "/img/preselitise.png", hr: "preseliti se", en: "to move house (preselim se; preselio se)", pos: "verb", icon: "📦", exampleHr: "Marko se preselio u Split.", exampleEn: "Marko moved to Split." },
   ],
   slides: [
     {

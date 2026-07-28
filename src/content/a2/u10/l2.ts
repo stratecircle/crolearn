@@ -20,12 +20,12 @@ export const a2u10l2: Lesson = {
   grammarTags: ["svidati-se", "dative-prepositions", "dative-singular"],
   estMinutes: 18,
   vocab: [
-    { id: "a2u10.svidati-se", hr: "sviđati se", en: "to be pleasing (sviđa se) — how Croatian says “like”", pos: "verb", icon: "❤️", exampleHr: "Sviđa mi se tvoj stan.", exampleEn: "I like your flat." },
-    { id: "a2u10.ulaz", hr: "ulaz", en: "entrance", pos: "noun", gender: "m", icon: "🚪", exampleHr: "Ulaz je velik.", exampleEn: "The entrance is big." },
-    { id: "a2u10.dizalo", hr: "dizalo", en: "lift / elevator", pos: "noun", gender: "n", icon: "🛗", exampleHr: "Dizalo ne radi.", exampleEn: "The lift isn't working." },
-    { id: "a2u10.prozor", hr: "prozor", en: "window", pos: "noun", gender: "m", icon: "🪟", exampleHr: "Prozor je velik i nov.", exampleEn: "The window is big and new." },
-    { id: "a2u10.vrata", hr: "vrata", en: "door (a plural-only noun!)", pos: "noun", gender: "n", icon: "🚪", exampleHr: "Vrata su velika.", exampleEn: "The door is big." },
-    { id: "a2u10.balkon", hr: "balkon", en: "balcony", pos: "noun", gender: "m", icon: "🌇", exampleHr: "Sviđa mi se balkon.", exampleEn: "I like the balcony." },
+    { id: "a2u10.svidati-se", image: "/img/svidatise.png", hr: "sviđati se", en: "to be pleasing (sviđa se) — how Croatian says “like”", pos: "verb", icon: "❤️", exampleHr: "Sviđa mi se tvoj stan.", exampleEn: "I like your flat." },
+    { id: "a2u10.ulaz", image: "/img/ulaz.png", hr: "ulaz", en: "entrance", pos: "noun", gender: "m", icon: "🚪", exampleHr: "Ulaz je velik.", exampleEn: "The entrance is big." },
+    { id: "a2u10.dizalo", image: "/img/dizalo.png", hr: "dizalo", en: "lift / elevator", pos: "noun", gender: "n", icon: "🛗", exampleHr: "Dizalo ne radi.", exampleEn: "The lift isn't working." },
+    { id: "a2u10.prozor", image: "/img/prozor.png", hr: "prozor", en: "window", pos: "noun", gender: "m", icon: "🪟", exampleHr: "Prozor je velik i nov.", exampleEn: "The window is big and new." },
+    { id: "a2u10.vrata", image: "/img/vrata.png", hr: "vrata", en: "door (a plural-only noun!)", pos: "noun", gender: "n", icon: "🚪", exampleHr: "Vrata su velika.", exampleEn: "The door is big." },
+    { id: "a2u10.balkon", image: "/img/balkon.png", hr: "balkon", en: "balcony", pos: "noun", gender: "m", icon: "🌇", exampleHr: "Sviđa mi se balkon.", exampleEn: "I like the balcony." },
   ],
   slides: [
     {

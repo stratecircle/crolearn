@@ -20,14 +20,14 @@ export const a2u10l3: Lesson = {
   grammarTags: ["verb-valence", "acc-dat-contrast", "household-verbs"],
   estMinutes: 18,
   vocab: [
-    { id: "a2u10.cistiti", hr: "čistiti", en: "to clean (čistim + ACC)", pos: "verb", icon: "🧽", exampleHr: "Čistim kuhinju svaki dan.", exampleEn: "I clean the kitchen every day." },
-    { id: "a2u10.pospremati", hr: "pospremati", en: "to tidy (pospremam + ACC)", pos: "verb", icon: "🧹", exampleHr: "Pospremam stan.", exampleEn: "I'm tidying the flat." },
-    { id: "a2u10.prati", hr: "prati", en: "to wash (perem! + ACC)", pos: "verb", icon: "🫧", exampleHr: "Perem suđe navečer.", exampleEn: "I wash the dishes in the evening." },
-    { id: "a2u10.sude", hr: "suđe", en: "dishes", pos: "noun", gender: "n", icon: "🍽️", exampleHr: "Suđe je u kuhinji.", exampleEn: "The dishes are in the kitchen." },
-    { id: "a2u10.rublje", hr: "rublje", en: "laundry", pos: "noun", gender: "n", icon: "👕", exampleHr: "Perem rublje.", exampleEn: "I'm washing the laundry." },
-    { id: "a2u10.smece", hr: "smeće", en: "rubbish / garbage", pos: "noun", gender: "n", icon: "🗑️", exampleHr: "Gdje je smeće?", exampleEn: "Where is the rubbish?" },
-    { id: "a2u10.pod", hr: "pod", en: "floor (the surface)", pos: "noun", gender: "m", icon: "🪵", exampleHr: "Perem pod.", exampleEn: "I'm washing the floor." },
-    { id: "a2u10.kuhinja", hr: "kuhinja", en: "kitchen", pos: "noun", gender: "f", icon: "🍳", exampleHr: "Kuhinja je mala.", exampleEn: "The kitchen is small." },
+    { id: "a2u10.cistiti", image: "/img/cistiti.png", hr: "čistiti", en: "to clean (čistim + ACC)", pos: "verb", icon: "🧽", exampleHr: "Čistim kuhinju svaki dan.", exampleEn: "I clean the kitchen every day." },
+    { id: "a2u10.pospremati", image: "/img/pospremati.png", hr: "pospremati", en: "to tidy (pospremam + ACC)", pos: "verb", icon: "🧹", exampleHr: "Pospremam stan.", exampleEn: "I'm tidying the flat." },
+    { id: "a2u10.prati", image: "/img/prati.png", hr: "prati", en: "to wash (perem! + ACC)", pos: "verb", icon: "🫧", exampleHr: "Perem suđe navečer.", exampleEn: "I wash the dishes in the evening." },
+    { id: "a2u10.sude", image: "/img/sude.png", hr: "suđe", en: "dishes", pos: "noun", gender: "n", icon: "🍽️", exampleHr: "Suđe je u kuhinji.", exampleEn: "The dishes are in the kitchen." },
+    { id: "a2u10.rublje", image: "/img/rublje.png", hr: "rublje", en: "laundry", pos: "noun", gender: "n", icon: "👕", exampleHr: "Perem rublje.", exampleEn: "I'm washing the laundry." },
+    { id: "a2u10.smece", image: "/img/smece.png", hr: "smeće", en: "rubbish / garbage", pos: "noun", gender: "n", icon: "🗑️", exampleHr: "Gdje je smeće?", exampleEn: "Where is the rubbish?" },
+    { id: "a2u10.pod", image: "/img/pod.png", hr: "pod", en: "floor (the surface)", pos: "noun", gender: "m", icon: "🪵", exampleHr: "Perem pod.", exampleEn: "I'm washing the floor." },
+    { id: "a2u10.kuhinja", image: "/img/kuhinja.png", hr: "kuhinja", en: "kitchen", pos: "noun", gender: "f", icon: "🍳", exampleHr: "Kuhinja je mala.", exampleEn: "The kitchen is small." },
   ],
   slides: [
     {

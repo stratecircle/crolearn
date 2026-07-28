@@ -20,14 +20,14 @@ export const a2u10l1: Lesson = {
   grammarTags: ["dative-singular", "dative-verbs", "sibilarization"],
   estMinutes: 18,
   vocab: [
-    { id: "a2u10.susjed", hr: "susjed", en: "neighbour (m)", pos: "noun", gender: "m", icon: "🧔", exampleHr: "Tom pomaže susjedu.", exampleEn: "Tom helps the neighbour." },
-    { id: "a2u10.susjeda", hr: "susjeda", en: "neighbour (f)", pos: "noun", gender: "f", icon: "👩", exampleHr: "Susjeda je jako dobra.", exampleEn: "The neighbour is very nice." },
-    { id: "a2u10.poklon", hr: "poklon", en: "present / gift", pos: "noun", gender: "m", icon: "🎁", exampleHr: "Dajem mami poklon.", exampleEn: "I'm giving mum a present." },
-    { id: "a2u10.pismo", hr: "pismo", en: "letter", pos: "noun", gender: "n", icon: "✉️", exampleHr: "Poslala sam baki pismo.", exampleEn: "I sent grandma a letter." },
-    { id: "a2u10.davati", hr: "davati", en: "to give (dajem)", pos: "verb", icon: "🤲", exampleHr: "Dajem susjedu ključ.", exampleEn: "I'm giving the neighbour the key." },
-    { id: "a2u10.pomagati", hr: "pomagati", en: "to help (pomažem + DAT)", pos: "verb", icon: "🤝", exampleHr: "Pomažem baki.", exampleEn: "I'm helping grandma." },
-    { id: "a2u10.poslati", hr: "poslati", en: "to send (pošaljem; poslao/poslala)", pos: "verb", icon: "📮", exampleHr: "Poslat ću bratu pismo.", exampleEn: "I'll send my brother a letter." },
-    { id: "a2u10.pokazati", hr: "pokazati", en: "to show (pokažem; pokazao/pokazala)", pos: "verb", icon: "👉", exampleHr: "Pokazat ću Ani stan.", exampleEn: "I'll show Ana the flat." },
+    { id: "a2u10.susjed", image: "/img/susjed.png", hr: "susjed", en: "neighbour (m)", pos: "noun", gender: "m", icon: "🧔", exampleHr: "Tom pomaže susjedu.", exampleEn: "Tom helps the neighbour." },
+    { id: "a2u10.susjeda", image: "/img/susjeda.png", hr: "susjeda", en: "neighbour (f)", pos: "noun", gender: "f", icon: "👩", exampleHr: "Susjeda je jako dobra.", exampleEn: "The neighbour is very nice." },
+    { id: "a2u10.poklon", image: "/img/poklon.png", hr: "poklon", en: "present / gift", pos: "noun", gender: "m", icon: "🎁", exampleHr: "Dajem mami poklon.", exampleEn: "I'm giving mum a present." },
+    { id: "a2u10.pismo", image: "/img/pismo.png", hr: "pismo", en: "letter", pos: "noun", gender: "n", icon: "✉️", exampleHr: "Poslala sam baki pismo.", exampleEn: "I sent grandma a letter." },
+    { id: "a2u10.davati", image: "/img/davati.png", hr: "davati", en: "to give (dajem)", pos: "verb", icon: "🤲", exampleHr: "Dajem susjedu ključ.", exampleEn: "I'm giving the neighbour the key." },
+    { id: "a2u10.pomagati", image: "/img/pomagati.png", hr: "pomagati", en: "to help (pomažem + DAT)", pos: "verb", icon: "🤝", exampleHr: "Pomažem baki.", exampleEn: "I'm helping grandma." },
+    { id: "a2u10.poslati", image: "/img/poslati.png", hr: "poslati", en: "to send (pošaljem; poslao/poslala)", pos: "verb", icon: "📮", exampleHr: "Poslat ću bratu pismo.", exampleEn: "I'll send my brother a letter." },
+    { id: "a2u10.pokazati", image: "/img/pokazati.png", hr: "pokazati", en: "to show (pokažem; pokazao/pokazala)", pos: "verb", icon: "👉", exampleHr: "Pokazat ću Ani stan.", exampleEn: "I'll show Ana the flat." },
   ],
   slides: [
     {
