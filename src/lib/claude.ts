@@ -6,7 +6,10 @@
  * Structured outputs use forced tool-choice: the model must call a tool whose
  * input schema is the result shape — robust across SDK versions.
  */
-import Anthropic from "@anthropic-ai/sdk";
+// Type-only: the SDK is ~1.1 MB and only three pages ever touch it, so the
+// value side is pulled in lazily by getClient() below. `import type` erases
+// entirely at build time, which is what keeps it out of the main chunk.
+import type Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
 import { slideSchema } from "@/types/schemas";
 import { isQuizSlide, type QuizSlide } from "@/types/content";
@@ -34,10 +37,17 @@ export function getModel(): string {
   return localStorage.getItem("crolearn.model") ?? "claude-opus-4-8";
 }
 
-function getClient(): Anthropic {
+/**
+ * Async on purpose: this is the single place the Anthropic SDK is actually
+ * instantiated, so making it the lazy-import boundary keeps the SDK out of the
+ * initial bundle. The dynamic import is memoised by the module system, so
+ * repeat calls cost nothing after the first. Every caller was already async.
+ */
+async function getClient(): Promise<Anthropic> {
   const apiKey = getApiKey();
   if (!apiKey) throw new Error("no-api-key");
-  return new Anthropic({ apiKey, dangerouslyAllowBrowser: true });
+  const { default: AnthropicSdk } = await import("@anthropic-ai/sdk");
+  return new AnthropicSdk({ apiKey, dangerouslyAllowBrowser: true });
 }
 
 /* ------------------------------ grading ------------------------------ */
@@ -86,7 +96,7 @@ export async function gradeFreeForm(opts: {
   learnerAnswer: string;
   levelContext: string;
 }): Promise<AiGradeResult> {
-  const client = getClient();
+  const client = await getClient();
   const msg = await client.messages.create({
     model: getModel(),
     max_tokens: 1024,
@@ -145,7 +155,7 @@ export async function generateExercises(opts: {
   levelContext: string;
   count?: number;
 }): Promise<QuizSlide[]> {
-  const client = getClient();
+  const client = await getClient();
   const msg = await client.messages.create({
     model: getModel(),
     max_tokens: 2048,
@@ -228,7 +238,7 @@ export async function proofreadCroatian(opts: {
   items: { where: string; hr: string; en?: string }[];
   levelContext: string;
 }): Promise<ProofreadFinding[]> {
-  const client = getClient();
+  const client = await getClient();
   const list = opts.items
     .map((it) => `- [${it.where}] "${it.hr}"${it.en ? ` (means: ${it.en})` : ""}`)
     .join("\n");
@@ -292,7 +302,7 @@ export async function* streamTutor(opts: {
   /** Optional focus for "Ask about this slide" — the current slide's context. */
   focus?: string;
 }): AsyncGenerator<string> {
-  const client = getClient();
+  const client = await getClient();
   // Course context is the stable, cacheable prefix; the per-slide focus (which
   // changes slide to slide) goes in its own uncached block so it never breaks
   // the course-context cache.
