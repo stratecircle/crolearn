@@ -22,13 +22,13 @@ export const b1u18l2: Lesson = {
   grammarTags: ["conditional-1", "register", "clitics"],
   estMinutes: 20,
   vocab: [
-    { id: "b1u18.tecaj", hr: "tečaj", en: "course", pos: "noun", gender: "m", icon: "📘", exampleHr: "Htio bih upisati tečaj hrvatskog.", exampleEn: "I'd like to enrol in a Croatian course." },
-    { id: "b1u18.prijava", hr: "prijava", en: "application / sign-up form", pos: "noun", gender: "f", icon: "📝", exampleHr: "Gdje je prijava za tečaj?", exampleEn: "Where is the application for the course?" },
-    { id: "b1u18.raspored", hr: "raspored", en: "timetable / schedule", pos: "noun", gender: "m", icon: "📅", exampleHr: "Biste li mi mogli objasniti raspored?", exampleEn: "Could you explain the timetable to me?" },
-    { id: "b1u18.biljeznica", hr: "bilježnica", en: "notebook / exercise book", pos: "noun", gender: "f", icon: "📓", exampleHr: "Zaboravio sam bilježnicu.", exampleEn: "I forgot my notebook." },
-    { id: "b1u18.upisati", hr: "upisati", en: "to enrol / sign up (pf; upišem)", pos: "verb", icon: "✍️", exampleHr: "Želio bih upisati tečaj.", exampleEn: "I'd like to enrol in the course." },
-    { id: "b1u18.objasniti", hr: "objasniti", en: "to explain (pf; objasnim)", pos: "verb", icon: "💬", exampleHr: "Profesor je objasnio raspored.", exampleEn: "The teacher explained the timetable." },
-    { id: "b1u18.ponoviti", hr: "ponoviti", en: "to repeat / revise (pf; ponovim)", pos: "verb", icon: "🔁", exampleHr: "Bi li mi ponovila pitanje?", exampleEn: "Would you repeat the question for me?" },
+    { id: "b1u18.tecaj", image: "/img/tecaj.png", hr: "tečaj", en: "course", pos: "noun", gender: "m", icon: "📘", exampleHr: "Htio bih upisati tečaj hrvatskog.", exampleEn: "I'd like to enrol in a Croatian course." },
+    { id: "b1u18.prijava", image: "/img/prijava.png", hr: "prijava", en: "application / sign-up form", pos: "noun", gender: "f", icon: "📝", exampleHr: "Gdje je prijava za tečaj?", exampleEn: "Where is the application for the course?" },
+    { id: "b1u18.raspored", image: "/img/raspored.png", hr: "raspored", en: "timetable / schedule", pos: "noun", gender: "m", icon: "📅", exampleHr: "Biste li mi mogli objasniti raspored?", exampleEn: "Could you explain the timetable to me?" },
+    { id: "b1u18.biljeznica", image: "/img/biljeznica.png", hr: "bilježnica", en: "notebook / exercise book", pos: "noun", gender: "f", icon: "📓", exampleHr: "Zaboravio sam bilježnicu.", exampleEn: "I forgot my notebook." },
+    { id: "b1u18.upisati", image: "/img/upisati.png", hr: "upisati", en: "to enrol / sign up (pf; upišem)", pos: "verb", icon: "✍️", exampleHr: "Želio bih upisati tečaj.", exampleEn: "I'd like to enrol in the course." },
+    { id: "b1u18.objasniti", image: "/img/objasniti.png", hr: "objasniti", en: "to explain (pf; objasnim)", pos: "verb", icon: "💬", exampleHr: "Profesor je objasnio raspored.", exampleEn: "The teacher explained the timetable." },
+    { id: "b1u18.ponoviti", image: "/img/ponoviti.png", hr: "ponoviti", en: "to repeat / revise (pf; ponovim)", pos: "verb", icon: "🔁", exampleHr: "Bi li mi ponovila pitanje?", exampleEn: "Would you repeat the question for me?" },
   ],
   slides: [
     {

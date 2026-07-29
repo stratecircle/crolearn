@@ -22,14 +22,14 @@ export const b1u18l1: Lesson = {
   grammarTags: ["conditional-1", "clitics"],
   estMinutes: 20,
   vocab: [
-    { id: "b1u18.osnovnaskola", hr: "osnovna škola", en: "primary school", pos: "phrase", icon: "🏫", exampleHr: "Moja sestra ide u osnovnu školu.", exampleEn: "My sister goes to primary school." },
-    { id: "b1u18.srednjaskola", hr: "srednja škola", en: "secondary school / high school", pos: "phrase", icon: "🎒", exampleHr: "Idem u srednju školu.", exampleEn: "I go to secondary school." },
-    { id: "b1u18.sveuciliste", hr: "sveučilište", en: "university (the institution — a fakultet sits inside it)", pos: "noun", gender: "n", icon: "🏛️", exampleHr: "Sveučilište u Zagrebu je veliko.", exampleEn: "The University of Zagreb is big." },
-    { id: "b1u18.razred", hr: "razred", en: "class / year-group (also: classroom)", pos: "noun", gender: "m", icon: "🚪", exampleHr: "U razredu ima dvadeset učenika.", exampleEn: "There are twenty pupils in the class." },
-    { id: "b1u18.ucenik", hr: "učenik", en: "pupil (m; učenica f) — at school, not university", pos: "noun", gender: "m", icon: "🧑‍🎓", exampleHr: "Moj brat je učenik.", exampleEn: "My brother is a pupil." },
-    { id: "b1u18.profesor", hr: "profesor", en: "teacher (secondary/university; profesorica f)", pos: "noun", gender: "m", icon: "👨‍🏫", exampleHr: "Naš profesor je jako dobar.", exampleEn: "Our teacher is very good." },
-    { id: "b1u18.nastava", hr: "nastava", en: "classes / teaching (f, ALWAYS singular)", pos: "noun", gender: "f", icon: "🕘", exampleHr: "Nastava počinje u devet.", exampleEn: "Classes start at nine." },
-    { id: "b1u18.predmet", hr: "predmet", en: "school subject", pos: "noun", gender: "m", icon: "📚", exampleHr: "Koji predmet voliš?", exampleEn: "Which subject do you like?" },
+    { id: "b1u18.osnovnaskola", image: "/img/osnovnaskola.png", hr: "osnovna škola", en: "primary school", pos: "phrase", icon: "🏫", exampleHr: "Moja sestra ide u osnovnu školu.", exampleEn: "My sister goes to primary school." },
+    { id: "b1u18.srednjaskola", image: "/img/srednjaskola.png", hr: "srednja škola", en: "secondary school / high school", pos: "phrase", icon: "🎒", exampleHr: "Idem u srednju školu.", exampleEn: "I go to secondary school." },
+    { id: "b1u18.sveuciliste", image: "/img/sveuciliste.png", hr: "sveučilište", en: "university (the institution — a fakultet sits inside it)", pos: "noun", gender: "n", icon: "🏛️", exampleHr: "Sveučilište u Zagrebu je veliko.", exampleEn: "The University of Zagreb is big." },
+    { id: "b1u18.razred", image: "/img/razred.png", hr: "razred", en: "class / year-group (also: classroom)", pos: "noun", gender: "m", icon: "🚪", exampleHr: "U razredu ima dvadeset učenika.", exampleEn: "There are twenty pupils in the class." },
+    { id: "b1u18.ucenik", image: "/img/ucenik.png", hr: "učenik", en: "pupil (m; učenica f) — at school, not university", pos: "noun", gender: "m", icon: "🧑‍🎓", exampleHr: "Moj brat je učenik.", exampleEn: "My brother is a pupil." },
+    { id: "b1u18.profesor", image: "/img/profesor.png", hr: "profesor", en: "teacher (secondary/university; profesorica f)", pos: "noun", gender: "m", icon: "👨‍🏫", exampleHr: "Naš profesor je jako dobar.", exampleEn: "Our teacher is very good." },
+    { id: "b1u18.nastava", image: "/img/nastava.png", hr: "nastava", en: "classes / teaching (f, ALWAYS singular)", pos: "noun", gender: "f", icon: "🕘", exampleHr: "Nastava počinje u devet.", exampleEn: "Classes start at nine." },
+    { id: "b1u18.predmet", image: "/img/predmet.png", hr: "predmet", en: "school subject", pos: "noun", gender: "m", icon: "📚", exampleHr: "Koji predmet voliš?", exampleEn: "Which subject do you like?" },
   ],
   slides: [
     {

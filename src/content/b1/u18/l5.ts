@@ -33,12 +33,12 @@ export const b1u18l5: Lesson = {
   grammarTags: ["conditional-1", "review", "writing"],
   estMinutes: 23,
   vocab: [
-    { id: "b1u18.obrazovanje", hr: "obrazovanje", en: "education (the whole path, n)", pos: "noun", gender: "n", icon: "🎓", exampleHr: "Obrazovanje je važno.", exampleEn: "Education is important." },
-    { id: "b1u18.stipendija", hr: "stipendija", en: "scholarship", pos: "noun", gender: "f", icon: "💰", exampleHr: "Stipendija je velika prilika.", exampleEn: "A scholarship is a big opportunity." },
-    { id: "b1u18.karijera", hr: "karijera", en: "career (the whole arc of your working life)", pos: "noun", gender: "f", icon: "📈", exampleHr: "Moja karijera počinje u Zagrebu.", exampleEn: "My career starts in Zagreb." },
-    { id: "b1u18.zanimanje", hr: "zanimanje", en: "occupation / profession (the job you trained for, n)", pos: "noun", gender: "n", icon: "🪪", exampleHr: "Koje je tvoje zanimanje?", exampleEn: "What is your occupation?" },
-    { id: "b1u18.marljiv", hr: "marljiv", en: "hardworking / diligent (marljiva, marljivo)", pos: "adj", icon: "🐜", exampleHr: "On je jako marljiv student.", exampleEn: "He is a very diligent student." },
-    { id: "b1u18.strpljiv", hr: "strpljiv", en: "patient (strpljiva, strpljivo)", pos: "adj", icon: "🧘", exampleHr: "Dobar profesor je strpljiv.", exampleEn: "A good teacher is patient." },
+    { id: "b1u18.obrazovanje", image: "/img/obrazovanje.png", hr: "obrazovanje", en: "education (the whole path, n)", pos: "noun", gender: "n", icon: "🎓", exampleHr: "Obrazovanje je važno.", exampleEn: "Education is important." },
+    { id: "b1u18.stipendija", image: "/img/stipendija.png", hr: "stipendija", en: "scholarship", pos: "noun", gender: "f", icon: "💰", exampleHr: "Stipendija je velika prilika.", exampleEn: "A scholarship is a big opportunity." },
+    { id: "b1u18.karijera", image: "/img/karijera.png", hr: "karijera", en: "career (the whole arc of your working life)", pos: "noun", gender: "f", icon: "📈", exampleHr: "Moja karijera počinje u Zagrebu.", exampleEn: "My career starts in Zagreb." },
+    { id: "b1u18.zanimanje", image: "/img/zanimanje.png", hr: "zanimanje", en: "occupation / profession (the job you trained for, n)", pos: "noun", gender: "n", icon: "🪪", exampleHr: "Koje je tvoje zanimanje?", exampleEn: "What is your occupation?" },
+    { id: "b1u18.marljiv", image: "/img/marljiv.png", hr: "marljiv", en: "hardworking / diligent (marljiva, marljivo)", pos: "adj", icon: "🐜", exampleHr: "On je jako marljiv student.", exampleEn: "He is a very diligent student." },
+    { id: "b1u18.strpljiv", image: "/img/strpljiv.png", hr: "strpljiv", en: "patient (strpljiva, strpljivo)", pos: "adj", icon: "🧘", exampleHr: "Dobar profesor je strpljiv.", exampleEn: "A good teacher is patient." },
   ],
   slides: [
     {

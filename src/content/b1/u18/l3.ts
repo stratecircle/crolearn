@@ -30,14 +30,14 @@ export const b1u18l3: Lesson = {
   grammarTags: ["conditional-1", "conditions", "conjunctions"],
   estMinutes: 22,
   vocab: [
-    { id: "b1u18.ako", hr: "ako", en: "if (REAL condition — it might well happen)", pos: "conj", icon: "🔀", exampleHr: "Ako imam vremena, doći ću.", exampleEn: "If I have time, I'll come." },
-    { id: "b1u18.kad", hr: "kad", en: "when; if (with bih — kad bih = if I were to)", pos: "conj", icon: "⏱️", exampleHr: "Kad bih imao vremena, došao bih.", exampleEn: "If I had time, I'd come." },
-    { id: "b1u18.ocjena", hr: "ocjena", en: "grade / mark", pos: "noun", gender: "f", icon: "🅰️", exampleHr: "Ima odličnu ocjenu iz hrvatskog.", exampleEn: "He has an excellent grade in Croatian." },
-    { id: "b1u18.polagati", hr: "polagati", en: "to sit / take an exam (impf; polažem) — pf is položiti", pos: "verb", icon: "📝", exampleHr: "Sutra polažem ispit.", exampleEn: "Tomorrow I'm sitting the exam." },
-    { id: "b1u18.diploma", hr: "diploma", en: "degree / diploma", pos: "noun", gender: "f", icon: "📜", exampleHr: "Ima diplomu iz hrvatskog jezika.", exampleEn: "She has a degree in Croatian." },
-    { id: "b1u18.znanje", hr: "znanje", en: "knowledge", pos: "noun", gender: "n", icon: "💡", exampleHr: "Znanje jezika je važno.", exampleEn: "Knowing a language is important." },
-    { id: "b1u18.tezak", hr: "težak", en: "difficult; heavy (teška, teško — adv teško)", pos: "adj", icon: "🪨", exampleHr: "Ovaj ispit je težak.", exampleEn: "This exam is difficult." },
-    { id: "b1u18.lak", hr: "lak", en: "easy; light (laka, lako — adv lako)", pos: "adj", icon: "🪶", exampleHr: "Prvi predmet je bio lak.", exampleEn: "The first subject was easy." },
+    { id: "b1u18.ako", image: "/img/ako.png", hr: "ako", en: "if (REAL condition — it might well happen)", pos: "conj", icon: "🔀", exampleHr: "Ako imam vremena, doći ću.", exampleEn: "If I have time, I'll come." },
+    { id: "b1u18.kad", image: "/img/kad.png", hr: "kad", en: "when; if (with bih — kad bih = if I were to)", pos: "conj", icon: "⏱️", exampleHr: "Kad bih imao vremena, došao bih.", exampleEn: "If I had time, I'd come." },
+    { id: "b1u18.ocjena", image: "/img/ocjena.png", hr: "ocjena", en: "grade / mark", pos: "noun", gender: "f", icon: "🅰️", exampleHr: "Ima odličnu ocjenu iz hrvatskog.", exampleEn: "He has an excellent grade in Croatian." },
+    { id: "b1u18.polagati", image: "/img/polagati.png", hr: "polagati", en: "to sit / take an exam (impf; polažem) — pf is položiti", pos: "verb", icon: "📝", exampleHr: "Sutra polažem ispit.", exampleEn: "Tomorrow I'm sitting the exam." },
+    { id: "b1u18.diploma", image: "/img/diploma.png", hr: "diploma", en: "degree / diploma", pos: "noun", gender: "f", icon: "📜", exampleHr: "Ima diplomu iz hrvatskog jezika.", exampleEn: "She has a degree in Croatian." },
+    { id: "b1u18.znanje", image: "/img/znanje.png", hr: "znanje", en: "knowledge", pos: "noun", gender: "n", icon: "💡", exampleHr: "Znanje jezika je važno.", exampleEn: "Knowing a language is important." },
+    { id: "b1u18.tezak", image: "/img/tezak.png", hr: "težak", en: "difficult; heavy (teška, teško — adv teško)", pos: "adj", icon: "🪨", exampleHr: "Ovaj ispit je težak.", exampleEn: "This exam is difficult." },
+    { id: "b1u18.lak", image: "/img/lak.png", hr: "lak", en: "easy; light (laka, lako — adv lako)", pos: "adj", icon: "🪶", exampleHr: "Prvi predmet je bio lak.", exampleEn: "The first subject was easy." },
   ],
   slides: [
     {

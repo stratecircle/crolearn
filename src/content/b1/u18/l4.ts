@@ -37,14 +37,14 @@ export const b1u18l4: Lesson = {
   grammarTags: ["conditional-1", "advice-frames", "i-declension"],
   estMinutes: 21,
   vocab: [
-    { id: "b1u18.savjet", hr: "savjet", en: "a piece of advice (m — countable: jedan savjet, dva savjeta)", pos: "noun", gender: "m", icon: "💡", exampleHr: "To je jako dobar savjet.", exampleEn: "That's very good advice." },
-    { id: "b1u18.vjestina", hr: "vještina", en: "skill", pos: "noun", gender: "f", icon: "🛠️", exampleHr: "Govoriti hrvatski je vještina.", exampleEn: "Speaking Croatian is a skill." },
-    { id: "b1u18.greska", hr: "greška", en: "mistake (f — GEN pl grešaka)", pos: "noun", gender: "f", icon: "❌", exampleHr: "Nije to velika greška.", exampleEn: "That's not a big mistake." },
-    { id: "b1u18.recenica", hr: "rečenica", en: "sentence", pos: "noun", gender: "f", icon: "📝", exampleHr: "Ne razumijem tu rečenicu.", exampleEn: "I don't understand that sentence." },
-    { id: "b1u18.rijec", hr: "riječ", en: "word (f — i-declension: GEN riječi, pl riječi)", pos: "noun", gender: "f", icon: "🔤", exampleHr: "Svaki dan učim pet novih riječi.", exampleEn: "Every day I learn five new words." },
-    { id: "b1u18.razumjeti", hr: "razumjeti", en: "to understand (razumijem, razumiješ — the -ije- that the infinitive hides)", pos: "verb", icon: "🧠", exampleHr: "Razumiješ li me?", exampleEn: "Do you understand me?" },
-    { id: "b1u18.zapamtiti", hr: "zapamtiti", en: "to memorize / commit to memory (pf; zapamtim)", pos: "verb", icon: "📌", exampleHr: "Moram zapamtiti pet riječi.", exampleEn: "I have to memorize five words." },
-    { id: "b1u18.vjezba", hr: "vježba", en: "exercise / drill (f — the noun beside vježbati)", pos: "noun", gender: "f", icon: "✏️", exampleHr: "Ova vježba nije teška.", exampleEn: "This exercise isn't hard." },
+    { id: "b1u18.savjet", image: "/img/savjet.png", hr: "savjet", en: "a piece of advice (m — countable: jedan savjet, dva savjeta)", pos: "noun", gender: "m", icon: "💡", exampleHr: "To je jako dobar savjet.", exampleEn: "That's very good advice." },
+    { id: "b1u18.vjestina", image: "/img/vjestina.png", hr: "vještina", en: "skill", pos: "noun", gender: "f", icon: "🛠️", exampleHr: "Govoriti hrvatski je vještina.", exampleEn: "Speaking Croatian is a skill." },
+    { id: "b1u18.greska", image: "/img/greska.png", hr: "greška", en: "mistake (f — GEN pl grešaka)", pos: "noun", gender: "f", icon: "❌", exampleHr: "Nije to velika greška.", exampleEn: "That's not a big mistake." },
+    { id: "b1u18.recenica", image: "/img/recenica.png", hr: "rečenica", en: "sentence", pos: "noun", gender: "f", icon: "📝", exampleHr: "Ne razumijem tu rečenicu.", exampleEn: "I don't understand that sentence." },
+    { id: "b1u18.rijec", image: "/img/rijec.png", hr: "riječ", en: "word (f — i-declension: GEN riječi, pl riječi)", pos: "noun", gender: "f", icon: "🔤", exampleHr: "Svaki dan učim pet novih riječi.", exampleEn: "Every day I learn five new words." },
+    { id: "b1u18.razumjeti", image: "/img/razumjeti.png", hr: "razumjeti", en: "to understand (razumijem, razumiješ — the -ije- that the infinitive hides)", pos: "verb", icon: "🧠", exampleHr: "Razumiješ li me?", exampleEn: "Do you understand me?" },
+    { id: "b1u18.zapamtiti", image: "/img/zapamtiti.png", hr: "zapamtiti", en: "to memorize / commit to memory (pf; zapamtim)", pos: "verb", icon: "📌", exampleHr: "Moram zapamtiti pet riječi.", exampleEn: "I have to memorize five words." },
+    { id: "b1u18.vjezba", image: "/img/vjezba.png", hr: "vježba", en: "exercise / drill (f — the noun beside vježbati)", pos: "noun", gender: "f", icon: "✏️", exampleHr: "Ova vježba nije teška.", exampleEn: "This exercise isn't hard." },
   ],
   slides: [
     {
