@@ -7,7 +7,16 @@
 @import "@fontsource/newsreader/400.css";
 @import "@fontsource/newsreader/500.css";
 @import "@fontsource/newsreader/400-italic.css";
-@import "tailwindcss";
+/*
+ * Scan only the real UI source. Tailwind v4 auto-detection would otherwise walk
+ * the whole repo — including scripts/, which holds Python helpers whose format
+ * strings (e.g. the "[color:var(%s)]" template in theme_sweep.py) get extracted
+ * as class candidates and emit invalid CSS. source(none) turns auto-detection
+ * off so the @source globs below are the complete, explicit list.
+ */
+@import "tailwindcss" source(none);
+@source "./**/*.{ts,tsx}";
+@source "../index.html";
 
 /*
  * ČISTO — the quiet study app.
