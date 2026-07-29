@@ -318,7 +318,9 @@ export function SearchBox({ value, onChange, placeholder }: { value: string; onC
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="min-w-0 flex-1 border-none bg-transparent text-sm outline-none"
+        /* h-full so the click target is the whole 36px pill rather than the
+           20px line of text inside it (WCAG 2.5.8). */
+        className="h-full min-w-0 flex-1 border-none bg-transparent text-sm outline-none"
         style={{ color: INK }}
       />
     </div>

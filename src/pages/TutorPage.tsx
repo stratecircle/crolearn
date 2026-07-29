@@ -115,10 +115,15 @@ export default function TutorPage() {
         right={
           <button
             onClick={newConversation}
-            className="meta inline-flex items-center gap-1.5 transition-colors duration-100 hover:text-[color:var(--body)]"
+            /* "New" reads as a bare adjective out of context, so the label
+               spells it out; the padding grows the 40x17 target to the 24px
+               WCAG 2.5.8 minimum and the equal negative margin keeps the
+               rendered layout pixel-identical. */
+            aria-label="New conversation"
+            className="meta -mx-1.5 -my-1.5 inline-flex items-center gap-1.5 px-1.5 py-1.5 transition-colors duration-100 hover:text-[color:var(--body)]"
             style={{ color: ACCENT }}
           >
-            <Plus size={12} strokeWidth={2.6} />New
+            <Plus size={12} strokeWidth={2.6} aria-hidden />New
           </button>
         }
       />

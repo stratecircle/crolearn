@@ -49,18 +49,27 @@ function NavItem({
     <button
       onClick={onClick}
       aria-current={active ? "page" : undefined}
-      className="flex h-8 w-full items-center gap-2.5 rounded-md px-2.5 text-left transition-colors duration-100 max-[900px]:h-auto max-[900px]:w-auto max-[900px]:flex-col max-[900px]:gap-0.5 max-[900px]:rounded-lg max-[900px]:px-3 max-[900px]:py-1.5"
+      /*
+       * Below 900px the label is visually dropped but stays in the a11y tree
+       * (`sr-only`, not `hidden`) — `display:none` would leave these buttons
+       * with no accessible name at all, since only the icon remains. Deriving
+       * the name from content rather than an aria-label also keeps the "N cards
+       * due for review" badge text part of the announcement.
+       * min-h/min-w hold the bottom-bar hit box at the 44px touch minimum
+       * (7 items x 44 = 308px, fits inside a 390px viewport).
+       */
+      className="flex h-8 w-full items-center gap-2.5 rounded-md px-2.5 text-left transition-colors duration-100 max-[900px]:h-auto max-[900px]:min-h-[44px] max-[900px]:w-auto max-[900px]:min-w-[44px] max-[900px]:flex-col max-[900px]:justify-center max-[900px]:gap-0.5 max-[900px]:rounded-lg max-[900px]:px-3 max-[900px]:py-1.5"
       style={{ background: active ? "rgba(var(--ink-rgb),.06)" : "transparent", color: active ? INK : BODY2 }}
       onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = "rgba(var(--ink-rgb),.035)"; }}
       onMouseLeave={(e) => { if (!active) e.currentTarget.style.background = "transparent"; }}
     >
       <Icon size={16} strokeWidth={active ? 2.1 : 1.8} className="flex-none" />
-      <span className="min-w-0 flex-1 truncate text-[13.5px] max-[900px]:hidden" style={{ fontWeight: active ? 600 : 480 }}>
+      <span className="min-w-0 flex-1 truncate text-[13.5px] max-[900px]:sr-only" style={{ fontWeight: active ? 600 : 480 }}>
         {label}
       </span>
       {badge > 0 && (
         <>
-          <span className="meta flex-none tabular-nums max-[900px]:absolute max-[900px]:hidden" style={{ color: "var(--primary)" }}>
+          <span aria-hidden className="meta flex-none tabular-nums max-[900px]:absolute max-[900px]:hidden" style={{ color: "var(--primary)" }}>
             {badge > 99 ? "99+" : badge}
           </span>
           <span className="sr-only">{badge} card{badge === 1 ? "" : "s"} due for review</span>
@@ -142,10 +151,17 @@ function SkipLink() {
   );
 }
 
-/** Standard screen: sidebar + centered readable column. */
+/**
+ * Standard screen: sidebar + centered readable column.
+ *
+ * The bottom bar is 53px tall below 900px (1px border + pt-1 + a 44px touch row
+ * + pb-1) and then clears the home indicator itself, so the reservation below
+ * has to carry the same safe-area inset — otherwise the last row of a list
+ * sits underneath the bar on a notched phone.
+ */
 export default function AppShell() {
   return (
-    <div className="relative min-h-screen overflow-x-hidden pl-[220px] max-[900px]:pb-[64px] max-[900px]:pl-0">
+    <div className="relative min-h-screen overflow-x-hidden pl-[220px] max-[900px]:pb-[calc(64px+env(safe-area-inset-bottom))] max-[900px]:pl-0">
       <SkipLink />
       <Sidebar />
       <main

@@ -142,7 +142,11 @@ export default function NotesPage() {
                   <button
                     type="button"
                     onClick={() => setOpenAnswers(new Set([...openAnswers, i]))}
-                    className="meta mt-1.5 transition-colors duration-100 hover:text-[color:var(--body)]"
+                    /* mt-1.5 becomes mt-0.5 + py-1 so the text lands on the
+                       same baseline while the target clears the WCAG 2.5.8
+                       24px minimum (it was 82x17); the negative margins keep
+                       the surrounding rhythm unchanged. */
+                    className="meta -mx-1.5 -mb-1 mt-0.5 px-1.5 py-1 transition-colors duration-100 hover:text-[color:var(--body)]"
                     style={{ color: "var(--muted3)" }}
                   >
                     Show answer

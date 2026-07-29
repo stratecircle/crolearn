@@ -127,7 +127,10 @@ export default function StoryPage() {
                   <button
                     type="button"
                     onClick={() => setShownEn(new Set([...shownEn, i]))}
-                    className="meta mt-2 transition-colors duration-100 hover:text-[color:var(--body)]"
+                    /* mt-2 becomes mt-1 + py-1 so the text keeps its baseline
+                       while the target clears the WCAG 2.5.8 24px minimum (it
+                       was 120x17); negative margins hold the rhythm. */
+                    className="meta -mx-1.5 -mb-1 mt-1 px-1.5 py-1 transition-colors duration-100 hover:text-[color:var(--body)]"
                     style={{ color: "var(--muted3)" }}
                   >
                     Show translation

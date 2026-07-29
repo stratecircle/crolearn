@@ -71,7 +71,14 @@ export default function NotebookPage() {
               <button
                 key={c}
                 onClick={() => setCat(c)}
-                className="meta transition-colors duration-100"
+                aria-pressed={cat === c}
+                /*
+                 * The padding/negative-margin pair grows the pointer target to
+                 * the WCAG 2.5.8 24px minimum ("All" is only 22x17 of text)
+                 * while the equal negative margin keeps the rendered layout
+                 * pixel-identical.
+                 */
+                className="meta -mx-1.5 -my-1.5 px-1.5 py-1.5 transition-colors duration-100"
                 style={{ color: cat === c ? INK : "var(--muted3)" }}
               >
                 {c}

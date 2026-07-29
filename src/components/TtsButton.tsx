@@ -20,7 +20,13 @@ export default function TtsButton({
     <button
       type="button"
       aria-label={`Play: ${text}`}
-      className={`inline-flex items-center gap-1.5 rounded-md px-1.5 py-1 align-middle text-[13px] font-medium transition-colors duration-150 hover:bg-[color:var(--tint)] disabled:opacity-50 ${className}`}
+      /*
+       * min-h/min-w, not more padding: the 14px icon plus px-1.5/py-1 came to
+       * 26x22, two pixels under the WCAG 2.5.8 minimum target size. Setting the
+       * minimum instead of growing the padding keeps these buttons from
+       * stretching the line box when they sit inline inside a sentence.
+       */
+      className={`inline-flex min-h-[24px] min-w-[24px] items-center justify-center gap-1.5 rounded-md px-1.5 py-1 align-middle text-[13px] font-medium transition-colors duration-150 hover:bg-[color:var(--tint)] disabled:opacity-50 ${className}`}
       style={{ color: playing ? "var(--primary)" : "var(--muted)" }}
       disabled={playing}
       onClick={async () => {

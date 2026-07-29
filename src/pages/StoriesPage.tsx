@@ -59,7 +59,11 @@ export default function StoriesPage() {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className="meta transition-colors duration-100"
+                aria-pressed={filter === f}
+                /* Padding grows the target to the 24px WCAG 2.5.8 minimum
+                   ("A1" is 15x17 of text); the equal negative margin keeps the
+                   rendered layout pixel-identical. */
+                className="meta -mx-1.5 -my-1.5 px-1.5 py-1.5 transition-colors duration-100"
                 style={{ color: filter === f ? INK : "var(--muted3)" }}
               >
                 {f}
