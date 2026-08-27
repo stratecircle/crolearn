@@ -134,7 +134,7 @@ export const b1u20l2: Lesson = {
           lines: [
             { hr: "Ovdje se recikliraju boce.", en: "Bottles are recycled here." },
             { hr: "Papir se reciklira.", en: "Paper is recycled." },
-            { hr: "→ the thing is the subject, the verb agrees", en: "" },
+            { hr: "→ subjekt postoji, glagol se slaže", en: "→ the thing is the subject, so the verb agrees with it" },
           ],
         },
         right: {
@@ -143,7 +143,7 @@ export const b1u20l2: Lesson = {
           lines: [
             { hr: "Ovdje se ne baca smeće.", en: "Rubbish isn't thrown here." },
             { hr: "Kako se živi u Hrvatskoj?", en: "How does one live in Croatia?" },
-            { hr: "→ no subject, so the verb freezes in the 3sg", en: "" },
+            { hr: "→ nema subjekta, glagol je zamrznut", en: "→ no subject, so the verb freezes in the 3rd person singular" },
           ],
         },
       },
@@ -196,6 +196,18 @@ export const b1u20l2: Lesson = {
     },
     {
       id: "s09",
+      type: "section",
+      title: "Part 2 · Is there a thing?",
+      subtitle: "Two lessons, one question. Every sentence from here on gets sorted by whether anything in it can be the subject.",
+      emoji: "🧭",
+      items: [
+        { emoji: "✅", label: "Quick check", hint: "frozen or agreeing?" },
+        { emoji: "🚫", label: "Write a rule", hint: "ne smije se + infinitive" },
+        { emoji: "🔊", label: "Listen", hint: "signs, rules, and questions" },
+      ],
+    },
+    {
+      id: "s10",
       type: "quiz-set",
       title: "Quick check: is there a thing?",
       items: [
@@ -230,7 +242,7 @@ export const b1u20l2: Lesson = {
       ],
     },
     {
-      id: "s10",
+      id: "s11",
       type: "match",
       prompt: "Match each Croatian sentence to what it actually claims",
       pairs: [
@@ -241,7 +253,7 @@ export const b1u20l2: Lesson = {
       ],
     },
     {
-      id: "s11",
+      id: "s12",
       type: "fill",
       text: "Ovdje se ne ___ bacati otpad.",
       blanks: [["smije"]],
@@ -250,7 +262,7 @@ export const b1u20l2: Lesson = {
       explanation: "Frozen 3sg — there is no subject anywhere in the sentence. otpad is the object of bacati.",
     },
     {
-      id: "s12",
+      id: "s13",
       type: "fill",
       text: "Kod nas se ___ otpad.",
       blanks: [["odvaja"]],
@@ -259,7 +271,7 @@ export const b1u20l2: Lesson = {
       explanation: "otpad is the object, not the subject — so the verb freezes in the 3sg. Compare: «Kod nas se odvajaju boce» would agree, because boce IS the subject there.",
     },
     {
-      id: "s13",
+      id: "s14",
       type: "fill",
       text: "Prije se u ovom gradu ___ dobro. (živjeti)",
       blanks: [["živjelo", "zivjelo"]],
@@ -267,7 +279,7 @@ export const b1u20l2: Lesson = {
       explanation: "Neuter singular past. No subject → no gender → neuter.",
     },
     {
-      id: "s14",
+      id: "s15",
       type: "type",
       prompt: "Write the rule: «Glass must not be thrown in that container.» (staklo · spremnik)",
       answers: [
@@ -280,7 +292,7 @@ export const b1u20l2: Lesson = {
       explanation: "Any of these work. The fixed parts: ne smije stays 3sg, se sits second, and bacati stays an infinitive.",
     },
     {
-      id: "s15",
+      id: "s16",
       type: "type",
       prompt: "Ask it: «How does one live in Croatia?»",
       answers: ["Kako se živi u Hrvatskoj?", "Kako se živi u Hrvatskoj", "Kako se živi u Hrvatskoj ?"],
@@ -288,7 +300,7 @@ export const b1u20l2: Lesson = {
       explanation: "Kako se živi u Hrvatskoj? — the question this whole lesson is named after, and the most natural way in Croatian to ask what a place is like to be in.",
     },
     {
-      id: "s16",
+      id: "s17",
       type: "listen-type",
       tts: "Ovdje se ne baca smeće.",
       answers: ["Ovdje se ne baca smeće.", "Ovdje se ne baca smeće", "Ovdje se ne baca smece."],
@@ -296,7 +308,7 @@ export const b1u20l2: Lesson = {
       explanation: "Frozen 3sg — smeće is the object, not the subject.",
     },
     {
-      id: "s17",
+      id: "s18",
       type: "listen-type",
       tts: "Kako se živi u Hrvatskoj?",
       answers: ["Kako se živi u Hrvatskoj?", "Kako se živi u Hrvatskoj", "Kako se zivi u Hrvatskoj?"],
@@ -304,14 +316,14 @@ export const b1u20l2: Lesson = {
       explanation: "No subject at all — which is exactly why it can be asked about a whole country.",
     },
     {
-      id: "s18",
+      id: "s19",
       type: "speak",
       targetHr: "Ovdje se ne smije bacati staklo.",
       targetEn: "Glass must not be thrown here.",
       phonetic: "OV-dye se ne SMEE-ye BA-tsa-tee STA-klo",
     },
     {
-      id: "s19",
+      id: "s20",
       type: "mc",
       review: true,
       prompt: "U19 review: »To je grad u ___ se dobro živi.« (that's a town one lives well in)",
@@ -321,7 +333,7 @@ export const b1u20l2: Lesson = {
       tts: "To je grad u kojem se dobro živi.",
     },
     {
-      id: "s20",
+      id: "s21",
       type: "mc",
       review: true,
       prompt: "Yesterday or today? »Ovdje se odvajaju plastika i staklo.«",
@@ -333,7 +345,7 @@ export const b1u20l2: Lesson = {
       explanation: "Two things joined by i make a plural subject, so the verb agrees: odvajaju. The single question «is there a thing?» sorts every sentence in this unit.",
     },
     {
-      id: "s21",
+      id: "s22",
       type: "recap",
       summary:
         "**Take the thing away and the verb stops moving.**\n\n- **A thing is there** → it is the subject → the verb **agrees**. *Boce se recikliraju.* (L1)\n- **No thing at all** → nothing is the subject → the verb **freezes in the 3sg**. *Ovdje se ne baca smeće.* · *Kako se živi u Hrvatskoj?*\n- **In the past it freezes in the NEUTER**: *Prije se živjelo dobro.* Not *živio*, not *živjela*.\n\n**The modal stack** is the frame you will actually use: frozen modal + `se` second + infinitive. *Ovdje se ne smije bacati staklo.* · *Kako se može doći do centra?*\n\n**One `se` per clause, ever.** A verb that already owns one — *slagati se*, *sjećati se*, *zvati se* — has no second slot. Put a real subject back in: *Ovdje se **ljudi** slažu.*\n\nThese two lessons are one lesson. Anyone who can answer **«is there a thing in this sentence?»** now owns the unit.\n\nTomorrow: what happens when the verb is one of *saying* — and you want to report a claim without signing your name to it.",

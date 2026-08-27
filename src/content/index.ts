@@ -20,6 +20,7 @@ import { a2u16 } from "./a2/u16";
 import { b1u17 } from "./b1/u17";
 import { b1u18 } from "./b1/u18";
 import { b1u19 } from "./b1/u19";
+import { b1u20 } from "./b1/u20";
 
 /**
  * The content registry. Add units here as they are authored (strictly in course
@@ -29,7 +30,7 @@ import { b1u19 } from "./b1/u19";
 export const levels: Level[] = [
   { id: "A1", title: "A1 — Foundations", units: [a1u1, a1u2, a1u3, a1u4, a1u5, a1u6, a1u7, a1u8] },
   { id: "A2", title: "A2 — Independence", units: [a2u9, a2u10, a2u11, a2u12, a2u13, a2u14, a2u15, a2u16] },
-  { id: "B1", title: "B1 — Fluency", units: [b1u17, b1u18, b1u19] },
+  { id: "B1", title: "B1 — Fluency", units: [b1u17, b1u18, b1u19, b1u20] },
   { id: "B2", title: "B2 — Proficiency", units: [] },
 ];
 

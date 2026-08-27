@@ -174,6 +174,18 @@ export const b1u20l1: Lesson = {
     },
     {
       id: "s08",
+      type: "section",
+      title: "Part 2 · Make the verb look at the thing",
+      subtitle: "One question before every verb: what is the thing, and how many of it are there? Everything else in this lesson follows from the answer.",
+      emoji: "🎯",
+      items: [
+        { emoji: "✅", label: "Quick check", hint: "four subjects, four verbs" },
+        { emoji: "🔤", label: "Build them", hint: "match, fill, and rewrite" },
+        { emoji: "🔊", label: "Hear the plural", hint: "the -ju is the difference" },
+      ],
+    },
+    {
+      id: "s09",
       type: "quiz-set",
       title: "Quick check: make the verb look at the thing",
       items: [
@@ -208,7 +220,7 @@ export const b1u20l1: Lesson = {
       ],
     },
     {
-      id: "s09",
+      id: "s10",
       type: "match",
       prompt: "Match each subject to the verb form it forces",
       pairs: [
@@ -219,7 +231,7 @@ export const b1u20l1: Lesson = {
       ],
     },
     {
-      id: "s10",
+      id: "s11",
       type: "fill",
       text: "Novine se ___ .",
       blanks: [["recikliraju"]],
@@ -228,7 +240,7 @@ export const b1u20l1: Lesson = {
       explanation: "novine is plural-only, so the plural verb is the only option there has ever been.",
     },
     {
-      id: "s11",
+      id: "s12",
       type: "fill",
       text: "Ovdje se ___ plastika i staklo.",
       blanks: [["recikliraju"]],
@@ -237,7 +249,7 @@ export const b1u20l1: Lesson = {
       explanation: "Two things joined by i make a plural subject — so the verb is plural, even though each one on its own is singular.",
     },
     {
-      id: "s12",
+      id: "s13",
       type: "fill",
       text: "Papir se ___ u tu kantu.",
       blanks: [["baca"]],
@@ -246,7 +258,7 @@ export const b1u20l1: Lesson = {
       explanation: "papir is one masculine thing → baca. (You will card bacati properly in L2; here it is just a verb to agree.)",
     },
     {
-      id: "s13",
+      id: "s14",
       type: "type",
       prompt: "Take the doer out: »Ljudi ovdje recikliraju plastiku.« → ",
       answers: ["Ovdje se reciklira plastika.", "Ovdje se reciklira plastika", "Plastika se ovdje reciklira."],
@@ -254,7 +266,7 @@ export const b1u20l1: Lesson = {
       explanation: "Ovdje se reciklira plastika. The object plastiku became the subject plastika, and the verb dropped from plural (recikliraju, agreeing with ljudi) to singular (reciklira, agreeing with plastika).",
     },
     {
-      id: "s14",
+      id: "s15",
       type: "type",
       prompt: "Take the doer out: »Ljudi ovdje recikliraju boce.« → ",
       answers: ["Ovdje se recikliraju boce.", "Ovdje se recikliraju boce", "Boce se ovdje recikliraju."],
@@ -262,7 +274,7 @@ export const b1u20l1: Lesson = {
       explanation: "Ovdje se recikliraju boce. The verb stays plural, but for a completely different reason: before, it agreed with ljudi; now it agrees with boce.",
     },
     {
-      id: "s15",
+      id: "s16",
       type: "listen-type",
       tts: "Ovdje se reciklira plastika.",
       answers: ["Ovdje se reciklira plastika.", "Ovdje se reciklira plastika"],
@@ -270,7 +282,7 @@ export const b1u20l1: Lesson = {
       explanation: "Singular thing, singular verb.",
     },
     {
-      id: "s16",
+      id: "s17",
       type: "listen-type",
       tts: "Novine se recikliraju ovdje.",
       answers: ["Novine se recikliraju ovdje.", "Novine se recikliraju ovdje"],
@@ -278,14 +290,14 @@ export const b1u20l1: Lesson = {
       explanation: "The plural is audible: recikliraJU. That syllable is the entire difference between right and wrong in this unit.",
     },
     {
-      id: "s17",
+      id: "s18",
       type: "speak",
       targetHr: "U mom gradu se reciklira papir.",
       targetEn: "Paper is recycled in my town.",
       phonetic: "oo mom GRA-doo se re-tsee-KLEE-ra PA-peer",
     },
     {
-      id: "s18",
+      id: "s19",
       type: "mc",
       review: true,
       prompt: "U19 review: »To je kanta u ___ se baca staklo.« (that's the bin glass is thrown in — kanta is feminine)",
@@ -295,7 +307,7 @@ export const b1u20l1: Lesson = {
       tts: "To je kanta u kojoj se baca staklo.",
     },
     {
-      id: "s19",
+      id: "s20",
       type: "mc",
       review: true,
       prompt: "U17 review: today's sentences are general statements about what usually happens. Which aspect carries them?",
@@ -307,7 +319,7 @@ export const b1u20l1: Lesson = {
       explanation: "Imperfective. «Plastic is recycled here» is not one act of recycling; it is what happens, over and over. Almost every se-passive you meet will be imperfective for exactly this reason.",
     },
     {
-      id: "s20",
+      id: "s21",
       type: "recap",
       summary:
         "**The doer disappears and `se` takes its place.** *Ljudi recikliraju plastiku* → *Ovdje se reciklira plastika.*\n\n**Three things follow:**\n\n1. **`se` is a clitic** → second position, never first, never last. Nothing new: §12, since Unit 12.\n2. **No doer can be added back.** If you want to name who does it, use the ordinary sentence — *Radnici čiste ulicu.*\n3. **The thing is the SUBJECT, so the verb agrees with it.** *plastika se reciklira* ‖ *boce se **recikliraju***. This is the one the unit is built to drill, and *novine* is the sentence where it can't be avoided.\n\nOne question before every verb: **what is the thing, and how many?**\n\nTomorrow: take the thing away entirely and watch what the verb does.",
