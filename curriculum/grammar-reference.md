@@ -273,3 +273,99 @@ The antecedent's own case is **irrelevant** and is a standing decoy:
 - **što** as a relative (*ono **što** želim*, *sve **što** znam*) is receptive at B1: it relativizes a whole clause or the pronouns *ono / sve / to*, and does not decline like koji. Recognize it; do not produce it yet.
 - **tko / što** as interrogatives decline separately — see §15.
 - **koji** is also the interrogative "which" (*Koji je datum danas?*), where it is simply nominative and undeclined in the fixed phrase. That use has been live since A1; the declension above is what U19 adds.
+
+## 18. The se-constructions (B1 U20)
+
+Croatian uses one clitic, **se**, where English uses three different things: a passive (*plastic is recycled*), a generic *you* (*you can't throw glass here*), and an indefinite *one/people* (*people say it's a problem*). Everything below turns on a single question — **is there a thing in the sentence for the verb to agree with?**
+
+### The three species of `se`
+
+| species | what it is | test: remove it | primjer |
+|---|---|---|---|
+| **lexical** | part of the verb's dictionary entry | the verb changes meaning or breaks | *zovem **se***, *sjećam **se***, *nadam **se***, *sviđa mi **se***, *slažem **se*** |
+| **passive** | a doer was deleted; the object became the SUBJECT | you just have to name the doer again | *Plastika **se** reciklira.* → *Ljudi recikliraju plastiku.* |
+| **impersonal** | there is no subject at all | the sentence breaks | *Ovdje **se** ne baca smeće.* → \**Ovdje ne baca smeće.* |
+
+**One `se` per CLAUSE, ever** — never two. A verb that already owns a lexical `se` therefore cannot take an impersonal one: \**Ovdje se se slaže* ❌, and \**Ovdje se slaže* means *he agrees here*. The repair is to put a real subject back in: *Ovdje se **ljudi** slažu.* ✅
+One per **clause**, not per sentence: *Kaže **se** da **se** ovdje recikliraju boce* is two clauses and entirely correct.
+
+`se` is a **clitic**, so §12 governs its position without exception: **second position** in its clause, counted by phrases. Never first, never trailing. *Ovdje **se** reciklira plastika.* · *U Hrvatskoj **se** puno hoda.* · \**Se reciklira plastika* ❌ · \**Plastika reciklira se* ❌
+
+### The se-passive — the thing is the subject, so the verb agrees
+
+Delete the doer, insert `se`, promote the object to subject. **The verb then agrees with that subject**, which is the single most error-prone fact in the construction, because English *is recycled* never changes shape.
+
+| subjekt | rod / broj | glagol | rečenica |
+|---|---|---|---|
+| papir | m sg | reciklira | *Papir se reciklira.* |
+| plastika | f sg | reciklira | *Plastika se reciklira.* |
+| staklo | n sg | reciklira | *Staklo se reciklira.* |
+| boce | f pl | **recikliraju** | *Boce se recikliraju.* |
+| papir i staklo | pl | **recikliraju** | *Recikliraju se papir i staklo.* |
+| novine | f pl only | **recikliraju** | *Novine se recikliraju.* |
+
+Two traps inside the trap: **two singulars joined by *i* make a plural subject**, and **plural-only nouns** (*novine*, *vrata*, *leđa*) have no singular verb to fall back on.
+
+**No agent may be added.** English *cleaned by workers* has no equivalent here — \**Ulica se čisti od radnika* ❌. If the doer matters, use the ordinary active sentence: *Radnici čiste ulicu.*
+
+The construction is overwhelmingly **imperfective**, because a general statement about a place is a habit (§11): *reciklira*, not *reciklirala*; *kupuje*, not *kupi*.
+
+### The impersonal se — no subject, so the verb freezes
+
+With nothing to agree with, the verb sits in the **3rd person singular** and stays there. **In the past it takes the NEUTER singular** — the only place in Croatian where a past tense has nobody to agree with.
+
+*Ovdje se ne baca smeće.* · *U Hrvatskoj se puno hoda.* · *Kako se živi u Hrvatskoj?* · *Prije se **živjelo** dobro.*
+
+**Test for a fake subject: try deleting the noun.** *Ovdje se ne baca smeće* → *Ovdje se ne baca* still stands, so *smeće* was the object, not the subject. *Ovdje se recikliraju boce* → *Ovdje se recikliraju* leaves you asking «what?», so *boce* was the subject.
+
+**The modal stack** — frozen modal + `se` (second position) + **infinitive** — is the frame for every rule, sign and prohibition in the language:
+
+| okvir | značenje | primjer |
+|---|---|---|
+| **mora se** + inf | it has to be done | *To se mora odvojiti.* |
+| **ne smije se** + inf | it must not be done | *Ovdje se ne smije bacati staklo.* |
+| **može se** + inf | it can be done | *Kako se može doći do centra?* |
+| **ne može se** + inf | it cannot be done | *To se ne može reciklirati.* |
+
+### Frames: kaže se / smatra se / zna se **da**…
+
+The impersonal `se` on a verb of saying or thinking gives the register for reporting a claim without owning it. The shape is **frozen 3sg + `se` + `da` + an ordinary complete clause**.
+
+| okvir | engleski | how much weight |
+|---|---|---|
+| Misli se da… | people think that… | softest, unattributed |
+| Kaže se da… | it is said that… / apparently | hearsay, no source |
+| Vjeruje se da… | it is believed that… | a shared belief |
+| Smatra se da… | it is held / considered that… | weighed, considered |
+| Zna se da… | it is known that… | strongest, stated as fact |
+
+Three rules. **`da` is obligatory** (English deletes *that*; Croatian never has). **The clitic takes second position of the da-clause**, counting `da` as slot one: *Kaže se da **je** to problem*, never \**Kaže se da to je problem*. And **the tense inside does not move** — Croatian never backshifts: *Kaže se da **je bilo** dobro.* Delete the frame and a normal Croatian sentence in its original tense must be left over.
+
+These frames are **frozen**: there is no *kažu se*, no *smatraju se*. Nobody is there to be plural. A **named** speaker (*Rekla je da…*) is a different construction with its own rules — §19.
+
+### trebati: impersonal WITHOUT a `se`
+
+The one impersonal construction here that takes no `se` at all — and after the three above, adding one is the most predictable error at this level.
+
+| što slijedi | konstrukcija | primjer | značenje |
+|---|---|---|---|
+| **a noun** | personal, agrees with the person, + **ACC** | *Trebam pomoć.* · *Trebamo novu kantu.* | I need / we need |
+| **an infinitive** | impersonal, **frozen 3sg**, no `se` | *Treba štedjeti energiju.* | one should / it is necessary to |
+| **an infinitive**, softer | **frozen NEUTER conditional**, no `se` | *Trebalo bi smanjiti otpad.* | one ought to |
+
+**Decide by the next word, never by the meaning.** \**Treba se štedjeti energiju* ❌ · \**Trebalo bi se smanjiti otpad* ❌ · \**Trebalo bih nešto napraviti* ❌ (frozen neuter — *trebao bih* means *I* ought to).
+
+Strength ladder, hardest to softest: **mora se** → **treba** → **trebalo bi**. *Moram* sits beside *mora se* in force but names the person.
+
+Two variants to recognize and not produce at B1: **trebam ići** (personal subject + infinitive — very common in speech, and it collapses the fork above) and **treba da radimo** (a `da`-clause instead of an infinitive — regional).
+
+### The B2 neighbour: the participial passive
+
+Croatian's *other* passive is a participle plus *biti*: *Zabranjeno je bacati staklo.* · *Trgovina je zatvorena.* · *Rijeka je zagađena.* It is correct, it is everywhere on real signs, and it is **B2**. Until then every one of its meanings has a route through the constructions above:
+
+| meaning | B2 participial | B1 route |
+|---|---|---|
+| glass must not be thrown here | *Zabranjeno je bacati staklo.* | **Ne smije se** bacati staklo. |
+| the shop is closed | *Trgovina je zatvorena.* | Trgovina **ne radi**. |
+| the river is polluted | *Rijeka je zagađena.* | **Zagađenje** je problem. / Ljudi **zagađuju** rijeku. |
+| waste is sorted here | *Otpad je odvojen.* | Otpad **se odvaja**. |
