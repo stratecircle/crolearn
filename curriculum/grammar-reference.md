@@ -466,3 +466,115 @@ A tense measures time from the original speaking, and Croatian keeps that as the
 3. **`da li`** anywhere.
 4. **A reported wh-question that is still a question.** \**Pitala me gdje stanuješ?* ❌ → *Pitala me gdje **stanujem**.*
 5. **A person left unmoved.** \**Marko je rekao da sam spremio podatke* ❌ (that reports him claiming *I* saved them) → *…da **je** spremio…*
+
+## 20. Futur II and time clauses (B1 U22)
+
+### 20.1 The ban
+
+English puts a **present** in the time clause and a **future** in the main clause — *When I **arrive**, I **will call** you* — and does it so automatically that speakers never notice the asymmetry. Learners of Croatian therefore put a future in **both** halves.
+
+> ### In a time clause pointing at the future, **Futur I is banned**.
+
+\**Kad **ću doći**, javit ću ti* ❌ → *Kad **dođem**, javit ću ti* ✅
+
+This holds for **kad · čim · dok · dok ne · ako** without exception, in every register. The **main clause keeps its Futur I** untouched.
+
+**The order of the clauses is irrelevant.** *Kad dođem, javit ću ti* = *Javit ću ti kad dođem.* The ban follows the conjunction, not the position.
+
+**The main clause need not be a Futur I at all.** *Kad budeš imao vremena, **javi** mi* (imperative) · *Kad razgledamo dvorac, **idemo** u kulu* (a present for a settled plan) · *Kad dođem, **javim** ti* (a present as a promise — a real sentence, and a different one from the plan).
+
+### 20.2 The aspect fork
+
+What goes in the time clause instead is decided by **the aspect of the verb**, not by choice (§11).
+
+| vrsta glagola | u vremenskoj rečenici | primjer |
+|---|---|---|
+| **svršeni** (perfective) | **the PRESENT** | *Kad **dođem**, javit ću ti.* |
+| **nesvršeni** (imperfective) | **FUTUR II** | *Dok **budem čekao**, čitat ću.* |
+
+A perfective verb has **no present meaning** available — you cannot be in the middle of arriving — which is exactly why the form is unoccupied and free to take this job.
+
+### 20.3 Building Futur II
+
+> **budem · budeš · bude · budemo · budete · budu** + **the l-participle**
+
+The participle is the perfekt's, unchanged, and **agrees in gender and number** exactly as it does there. The auxiliary is the only new form in the whole unit.
+
+| | m | ž |
+|---|---|---|
+| ja | budem **radio** | budem **radila** |
+| ti | budeš **radio** | budeš **radila** |
+| on / ona | bude **radio** | bude **radila** |
+| mi | budemo **radili** | budemo **radile** |
+| vi | budete **radili** | budete **radile** |
+| oni / one | budu **radili** | budu **radile** |
+
+With **biti** the auxiliary stands alone: *Kad **budem** u Hrvatskoj, putovat ću tjedan dana.*
+
+**🟡 The heavy-but-legal case.** *Kad **budem došao**…* is **grammatical**, merely heavy — *doći* is perfective, so *kad dođem* says it in fewer syllables and is what people say. It is **not an error**, and the asymmetry is worth stating: over-using *budem* sounds formal; over-using Futur I is wrong. **When in doubt, take *budem*.**
+
+### 20.4 The five conjunctions
+
+| veznik | značenje | što traži | primjer |
+|---|---|---|---|
+| **kad** | when | prezent (svršeno) / Futur II | *Kad **dođem**, javit ću ti.* |
+| **čim** | as soon as | **prezent, svršeno** — a trigger is a moment | *Čim **stignem**, kupit ću ulaznicu.* |
+| **dok** | while | **Futur II, nesvršeno** — a «while» is a stretch | *Dok **budem čekao**, čitat ću.* |
+| **dok ne** | **until** | **prezent, svršeno** + a `ne` that means nothing | *Čekat ću **dok ne dođeš**.* |
+| **ako** | if | prezent / Futur II | *Ako **budeš imao** vremena, javi mi.* |
+
+**🛑 The `ne` in `dok ne` is not a negation.** There is none in the English and none in the meaning. *Čekat ću dok ne dođeš* = *I'll wait **until** you come.* Learn `dok ne` as one item.
+
+Bare `dok` is a different word with a different meaning: *Čekat ću **dok** dođeš* = *I'll wait **while** you come* — grammatical, and not a thing anyone plans. English of this shape usually has two negatives where Croatian has one real one plus a decorative `ne`: *I **won't** leave **until** I see the sea* → *Neću otići **dok ne** vidim more.*
+
+**🎲 `ako` ‖ `kad` is decided on certainty alone**, not on form. *Ako **bude kiše**, nećemo ići* — it may not rain. *Kad **budeš imao** vremena, javi mi* — you will have time; we just don't know when. English blurs this constantly and Croatian does not: choosing `ako` where `kad` belongs signals that you doubt the thing will happen at all.
+
+**And `ako` still cannot carry a question** (§19): \**Pitao me ako imam vremena* ❌ → *Pitao me **imam li** vremena* ✅.
+
+### 20.5 The one licensed Futur I — the interrogative `kad`
+
+> ***Pitao me kad ću doći.*** ✅  ·  ***Ne znam kad ću stići.*** ✅
+
+Nothing above is contradicted. That `kad` is **not this section's conjunction** — it is **§19's embedded question word**, and the clause is doing a completely different job.
+
+| rečenica | što zavisna rečenica radi | vrijeme |
+|---|---|---|
+| *Kad **dođem**, javit ću ti.* | names **when** the calling happens | prezent |
+| *Pitao me kad **ću doći**.* | **is** the question he asked | **Futur I** |
+| *Dok **budem čekao**, čitat ću.* | names **while what** the reading happens | Futur II |
+| *Ne znam kad **ću stići**.* | **is** the thing not known | **Futur I** |
+
+> **The test is never the word. It is what the clause is doing.**
+> **names the time of the main event** → temporal → prezent / Futur II
+> **is the thing being asked, or not known** → question → **Futur I**
+
+This is §19's no-backshift rule still running: an embedded question keeps its own tense, including a future. Teach it **last**, after the ban has settled — the ban is what a learner needs ninety-nine times in a hundred.
+
+### 20.6 The ten standing traps
+
+| # | zamka | koliko košta |
+|---|---|---|
+| **1** | Futur I inside the time clause — \**Kad ću doći…* | **most** — the core error |
+| **2** | 🟡 *budem* on a perfective — *kad budem došao* | **nothing — not an error**, only heavy |
+| **3** | a bare present for an imperfective — \**Dok čekam, čitat ću* | changes the meaning to «now» |
+| **4** | `dok` where `dok ne` belongs — *Čekat ću dok dođeš* | changes the meaning to «while» |
+| **5** | reading the `ne` of *dok ne* as a negation | reverses the meaning |
+| **6** | `ako` ‖ `kad` confused on certainty | changes how certain you sound |
+| **7** | `ako` carrying a question (§19) | sounds unfinished |
+| **8** | the l-participle not agreeing — \**budem radila* said by a man | **a lot — and it hides** |
+| **9** | Futur I removed from the **main** clause too — *Kad dođem, javim ti* | turns a plan into a promise |
+| **10** | a comparative or a participial passive from B2 | right language, wrong level |
+
+**If you check only two things: #1 and #8.** A Futur I where the ban forbids it, and a participle that has quietly stopped agreeing. Between them they account for most of what goes wrong.
+
+### 20.7 Past time clauses — nothing is banned
+
+A `kad` or `dok` pointing at the **past** takes an ordinary past in both halves, and none of the above applies:
+
+*Kad sam **bio** mlad, **dolazili** smo svako ljeto.* · *Dok je **pisao**, **radio** je i kao učitelj.*
+
+The aspects inside still follow §11 — background imperfective, events perfective — but they only **describe**. Which gives the cleanest summary of the whole section:
+
+> **In the past, aspect only describes. In the future, the same aspect chooses the tense.**
+
+And the generic/habitual `kad`, often with the impersonal `se` (§18): *Kad se **dođe** u dvorac, uvijek nešto **ostane** za drugi put.*
