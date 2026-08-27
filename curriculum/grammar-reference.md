@@ -369,3 +369,100 @@ Croatian's *other* passive is a participle plus *biti*: *Zabranjeno je bacati st
 | the shop is closed | *Trgovina je zatvorena.* | Trgovina **ne radi**. |
 | the river is polluted | *Rijeka je zagađena.* | **Zagađenje** je problem. / Ljudi **zagađuju** rijeku. |
 | waste is sorted here | *Otpad je odvojen.* | Otpad **se odvaja**. |
+
+## 19. Indirect speech (B1 U21)
+
+The one fact that governs everything below: **Croatian does not backshift.** English moves a reported tense one step back — *«I'm coming»* → *she said she **was** coming* — so automatically that native speakers do not notice. Croatian moves nothing.
+
+> *«Dolazim.»* → *Rekla je da **dolazi**.*
+> *«Bio sam tamo.»* → *Rekao je da **je bio** tamo.*
+> *«Doći ću.»* → *Rekla je da **će doći**.*
+
+**The delete-the-frame test.** Take off *Rekla je da* and what remains must be an ordinary Croatian sentence **in the tense the speaker actually used**. If it is not, a tense was moved.
+
+**What does change: the person.** *ja* → *on / ona* · *ti* → *ja* · *moj* → *njegov / njezin* · *tvoj* → *moj*. The past participle keeps the **original speaker's** gender: *Ana je rekla da je **obrisala** poruku.*
+
+### The three sentence types
+
+Ask what the sentence was **before** it was reported. There are only three answers.
+
+| tip | oblik | primjer |
+|---|---|---|
+| **izjava** (statement) | **da** + the ORIGINAL tense | *«Dolazim.»* → Rekla je **da dolazi**. |
+| **naredba / molba** (command, request) | **da** + the **PRESENT**, matched to whoever must act | *«Dođi!»* → Rekla **mi** je **da dođem**. |
+| …to somebody not present | **neka** + 3rd person present, **no `da`** | *«Neka Marko dođe.»* → Rekla je **neka Marko dođe**. |
+| **pitanje s upitnom riječi** | keep the **wh-word**; no `da`, no question mark, no inversion | *«Gdje stanuješ?»* → Pitala me **gdje stanujem**. |
+| **da/ne pitanje** | **`li`** clipped onto the verb, verb first | *«Imaš li lozinku?»* → Pitao me **imam li** lozinku. |
+
+**Reported commands take the PRESENT, never the future.** *Rekla mi je da **dođem*** (an order relayed) ‖ *Rekla mi je da **ću doći*** (a plan reported) are two different sentences.
+
+**The person told goes in the DATIVE**, and it is what makes the person-match readable: *Rekla **mi** je da **dođem*** · *Rekao **nam** je da **požurimo***. It is a clitic, so §12 puts it in second position.
+
+**`neka` never takes `da`.** \**Rekla je neka da dođe* ❌ → *Rekla je **neka dođe**.* ✅
+
+### ⚠️ `ako` cannot carry a question
+
+English uses **one** word for two unrelated jobs — *if it rains* (a condition) and *she asked if I live here* (an embedded question). Croatian has never merged them, and this is the most durable error English speakers make in the language.
+
+**`ako` is the conditional conjunction only.** It always sets up a second half, so a Croatian listener hearing *ako stanujem u Zagrebu…* **waits for the consequence** — and the sentence lands as unfinished rather than as foreign.
+
+| što želiš reći | ❌ | ✅ |
+|---|---|---|
+| she asked if I have time | *Pitala me **ako** imam vremena* | Pitala me **imam li** vremena |
+| he asked if it's true | *Pitao me **ako** je istina* | Pitao me **je li** istina |
+| I want to know if he replied | *Zanima me **ako** je odgovorio* | Zanima me **je li** odgovorio |
+
+**`ako` stays completely correct when it really is a condition:** *Ako imam vremena, doći ću.* ✅ (§10)
+
+**`da li` is out too.** It is real and widely heard, particularly outside Croatia. This course produces **`li` on the verb**, and with a compound tense `li` goes on the **auxiliary**: *jesam li **provjerio***, never \**provjerio li sam*.
+
+`li` is a clitic and can never lead: \**Pitala me li stanujem* ❌ → *…**stanujem li**…* ✅
+
+**The softener:** *Zanima me…* + an embedded question is the polite, indirect way to ask anything, and it works with both kinds — *Zanima me **gdje stanuješ*** · *Zanima me **je li** to istina*.
+
+### The da-clause verb network
+
+Verbs already carded that take **`da` + a clause**: **reći · misliti · znati · čuti · objasniti · smatrati · tvrditi · vjerovati · sumnjati**. U21 adds **priznati · spomenuti · primijetiti**, plus **obavijestiti / upozoriti** *nekoga* **da**…
+
+Two members are fussy about the tense inside, and both follow from what the sentence is *doing*:
+
+| glagol | što traži | primjer |
+|---|---|---|
+| **obećati** | **da** + the **FUTURE** (a promise is about later) | *Obećao je **da će doći**.* |
+| **predložiti** | **da** + the **PRESENT** (a suggestion is a soft order) | *Predložio je **da dođemo** u pet.* |
+
+**And some verbs never take `da` at all** — naming these is what stops the pattern over-generalizing:
+
+| glagol | što slijedi | primjer |
+|---|---|---|
+| **odbiti** | infinitiv | *Odbio je **doći**.* (\**odbio je da dođe* ❌) |
+| **pristati** | **na** + ACC | *Pristao je **na to**.* |
+| moći · morati · htjeti | infinitiv | *Mora **doći**.* |
+| znati (= know how) | infinitiv | *Zna **govoriti** hrvatski.* |
+| **ispričati** | the whole story, not a clause | *Ispričala mi je **što se dogodilo**.* |
+
+**The clitic inside a `da`-clause** takes second position of that clause, with **`da` counting as slot one**: *Rekla je da **je** bio tamo* · *Obećao je da **će** doći* · *Priznao je da **ga** nije vidio*. Two `je` in one sentence is normal — one per clause, each in its own second position.
+
+### Tenses never move. Deictics always do.
+
+The one exception to «nothing moves», and it belongs to a different category: **time and place words re-point**, because the person speaking has changed and so has the day.
+
+| u citatu | kad prenosiš |
+|---|---|
+| sutra | danas (or the actual day: *u subotu*) |
+| jučer | prije / the actual day |
+| ovdje | tamo |
+| ovaj | taj |
+| sada | onda |
+
+*U petak: «Doći ću **sutra**.»* → reported on Saturday: *Rekao je da će doći **danas**.* Same tense, different word for the day.
+
+A tense measures time from the original speaking, and Croatian keeps that as the reference point — so it stays. A deictic measures from **whoever is talking now**. Two reference points, two behaviours. And if you report on the same day from the same place, **nothing changes at all**.
+
+### The five standing errors
+
+1. **Backshifting.** \**Rekla je da je dolazila* ❌ → *Rekla je da **dolazi***. The habit-fix: say the original sentence to yourself first, then put the frame in front of it and change only the person.
+2. **`ako` carrying a question.** \**Pitala me ako imam vremena* ❌ → *…**imam li** vremena*.
+3. **`da li`** anywhere.
+4. **A reported wh-question that is still a question.** \**Pitala me gdje stanuješ?* ❌ → *Pitala me gdje **stanujem**.*
+5. **A person left unmoved.** \**Marko je rekao da sam spremio podatke* ❌ (that reports him claiming *I* saved them) → *…da **je** spremio…*
