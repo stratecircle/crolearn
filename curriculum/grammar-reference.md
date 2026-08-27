@@ -230,3 +230,46 @@ Clitics live in **second position** in the clause, in FIXED internal order:
 ## 16. Ijekavian notes (standard)
 
 lijep, mlijeko, vrijeme, dijete (long jat = ije) · djeca, vjera, mjesto, čovjek (short jat = je) · Content never mixes in ekavian (lepo, mleko = Serbian standard). Receptive regional awareness is a B2 U32 topic only.
+
+## 17. Relative clauses (koji)
+
+**The one rule that runs the whole system:**
+
+> **koji takes its GENDER and NUMBER from the noun it points back at (the antecedent), but its CASE from the job it does inside its own clause.**
+
+Two questions, two different sources:
+
+1. *What does it point back at?* → gender + number (čovjek → m sg · kolegica → f sg · ljudi → pl)
+2. *What is its job HERE, in the relative clause?* → case (subject → NOM · object → ACC · after `s` → INS · after `u`/`o` → LOC …)
+
+The antecedent's own case is **irrelevant** and is a standing decoy:
+*Poznajem čovjek**a** koj**i** radi ovdje.* — čovjeka is ACC (object of *poznajem*), koji is NOM (subject of *radi*).
+
+### Full declension — identical to the definite adjective `nov` (§4), with koj- for nov-
+
+| Case | m sg | f sg | n sg | plural (all genders) |
+|---|---|---|---|---|
+| NOM | koji | koja | koje | koji (m) · koje (f) · koja (n) |
+| GEN | kojeg(a) | koje | kojeg(a) | kojih |
+| DAT | kojem(u) | kojoj | kojem(u) | **kojima** |
+| ACC | koji *(inanimate)* / **kojeg(a)** *(animate)* | koju | koje | koje (m) · koje (f) · koja (n) |
+| LOC | kojem(u/e) | kojoj | kojem(u/e) | **kojima** |
+| INS | kojim | kojom | kojim | **kojima** |
+
+**Plural collapse:** DAT = LOC = INS = **kojima** for every gender — three cases, one form (exactly like *novima*).
+**Masculine singular ACC forks by animacy** (§3, same rule as *Vidim Marka* ‖ *Vidim auto*): *čovjek **kojeg** poznajem* ‖ *film **koji** gledam*.
+**Feminine singular ACC is koju**, never *koje* (it copies *novu*).
+
+### The four habits
+
+1. **koji can never be dropped.** English deletes it (*the man I know*); Croatian cannot — *čovjek **kojeg** poznajem*.
+2. **The preposition goes in FRONT of koji, never stranded.** *grad **u kojem** živim* (not \**grad koji živim u*) · *tema **o kojoj** govorimo* · *ljudi **s kojima** radim*. The preposition is also what picks the case: `u/na` location → LOC · `o` → LOC · `s/sa` → INS · `protiv/bez` → GEN · `u/na` motion → ACC (*grad **u koji** idem*).
+3. **The comma depends on the job of the clause.** **No comma** when the clause tells you *which one* — restrictive, and that is almost everything this course drills: *Imam prijatelja **koji** radi u Zagrebu.* · *Film **koji** gledam je dobar.* **A comma** when the thing is already identified and the clause merely adds information — non-restrictive: *Moj brat, **koji** živi u Splitu, dolazi sutra.* Default to no comma in production; graders accept both.
+4. **Clitics sit in second position of the relative clause**, counting koji as slot one: *…kojeg **sam** vidio jučer*, never \**…kojeg vidio sam*.
+
+### Related pronouns
+
+- **čiji** (whose) declines the same way and relativizes possession — *čovjek **čiji** sin radi ovdje*. Deferred to U24.
+- **što** as a relative (*ono **što** želim*, *sve **što** znam*) is receptive at B1: it relativizes a whole clause or the pronouns *ono / sve / to*, and does not decline like koji. Recognize it; do not produce it yet.
+- **tko / što** as interrogatives decline separately — see §15.
+- **koji** is also the interrogative "which" (*Koji je datum danas?*), where it is simply nominative and undeclined in the fixed phrase. That use has been live since A1; the declension above is what U19 adds.

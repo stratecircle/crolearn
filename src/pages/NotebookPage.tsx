@@ -2,143 +2,98 @@
  * Notes — the index over CroLearn's lesson NotesDocs, read as the course's
  * table of contents: units as sections, lessons as rows. No user-authored
  * notes exist, so there is no "New note", starring or trash.
+ *
+ * The screen is the same two-pane frame as /notes/:lessonId (see NotesList);
+ * here the detail pane has nothing selected, so instead of an empty white
+ * field it shows what the book adds up to — how much of it has been studied,
+ * and the one link worth clicking: the note read most recently.
  */
-import { useEffect, useMemo, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { ArrowRight, Check } from "lucide-react";
-import { levels } from "@/content";
-import { db } from "@/lib/db";
-import { Divider, EmptyState, INK, Meta, MUTED, PageHeader, SearchBox } from "@/ui/kit";
-
-interface NoteRow {
-  lessonId: string;
-  title: string;
-  blurb: string;
-  levelId: string;
-  unitLabel: string;
-  unitTitle: string;
-  tags: string[];
-  completedAt?: Date;
-}
-
-const CATS = ["All", "Studied", "Not yet"] as const;
+import { Link } from "react-router-dom";
+import { ArrowRight, BookOpen } from "lucide-react";
+import NotesList, { useNotesIndex, type NoteRow } from "@/features/notes/NotesList";
+import { ACCENT, Divider, INK, MUTED, Panel, ProgressBar, SplitView, View } from "@/ui/kit";
+import { Hero } from "@/ui/charts";
 
 export default function NotebookPage() {
-  const nav = useNavigate();
-  const [params] = useSearchParams();
-  const [completed, setCompleted] = useState<Map<string, Date>>(new Map());
-  const [q, setQ] = useState(params.get("q") ?? "");
-  const [cat, setCat] = useState<(typeof CATS)[number]>("All");
-
-  useEffect(() => {
-    void db.lessonProgress.toArray().then((rows) => setCompleted(new Map(rows.map((r) => [r.lessonId, r.completedAt]))));
-  }, []);
-
-  const all = useMemo<NoteRow[]>(
-    () =>
-      levels.flatMap((level) =>
-        level.units.flatMap((unit) =>
-          unit.lessons.map((l) => ({
-            lessonId: l.id,
-            title: l.title,
-            blurb: l.titleEn,
-            levelId: level.id,
-            unitLabel: `${level.id} · Unit ${unit.number}`,
-            unitTitle: unit.title,
-            tags: l.grammarTags.slice(0, 3),
-            completedAt: completed.get(l.id),
-          })),
-        ),
-      ),
-    [completed],
-  );
-
-  const needle = q.trim().toLowerCase();
-  const notes = all
-    .filter((n) => (cat === "Studied" ? !!n.completedAt : cat === "Not yet" ? !n.completedAt : true))
-    .filter((n) => !needle || `${n.title} ${n.blurb} ${n.tags.join(" ")} ${n.unitLabel}`.toLowerCase().includes(needle));
-
+  const all = useNotesIndex();
   const studied = all.filter((n) => n.completedAt).length;
+  const pct = all.length > 0 ? Math.round((studied / all.length) * 100) : 0;
+
+  // Cheap: the completion dates are already in hand from the index.
+  const recent = all
+    .filter((n) => n.completedAt)
+    .reduce<NoteRow | undefined>(
+      (best, n) => (!best || n.completedAt!.getTime() > best.completedAt!.getTime() ? n : best),
+      undefined,
+    );
+
+  // The next note that has never been studied — the other half of "where was I".
+  const nextUp = all.find((n) => !n.completedAt);
 
   return (
-    <div>
-      <PageHeader
-        title="Notes"
-        sub={`${studied} of ${all.length} lessons studied`}
-        right={
-          <div className="flex gap-4">
-            {CATS.map((c) => (
-              <button
-                key={c}
-                onClick={() => setCat(c)}
-                aria-pressed={cat === c}
-                /*
-                 * The padding/negative-margin pair grows the pointer target to
-                 * the WCAG 2.5.8 24px minimum ("All" is only 22x17 of text)
-                 * while the equal negative margin keeps the rendered layout
-                 * pixel-identical.
-                 */
-                className="meta -mx-1.5 -my-1.5 px-1.5 py-1.5 transition-colors duration-100"
-                style={{ color: cat === c ? INK : "var(--muted3)" }}
+    <View title="Notes" sub={`${studied} of ${all.length} lessons studied`} scroll={false}>
+      <SplitView list={<NotesList />} listWidth={300}>
+        <div className="mx-auto w-full max-w-[560px] px-8 py-14 max-[700px]:px-4 max-[700px]:py-8">
+          <Panel
+            className="rise rise-1"
+            title="Your grammar book"
+            right={<span className="meta tabular-nums" style={{ color: "var(--muted3)" }}>{pct}%</span>}
+          >
+            <div className="flex items-start justify-between gap-6">
+              <Hero
+                value={String(studied)}
+                unit={`/ ${all.length}`}
+                label="Lessons studied"
+                sub="One note per lesson — the point in a sentence, the deep dive, the traps and a self-check."
+              />
+              <div
+                className="flex h-10 w-10 flex-none items-center justify-center rounded-xl"
+                style={{ background: "rgba(var(--primary-rgb),.1)" }}
               >
-                {c}
-              </button>
-            ))}
-          </div>
-        }
-      />
-
-      <div className="mt-8 flex">
-        <SearchBox value={q} onChange={setQ} placeholder="Search notes…" />
-      </div>
-
-      {notes.length === 0 ? (
-        <div className="mt-10">
-          <EmptyState title="No notes found" sub="Nothing matches your search — try different keywords." />
-        </div>
-      ) : (
-        <div className="mt-10">
-          {notes.map((n, i) => {
-            const newGroup = i === 0 || notes[i - 1].unitLabel !== n.unitLabel;
-            return (
-              <div key={n.lessonId}>
-                {newGroup ? (
-                  <div className={`flex items-baseline gap-3 ${i === 0 ? "mb-1" : "mb-1 mt-10"}`}>
-                    <Meta>{n.unitLabel}</Meta>
-                    <span className="text-[13px]" style={{ color: MUTED }}>{n.unitTitle}</span>
-                  </div>
-                ) : (
-                  <Divider />
-                )}
-                <button
-                  onClick={() => nav(`/notes/${n.lessonId}`)}
-                  className="group flex w-full items-center gap-4 py-3.5 text-left"
-                >
-                  <span className="flex h-4 w-4 flex-none items-center justify-center" aria-label={n.completedAt ? "Studied" : "Not studied yet"}>
-                    {n.completedAt ? (
-                      <Check size={14} color="var(--green)" strokeWidth={2.6} />
-                    ) : (
-                      <span className="h-3.5 w-3.5 rounded-full border" style={{ borderColor: "rgba(var(--ink-rgb),.18)" }} />
-                    )}
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="flex items-baseline gap-2.5">
-                      <span className="truncate text-[15px] font-semibold" style={{ color: INK, letterSpacing: "-.01em" }}>{n.title}</span>
-                      <span className="truncate text-[13px] max-[700px]:hidden" style={{ color: MUTED }}>{n.blurb}</span>
-                    </span>
-                  </span>
-                  {n.tags.length > 0 && (
-                    <span className="meta flex-none truncate max-[900px]:hidden" style={{ color: "var(--muted3)" }}>
-                      {n.tags.join(" · ")}
-                    </span>
-                  )}
-                  <ArrowRight size={14} color={MUTED} className="flex-none opacity-0 transition-opacity duration-100 group-hover:opacity-100" />
-                </button>
+                <BookOpen size={19} color={ACCENT} strokeWidth={1.9} />
               </div>
-            );
-          })}
+            </div>
+            <ProgressBar pct={pct} className="mt-5" />
+          </Panel>
+
+          {(recent || nextUp) && (
+            <Panel className="rise rise-2 mt-5" title="Pick up where you left off" bodyClassName="px-5 py-1">
+              {recent && (
+                <Link
+                  to={`/notes/${recent.lessonId}`}
+                  className="group flex items-center gap-4 py-3.5"
+                >
+                  <span className="meta w-24 flex-none" style={{ color: "var(--muted3)" }}>Last studied</span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate text-[13.5px] font-semibold" style={{ color: INK }}>{recent.title}</span>
+                    <span className="block truncate text-[12.5px]" style={{ color: MUTED }}>
+                      {recent.unitLabel} · {recent.completedAt!.toLocaleDateString("en-GB", { day: "numeric", month: "short" })}
+                    </span>
+                  </span>
+                  <ArrowRight size={14} color={MUTED} className="flex-none opacity-0 transition-opacity duration-100 group-hover:opacity-100" />
+                </Link>
+              )}
+              {recent && nextUp && <Divider />}
+              {nextUp && (
+                <Link to={`/notes/${nextUp.lessonId}`} className="group flex items-center gap-4 py-3.5">
+                  <span className="meta w-24 flex-none" style={{ color: "var(--muted3)" }}>Next up</span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate text-[13.5px] font-semibold" style={{ color: INK }}>{nextUp.title}</span>
+                    <span className="block truncate text-[12.5px]" style={{ color: MUTED }}>
+                      {nextUp.unitLabel} · {nextUp.blurb}
+                    </span>
+                  </span>
+                  <ArrowRight size={14} color={MUTED} className="flex-none opacity-0 transition-opacity duration-100 group-hover:opacity-100" />
+                </Link>
+              )}
+            </Panel>
+          )}
+
+          <p className="rise rise-3 mt-5 text-[13px]" style={{ color: MUTED }}>
+            Pick a lesson on the left to read its notes.
+          </p>
         </div>
-      )}
-    </div>
+      </SplitView>
+    </View>
   );
 }

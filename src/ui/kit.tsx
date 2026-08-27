@@ -132,14 +132,58 @@ export function tint(color: string, a: number): string {
   return `color-mix(in srgb, ${color} ${Math.round(a * 1000) / 10}%, transparent)`;
 }
 
-export function Card({ children, className = "", style }: { children: ReactNode; className?: string; style?: CSSProperties }) {
+/**
+ * An elevated surface. True white on the page's soft field, one hairline, one
+ * step of shadow — enough separation to read as an object rather than a box
+ * drawn on paper. `lift` adds the hover rise; use it only where the whole
+ * surface is clickable.
+ */
+export function Card({
+  children,
+  className = "",
+  style,
+  lift = false,
+}: {
+  children: ReactNode;
+  className?: string;
+  style?: CSSProperties;
+  lift?: boolean;
+}) {
   return (
     <div
-      className={`rounded-[10px] border bg-[color:var(--card)] ${className}`}
-      style={{ borderColor: BORDER, ...style }}
+      className={`rounded-xl border bg-[color:var(--card)] ${lift ? "lift" : ""} ${className}`}
+      style={{ borderColor: BORDER, boxShadow: "var(--e1)", ...style }}
     >
       {children}
     </div>
+  );
+}
+
+/**
+ * A card with a mono header rule — the standard container for a chart or a
+ * figure, so every panel on the dashboard is titled the same way.
+ */
+export function Panel({
+  title,
+  right,
+  children,
+  className = "",
+  bodyClassName = "p-5",
+}: {
+  title: ReactNode;
+  right?: ReactNode;
+  children: ReactNode;
+  className?: string;
+  bodyClassName?: string;
+}) {
+  return (
+    <Card className={className}>
+      <div className="flex items-center justify-between gap-3 border-b px-5 py-3" style={{ borderColor: DIVIDER }}>
+        <div className="meta truncate" style={{ color: MUTED }}>{title}</div>
+        {right && <div className="flex-none">{right}</div>}
+      </div>
+      <div className={bodyClassName}>{children}</div>
+    </Card>
   );
 }
 
@@ -337,11 +381,21 @@ export function EmptyState({ title, sub }: { title: string; sub: string }) {
   );
 }
 
-/** Status banner used inside players (looking-back / retry / review notices). */
+/**
+ * Status banner (looking-back / retry / no-API-key notices).
+ *
+ * The surface stays neutral gray and only the text and the leading rule carry
+ * the tone — a tinted wash of orange or green over white reads as a cream or
+ * mint page, which is exactly the muddiness this design is built to avoid.
+ */
 export function Banner({ children, color = BODY2 }: { children: ReactNode; color?: string }) {
   return (
-    <p className="mb-3 rounded-lg px-3.5 py-2 text-[13px] font-medium" style={{ background: tint(color, 0.07), color }}>
-      {children}
+    <p
+      className="mb-3 flex gap-3 rounded-lg py-2 pl-3 pr-3.5 text-[13px] font-medium"
+      style={{ background: "var(--tint)", color }}
+    >
+      <span aria-hidden className="w-[2px] flex-none self-stretch rounded-full" style={{ background: color }} />
+      <span className="min-w-0">{children}</span>
     </p>
   );
 }
@@ -358,6 +412,108 @@ export function DoneCard({ icon: Icon = undefined, title, children }: { icon?: L
       )}
       <div className="mb-3 font-bold" style={{ fontSize: "clamp(24px,3.4vw,32px)", lineHeight: 1.15, letterSpacing: "-.02em", color: INK }}>{title}</div>
       {children}
+    </div>
+  );
+}
+
+/**
+ * Keycap, for shortcut hints.
+ *
+ * The font stack ends in system-ui on purpose: Geist Mono has no glyph for the
+ * arrow keycaps (↑ ↓ ←), and a missing glyph renders as an empty box — which
+ * reads as a broken keycap rather than a shortcut. Per-glyph fallback keeps the
+ * letters mono and lets the arrows come from wherever they exist.
+ */
+export function Kbd({ children }: { children: ReactNode }) {
+  return (
+    <kbd
+      className="inline-flex h-[18px] min-w-[18px] items-center justify-center rounded border px-1 text-[10.5px] font-medium leading-none"
+      style={{
+        borderColor: BORDER,
+        color: MUTED,
+        background: "var(--card)",
+        fontFamily: `${MONO}, system-ui, sans-serif`,
+      }}
+    >
+      {children}
+    </kbd>
+  );
+}
+
+/**
+ * A desktop view: fixed 56px header bar over a body that owns its own scroll.
+ * The window never scrolls — every pane does — which is what makes the app feel
+ * like an application rather than a web page.
+ *
+ * `scroll={false}` hands scrolling to the page (use with SplitView, or with a
+ * player-style stage that manages its own overflow).
+ */
+export function View({
+  title,
+  sub,
+  actions,
+  children,
+  scroll = true,
+  bodyClassName = "",
+}: {
+  title: ReactNode;
+  sub?: ReactNode;
+  actions?: ReactNode;
+  children: ReactNode;
+  scroll?: boolean;
+  bodyClassName?: string;
+}) {
+  return (
+    <div className="flex h-full min-h-0 flex-col">
+      <header
+        className="flex h-14 flex-none items-center gap-3 border-b px-7 max-[700px]:px-4"
+        style={{ borderColor: DIVIDER }}
+      >
+        <h1 className="truncate text-[15px] font-semibold" style={{ color: INK, letterSpacing: "-.01em" }}>{title}</h1>
+        {sub && <div className="meta truncate max-[700px]:hidden" style={{ color: "var(--muted3)" }}>{sub}</div>}
+        {actions && <div className="ml-auto flex flex-none items-center gap-2">{actions}</div>}
+      </header>
+      <div className={`min-h-0 flex-1 ${scroll ? "overflow-y-auto" : "overflow-hidden"} ${bodyClassName}`}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/** Standard content measure inside a View body. */
+export function ViewBody({ children, className = "", wide = false }: { children: ReactNode; className?: string; wide?: boolean }) {
+  return (
+    <div className={`mx-auto ${wide ? "max-w-[1180px]" : "max-w-[860px]"} px-7 pb-24 pt-9 max-[700px]:px-4 max-[700px]:pt-6 ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+/**
+ * Master/detail: a fixed-width list pane that scrolls independently beside a
+ * detail pane that does the same. Below 900px the detail pane wins the screen
+ * and the list collapses away (pages pass `showList` to drive that).
+ */
+export function SplitView({
+  list,
+  children,
+  listWidth = 296,
+  showList = true,
+}: {
+  list: ReactNode;
+  children: ReactNode;
+  listWidth?: number;
+  showList?: boolean;
+}) {
+  return (
+    <div className="flex h-full min-h-0">
+      <div
+        className={`nativ-noscrollbar flex-none overflow-y-auto border-r max-[900px]:w-full ${showList ? "" : "max-[900px]:hidden"}`}
+        style={{ width: listWidth, borderColor: DIVIDER }}
+      >
+        {list}
+      </div>
+      <div className={`min-w-0 flex-1 overflow-y-auto ${showList ? "max-[900px]:hidden" : ""}`}>{children}</div>
     </div>
   );
 }

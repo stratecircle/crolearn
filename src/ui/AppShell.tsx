@@ -1,22 +1,55 @@
 /**
- * ČISTO app shell: 220px text sidebar (faint gray, hairline edge), content in
- * a centered readable column. ≤900px the sidebar becomes an icon tab bar along
- * the bottom. Players (StageShell) run chrome-free — a focused mode with no
- * navigation; the ✕ in the player chrome is the way back.
+ * The desktop app frame.
+ *
+ * The window itself never scrolls: the shell is a full-height flex row, and
+ * every pane inside a `View` owns its own overflow. That single decision is
+ * what makes this read as an application rather than a long web page — the
+ * sidebar and the view header stay put while content moves under them.
+ *
+ * Left: a 240px sidebar (brand, ⌘K search, grouped nav, tools at the foot).
+ * Below 900px it detaches into a fixed bottom tab bar and the frame reclaims
+ * the width.
+ *
+ * Players (StageShell) get no chrome at all — a lesson is a focused mode.
  */
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
-import { BookOpen, GraduationCap, House, MessageCircle, NotebookText, Puzzle, Settings, type LucideIcon } from "lucide-react";
+import {
+  BookOpen,
+  GraduationCap,
+  House,
+  MessageCircle,
+  NotebookText,
+  Puzzle,
+  Search,
+  Settings,
+  type LucideIcon,
+} from "lucide-react";
 import { countDue } from "@/lib/srs";
-import { INK, BODY2, Sahovnica } from "./kit";
+import { MOD_LABEL, useHotkeys } from "@/lib/hotkeys";
+import { BODY2, DIVIDER, INK, Kbd, MUTED, Sahovnica } from "./kit";
+import CommandPalette from "./CommandPalette";
 
-const NAV: { label: string; to: string; icon: LucideIcon; group: number }[] = [
-  { label: "Home", to: "/", icon: House, group: 0 },
-  { label: "Course", to: "/course", icon: GraduationCap, group: 0 },
-  { label: "Practice", to: "/practice", icon: Puzzle, group: 1 },
-  { label: "Stories", to: "/stories", icon: BookOpen, group: 1 },
-  { label: "Notes", to: "/notes", icon: NotebookText, group: 1 },
-  { label: "Tutor", to: "/tutor", icon: MessageCircle, group: 2 },
+interface NavEntry {
+  label: string;
+  to: string;
+  icon: LucideIcon;
+}
+
+const PRIMARY: NavEntry[] = [
+  { label: "Home", to: "/", icon: House },
+  { label: "Course", to: "/course", icon: GraduationCap },
+  { label: "Practice", to: "/practice", icon: Puzzle },
+];
+
+const LIBRARY: NavEntry[] = [
+  { label: "Stories", to: "/stories", icon: BookOpen },
+  { label: "Notes", to: "/notes", icon: NotebookText },
+];
+
+const TOOLS: NavEntry[] = [
+  { label: "Tutor", to: "/tutor", icon: MessageCircle },
+  { label: "Settings", to: "/settings", icon: Settings },
 ];
 
 /** Which item lights up for the current path (review→Practice). */
@@ -55,27 +88,39 @@ function NavItem({
        * with no accessible name at all, since only the icon remains. Deriving
        * the name from content rather than an aria-label also keeps the "N cards
        * due for review" badge text part of the announcement.
-       * min-h/min-w hold the bottom-bar hit box at the 44px touch minimum
-       * (7 items x 44 = 308px, fits inside a 390px viewport).
+       * min-h/min-w hold the bottom-bar hit box at the 44px touch minimum.
        */
-      className="flex h-8 w-full items-center gap-2.5 rounded-md px-2.5 text-left transition-colors duration-100 max-[900px]:h-auto max-[900px]:min-h-[44px] max-[900px]:w-auto max-[900px]:min-w-[44px] max-[900px]:flex-col max-[900px]:justify-center max-[900px]:gap-0.5 max-[900px]:rounded-lg max-[900px]:px-3 max-[900px]:py-1.5"
+      className="flex h-[30px] w-full items-center gap-2.5 rounded-md px-2.5 text-left transition-colors duration-100 max-[900px]:h-auto max-[900px]:min-h-[44px] max-[900px]:min-w-[44px] max-[900px]:w-auto max-[900px]:flex-col max-[900px]:justify-center max-[900px]:gap-0.5 max-[900px]:rounded-lg max-[900px]:px-3"
       style={{ background: active ? "rgba(var(--ink-rgb),.06)" : "transparent", color: active ? INK : BODY2 }}
       onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = "rgba(var(--ink-rgb),.035)"; }}
       onMouseLeave={(e) => { if (!active) e.currentTarget.style.background = "transparent"; }}
     >
-      <Icon size={16} strokeWidth={active ? 2.1 : 1.8} className="flex-none" />
-      <span className="min-w-0 flex-1 truncate text-[13.5px] max-[900px]:sr-only" style={{ fontWeight: active ? 600 : 480 }}>
+      <Icon size={15.5} strokeWidth={active ? 2.15 : 1.8} className="flex-none" />
+      <span className="min-w-0 flex-1 truncate text-[13.5px] max-[900px]:sr-only" style={{ fontWeight: active ? 600 : 470 }}>
         {label}
       </span>
       {badge > 0 && (
         <>
-          <span aria-hidden className="meta flex-none tabular-nums max-[900px]:absolute max-[900px]:hidden" style={{ color: "var(--primary)" }}>
+          <span
+            aria-hidden
+            className="meta flex-none tabular-nums max-[900px]:hidden"
+            style={{ color: active ? INK : "var(--muted3)" }}
+          >
             {badge > 99 ? "99+" : badge}
           </span>
           <span className="sr-only">{badge} card{badge === 1 ? "" : "s"} due for review</span>
         </>
       )}
     </button>
+  );
+}
+
+function NavGroup({ label, children }: { label?: string; children: React.ReactNode }) {
+  return (
+    <div className="max-[900px]:contents">
+      {label && <div className="meta px-2.5 pb-1 pt-4 max-[900px]:hidden" style={{ color: "var(--muted3)" }}>{label}</div>}
+      {children}
+    </div>
   );
 }
 
@@ -99,45 +144,56 @@ function useDueCount(pathname: string): number {
   return due;
 }
 
-export function Sidebar() {
+export function Sidebar({ onSearch }: { onSearch: () => void }) {
   const nav = useNavigate();
   const { pathname } = useLocation();
   const active = activeFor(pathname);
   const due = useDueCount(pathname);
+
+  const item = (n: NavEntry) => (
+    <NavItem
+      key={n.to}
+      label={n.label}
+      icon={n.icon}
+      active={active === n.to}
+      badge={n.to === "/practice" ? due : 0}
+      onClick={() => nav(n.to)}
+    />
+  );
+
   return (
     <div
-      className="fixed bottom-0 left-0 top-0 z-50 flex w-[220px] flex-col border-r px-3 pb-3 pt-5 max-[900px]:top-auto max-[900px]:right-0 max-[900px]:w-auto max-[900px]:flex-row max-[900px]:items-center max-[900px]:justify-around max-[900px]:border-r-0 max-[900px]:border-t max-[900px]:px-2 max-[900px]:pb-[calc(4px+env(safe-area-inset-bottom))] max-[900px]:pt-1"
-      style={{ borderColor: "rgba(var(--ink-rgb),.08)", background: "var(--tint4)" }}
+      className="flex w-60 flex-none flex-col border-r max-[900px]:fixed max-[900px]:bottom-0 max-[900px]:left-0 max-[900px]:right-0 max-[900px]:z-50 max-[900px]:w-auto max-[900px]:flex-row max-[900px]:items-center max-[900px]:justify-around max-[900px]:border-r-0 max-[900px]:border-t max-[900px]:px-2 max-[900px]:pb-[env(safe-area-inset-bottom)] max-[900px]:pt-1"
+      style={{ borderColor: DIVIDER, background: "var(--tint4)" }}
     >
-      <button
-        onClick={() => nav("/")}
-        className="mb-6 flex items-center gap-2.5 rounded-md px-2.5 py-1 max-[900px]:hidden"
-        aria-label="Home"
-        title="CroLearn"
-      >
-        <Sahovnica size={16} cols={4} rows={3} />
-        <span className="text-sm font-bold" style={{ color: INK, letterSpacing: "-.01em" }}>CroLearn</span>
-      </button>
-      <nav aria-label="Main" className="flex flex-1 flex-col gap-px max-[900px]:flex-row max-[900px]:items-center max-[900px]:justify-around max-[900px]:gap-0">
-        {NAV.map((n, i) => (
-          <div key={n.to} className="max-[900px]:contents">
-            {i > 0 && NAV[i - 1].group !== n.group && <div className="h-3 max-[900px]:hidden" />}
-            <NavItem
-              label={n.label}
-              icon={n.icon}
-              active={active === n.to}
-              badge={n.to === "/practice" ? due : 0}
-              onClick={() => nav(n.to)}
-            />
-          </div>
-        ))}
-        <div className="min-[901px]:hidden">
-          <NavItem label="Settings" icon={Settings} active={active === "/settings"} onClick={() => nav("/settings")} />
-        </div>
-      </nav>
-      <div className="max-[900px]:hidden">
-        <NavItem label="Settings" icon={Settings} active={active === "/settings"} onClick={() => nav("/settings")} />
+      {/* Brand row — exactly the height of a View header, so the two hairlines meet. */}
+      <div className="flex h-14 flex-none items-center gap-2.5 px-4 max-[900px]:hidden">
+        <Sahovnica size={15} cols={4} rows={3} />
+        <span className="text-[13.5px] font-bold" style={{ color: INK, letterSpacing: "-.01em" }}>CroLearn</span>
       </div>
+
+      <div className="px-2.5 pb-1 max-[900px]:hidden">
+        <button
+          onClick={onSearch}
+          className="flex h-8 w-full items-center gap-2 rounded-md border px-2.5 transition-colors duration-100 hover:bg-[color:var(--card)]"
+          style={{ borderColor: "rgba(var(--ink-rgb),.1)", background: "var(--card)" }}
+        >
+          <Search size={14} color={MUTED} strokeWidth={2} className="flex-none" />
+          <span className="flex-1 text-left text-[13px]" style={{ color: MUTED }}>Search…</span>
+          <Kbd>{MOD_LABEL}K</Kbd>
+        </button>
+      </div>
+
+      <nav
+        aria-label="Main"
+        className="flex flex-1 flex-col gap-px overflow-y-auto px-2.5 max-[900px]:flex-row max-[900px]:items-center max-[900px]:justify-around max-[900px]:gap-0 max-[900px]:overflow-visible max-[900px]:px-0"
+      >
+        <NavGroup>{PRIMARY.map(item)}</NavGroup>
+        <NavGroup label="Library">{LIBRARY.map(item)}</NavGroup>
+        <div className="flex-1 max-[900px]:hidden" />
+        <NavGroup>{TOOLS.map(item)}</NavGroup>
+      </nav>
+      <div className="h-2.5 flex-none max-[900px]:hidden" />
     </div>
   );
 }
@@ -152,25 +208,29 @@ function SkipLink() {
 }
 
 /**
- * Standard screen: sidebar + centered readable column.
- *
- * The bottom bar is 53px tall below 900px (1px border + pt-1 + a 44px touch row
- * + pb-1) and then clears the home indicator itself, so the reservation below
- * has to carry the same safe-area inset — otherwise the last row of a list
- * sits underneath the bar on a notched phone.
+ * Standard screen: sidebar + a view pane that fills the window. Pages render a
+ * `View`, which supplies the header bar and owns its own scrolling.
  */
 export default function AppShell() {
+  const [palette, setPalette] = useState(false);
+  useHotkeys(
+    {
+      "mod+k": (e) => {
+        e.preventDefault();
+        setPalette((o) => !o);
+      },
+    },
+    [],
+  );
+
   return (
-    <div className="relative min-h-screen overflow-x-hidden pl-[220px] max-[900px]:pb-[calc(64px+env(safe-area-inset-bottom))] max-[900px]:pl-0">
+    <div className="flex h-dvh overflow-hidden max-[900px]:pb-[calc(53px+env(safe-area-inset-bottom))]">
       <SkipLink />
-      <Sidebar />
-      <main
-        id="main"
-        tabIndex={-1}
-        className="mx-auto max-w-[880px] px-10 pb-20 pt-12 max-[1100px]:px-8 max-[700px]:px-5 max-[700px]:pt-8"
-      >
+      <Sidebar onSearch={() => setPalette(true)} />
+      <main id="main" tabIndex={-1} className="flex min-h-0 min-w-0 flex-1 flex-col">
         <Outlet />
       </main>
+      <CommandPalette open={palette} onClose={() => setPalette(false)} />
     </div>
   );
 }

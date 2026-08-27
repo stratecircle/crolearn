@@ -1,6 +1,6 @@
 # Vocab image generation — status & resume guide
 
-_Last updated: 2026-07-28_
+_Last updated: 2026-07-29_
 
 This is the operating manual for the vocab-illustration grind. Read the
 **Resume checklist** at the bottom if you just want to start working.
@@ -19,30 +19,39 @@ It walks the live content registry, folds every `hr` to a filename slug, and
 reports per unit: `total / have / missing`, plus `UNWIRED` for words that have
 a PNG on disk but no `image:` property in the lesson file.
 
-Current state (2026-07-28): **730 vocab entries · 278 have images · 452
-missing · 0 unwired.**
+Current state (2026-07-29): **808 vocab entries · 768 have images · 40
+missing · 1 unwired.** Every unit from a1u1 through b1u18 is complete. The
+entire remaining backlog is **b1u19**, authored 2026-07-29, with no image
+generated for it yet.
 
-| Unit  | total | have | missing | notes                                        |
-| ----- | ----- | ---- | ------- | -------------------------------------------- |
-| a1u1  | 54    | 21   | 33      | backfill — mostly abstract greetings/pronouns |
-| a1u2  | 67    | 22   | 45      | backfill — numbers and nationalities          |
-| a1u3  | 42    | 33   | 9       | backfill — possessives                        |
-| a1u4  | 38    | 38   | **0**   | COMPLETE                                      |
-| a1u5  | 49    | 48   | 1       | only `pa` — deliberately skipped, see §6      |
-| a1u6  | 50    | 50   | **0**   | COMPLETE                                      |
-| a1u7  | 52    | 52   | **0**   | COMPLETE                                      |
-| a1u8  | 41    | 12   | 29      | **in progress — the active front**            |
-| a2u9  | 36    | 0    | 36      | not started                                   |
-| a2u10 | 39    | 0    | 39      | not started                                   |
-| a2u11 | 39    | 0    | 39      | not started                                   |
-| a2u12 | 37    | 1    | 36      | not started                                   |
-| a2u13 | 38    | 0    | 38      | not started                                   |
-| a2u14 | 47    | 1    | 46      | not started                                   |
-| a2u15 | 32    | 0    | 32      | not started                                   |
-| a2u16 | 32    | 0    | 32      | not started                                   |
-| b1u17 | 37    | 0    | 37      | newly authored, not started                   |
+| Unit  | total | have | missing | notes                                             |
+| ----- | ----- | ---- | ------- | ------------------------------------------------- |
+| a1u1  | 54    | 54   | **0**   | COMPLETE (backfill finished)                      |
+| a1u2  | 67    | 67   | **0**   | COMPLETE (backfill finished)                      |
+| a1u3  | 42    | 42   | **0**   | COMPLETE (backfill finished)                      |
+| a1u4  | 38    | 38   | **0**   | COMPLETE                                          |
+| a1u5  | 49    | 49   | **0**   | COMPLETE — `pa` got a symbol after all, see §6     |
+| a1u6  | 50    | 50   | **0**   | COMPLETE                                          |
+| a1u7  | 52    | 52   | **0**   | COMPLETE                                          |
+| a1u8  | 41    | 41   | **0**   | COMPLETE                                          |
+| a2u9  | 36    | 36   | **0**   | COMPLETE                                          |
+| a2u10 | 39    | 39   | **0**   | COMPLETE                                          |
+| a2u11 | 39    | 39   | **0**   | COMPLETE                                          |
+| a2u12 | 37    | 37   | **0**   | COMPLETE                                          |
+| a2u13 | 38    | 38   | **0**   | COMPLETE                                          |
+| a2u14 | 47    | 47   | **0**   | COMPLETE                                          |
+| a2u15 | 32    | 32   | **0**   | COMPLETE                                          |
+| a2u16 | 32    | 32   | **0**   | COMPLETE                                          |
+| b1u17 | 37    | 37   | **0**   | COMPLETE                                          |
+| b1u18 | 37    | 37   | **0**   | COMPLETE                                          |
+| b1u19 | 41    | 1    | 40      | **the active front** — see docs/GRID-PLAN-B1U19.md |
 
-Content validation: `npm run validate:content` → "85 lessons, 2 checkpoint(s),
+That single "have" on b1u19 is a false positive. It is `da`, which resolves to
+the a1u1 image for **da = yes**, while b1u19 cards the **conjunction** da
+("that"). The unit therefore generates its own `dakonj.png` and hand-wires it.
+See the top of `docs/GRID-PLAN-B1U19.md`.
+
+Content validation: `npm run validate:content` → "95 lessons, 2 checkpoint(s),
 all stories and tests OK".
 
 **GitHub:** https://github.com/stratecircle/crolearn (public, `main`).
@@ -266,10 +275,23 @@ uniformly flat image.
 
 ## 6. Deliberate skips
 
-`pa` (a1u5) is intentionally not illustrated — it is a discourse particle
-("so, well then") with no depictable referent. Any audit that reports
-`missing 1` on a1u5 is at its true floor. All other abstract words either got
-a symbolic treatment or are still queued.
+There are now **no deliberate skips left**. `pa` (a1u5) was the long-standing
+exception — a discourse particle ("so, well then") with no depictable
+referent — but it was eventually given a symbolic treatment like the rest of
+the function words, and a1u5 reads `missing 0`. The working rule is now:
+**every carded headword gets an image**, and abstractions get a symbol rather
+than a skip.
+
+The one thing to watch instead is **slug collisions**. `_allaudit.ts` and
+`wire_images.py` both fold the word down to `[a-z0-9]`, so two different words
+that fold the same share one file. Known cases:
+
+- `sto` — a1u1 `što` (what) and a1u7 `sto` (100) both point at `/img/sto.png`.
+  This one is **unfixed**; whichever image was generated last is what both
+  cards show.
+- `da` — a1u1 `da` (yes) vs b1u19 `da` (the conjunction "that"). This one **is**
+  fixed, by generating `dakonj.png` and hand-wiring it before
+  `wire_images.py` runs. That is the pattern to copy for any future collision.
 
 ---
 
@@ -377,6 +399,12 @@ an explicit `timeout` for longer sleeps.
 7. QA sheet to a fresh filename, eyeball it, regenerate the bad ones.
 8. `git add -A && git commit && git push`.
 
-Order of attack: finish **a1u8** (29 left), then a2u9 → a2u16 in order, then
-b1u17, then backfill a1u1 / a1u2 / a1u3. Done when `_allaudit.ts` reports
-`missing images 1` (the deliberately-skipped `pa`).
+Order of attack: everything through **b1u18** is done. The only open front is
+**b1u19** — 40 missing plus the de-collided `dakonj`, laid out as 11 grids in
+`docs/GRID-PLAN-B1U19.md`. Done when `_allaudit.ts` reports
+`missing images 0` with no `UNWIRED` line anywhere.
+
+After that the grind moves forward with the course: each new B1 unit (u20 →
+u24, then the B1 checkpoint) needs its own `GRID-PLAN-B1U<n>.md` written at
+the same time the unit's vocab is authored, so image generation can start the
+moment the lessons validate.

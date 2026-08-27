@@ -8,21 +8,22 @@ const TONE = {
   success: { color: "var(--green)", icon: "🎉" },
 } as const;
 
-function wash(color: string, pct = 6): string {
-  return `color-mix(in srgb, ${color} ${pct}%, transparent)`;
-}
-
 /** Renders every diagram kind from the visuals mandate (§4). */
 export default function DiagramView({ diagram }: { diagram: DiagramSpec }) {
   switch (diagram.kind) {
     case "callout": {
+      // Neutral surface, tone carried by the rule and the title only — a wash of
+      // amber or green across a white page reads as cream, not as a callout.
       const t = TONE[diagram.tone];
       return (
-        <div className="rounded-[10px] p-4" style={{ background: wash(t.color) }}>
-          <p className="text-sm font-bold" style={{ color: t.color }}>
-            {t.icon} {diagram.title ?? ""}
-          </p>
-          <p className="mt-1 text-[15px] leading-relaxed text-[color:var(--body)]">{diagram.text}</p>
+        <div className="flex gap-3.5 rounded-[10px] p-4" style={{ background: "var(--tint)" }}>
+          <span aria-hidden className="w-[2px] flex-none rounded-full" style={{ background: t.color }} />
+          <div className="min-w-0">
+            <p className="text-sm font-bold" style={{ color: t.color }}>
+              {t.icon} {diagram.title ?? ""}
+            </p>
+            <p className="mt-1 text-[15px] leading-relaxed text-[color:var(--body)]">{diagram.text}</p>
+          </div>
         </div>
       );
     }

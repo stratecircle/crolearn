@@ -34,14 +34,29 @@
 :root {
   color-scheme: light;
 
-  /* surfaces */
-  --page: #ffffff;
+  /* surfaces — the page is a soft cool field, cards are true white ON it.
+     Without that one step of separation the whole app reads as a wireframe. */
+  --page: #f7f7f9;
   --card: #ffffff;
-  --tint: #f5f5f7;
-  --tint2: #f0f0f3;
-  --tint3: #ebebef;
-  --tint4: #f9f9fa;
-  --tint5: #f3f3f5;
+  --tint: #f0f0f3;
+  --tint2: #eaeaee;
+  --tint3: #e4e4e9;
+  --tint4: #f4f4f7;
+  --tint5: #eeeef2;
+
+  /* elevation — cool and tight; depth, never drama */
+  --e1: 0 1px 2px rgba(var(--shadow-rgb), 0.04), 0 1px 3px rgba(var(--shadow-rgb), 0.05);
+  --e2: 0 2px 4px rgba(var(--shadow-rgb), 0.04), 0 6px 16px rgba(var(--shadow-rgb), 0.07);
+  --e3: 0 12px 40px rgba(var(--shadow-rgb), 0.14), 0 2px 8px rgba(var(--shadow-rgb), 0.06);
+
+  /* sequential ramp for the activity heatmap — one hue, light→dark.
+     Monotonic in lightness (.92 → .81 → .65 → .52); the faint steps sit under
+     3:1 on purpose, so every cell carries a tooltip and the scale a legend. */
+  --ramp-0: rgba(var(--ink-rgb), 0.05);
+  --ramp-1: #dbe4fb;
+  --ramp-2: #a9bef6;
+  --ramp-3: #6a8bef;
+  --ramp-4: #2e5fe8;
 
   /* text */
   --ink: #1b1b20;
@@ -86,14 +101,25 @@
 html.dark {
   color-scheme: dark;
 
-  /* cool graphite */
-  --page: #131316;
-  --card: #19191e;
-  --tint: #212127;
-  --tint2: #26262d;
-  --tint3: #2b2b32;
-  --tint4: #1c1c22;
+  /* cool graphite — same one-step separation, inverted */
+  --page: #0f0f12;
+  --card: #17171c;
+  --tint: #202027;
+  --tint2: #26262e;
+  --tint3: #2c2c35;
+  --tint4: #141419;
   --tint5: #232329;
+
+  --e1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+  --e2: 0 2px 4px rgba(0, 0, 0, 0.4), 0 6px 16px rgba(0, 0, 0, 0.45);
+  --e3: 0 12px 40px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
+
+  /* the ramp is re-stepped for the dark surface, not flipped */
+  --ramp-0: rgba(var(--ink-rgb), 0.07);
+  --ramp-1: #23325c;
+  --ramp-2: #38508f;
+  --ramp-3: #5878c8;
+  --ramp-4: #7d9dff;
 
   --ink: #ececf1;
   --ink-strong: #ffffff;
@@ -187,6 +213,58 @@ html.theme-ready body {
   transition:
     background-color 180ms ease,
     color 180ms ease;
+}
+
+/*
+ * Entrance. One orchestrated reveal per view, staggered in reading order — the
+ * difference between a page that appears and a page that arrives. Cheap
+ * (transform + opacity only) and switched off wholesale by reduced-motion.
+ */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 380ms cubic-bezier(0.22, 0.68, 0.3, 1) both;
+}
+.rise-1 { animation-delay: 40ms; }
+.rise-2 { animation-delay: 90ms; }
+.rise-3 { animation-delay: 140ms; }
+.rise-4 { animation-delay: 190ms; }
+.rise-5 { animation-delay: 240ms; }
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.pop {
+  animation: pop 160ms cubic-bezier(0.22, 0.68, 0.3, 1) both;
+}
+
+/* A surface that lifts toward the pointer. Used on genuinely clickable objects
+   (story covers, mode tiles) — never on plain list rows. */
+.lift {
+  transition:
+    transform 180ms cubic-bezier(0.22, 0.68, 0.3, 1),
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+.lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--e2);
 }
 
 button {

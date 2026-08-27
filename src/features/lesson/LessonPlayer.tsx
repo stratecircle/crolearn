@@ -9,7 +9,8 @@ import SlideRenderer from "@/components/SlideRenderer";
 import TutorChat from "@/features/tutor/TutorChat";
 import { hasApiKey } from "@/lib/claude";
 import { stopSpeaking } from "@/lib/tts";
-import { ACCENT, Banner, BLUE, BODY2, BtnGhost, BtnPrimary, DoneCard, IconBtn, INK, MUTED, ORANGE, SHADOW_FLOAT } from "@/ui/kit";
+import { useHotkeys } from "@/lib/hotkeys";
+import { ACCENT, Banner, BLUE, BODY2, BtnGhost, BtnPrimary, DoneCard, IconBtn, INK, Kbd, MUTED, ORANGE, SHADOW_FLOAT } from "@/ui/kit";
 import {
   advance,
   firstTryAccuracy,
@@ -83,6 +84,30 @@ export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
     setRunId((r) => r + 1);
   }, [deck, pos]);
 
+  /**
+   * Desktop keyboard. Esc leaves the lesson (or first closes the tutor
+   * overlay); ← is the header's back button, same `pos === 0` guard.
+   * Enter/Space are deliberately NOT bound here: every slide autofocuses its
+   * Continue/Check button, so the browser's own button activation owns them —
+   * binding them again would double-fire.
+   */
+  useHotkeys(
+    {
+      escape: () => {
+        if (askOpen) {
+          setAskOpen(false);
+          return;
+        }
+        nav("/");
+      },
+      arrowleft: () => {
+        if (askOpen || finished) return;
+        goBack();
+      },
+    },
+    [askOpen, finished, goBack, nav],
+  );
+
   if (finished) {
     const pct = Math.round(finished.accuracy * 100);
     return (
@@ -132,7 +157,10 @@ export default function LessonPlayer({ lesson }: { lesson: Lesson }) {
       <header className="relative flex-none border-b" style={{ borderColor: "rgba(var(--ink-rgb),.08)" }}>
         <div className="mx-auto flex h-14 w-full max-w-[980px] items-center gap-1.5 px-4">
           <IconBtn icon={X} label="Exit lesson" onClick={() => nav("/")} />
+          {/* Hints, not controls — the buttons above carry the a11y labels. */}
+          <span className="-ml-0.5 max-[900px]:hidden" aria-hidden="true"><Kbd>Esc</Kbd></span>
           <IconBtn icon={ArrowLeft} label="Previous slide (nothing gets re-graded)" disabled={pos === 0} onClick={goBack} />
+          {pos > 0 && <span className="-ml-0.5 max-[900px]:hidden" aria-hidden="true"><Kbd>←</Kbd></span>}
           <div className="min-w-0 flex-1 px-2">
             <div className="meta truncate" style={{ color: MUTED }}>
               {lesson.unitId.toUpperCase()}

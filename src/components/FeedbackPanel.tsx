@@ -1,6 +1,6 @@
 import type { GradeResult } from "@/lib/grader";
 import TtsButton from "./TtsButton";
-import { CRVENI, GREEN, INK, ORANGE, tint } from "@/ui/kit";
+import { CRVENI, GREEN, INK, Kbd, ORANGE, tint } from "@/ui/kit";
 
 /**
  * Immediate corrective feedback (§1): verdict + the correct answer + one-line why.
@@ -41,6 +41,9 @@ export default function FeedbackPanel({
         style={{ background: INK }}
       >
         {continueLabel}
+        {/* This button autofocuses, so Enter already continues — the keycap
+            just makes that visible. Decoration: hidden from screen readers. */}
+        <span className="ml-2 max-[900px]:hidden" aria-hidden="true"><Kbd>Enter</Kbd></span>
       </button>
     </div>
   );

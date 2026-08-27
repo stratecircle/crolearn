@@ -12,6 +12,8 @@ import type {
 import { gradeFill, gradeReorder, gradeTyped, speechSimilarity, type GradeResult } from "@/lib/grader";
 import { shuffle } from "@/lib/shuffle";
 import { hasStt, listenOnce, stopListening } from "@/lib/stt";
+import { useHotkeys } from "@/lib/hotkeys";
+import { Kbd } from "@/ui/kit";
 import AnswerInput from "../AnswerInput";
 import FeedbackPanel from "../FeedbackPanel";
 import TtsButton from "../TtsButton";
@@ -41,6 +43,33 @@ const CHECK_BTN =
   "mt-5 h-10 rounded-lg bg-[color:var(--ink)] px-5 text-sm font-semibold text-white transition-[background,transform] duration-150 active:scale-[.99] disabled:opacity-40";
 
 /**
+ * The number key that picks this option, drawn at the option's leading edge.
+ * Desktop-only affordance, and decoration for screen readers — the button's own
+ * text is the label.
+ */
+function DigitHint({ n }: { n: number }) {
+  return (
+    <span className="mr-2.5 align-middle max-[900px]:hidden" aria-hidden="true">
+      <Kbd>{n}</Kbd>
+    </span>
+  );
+}
+
+/**
+ * A Check button with an Enter keycap beside it. No key is bound here — the answer
+ * field already submits on Enter; this only makes that discoverable.
+ * (`mt-5` mirrors CHECK_BTN's own top margin so the keycap lines up.)
+ */
+function CheckRow({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-2.5">
+      {children}
+      <span className="mt-5 max-[900px]:hidden" aria-hidden="true"><Kbd>Enter</Kbd></span>
+    </div>
+  );
+}
+
+/**
  * Quick-check battery: several short questions on one slide, answered together
  * then checked together — like a worksheet section. Whole slide retries if any
  * item was wrong.
@@ -52,6 +81,29 @@ export function QuizSetSlideView({ slide, onDone }: QuizProps<QuizSetSlide>) {
   const [checked, setChecked] = useState(false);
   const allAnswered = picked.every((p) => p !== null);
   const allCorrect = slide.items.every((it, i) => picked[i] === it.correctIndex);
+
+  /**
+   * Number keys pick an option — but a worksheet has several questions on
+   * screen at once, so "1" is only unambiguous when exactly one question is
+   * still open. Any other time (several unanswered, or already checked) the
+   * digits stay unbound and no keycaps are drawn: a shortcut that guesses which
+   * question you meant would be worse than no shortcut. The digit follows the
+   * DISPLAYED order, which is shuffled per question.
+   */
+  const openIdx = picked.findIndex((p) => p === null);
+  const digitsTarget = !checked && picked.filter((p) => p === null).length === 1 ? openIdx : -1;
+  const digitKeys: Record<string, (e: KeyboardEvent) => void> = {};
+  if (digitsTarget >= 0) {
+    orders[digitsTarget].slice(0, 9).forEach((original, displayed) => {
+      digitKeys[String(displayed + 1)] = () =>
+        setPicked((prev) => {
+          const next = [...prev];
+          next[digitsTarget] = original;
+          return next;
+        });
+    });
+  }
+  useHotkeys(digitKeys, [checked, digitsTarget, orders]);
 
   return (
     <div>
@@ -67,7 +119,7 @@ export function QuizSetSlideView({ slide, onDone }: QuizProps<QuizSetSlide>) {
                 {item.tts && <TtsButton text={item.tts} className="ml-1 align-middle" />}
               </p>
               <div className="mt-2.5 flex flex-wrap gap-2">
-                {orders[qi].map((oi) => (
+                {orders[qi].map((oi, di) => (
                   <button
                     key={oi}
                     type="button"
@@ -89,6 +141,7 @@ export function QuizSetSlideView({ slide, onDone }: QuizProps<QuizSetSlide>) {
                             : OPT_DIM
                     }`}
                   >
+                    {qi === digitsTarget && di < 9 && <DigitHint n={di + 1} />}
                     {item.options[oi]}
                   </button>
                 ))}
@@ -132,13 +185,27 @@ export function McSlideView({ slide, onDone }: QuizProps<McSlide>) {
   const [picked, setPicked] = useState<number | null>(null); // original index
   const answered = picked !== null;
   const correct = picked === slide.correctIndex;
+
+  /**
+   * Number keys pick by DISPLAYED position (the list is shuffled, so the digit
+   * has to match what's on screen, top to bottom). Unbound once answered, so a
+   * stray keypress can't overwrite a graded answer.
+   */
+  const digitKeys: Record<string, (e: KeyboardEvent) => void> = {};
+  if (!answered) {
+    order.slice(0, 9).forEach((original, displayed) => {
+      digitKeys[String(displayed + 1)] = () => setPicked(original);
+    });
+  }
+  useHotkeys(digitKeys, [answered, order]);
+
   return (
     <div>
       <QuizTitle>
         {slide.prompt} {slide.tts && <TtsButton text={slide.tts} className="ml-1 align-middle" />}
       </QuizTitle>
       <div className="mt-5 grid gap-2">
-        {order.map((i) => (
+        {order.map((i, di) => (
           <button
             key={i}
             type="button"
@@ -154,6 +221,7 @@ export function McSlideView({ slide, onDone }: QuizProps<McSlide>) {
                     : OPT_DIM
             }`}
           >
+            {!answered && di < 9 && <DigitHint n={di + 1} />}
             {slide.options[i]}
           </button>
         ))}
@@ -187,14 +255,16 @@ export function TypeSlideView({ slide, onDone }: QuizProps<TypeSlide>) {
         />
       </div>
       {result === null ? (
-        <button
-          type="button"
-          disabled={!value.trim()}
-          onClick={() => setResult(gradeTyped(value, slide.answers))}
-          className={CHECK_BTN}
-        >
-          Check
-        </button>
+        <CheckRow>
+          <button
+            type="button"
+            disabled={!value.trim()}
+            onClick={() => setResult(gradeTyped(value, slide.answers))}
+            className={CHECK_BTN}
+          >
+            Check
+          </button>
+        </CheckRow>
       ) : (
         <FeedbackPanel
           verdict={result.verdict}
@@ -230,14 +300,16 @@ export function ListenTypeSlideView({ slide, onDone }: QuizProps<ListenTypeSlide
         />
       </div>
       {result === null ? (
-        <button
-          type="button"
-          disabled={!value.trim()}
-          onClick={() => setResult(gradeTyped(value, answers))}
-          className={CHECK_BTN}
-        >
-          Check
-        </button>
+        <CheckRow>
+          <button
+            type="button"
+            disabled={!value.trim()}
+            onClick={() => setResult(gradeTyped(value, answers))}
+            className={CHECK_BTN}
+          >
+            Check
+          </button>
+        </CheckRow>
       ) : (
         <FeedbackPanel
           verdict={result.verdict}
@@ -498,14 +570,16 @@ export function FillSlideView({ slide, onDone }: QuizProps<FillSlide>) {
         </div>
       )}
       {results === null ? (
-        <button
-          type="button"
-          disabled={!allFilled}
-          onClick={submit}
-          className={CHECK_BTN}
-        >
-          Check
-        </button>
+        <CheckRow>
+          <button
+            type="button"
+            disabled={!allFilled}
+            onClick={submit}
+            className={CHECK_BTN}
+          >
+            Check
+          </button>
+        </CheckRow>
       ) : (
         <FeedbackPanel
           verdict={overall!}

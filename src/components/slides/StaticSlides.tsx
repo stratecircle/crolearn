@@ -6,7 +6,7 @@ import Markdown from "../Markdown";
 import TtsButton from "../TtsButton";
 import { CASE_COLORS, GENDER_COLORS } from "@/ui/caseColors";
 import { speak } from "@/lib/tts";
-import { BODY2, INK, MUTED, ORANGE } from "@/ui/kit";
+import { BODY2, INK, Kbd, MUTED, ORANGE } from "@/ui/kit";
 
 const DIVIDE = "divide-y divide-[rgba(var(--ink-rgb),.08)]";
 
@@ -20,6 +20,9 @@ function ContinueButton({ onClick, label = "Continue →" }: { onClick: () => vo
       style={{ background: INK }}
     >
       {label}
+      {/* autoFocus means Enter already advances the deck — the keycap makes
+          that discoverable. Decoration: hidden from screen readers. */}
+      <span className="ml-2 max-[900px]:hidden" aria-hidden="true"><Kbd>Enter</Kbd></span>
     </button>
   );
 }
